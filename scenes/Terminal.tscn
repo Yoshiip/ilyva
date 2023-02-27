@@ -1,0 +1,235 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scripts/Terminal.gd" type="Script" id=1]
+[ext_resource path="res://scripts/commands/echo.gd" type="Script" id=2]
+[ext_resource path="res://scripts/commands/help.gd" type="Script" id=3]
+[ext_resource path="res://scripts/commands/cd.gd" type="Script" id=4]
+[ext_resource path="res://scripts/commands/ls.gd" type="Script" id=5]
+[ext_resource path="res://scripts/commands/pwd.gd" type="Script" id=6]
+[ext_resource path="res://scripts/terminal/file.gd" type="Script" id=7]
+[ext_resource path="res://fonts/Hack-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scripts/commands/clear.gd" type="Script" id=9]
+[ext_resource path="res://scripts/commands/cat.gd" type="Script" id=10]
+[ext_resource path="res://scripts/commands/ilynano.gd" type="Script" id=11]
+[ext_resource path="res://fonts/Hack-Bold.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://fonts/Hack-BoldItalic.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://fonts/Hack-Italic.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://scripts/terminal/folder.gd" type="Script" id=15]
+[ext_resource path="res://scripts/commands/tree.gd" type="Script" id=16]
+[ext_resource path="res://scripts/commands/touch.gd" type="Script" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+TextEdit/fonts/font = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=7]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=4]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[node name="Terminal" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 1 )
+
+[node name="Text" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -40.0
+focus_mode = 2
+custom_fonts/bold_italics_font = SubResource( 6 )
+custom_fonts/italics_font = SubResource( 7 )
+custom_fonts/bold_font = SubResource( 5 )
+bbcode_enabled = true
+selection_enabled = true
+
+[node name="Input" type="LineEdit" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+placeholder_text = "Prompt"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Commands" type="Node" parent="."]
+
+[node name="help" type="Node" parent="Commands"]
+script = ExtResource( 3 )
+description = "Affiche l'aide"
+
+[node name="echo" type="Node" parent="Commands"]
+script = ExtResource( 2 )
+description = "Renvoie le texte specifié en argument"
+
+[node name="cd" type="Node" parent="Commands"]
+script = ExtResource( 4 )
+min_args = 1
+description = "Changer de repértoire"
+
+[node name="ls" type="Node" parent="Commands"]
+script = ExtResource( 5 )
+description = "Affiche tous les dossiers/fichiers du répertoire courant"
+
+[node name="pwd" type="Node" parent="Commands"]
+script = ExtResource( 6 )
+description = "Affiche le chemin du dossier actuel"
+
+[node name="clear" type="Node" parent="Commands"]
+script = ExtResource( 9 )
+description = "Efface l'historique du terminal"
+
+[node name="cat" type="Node" parent="Commands"]
+script = ExtResource( 10 )
+min_args = 1
+description = "Affiche le contenu d'un fichier"
+
+[node name="ilynano" type="Node" parent="Commands"]
+script = ExtResource( 11 )
+
+[node name="Ilynano" type="WindowDialog" parent="Commands/ilynano"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = -64.0
+margin_bottom = -64.0
+popup_exclusive = true
+window_title = "cat"
+resizable = true
+
+[node name="Save" type="Button" parent="Commands/ilynano/Ilynano"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -30.0
+margin_right = -32.0
+margin_bottom = -10.0
+text = "Save as ..."
+
+[node name="Text" type="TextEdit" parent="Commands/ilynano/Ilynano"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 4 )
+text = "extends Control
+
+const bash_name = \"ILYVA bash, version 1.0\"
+
+var path := \"/\"
+
+
+func print_text(text : String, new_line = true) -> void:
+	$Text.bbcode_text += text + (\"\\n\" if new_line else \"\")
+	
+
+func clear_text() -> void:
+	$Text.bbcode_text = \"\"
+
+func _on_Input_text_entered(new_text: String) -> void:
+#	add_text(\"$\" + new_text)
+	if new_text == \"\":
+		return
+	var text = new_text.split(\" \", false)
+	var command_found := false
+	$Input.text = \"\"
+	for command in $Commands.get_children():
+		if command.name == text[0]:
+			command_found = true
+			if text.size() - 1 >= command.min_args:
+				command.run(text)
+			else:
+				print_text(str(\"Command \\\"\", text[0], \"\\\" need \", command.min_args, \" argument(s), and you specified \", text.size() - 1, \".\"))
+			text.remove(0)
+			return
+	if !command_found:
+		print_text(\"Command \\\"\" + new_text + \"\\\" not found, try \\\"help\\\" to show a list of commands avaible.\")
+"
+highlight_current_line = true
+syntax_highlighting = true
+show_line_numbers = true
+draw_tabs = true
+draw_spaces = true
+highlight_all_occurrences = true
+smooth_scrolling = true
+minimap_draw = true
+caret_blink = true
+
+[node name="LineEdit" type="LineEdit" parent="Commands/ilynano/Ilynano"]
+anchor_right = 1.0
+margin_bottom = 24.0
+placeholder_text = "Filename..."
+
+[node name="tree" type="Node" parent="Commands"]
+script = ExtResource( 16 )
+description = "Affiche tous les fichiers"
+
+[node name="touch" type="Node" parent="Commands"]
+script = ExtResource( 17 )
+
+[node name="System" type="Node" parent="."]
+
+[node name="dossier_1" type="Node" parent="System"]
+script = ExtResource( 15 )
+
+[node name="fichier_1" type="Node" parent="System/dossier_1"]
+script = ExtResource( 7 )
+content = "Caca"
+
+[node name="dossier_4" type="Node" parent="System/dossier_1"]
+script = ExtResource( 15 )
+
+[node name="fichier_1" type="Node" parent="System/dossier_1/dossier_4"]
+script = ExtResource( 7 )
+content = "Caca"
+
+[node name="dossier_5" type="Node" parent="System/dossier_1/dossier_4"]
+script = ExtResource( 15 )
+
+[node name="fichier_1" type="Node" parent="System/dossier_1/dossier_4/dossier_5"]
+script = ExtResource( 7 )
+content = "Caca"
+
+[node name="dossier_2" type="Node" parent="System"]
+script = ExtResource( 15 )
+
+[node name="dossier_3" type="Node" parent="System"]
+script = ExtResource( 15 )
+
+[node name="fichier_1" type="Node" parent="System"]
+script = ExtResource( 7 )
+content = "Coucou"
+
+[connection signal="text_entered" from="Input" to="." method="_on_Input_text_entered"]

@@ -1,0 +1,938 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://3d/models/subway/subway.glb" type="PackedScene" id=2]
+[ext_resource path="res://scripts/menu/SubwayAnimation.gd" type="Script" id=3]
+[ext_resource path="res://scripts/menu/MenuCamera.gd" type="Script" id=4]
+[ext_resource path="res://images/shaders/gradient.png" type="Texture" id=5]
+[ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
+[ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
+[ext_resource path="res://images/icons/menu/planet_1.png" type="Texture" id=9]
+[ext_resource path="res://images/textures/grain.jpg" type="Texture" id=10]
+[ext_resource path="res://scripts/MenuUI.gd" type="Script" id=11]
+[ext_resource path="res://images/logo_black.png" type="Texture" id=12]
+[ext_resource path="res://3d/models/station/station.glb" type="PackedScene" id=13]
+[ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
+[ext_resource path="res://images/iut.png" type="Texture" id=15]
+[ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
+[ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://images/logo_white.png" type="Texture" id=18]
+[ext_resource path="res://images/godot_logo_large_monochrome.png" type="Texture" id=19]
+[ext_resource path="res://images/ui/angles.png" type="Texture" id=20]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 1 )
+
+[sub_resource type="ProceduralSky" id=13]
+
+[sub_resource type="Environment" id=10]
+background_mode = 2
+background_sky = SubResource( 13 )
+background_color = Color( 1, 1, 1, 1 )
+fog_enabled = true
+fog_color = Color( 1, 1, 1, 1 )
+fog_depth_end = 50.0
+ss_reflections_enabled = true
+ss_reflections_max_steps = 512
+ssao_enabled = true
+dof_blur_near_enabled = true
+dof_blur_near_distance = 10.0
+dof_blur_near_quality = 2
+glow_enabled = true
+glow_bloom = 1.0
+glow_high_quality = true
+adjustment_color_correction = ExtResource( 5 )
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("WorldEnvironment:environment:fog_depth_begin")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WorldEnvironment:environment:fog_depth_end")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 50.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 4.38871, 5.06463, 13.5599 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera:fov")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 110.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Camera:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -5.39787, 23.3976, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../../../../SharpCorners:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../../../../TopPart:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../../../../Buttons:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("../../../../Buttons:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Subway:speed")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("WorldEnvironment:environment:dof_blur_near_distance")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Start"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("WorldEnvironment:environment:fog_depth_begin")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WorldEnvironment:environment:fog_depth_end")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 50.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3, 5, 7.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3.726, 5.065, 13.56 ), Vector3( 3.726, 5.065, 13.56 ), Vector3( 3.726, 4, 13.56 ), Vector3( 3.726, 4, 13.56 ), Vector3( 3.323, 2.468, 36.117 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera:fov")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 7.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 70.0, 70.0, 110.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Camera:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 7.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -5.39787, 23.3976, 0 ), Vector3( -5.39787, 23.3976, 0 ), Vector3( 16, 16, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../../../../TopPart:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 7.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../../../../Buttons:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 7.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("Camera")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 7.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "go"
+} ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("WorldEnvironment:environment:dof_blur_near_distance")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 3.0, 1.0 ]
+}
+
+[sub_resource type="DynamicFont" id=21]
+size = 64
+outline_size = 4
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=20]
+texture = ExtResource( 20 )
+region_rect = Rect2( 0, 0, 128, 128 )
+margin_left = 64.0
+margin_right = 64.0
+margin_top = 64.0
+margin_bottom = 64.0
+modulate_color = Color( 0.141176, 0.137255, 0.137255, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 4
+border_width_top = 32
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.858824, 0.156863, 0.109804, 1 )
+
+[sub_resource type="DynamicFont" id=17]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 17 )
+
+[sub_resource type="StyleBoxLine" id=18]
+color = Color( 1, 1, 1, 1 )
+grow_begin = -32.0
+grow_end = -32.0
+thickness = 2
+
+[node name="Menu" type="Control"]
+script = ExtResource( 11 )
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="Canvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+theme = SubResource( 8 )
+
+[node name="Background" type="ColorRect" parent="Canvas/Container"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.137255, 0.137255, 1 )
+
+[node name="3D" type="Panel" parent="Canvas/Container"]
+show_behind_parent = true
+anchor_top = 0.167
+anchor_right = 1.0
+anchor_bottom = 0.833
+margin_top = -0.200005
+margin_bottom = -0.67804
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Canvas/Container/3D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+stretch = true
+
+[node name="Spatial" type="Viewport" parent="Canvas/Container/3D/ViewportContainer"]
+size = Vector2( 1280, 479 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Spatial" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial"]
+
+[node name="Subway" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+script = ExtResource( 3 )
+speed = 2
+
+[node name="subway" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
+
+[node name="subway2" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
+
+[node name="subway3" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
+
+[node name="subway4" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21 )
+
+[node name="subway5" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28 )
+
+[node name="subway6" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+environment = SubResource( 10 )
+
+[node name="Point0" type="Position3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( 0.961262, 0.0759759, 0.264959, 0, 0.961262, -0.275638, -0.275637, 0.26496, 0.924024, 3.323, 2.468, 36.117 )
+
+[node name="Point1" type="Position3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( -0.223211, -0.091699, 0.970447, 0, 0.995565, 0.0940725, -0.97477, 0.020998, -0.222221, 8.88051, 3.40871, 15.3975 )
+
+[node name="Point2" type="Position3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( 0.711441, -0.00181442, 0.702743, 0, 0.999997, 0.0025819, -0.702746, -0.00183687, 0.711439, 2.97011, 2.40943, 17.8146 )
+
+[node name="Camera" type="Camera" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( 0.917771, -0.0373566, 0.395348, 0, 0.995566, 0.0940712, -0.397109, -0.086336, 0.913701, 4.38871, 5.06463, 13.5599 )
+current = true
+fov = 110.0
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera"]
+wait_time = 5.0
+
+[node name="station" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial" instance=ExtResource( 13 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 32 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+autoplay = "Start"
+anims/RESET = SubResource( 14 )
+anims/Start = SubResource( 15 )
+
+[node name="Spatial" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73901, 1, 12.6115 )
+
+[node name="Label3D" type="Label3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.531943, 3.74146, 0 )
+pixel_size = 0.0025
+shaded = true
+text = "Aymeri, Manon, Thomas
+Nicolas et Noé présente"
+font = SubResource( 21 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67, 2.746, 0 )
+pixel_size = 0.0007
+shaded = true
+texture = ExtResource( 19 )
+
+[node name="SharpCorners" type="Panel" parent="Canvas/Container"]
+anchor_top = 0.167
+anchor_right = 1.0
+anchor_bottom = 0.833
+margin_top = -0.200005
+margin_bottom = 0.199951
+custom_styles/panel = SubResource( 20 )
+
+[node name="NoiseTexture" type="TextureRect" parent="Canvas/Container"]
+modulate = Color( 1, 1, 1, 0.247059 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 4
+
+[node name="Buttons" type="Panel" parent="Canvas/Container"]
+anchor_top = 0.833
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.199951
+rect_min_size = Vector2( 0, 100 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 16 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Container/Buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -358.0
+margin_top = -20.0
+margin_right = 358.0
+margin_bottom = 20.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_right = 206.0
+btn_label = "Jouer"
+
+[node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 246.0
+margin_right = 452.0
+btn_label = "Paramètres"
+btn_icon = ExtResource( 7 )
+
+[node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 492.0
+margin_right = 698.0
+btn_label = "Crédits"
+btn_icon = ExtResource( 9 )
+
+[node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 738.0
+margin_right = 944.0
+btn_label = "Quitter"
+btn_icon = ExtResource( 8 )
+
+[node name="TopPart" type="Control" parent="Canvas/Container"]
+anchor_right = 1.002
+anchor_bottom = 0.167
+margin_top = 64.0
+margin_right = 0.439941
+margin_bottom = 63.76
+
+[node name="Shadow" type="TextureRect" parent="Canvas/Container/TopPart"]
+modulate = Color( 0, 0, 0, 0.498039 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+margin_bottom = 8.0
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 6
+
+[node name="IlyvaLogoRed" type="TextureRect" parent="Canvas/Container/TopPart"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 6
+
+[node name="Iut" type="TextureRect" parent="Canvas/Container/TopPart"]
+anchor_right = 0.168
+anchor_bottom = 0.168
+margin_left = 16.0
+margin_top = -60.0
+margin_right = 9.28
+margin_bottom = -66.72
+texture = ExtResource( 15 )
+expand = true
+stretch_mode = 6
+
+[node name="Credits" type="Panel" parent="Canvas/Container"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -278.0
+margin_top = -269.0
+margin_right = 278.0
+margin_bottom = 269.0
+rect_clip_content = true
+custom_styles/panel = SubResource( 19 )
+
+[node name="Noise" type="TextureRect" parent="Canvas/Container/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="Canvas/Container/Credits"]
+anchor_right = 1.0
+margin_bottom = 32.0
+text = "CREDITS.md"
+align = 1
+valign = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Canvas/Container/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 36.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/Container/Credits/ScrollContainer"]
+margin_right = 512.0
+margin_bottom = 936.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="Label3" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 49.0
+text = "Aymeri, Manon, Thomas
+Nicolas, Noé présente"
+align = 1
+
+[node name="IlyvaLogoRed" type="TextureRect" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 512.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 64 )
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 512.0
+margin_bottom = 211.0
+custom_fonts/font = SubResource( 17 )
+text = "Toute ressemblance avec des personnes ou entreprises existantes ou ayant existé est purement fortuite et involontaire (en particulier une entreprise de métro agissant dans Lille)"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Panel" type="Panel" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 227.0
+margin_right = 512.0
+margin_bottom = 227.0
+custom_styles/panel = SubResource( 18 )
+
+[node name="GridContainer" type="GridContainer" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 243.0
+margin_right = 512.0
+margin_bottom = 347.0
+custom_constants/hseparation = 32
+columns = 2
+
+[node name="Label" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_right = 241.0
+margin_bottom = 23.0
+custom_colors/font_color = Color( 0.815686, 0.815686, 0.815686, 1 )
+text = "Développement"
+
+[node name="Label2" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_left = 273.0
+margin_right = 488.0
+margin_bottom = 23.0
+text = "TOURNEUR AYMERI"
+
+[node name="Label5" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_top = 27.0
+margin_right = 241.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 0.815686, 0.815686, 0.815686, 1 )
+text = "Décors, personnages"
+
+[node name="Label6" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_left = 273.0
+margin_top = 27.0
+margin_right = 488.0
+margin_bottom = 50.0
+text = "LECLERCQ MANON"
+
+[node name="Label3" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_top = 54.0
+margin_right = 241.0
+margin_bottom = 77.0
+custom_colors/font_color = Color( 0.815686, 0.815686, 0.815686, 1 )
+text = "Modélisation 3D"
+
+[node name="Label4" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_left = 273.0
+margin_top = 54.0
+margin_right = 488.0
+margin_bottom = 77.0
+text = "TOURNEUR AYMERI"
+
+[node name="Label7" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_top = 81.0
+margin_right = 241.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.815686, 0.815686, 0.815686, 1 )
+text = "Réalisation site"
+
+[node name="Label8" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/GridContainer"]
+margin_left = 273.0
+margin_top = 81.0
+margin_right = 488.0
+margin_bottom = 104.0
+text = "GYSEMANS THOMAS"
+
+[node name="Label" type="LinkButton" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 363.0
+margin_right = 512.0
+margin_bottom = 386.0
+text = "sae25.sciencesky.fr"
+
+[node name="Panel2" type="Panel" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 402.0
+margin_right = 512.0
+margin_bottom = 402.0
+custom_styles/panel = SubResource( 18 )
+
+[node name="Label4" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 418.0
+margin_right = 512.0
+margin_bottom = 441.0
+custom_colors/font_color = Color( 0.882353, 0.882353, 0.882353, 1 )
+text = "MERCI À"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 457.0
+margin_right = 512.0
+margin_bottom = 669.0
+rect_min_size = Vector2( 512, 0 )
+alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 17.0
+margin_right = 495.0
+margin_bottom = 212.0
+custom_constants/hseparation = 64
+columns = 2
+
+[node name="Label" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_right = 207.0
+margin_bottom = 23.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label2" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_right = 478.0
+margin_bottom = 23.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label3" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 27.0
+margin_right = 207.0
+margin_bottom = 50.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label4" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_top = 27.0
+margin_right = 478.0
+margin_bottom = 50.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label5" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 54.0
+margin_right = 207.0
+margin_bottom = 77.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label6" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_top = 54.0
+margin_right = 478.0
+margin_bottom = 77.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label7" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 81.0
+margin_right = 207.0
+margin_bottom = 104.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label8" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_top = 81.0
+margin_right = 478.0
+margin_bottom = 104.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label9" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 108.0
+margin_right = 207.0
+margin_bottom = 131.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label10" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_top = 108.0
+margin_right = 478.0
+margin_bottom = 131.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label11" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 135.0
+margin_right = 207.0
+margin_bottom = 158.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label12" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_top = 135.0
+margin_right = 478.0
+margin_bottom = 158.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label13" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 162.0
+margin_right = 207.0
+margin_bottom = 185.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label14" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_left = 271.0
+margin_top = 162.0
+margin_right = 478.0
+margin_bottom = 185.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label15" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer/GridContainer2"]
+margin_top = 189.0
+margin_right = 207.0
+margin_bottom = 212.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label5" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 685.0
+margin_right = 512.0
+margin_bottom = 708.0
+custom_colors/font_color = Color( 0.882353, 0.882353, 0.882353, 1 )
+text = "BETA-TESTEURS"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer"]
+margin_top = 724.0
+margin_right = 512.0
+margin_bottom = 936.0
+rect_min_size = Vector2( 512, 0 )
+alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 17.0
+margin_right = 495.0
+margin_bottom = 212.0
+custom_constants/hseparation = 64
+columns = 2
+
+[node name="Label" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_right = 207.0
+margin_bottom = 23.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label2" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_right = 478.0
+margin_bottom = 23.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label3" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 27.0
+margin_right = 207.0
+margin_bottom = 50.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label4" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_top = 27.0
+margin_right = 478.0
+margin_bottom = 50.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label5" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 54.0
+margin_right = 207.0
+margin_bottom = 77.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label6" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_top = 54.0
+margin_right = 478.0
+margin_bottom = 77.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label7" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 81.0
+margin_right = 207.0
+margin_bottom = 104.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label8" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_top = 81.0
+margin_right = 478.0
+margin_bottom = 104.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label9" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 108.0
+margin_right = 207.0
+margin_bottom = 131.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label10" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_top = 108.0
+margin_right = 478.0
+margin_bottom = 131.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label11" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 135.0
+margin_right = 207.0
+margin_bottom = 158.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label12" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_top = 135.0
+margin_right = 478.0
+margin_bottom = 158.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label13" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 162.0
+margin_right = 207.0
+margin_bottom = 185.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label14" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_left = 271.0
+margin_top = 162.0
+margin_right = 478.0
+margin_bottom = 185.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="Label15" type="Label" parent="Canvas/Container/Credits/ScrollContainer/VBoxContainer/HBoxContainer2/GridContainer2"]
+margin_top = 189.0
+margin_right = 207.0
+margin_bottom = 212.0
+text = "PHILIPPE MATTHIEU"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -10.0
+autoplay = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera/Timer" to="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera" method="_on_Timer_timeout"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]

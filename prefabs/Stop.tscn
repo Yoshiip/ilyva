@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Stop" type="Spatial"]
+
+[node name="Mesh" type="CSGCylinder" parent="."]
+radius = 8.0
+sides = 16

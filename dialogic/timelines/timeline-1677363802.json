@@ -1,0 +1,150 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Quoi ? Qu'est que tu fait ici ???"
+		},
+		{
+			"choice": "Je me suis un peu perdu...",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ah..."
+		},
+		{
+			"choice": "Je te retourne la question!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C'est pas tous les jours qu'on voit quelqu'un du Listenbourg arriver à Lille!"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Enfin bon... La je suis avec Dogukan, je dois aller a la CAF."
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Tu veut venir ?"
+		},
+		{
+			"choice": "Oui",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Parfait! En route"
+		},
+		{
+			"choice": "Non",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu crois vraiment que t'as le choix ? Aller suis nous depêche toi!"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Euh..."
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 1,
+			"waiting_skippable": true
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "J'ai un gros trou de mémoire, tu pourrais nous conduire à la CAF ?"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1677363802.json",
+		"name": "Manon"
+	}
+}
