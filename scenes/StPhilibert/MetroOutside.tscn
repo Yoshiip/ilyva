@@ -1,23 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://resources/theme.tres" type="Theme" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://images/backgrounds/lille_flandres.png" type="Texture" id=3]
-[ext_resource path="res://scripts/Interaction.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Interaction.gd" type="Script" id=1]
+[ext_resource path="res://scripts/NavigationArrow.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Zone.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/Cursor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/Zone.gd" type="Script" id=6]
-[ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=7]
-[ext_resource path="res://resources/rich_text_effect/glitch.tres" type="RichTextEffect" id=8]
-[ext_resource path="res://fonts/Hack-Bold.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://images/props/arrow.png" type="Texture" id=10]
-[ext_resource path="res://scripts/NavigationArrow.gd" type="Script" id=11]
-
-[sub_resource type="DynamicFont" id=7]
-size = 24
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 9 )
+[ext_resource path="res://resources/theme.tres" type="Theme" id=6]
+[ext_resource path="res://images/backgrounds/lille_flandres.png" type="Texture" id=7]
+[ext_resource path="res://images/props/arrow.png" type="Texture" id=8]
+[ext_resource path="res://icon.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
@@ -106,7 +97,7 @@ shader_param/inset = 0.25
 extents = Vector2( 27, 32.5 )
 
 [node name="Root" type="Node2D"]
-script = ExtResource( 6 )
+script = ExtResource( 3 )
 zone_id = "BeauxArts"
 zone_name = "Garre Lille Flandres (Surface)"
 time = "Noon"
@@ -114,7 +105,7 @@ start_scene = true
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 0.56, 0.56 )
-texture = ExtResource( 3 )
+texture = ExtResource( 7 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
@@ -124,17 +115,16 @@ limit_top = -302
 limit_right = 615
 limit_bottom = 302
 smoothing_enabled = true
-script = ExtResource( 7 )
+script = ExtResource( 4 )
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 
 [node name="Container" type="Control" parent="Canvas"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
+theme = ExtResource( 6 )
 
 [node name="ZoneName" type="Label" parent="Canvas/Container"]
-unique_name_in_owner = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -92.0
@@ -144,7 +134,6 @@ text = "fdsf"
 align = 1
 
 [node name="Time" type="Label" parent="Canvas/Container"]
-unique_name_in_owner = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -92.0
@@ -154,28 +143,17 @@ margin_bottom = 30.0
 text = "fdsf"
 align = 1
 
-[node name="Label" type="RichTextLabel" parent="Canvas/Container"]
-margin_left = 912.0
-margin_top = 544.0
-margin_right = 1236.0
-margin_bottom = 623.0
-custom_fonts/normal_font = SubResource( 7 )
-bbcode_enabled = true
-bbcode_text = "[glitch scale=0.5 freq=8.0]Salut! Je t'ai jamais vu ici. T'es nouveau ? Si t'asbesoin d'aide n'hésite pas[/glitch]"
-text = "Salut! Je t'ai jamais vu ici. T'es nouveau ? Si t'asbesoin d'aide n'hésite pas"
-custom_effects = [ ExtResource( 8 ) ]
-
 [node name="Arrow" type="Area2D" parent="." groups=["Interaction"]]
 position = Vector2( 17, 113 )
 rotation = -0.0296706
 scale = Vector2( 2, 1 )
-script = ExtResource( 11 )
+script = ExtResource( 2 )
 scene_name = "res://scenes/BeauxArts/Surface_2.tscn"
 
 [node name="Icon" type="Sprite" parent="Arrow"]
 modulate = Color( 1, 1, 1, 0.498039 )
 material = SubResource( 2 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arrow"]
 polygon = PoolVector2Array( -77.5491, 68.4289, 77.5458, 66.6303, 41.2786, -17.5586, 53.7879, -17.8165, -0.0547862, -30.0165, -53.7686, -17.1978, -41.2741, -16.4561 )
@@ -184,16 +162,16 @@ polygon = PoolVector2Array( -77.5491, 68.4289, 77.5458, 66.6303, 41.2786, -17.55
 modulate = Color( 0, 0, 0, 0.247059 )
 material = SubResource( 4 )
 position = Vector2( 326, 89 )
-texture = ExtResource( 2 )
+texture = ExtResource( 9 )
 
 [node name="Interaction" type="Area2D" parent="." groups=["Interaction"]]
 position = Vector2( 321, 48 )
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 dialogue_name = "BeauxArts/Manon"
 
 [node name="Manon" type="Sprite" parent="Interaction"]
 material = SubResource( 3 )
-texture = ExtResource( 2 )
+texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
 position = Vector2( 4, 0.5 )

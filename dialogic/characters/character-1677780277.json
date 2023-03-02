@@ -3,9 +3,9 @@
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
-	"id": "character-1677363335.json",
+	"id": "character-1677780277.json",
 	"mirror_portraits": false,
-	"name": "Voix du métro",
+	"name": "?????",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": 0,
@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://images/portraits/ManonDogukan.png"
+			"path": ""
 		}
 	],
-	"scale": 40,
+	"scale": 100,
 	"theme": ""
 }

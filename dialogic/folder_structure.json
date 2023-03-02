@@ -5,15 +5,50 @@
 	"folders": {
 		"Characters": {
 			"files": [
-
+				"character-1677778976.json"
 			],
 			"folders": {
-				"NPCs": {
+				"beaux_arts": {
 					"files": [
 						"character-1676579269.json",
-						"character-1677363105.json",
-						"character-1677363335.json",
-						"character-1677363460.json"
+						"character-1677363105.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"cite_scientifique": {
+					"files": [
+
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"shared": {
+					"files": [
+						"character-1677363460.json",
+						"character-1677363335.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"st_philibert": {
+					"files": [
+						"character-1677780277.json"
 					],
 					"folders": {
 
@@ -31,7 +66,7 @@
 		},
 		"Definitions": {
 			"files": [
-				"1677426245-849"
+
 			],
 			"folders": {
 
@@ -43,7 +78,8 @@
 		},
 		"Themes": {
 			"files": [
-				"default-theme.cfg"
+				"default-theme.cfg",
+				"theme-1677778695.cfg"
 			],
 			"folders": {
 

@@ -6,7 +6,7 @@ var acceleration = 0.0
 var steer = 0.0
 
 export var trains_counts := 10
-onready var train := preload("res://models/subway/subway.glb")
+onready var train := preload("res://3d/models/subway/subway.glb")
 
 onready var path: Path = $"../Line1"
 

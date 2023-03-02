@@ -31,11 +31,11 @@ font_data = ExtResource( 1 )
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 1 )
 
-[sub_resource type="ProceduralSky" id=13]
+[sub_resource type="ProceduralSky" id=22]
 
 [sub_resource type="Environment" id=10]
 background_mode = 2
-background_sky = SubResource( 13 )
+background_sky = SubResource( 22 )
 background_color = Color( 1, 1, 1, 1 )
 fog_enabled = true
 fog_color = Color( 1, 1, 1, 1 )
@@ -411,7 +411,7 @@ transform = Transform( -0.223211, -0.091699, 0.970447, 0, 0.995565, 0.0940725, -
 transform = Transform( 0.711441, -0.00181442, 0.702743, 0, 0.999997, 0.0025819, -0.702746, -0.00183687, 0.711439, 2.97011, 2.40943, 17.8146 )
 
 [node name="Camera" type="Camera" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( 0.917771, -0.0373566, 0.395348, 0, 0.995566, 0.0940712, -0.397109, -0.086336, 0.913701, 4.38871, 5.06463, 13.5599 )
+transform = Transform( 0.917771, -0.0373566, 0.395348, 0, 0.995566, 0.0940713, -0.397109, -0.086336, 0.913701, 4.38871, 5.06463, 13.5599 )
 current = true
 fov = 110.0
 script = ExtResource( 4 )
@@ -476,32 +476,38 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -358.0
+margin_left = -595.0
 margin_top = -20.0
-margin_right = 358.0
+margin_right = 595.0
 margin_bottom = 20.0
 custom_constants/separation = 40
 alignment = 1
 
 [node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
 margin_right = 206.0
-btn_label = "Jouer"
+btn_label = "Terminal"
 
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 246.0
 margin_right = 452.0
-btn_label = "Paramètres"
+btn_label = "Surface"
+btn_icon = ExtResource( 7 )
+
+[node name="Metro" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 492.0
+margin_right = 698.0
+btn_label = "Metro"
 btn_icon = ExtResource( 7 )
 
 [node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 492.0
-margin_right = 698.0
-btn_label = "Crédits"
+margin_left = 738.0
+margin_right = 944.0
+btn_label = "Map"
 btn_icon = ExtResource( 9 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 738.0
-margin_right = 944.0
+margin_left = 984.0
+margin_right = 1190.0
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
 
@@ -934,5 +940,6 @@ autoplay = true
 [connection signal="timeout" from="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera/Timer" to="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera" method="_on_Timer_timeout"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]

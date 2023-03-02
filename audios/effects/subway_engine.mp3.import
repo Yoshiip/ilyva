@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/subway_engine.mp3-21841a7b8befaac038291c71cd8608f3.mp3str"
+
+[deps]
+
+source_file="res://audios/effects/subway_engine.mp3"
+dest_files=[ "res://.import/subway_engine.mp3-21841a7b8befaac038291c71cd8608f3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

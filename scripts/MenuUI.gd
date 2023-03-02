@@ -30,3 +30,7 @@ func _on_Settings_pressed() -> void:
 
 func _on_Play_pressed() -> void:
 	get_tree().change_scene("res://scenes/Terminal.tscn")
+
+
+func _on_Metro_pressed() -> void:
+	get_tree().change_scene("res://scenes/3d/StationLevel.tscn")

@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 	h_offset = lerp(h_offset, ((m_pos.x + (w_size.x / 2)) / w_size.x - 1.0) * 1.5, 0.05)
 	v_offset = lerp(v_offset, ((m_pos.y + (w_size.y / 2)) / w_size.y - 1.0) * 1.5, 0.05)
 	
+
 func handle_camera(delta : float) -> void:
 	var max_shake = get_parent().get_node("Subway").speed / 2.0
 
@@ -53,7 +54,6 @@ func handle_camera(delta : float) -> void:
 	translation = Vector3(rand_range(-shake_offset, shake_offset),
 	rand_range(-shake_offset, shake_offset),
 	rand_range(-shake_offset, shake_offset)) + base_pos
-
 
 func _on_Timer_timeout() -> void:
 #	var point = get_parent().get_node(str("Point", randi() % 3))
