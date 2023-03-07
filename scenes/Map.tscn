@@ -90,7 +90,7 @@ script = ExtResource( 4 )
 
 [node name="Subway" type="Spatial" parent="."]
 script = ExtResource( 3 )
-trains_counts = 50
+trains_counts = 1
 
 [node name="Line1Polygon" type="CSGPolygon" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
@@ -264,16 +264,43 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource( 11 )
 
-[node name="Stop" parent="." instance=ExtResource( 8 )]
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, -250, 250, -125 )
+far = 300.0
 
-[node name="Stop2" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.4801, 0, -70.5635 )
+[node name="Stops" type="Spatial" parent="."]
 
-[node name="Stop3" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -307.766, 0, -113.444 )
+[node name="cite_scientifique" parent="Stops" instance=ExtResource( 8 )]
+stop_id = "cite_scientifique"
+stop_name = "Cité Scientifique"
+on_line_1 = true
+line_1_offset = 30.0
 
-[node name="Stop4" parent="." instance=ExtResource( 8 )]
+[node name="pont_de_bois" parent="Stops" instance=ExtResource( 8 )]
+transform = Transform( 1, 5.82077e-11, 0, 0, 1, 0, -5.96046e-08, 0, 1, -51.872, 0, -69.753 )
+stop_id = "pont_de_bois"
+stop_name = "Pont de Bois"
+on_line_1 = true
+line_1_offset = 135.0
+
+[node name="beaux_arts" parent="Stops" instance=ExtResource( 8 )]
+transform = Transform( 1, -5.82077e-11, 2.98023e-08, 0, 1, -1.16415e-10, 0, 5.82077e-11, 1, -309.79, 0, -113.161 )
+stop_id = "beaux_arts"
+stop_name = "Beaux Arts"
+on_line_1 = true
+line_1_offset = 457.0
+
+[node name="porte_des_postes" parent="Stops" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -344.133, 0, -34.739 )
+stop_id = "porte_des_postes"
+stop_name = "Porte des Postes"
+on_line_1 = true
+line_1_offset = 554.0
+on_line_2 = true
+line_2_offset = 370.0
 
-[node name="Stop5" parent="." instance=ExtResource( 8 )]
+[node name="st_philibert" parent="Stops" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -623.673, 0, -220.375 )
+stop_id = "st_philibert"
+stop_name = "Saint Philibert"
+on_line_2 = true

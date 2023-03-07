@@ -6,7 +6,6 @@ export var btn_icon : StreamTexture
 func _ready() -> void:
 	text = btn_label
 	$bg_icon.texture = btn_icon
-	$icon.texture = btn_icon
 
 func _process(delta: float) -> void:
 	if mouse_inside:

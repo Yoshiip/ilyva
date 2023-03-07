@@ -1,8 +1,8 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scripts/3d/MovingSubway.gd" type="Script" id=1]
 [ext_resource path="res://3d/models/station_v2/Material.material" type="Material" id=2]
-[ext_resource path="res://3d/textures/tiles/color.jpg" type="Texture" id=3]
+[ext_resource path="res://addons/jm_pp_outlines/jm_pp_outlines_camera.gd" type="Script" id=3]
 [ext_resource path="res://images/shaders/gradient.png" type="Texture" id=4]
 [ext_resource path="res://scripts/3d/FPSController.gd" type="Script" id=5]
 [ext_resource path="res://prefabs/3d/SubwayPart.tscn" type="PackedScene" id=6]
@@ -10,22 +10,111 @@
 [ext_resource path="res://3d/models/station_v2/Light.material" type="Material" id=8]
 [ext_resource path="res://3d/models/station_v2/Metal.material" type="Material" id=9]
 [ext_resource path="res://3d/models/station_v2/Material_004.material" type="Material" id=10]
+[ext_resource path="res://images/shaders/midnight-ablaze-8x.png" type="Texture" id=11]
 [ext_resource path="res://audios/effects/subway_engine.mp3" type="AudioStream" id=12]
 [ext_resource path="res://3d/models/tunnel/tunnel.glb" type="PackedScene" id=13]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=14]
 [ext_resource path="res://3d/textures/tiles/normal.jpg" type="Texture" id=15]
+[ext_resource path="res://images/shaders/matrix.png" type="Texture" id=16]
+[ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scripts/3d/StationLevel.gd" type="Script" id=18]
+
+[sub_resource type="Shader" id=17]
+code = "/* 
+This shader is under MIT license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+uniform sampler2D u_dither_tex;
+uniform sampler2D u_color_tex;
+
+uniform int u_bit_depth;
+uniform float u_contrast;
+uniform float u_offset;
+uniform int u_dither_size;
+uniform float blend;
+
+void fragment() 
+{
+	// sample the screen texture at the desired output resolution (according to u_dither_size)
+	// this will effectively pixelate the resulting output
+	vec2 screen_size = vec2(textureSize(TEXTURE, 0)) / float(u_dither_size);
+	vec2 screen_sample_uv = floor(UV * screen_size) / screen_size;
+	vec3 screen_col = texture(TEXTURE, screen_sample_uv).rgb;
+	
+	// calculate pixel luminosity (https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color)
+	float lum = (screen_col.r * 0.299) + (screen_col.g * 0.587) + (screen_col.b * 0.114);
+	
+	// adjust with contrast and offset parameters
+	float contrast = u_contrast;
+	lum = (lum - 0.5 + u_offset) * contrast + 0.5;
+	lum = clamp(lum, 0.0, 1.0);
+	
+	// reduce luminosity bit depth to give a more banded visual if desired	
+	float bits = float(u_bit_depth);
+	lum = floor(lum * bits) / bits;
+	
+	// to support multicolour palettes, we want to dither between the two colours on the palette
+	// which are adjacent to the current pixel luminosity.
+	// to do this, we need to determine which 'band' lum falls into, calculate the upper and lower
+	// bound of that band, then later we will use the dither texture to pick either the upper or 
+	// lower colour.
+	
+	// get the palette texture size mapped so it is 1px high (so the x value however many colour bands there are)
+	ivec2 col_size = textureSize(u_color_tex, 0);
+	col_size /= col_size.y;
+	
+	float col_x = float(col_size.x) - 1.0; // colour boundaries is 1 less than the number of colour bands
+	float col_texel_size = 1.0 / col_x; // the size of one colour boundary
+	
+	lum = max(lum - 0.00001, 0.0); // makes sure our floor calculation below behaves when lum == 1.0
+	float lum_lower = floor(lum * col_x) * col_texel_size;
+	float lum_upper = (floor(lum * col_x) + 1.0) * col_texel_size;
+	float lum_scaled = lum * col_x - floor(lum * col_x); // calculates where lum lies between the upper and lower bound
+	
+	// map the dither texture onto the screen. there are better ways of doing this that makes the dither pattern 'stick'
+	// with objects in the 3D world, instead of being mapped onto the screen. see lucas pope's details posts on how he 
+	// achieved this in Obra Dinn: https://forums.tigsource.com/index.php?topic=40832.msg1363742#msg1363742
+	ivec2 noise_size = textureSize(u_dither_tex, 0);
+	vec2 inv_noise_size = vec2(1.0 / float(noise_size.x), 1.0 / float(noise_size.y));
+	vec2 noise_uv = UV * inv_noise_size * vec2(float(screen_size.x), float(screen_size.y));
+	float threshold = texture(u_dither_tex, noise_uv).r;
+	
+	// adjust the dither slightly so min and max aren't quite at 0.0 and 1.0
+	// otherwise we wouldn't get fullly dark and fully light dither patterns at lum 0.0 and 1.0
+	threshold = threshold * 0.99 + 0.005;
+	
+	// the lower lum_scaled is, the fewer pixels will be below the dither threshold, and thus will use the lower bound colour,
+	// and vice-versa
+	float ramp_val = lum_scaled < threshold ? 0.0f : 1.0f;
+	// sample at the lower bound colour if ramp_val is 0.0, upper bound colour if 1.0
+	float col_sample = mix(lum_lower, lum_upper, ramp_val);
+	vec3 final_col = texture(u_color_tex, vec2(col_sample, 0.5)).rgb;
+	
+	// return the final colour!
+	COLOR.rgb = mix(final_col, texture(TEXTURE, UV).rgb, blend);
+}"
+
+[sub_resource type="ShaderMaterial" id=38]
+shader = SubResource( 17 )
+shader_param/u_bit_depth = 32
+shader_param/u_contrast = 1.0
+shader_param/u_offset = 0.0
+shader_param/u_dither_size = 2
+shader_param/blend = 1.0
+shader_param/u_dither_tex = ExtResource( 16 )
+shader_param/u_color_tex = ExtResource( 11 )
 
 [sub_resource type="ProceduralSky" id=13]
 
 [sub_resource type="Environment" id=27]
-background_mode = 1
 background_sky = SubResource( 13 )
 fog_enabled = true
-fog_color = Color( 0, 0, 0, 1 )
-fog_depth_end = 50.0
+fog_color = Color( 1, 1, 1, 1 )
 fog_transmit_enabled = true
-fog_height_enabled = true
-auto_exposure_enabled = true
 ss_reflections_enabled = true
 ss_reflections_max_steps = 512
 ssao_enabled = true
@@ -63,7 +152,6 @@ resource_name = "Floor"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 albedo_color = Color( 0.906332, 0.906332, 0.906332, 1 )
-albedo_texture = ExtResource( 3 )
 roughness = 0.5
 roughness_texture = ExtResource( 7 )
 normal_enabled = true
@@ -225,48 +313,81 @@ surfaces/0 = {
 "vertex_count": 312
 }
 
-[node name="Spatial" type="Spatial"]
+[sub_resource type="ProceduralSky" id=39]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[sub_resource type="Environment" id=40]
+background_mode = 2
+background_sky = SubResource( 39 )
+
+[sub_resource type="World" id=41]
+environment = SubResource( 40 )
+
+[node name="StationLevel" type="Spatial"]
+script = ExtResource( 18 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer/Control"]
+material = SubResource( 38 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="CanvasLayer/Control/ViewportContainer"]
+size = Vector2( 1280, 720 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 environment = SubResource( 27 )
 
-[node name="Point0" type="Position3D" parent="."]
+[node name="Point0" type="Position3D" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 0.961262, 0.0759759, 0.264959, 0, 0.961262, -0.275638, -0.275637, 0.26496, 0.924024, 3.323, 2.468, 36.117 )
 
-[node name="Point1" type="Position3D" parent="."]
+[node name="Point1" type="Position3D" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( -0.223211, -0.091699, 0.970447, 0, 0.995565, 0.0940725, -0.97477, 0.020998, -0.222221, 8.88051, 3.40871, 15.3975 )
 
-[node name="Point2" type="Position3D" parent="."]
+[node name="Point2" type="Position3D" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 0.711441, -0.00181442, 0.702743, 0, 0.999997, 0.0025819, -0.702746, -0.00183687, 0.711439, 2.97011, 2.40943, 17.8146 )
 
-[node name="Player" type="KinematicBody" parent="."]
+[node name="Player" type="KinematicBody" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.45, 2, -0.323999 )
 script = ExtResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
+[node name="CollisionShape" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0 )
 shape = SubResource( 18 )
 
-[node name="Head" type="Spatial" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25 )
+[node name="Head" type="Spatial" parent="CanvasLayer/Control/ViewportContainer/Viewport/Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
-[node name="Camera" type="Camera" parent="Player/Head"]
+[node name="Camera" type="Camera" parent="CanvasLayer/Control/ViewportContainer/Viewport/Player/Head"]
 current = true
+script = ExtResource( 3 )
+depth_outline_scale = 4.0
 
-[node name="MovingSubway" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2, -64 )
+[node name="MovingSubway" type="Area" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2, -60 )
 script = ExtResource( 1 )
+max_stop_time = 5.0
 max_speed = 15.0
 subway_mesh = ExtResource( 6 )
 
-[node name="Parts" type="Spatial" parent="MovingSubway"]
+[node name="Parts" type="Spatial" parent="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway"]
 
-[node name="Tween" type="Tween" parent="MovingSubway"]
+[node name="Tween" type="Tween" parent="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway"]
 
-[node name="CollisionShape" type="CollisionShape" parent="MovingSubway"]
+[node name="CollisionShape" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway"]
 shape = SubResource( 28 )
 
-[node name="Engine" type="AudioStreamPlayer3D" parent="MovingSubway"]
+[node name="Engine" type="AudioStreamPlayer3D" parent="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway"]
 stream = ExtResource( 12 )
 unit_size = 64.0
 max_db = -24.0
@@ -274,134 +395,146 @@ autoplay = true
 max_distance = 64.0
 emission_angle_degrees = 90.0
 
-[node name="OmniLight" type="OmniLight" parent="."]
+[node name="OmniLight" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, -15 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight2" type="OmniLight" parent="."]
+[node name="OmniLight2" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, -15 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight3" type="OmniLight" parent="."]
+[node name="OmniLight3" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, -5 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight4" type="OmniLight" parent="."]
+[node name="OmniLight4" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, -5 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight5" type="OmniLight" parent="."]
+[node name="OmniLight5" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, 5 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight6" type="OmniLight" parent="."]
+[node name="OmniLight6" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 5 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight7" type="OmniLight" parent="."]
+[node name="OmniLight7" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, 15 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="OmniLight8" type="OmniLight" parent="."]
+[node name="OmniLight8" type="OmniLight" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 15 )
 light_energy = 0.2
 shadow_enabled = true
 omni_range = 32.0
 
-[node name="station" type="Spatial" parent="."]
+[node name="station" type="Spatial" parent="CanvasLayer/Control/ViewportContainer/Viewport"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
-[node name="Cube001" type="MeshInstance" parent="station"]
+[node name="Cube001" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 28, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 37 )
 
-[node name="StaticBody" type="StaticBody" parent="station/Cube001"]
+[node name="StaticBody" type="StaticBody" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001"]
 
-[node name="CollisionShape" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 shape = SubResource( 29 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape2" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( -0.27312, 0, 3.55271e-15, 0, 1, 0, 0, 0, -34.2773, 0, -1, 0 )
 shape = SubResource( 30 )
 
-[node name="CollisionShape3" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape3" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( 0.0357143, 0, 0, 0, 1, 0, 0, 0, 1, -0.332143, 5, 0 )
 shape = SubResource( 31 )
 
-[node name="CollisionShape4" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape4" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( 0.0357143, 0, 0, 0, 1, 0, 0, 0, 1, 0.0178571, 5, 0 )
 shape = SubResource( 32 )
 
-[node name="CollisionShape5" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape5" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( 0.0357143, 0, 0, 0, 1, 0, 0, 0, 1, 0.345238, 5, 0 )
 shape = SubResource( 33 )
 
-[node name="CollisionShape6" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape6" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( 0.00892857, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.264286, 1.5, 0 )
 shape = SubResource( 34 )
 
-[node name="CollisionShape7" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape7" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( 0.00892857, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0857143, 1.5, 0 )
 shape = SubResource( 35 )
 
-[node name="CollisionShape8" type="CollisionShape" parent="station/Cube001/StaticBody"]
+[node name="CollisionShape8" type="CollisionShape" parent="CanvasLayer/Control/ViewportContainer/Viewport/station/Cube001/StaticBody"]
 transform = Transform( 0.0357143, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.535714, 8, 4 )
 shape = SubResource( 36 )
 
-[node name="Cube" type="MeshInstance" parent="station"]
+[node name="Cube" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( -7.64736, 0, 0, 0, 1, 0, 0, 0, -34.2773, 0, 0, 0 )
 mesh = SubResource( 2 )
 
-[node name="Cylinder" type="MeshInstance" parent="station"]
+[node name="Cylinder" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3, 6, 0 )
 mesh = SubResource( 3 )
 
-[node name="Cylinder001" type="MeshInstance" parent="station"]
+[node name="Cylinder001" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 6, 0 )
 mesh = SubResource( 4 )
 
-[node name="Cylinder002" type="MeshInstance" parent="station"]
+[node name="Cylinder002" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.66667, 6, 0 )
 mesh = SubResource( 5 )
 
-[node name="Cube005" type="MeshInstance" parent="station"]
+[node name="Cube005" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.4, 2.5, 0 )
 mesh = SubResource( 6 )
 
-[node name="Cube002" type="MeshInstance" parent="station"]
+[node name="Cube002" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.4, 2.5, 0 )
 mesh = SubResource( 7 )
 
-[node name="Cube003" type="MeshInstance" parent="station"]
+[node name="Cube003" type="MeshInstance" parent="CanvasLayer/Control/ViewportContainer/Viewport/station"]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 15, 9, 4 )
 mesh = SubResource( 8 )
 
-[node name="tunnel4" parent="." instance=ExtResource( 13 )]
+[node name="tunnel4" parent="CanvasLayer/Control/ViewportContainer/Viewport" instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -7, 1.5, -32 )
 
-[node name="tunnel5" parent="." instance=ExtResource( 13 )]
+[node name="tunnel5" parent="CanvasLayer/Control/ViewportContainer/Viewport" instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -7, 1.5, 32 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="MinimapContainer" type="ViewportContainer" parent="CanvasLayer/Control"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -242.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="CanvasLayer/Control/MinimapContainer"]
+size = Vector2( 1280, 242 )
+size_override_stretch = true
+own_world = true
+world = SubResource( 41 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Map" parent="CanvasLayer/Control/MinimapContainer/Viewport" instance=ExtResource( 17 )]
 
 [node name="NoiseTexture" type="TextureRect" parent="CanvasLayer/Control"]
 modulate = Color( 1, 1, 1, 0.184314 )
@@ -412,5 +545,5 @@ texture = ExtResource( 14 )
 expand = true
 stretch_mode = 4
 
-[connection signal="body_entered" from="MovingSubway" to="MovingSubway" method="_on_MovingSubway_body_entered"]
-[connection signal="body_exited" from="MovingSubway" to="MovingSubway" method="_on_MovingSubway_body_exited"]
+[connection signal="body_entered" from="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway" to="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway" method="_on_MovingSubway_body_entered"]
+[connection signal="body_exited" from="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway" to="CanvasLayer/Control/ViewportContainer/Viewport/MovingSubway" method="_on_MovingSubway_body_exited"]

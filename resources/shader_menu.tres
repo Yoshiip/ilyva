@@ -19,6 +19,7 @@ uniform int u_bit_depth;
 uniform float u_contrast;
 uniform float u_offset;
 uniform int u_dither_size;
+uniform float blend;
 
 void fragment() 
 {
@@ -78,14 +79,15 @@ void fragment()
 	vec3 final_col = texture(u_color_tex, vec2(col_sample, 0.5)).rgb;
 	
 	// return the final colour!
-	COLOR.rgb = final_col;
+	COLOR.rgb = mix(final_col, texture(TEXTURE, UV).rgb, blend);
 }"
 
 [resource]
 shader = SubResource( 17 )
 shader_param/u_bit_depth = 32
 shader_param/u_contrast = 1.0
-shader_param/u_offset = -0.1
+shader_param/u_offset = -0.4
 shader_param/u_dither_size = 2
+shader_param/blend = 0.0
 shader_param/u_dither_tex = ExtResource( 1 )
 shader_param/u_color_tex = ExtResource( 2 )

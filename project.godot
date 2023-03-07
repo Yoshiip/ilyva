@@ -116,7 +116,7 @@ window/size/height=720
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/jm_pp_outlines/plugin.cfg" )
 
 [gui]
 
@@ -194,4 +194,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

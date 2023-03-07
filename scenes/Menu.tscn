@@ -1,10 +1,9 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://3d/models/subway/subway.glb" type="PackedScene" id=2]
-[ext_resource path="res://scripts/menu/SubwayAnimation.gd" type="Script" id=3]
-[ext_resource path="res://scripts/menu/MenuCamera.gd" type="Script" id=4]
-[ext_resource path="res://images/shaders/gradient.png" type="Texture" id=5]
+[ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/godot_logo_large_monochrome.png" type="Texture" id=3]
+[ext_resource path="res://resources/shader_menu.tres" type="Material" id=4]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
@@ -12,14 +11,13 @@
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=10]
 [ext_resource path="res://scripts/MenuUI.gd" type="Script" id=11]
 [ext_resource path="res://images/logo_black.png" type="Texture" id=12]
-[ext_resource path="res://3d/models/station/station.glb" type="PackedScene" id=13]
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
 [ext_resource path="res://images/iut.png" type="Texture" id=15]
 [ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
 [ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://images/logo_white.png" type="Texture" id=18]
-[ext_resource path="res://images/godot_logo_large_monochrome.png" type="Texture" id=19]
 [ext_resource path="res://images/ui/angles.png" type="Texture" id=20]
+[ext_resource path="res://audios/musics/Cosurmyne.mp3" type="AudioStream" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -31,30 +29,16 @@ font_data = ExtResource( 1 )
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 1 )
 
-[sub_resource type="ProceduralSky" id=22]
+[sub_resource type="DynamicFont" id=23]
+size = 64
+outline_size = 4
+use_filter = true
+font_data = ExtResource( 1 )
 
-[sub_resource type="Environment" id=10]
-background_mode = 2
-background_sky = SubResource( 22 )
-background_color = Color( 1, 1, 1, 1 )
-fog_enabled = true
-fog_color = Color( 1, 1, 1, 1 )
-fog_depth_end = 50.0
-ss_reflections_enabled = true
-ss_reflections_max_steps = 512
-ssao_enabled = true
-dof_blur_near_enabled = true
-dof_blur_near_distance = 10.0
-dof_blur_near_quality = 2
-glow_enabled = true
-glow_bloom = 1.0
-glow_high_quality = true
-adjustment_color_correction = ExtResource( 5 )
-
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=21]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("WorldEnvironment:environment:fog_depth_begin")
+tracks/0/path = NodePath("Spatial/Camera:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -63,10 +47,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 10.0 ]
+"values": [ Vector3( 3.472, 3.041, -5.685 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("WorldEnvironment:environment:fog_depth_end")
+tracks/1/path = NodePath("Spatial/Camera:fov")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -75,10 +59,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 50.0 ]
+"values": [ 110.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Camera:translation")
+tracks/2/path = NodePath("Spatial/Text/Text:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -87,10 +71,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 4.38871, 5.06463, 13.5599 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Camera:fov")
+tracks/3/path = NodePath("Spatial/Text/Text:outline_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -99,10 +83,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 110.0 ]
+"values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Camera:rotation_degrees")
+tracks/4/path = NodePath("Spatial/Text/Godot:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -111,10 +95,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -5.39787, 23.3976, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../../../../SharpCorners:modulate")
+tracks/5/path = NodePath("../../../../../Music:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -123,10 +107,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../../../../TopPart:modulate")
+tracks/6/path = NodePath("Spatial/Camera:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -135,10 +119,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Vector3( 0.545616, 179.147, 0 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("../../../../Buttons:self_modulate")
+tracks/7/path = NodePath("../../../Buttons:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -149,20 +133,19 @@ tracks/7/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("../../../../Buttons:modulate")
+tracks/8/type = "method"
+tracks/8/path = NodePath("Spatial/Camera")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Subway:speed")
+tracks/9/path = NodePath("../../../TopPart:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -171,10 +154,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 2 ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("WorldEnvironment:environment:dof_blur_near_distance")
+tracks/10/path = NodePath("..:material:shader_param/enabled")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -183,128 +166,200 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 10.0 ]
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("..:material:shader_param/blend")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=22]
 resource_name = "Start"
-length = 8.0
+length = 7.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("WorldEnvironment:environment:fog_depth_begin")
+tracks/0/path = NodePath("Spatial/Camera:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 3, 5, 7, 7.5 ),
+"transitions": PoolRealArray( 0.5, 1, 2, 1, 0.5, 1 ),
 "update": 0,
-"values": [ 0.0, 10.0 ]
+"values": [ Vector3( 3.10014, 3.65441, 27.2358 ), Vector3( 3.06763, 3.65797, 26.7874 ), Vector3( 3.06763, 3.65797, 26.7874 ), Vector3( 3.068, 2.958, 26.787 ), Vector3( 3.068, 2.958, 26.787 ), Vector3( 3.694, 2.604, -8.128 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("WorldEnvironment:environment:fog_depth_end")
+tracks/1/path = NodePath("Spatial/Camera:fov")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ 1.0, 50.0 ]
+"values": [ 70.0, 70.0, 110.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Camera:translation")
+tracks/2/path = NodePath("Spatial/Text/Text:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 3, 5, 7.2, 7.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ Vector3( 3.726, 5.065, 13.56 ), Vector3( 3.726, 5.065, 13.56 ), Vector3( 3.726, 4, 13.56 ), Vector3( 3.726, 4, 13.56 ), Vector3( 3.323, 2.468, 36.117 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Camera:fov")
+tracks/3/path = NodePath("Spatial/Text/Text:outline_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 7.2, 7.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ 70.0, 70.0, 110.0 ]
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Camera:rotation_degrees")
+tracks/4/path = NodePath("Spatial/Text/Godot:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 7.2, 7.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ Vector3( -5.39787, 23.3976, 0 ), Vector3( -5.39787, 23.3976, 0 ), Vector3( 16, 16, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../../../../TopPart:modulate")
+tracks/5/path = NodePath("../../../../../Music:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 7.2, 7.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"times": PoolRealArray( 0, 0.83 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../../../../Buttons:modulate")
+tracks/6/path = NodePath("Spatial/Camera:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 7.2, 7.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Vector3( -2.704, 184.147, 0 ), Vector3( -2.704, 184.147, 0 ), Vector3( 15, 174.147, 0 ) ]
 }
-tracks/7/type = "method"
-tracks/7/path = NodePath("Camera")
+tracks/7/type = "value"
+tracks/7/path = NodePath("../../../Buttons:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 7.6 ),
+"times": PoolRealArray( 0, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("Spatial/Camera")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 7.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "go"
 } ]
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("WorldEnvironment:environment:dof_blur_near_distance")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+tracks/9/type = "value"
+tracks/9/path = NodePath("../../../TopPart:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 3.0, 1.0 ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("..:material:shader_param/blend")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 2.1, 2.3, 2.6, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/11/type = "animation"
+tracks/11/path = NodePath("../AnimationPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"clips": PoolStringArray( "Pulse" ),
+"times": PoolRealArray( 7.5 )
 }
 
-[sub_resource type="DynamicFont" id=21]
-size = 64
-outline_size = 4
-use_filter = true
-font_data = ExtResource( 1 )
+[sub_resource type="Animation" id=24]
+resource_name = "Pulse"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/blend")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 1.2, 3.7, 4, 4.3, 4.8, 8.5, 9, 9.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/blend")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [sub_resource type="StyleBoxTexture" id=20]
 texture = ExtResource( 20 )
@@ -316,6 +371,69 @@ margin_bottom = 64.0
 modulate_color = Color( 0.141176, 0.137255, 0.137255, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="Shader" id=26]
+code = "/*
+	Glitch Effect Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+
+shader_type canvas_item;
+
+// 振動の強さ
+uniform float shake_power = 0.03;
+// 振動率
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.2;
+// 振動速度
+uniform float shake_speed = 5.0;
+// 振動ブロックサイズ
+uniform float shake_block_size = 30.5;
+// 色の分離率
+uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.01;
+
+float random( float seed )
+{
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46, -54.3415 ) ) ) );
+}
+
+void fragment( )
+{
+	float enable_shift = float(
+		random( trunc( TIME * shake_speed ) )
+	<	shake_rate
+	);
+
+	vec2 fixed_uv = SCREEN_UV;
+	fixed_uv.x += (
+		random(
+			( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+		+	TIME
+		) - 0.5
+	) * shake_power * enable_shift;
+
+	vec4 pixel_color = textureLod( SCREEN_TEXTURE, fixed_uv, 0.0 );
+	pixel_color.r = mix(
+		pixel_color.r
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r
+	,	enable_shift
+	);
+	pixel_color.b = mix(
+		pixel_color.b
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b
+	,	enable_shift
+	);
+	COLOR = pixel_color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = SubResource( 26 )
+shader_param/shake_power = 0.03
+shader_param/shake_rate = 0.2
+shader_param/shake_speed = 5.0
+shader_param/shake_block_size = 30.5
+shader_param/shake_color_rate = 0.01
 
 [sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 1, 1, 1, 1 )
@@ -363,6 +481,7 @@ margin_top = -0.200005
 margin_bottom = -0.67804
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Canvas/Container/3D"]
+material = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
@@ -374,75 +493,40 @@ size_override_stretch = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Spatial" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial"]
+[node name="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial" instance=ExtResource( 2 )]
 
-[node name="Subway" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-script = ExtResource( 3 )
-speed = 2
+[node name="Subway" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.2, -3 )
+speed = 15.0
 
-[node name="subway" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
-
-[node name="subway2" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
-
-[node name="subway3" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14 )
-
-[node name="subway4" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21 )
-
-[node name="subway5" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28 )
-
-[node name="subway6" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Subway" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-environment = SubResource( 10 )
-
-[node name="Point0" type="Position3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( 0.961262, 0.0759759, 0.264959, 0, 0.961262, -0.275638, -0.275637, 0.26496, 0.924024, 3.323, 2.468, 36.117 )
-
-[node name="Point1" type="Position3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( -0.223211, -0.091699, 0.970447, 0, 0.995565, 0.0940725, -0.97477, 0.020998, -0.222221, 8.88051, 3.40871, 15.3975 )
-
-[node name="Point2" type="Position3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( 0.711441, -0.00181442, 0.702743, 0, 0.999997, 0.0025819, -0.702746, -0.00183687, 0.711439, 2.97011, 2.40943, 17.8146 )
-
-[node name="Camera" type="Camera" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( 0.917771, -0.0373566, 0.395348, 0, 0.995566, 0.0940713, -0.397109, -0.086336, 0.913701, 4.38871, 5.06463, 13.5599 )
-current = true
+[node name="Camera" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial" index="4"]
+transform = Transform( -0.999888, 0.000141763, 0.0148863, 0, 0.999955, -0.00952265, -0.0148869, -0.0095216, -0.999844, 3.472, 3.041, -5.685 )
 fov = 110.0
-script = ExtResource( 4 )
 
-[node name="Timer" type="Timer" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera"]
-wait_time = 5.0
+[node name="Text" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.249, 2.83717, 27.9861 )
 
-[node name="station" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial" instance=ExtResource( 13 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 32 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-autoplay = "Start"
-anims/RESET = SubResource( 14 )
-anims/Start = SubResource( 15 )
-
-[node name="Spatial" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73901, 1, 12.6115 )
-
-[node name="Label3D" type="Label3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.531943, 3.74146, 0 )
+[node name="Text" type="Label3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Text"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0.690853, -1.90735e-06 )
 pixel_size = 0.0025
 shaded = true
 text = "Aymeri, Manon, Thomas
-Nicolas et Noé présente"
-font = SubResource( 21 )
+Nicolas et Noé présentent"
+font = SubResource( 23 )
 
-[node name="Sprite3D" type="Sprite3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67, 2.746, 0 )
-pixel_size = 0.0007
+[node name="Godot" type="Sprite3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Text"]
+pixel_size = 0.0006
 shaded = true
-texture = ExtResource( 19 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/ViewportContainer/Spatial"]
+autoplay = "Start"
+anims/RESET = SubResource( 21 )
+anims/Start = SubResource( 22 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/ViewportContainer"]
+anims/Pulse = SubResource( 24 )
+anims/RESET = SubResource( 25 )
 
 [node name="SharpCorners" type="Panel" parent="Canvas/Container"]
 anchor_top = 0.167
@@ -484,42 +568,51 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_right = 206.0
+margin_left = 60.0
+margin_right = 242.0
 btn_label = "Terminal"
 
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 246.0
-margin_right = 452.0
+margin_left = 282.0
+margin_right = 464.0
 btn_label = "Surface"
 btn_icon = ExtResource( 7 )
 
 [node name="Metro" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 492.0
-margin_right = 698.0
+margin_left = 504.0
+margin_right = 686.0
 btn_label = "Metro"
 btn_icon = ExtResource( 7 )
 
 [node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 738.0
-margin_right = 944.0
+margin_left = 726.0
+margin_right = 908.0
 btn_label = "Map"
 btn_icon = ExtResource( 9 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 984.0
-margin_right = 1190.0
+margin_left = 948.0
+margin_right = 1130.0
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
 
 [node name="TopPart" type="Control" parent="Canvas/Container"]
-anchor_right = 1.002
-anchor_bottom = 0.167
-margin_top = 64.0
-margin_right = 0.439941
-margin_bottom = 63.76
+anchor_right = 1.0
+anchor_bottom = 0.193
+margin_bottom = 0.0399933
 
-[node name="Shadow" type="TextureRect" parent="Canvas/Container/TopPart"]
+[node name="IlyvaLogoRed" type="TextureRect" parent="Canvas/Container/TopPart"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 72.0
+margin_bottom = 72.0
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 6
+
+[node name="Shadow" type="TextureRect" parent="Canvas/Container/TopPart/IlyvaLogoRed"]
 modulate = Color( 0, 0, 0, 0.498039 )
+show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 8.0
@@ -528,20 +621,26 @@ texture = ExtResource( 18 )
 expand = true
 stretch_mode = 6
 
-[node name="IlyvaLogoRed" type="TextureRect" parent="Canvas/Container/TopPart"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 18 )
-expand = true
-stretch_mode = 6
+[node name="Glitch" type="ColorRect" parent="Canvas/Container/TopPart"]
+material = SubResource( 27 )
+anchor_left = 0.344
+anchor_top = 0.378
+anchor_right = 0.656
+anchor_bottom = 1.658
+margin_left = -0.320007
+margin_top = -0.0420036
+margin_right = 0.319946
+margin_bottom = 0.0379791
 
 [node name="Iut" type="TextureRect" parent="Canvas/Container/TopPart"]
-anchor_right = 0.168
-anchor_bottom = 0.168
-margin_left = 16.0
-margin_top = -60.0
-margin_right = 9.28
-margin_bottom = -66.72
+anchor_left = 0.069
+anchor_top = 0.173
+anchor_right = 0.131
+anchor_bottom = 0.748
+margin_left = -0.320007
+margin_top = -0.0470009
+margin_right = 0.319977
+margin_bottom = 0.0279999
 texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
@@ -930,16 +1029,30 @@ margin_right = 207.0
 margin_bottom = 212.0
 text = "PHILIPPE MATTHIEU"
 
+[node name="LowQuality" type="CheckBox" parent="Canvas/Container"]
+margin_left = 82.0
+margin_top = 127.0
+margin_right = 408.0
+margin_bottom = 196.0
+text = "low quality"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -12.0
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="timeout" from="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera/Timer" to="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Camera" method="_on_Timer_timeout"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Canvas/Container/LowQuality" to="." method="_on_LowQuality_pressed"]
+
+[editable path="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+[editable path="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/station"]
