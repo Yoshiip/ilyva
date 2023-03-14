@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/godot_logo_large_monochrome.png" type="Texture" id=3]
 [ext_resource path="res://resources/shader_menu.tres" type="Material" id=4]
+[ext_resource path="res://prefabs/ui/Settings.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
@@ -11,13 +12,16 @@
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=10]
 [ext_resource path="res://scripts/MenuUI.gd" type="Script" id=11]
 [ext_resource path="res://images/logo_black.png" type="Texture" id=12]
+[ext_resource path="res://images/icons/shape73.png" type="Texture" id=13]
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
 [ext_resource path="res://images/iut.png" type="Texture" id=15]
 [ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
 [ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
-[ext_resource path="res://images/logo_white.png" type="Texture" id=18]
+[ext_resource path="res://images/Plan de travail 1@4x-8.png" type="Texture" id=18]
+[ext_resource path="res://images/ui/ilyva_no_colors.png" type="Texture" id=19]
 [ext_resource path="res://images/ui/angles.png" type="Texture" id=20]
 [ext_resource path="res://audios/musics/Cosurmyne.mp3" type="AudioStream" id=21]
+[ext_resource path="res://scripts/menu/TopPart.gd" type="Script" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -38,7 +42,7 @@ font_data = ExtResource( 1 )
 [sub_resource type="Animation" id=21]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spatial/Camera:translation")
+tracks/0/path = NodePath("Menu/Camera:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -50,7 +54,7 @@ tracks/0/keys = {
 "values": [ Vector3( 3.472, 3.041, -5.685 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spatial/Camera:fov")
+tracks/1/path = NodePath("Menu/Camera:fov")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -62,7 +66,7 @@ tracks/1/keys = {
 "values": [ 110.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Spatial/Text/Text:modulate")
+tracks/2/path = NodePath("Menu/Text/Text:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -74,7 +78,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Spatial/Text/Text:outline_modulate")
+tracks/3/path = NodePath("Menu/Text/Text:outline_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -86,7 +90,7 @@ tracks/3/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Spatial/Text/Godot:modulate")
+tracks/4/path = NodePath("Menu/Text/Godot:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -110,7 +114,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Spatial/Camera:rotation_degrees")
+tracks/6/path = NodePath("Menu/Camera:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -134,7 +138,7 @@ tracks/7/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("Spatial/Camera")
+tracks/8/path = NodePath("Menu/Camera")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -185,7 +189,7 @@ tracks/11/keys = {
 resource_name = "Start"
 length = 7.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spatial/Camera:translation")
+tracks/0/path = NodePath("Menu/Camera:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -197,7 +201,7 @@ tracks/0/keys = {
 "values": [ Vector3( 3.10014, 3.65441, 27.2358 ), Vector3( 3.06763, 3.65797, 26.7874 ), Vector3( 3.06763, 3.65797, 26.7874 ), Vector3( 3.068, 2.958, 26.787 ), Vector3( 3.068, 2.958, 26.787 ), Vector3( 3.694, 2.604, -8.128 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spatial/Camera:fov")
+tracks/1/path = NodePath("Menu/Camera:fov")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -209,7 +213,7 @@ tracks/1/keys = {
 "values": [ 70.0, 70.0, 110.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Spatial/Text/Text:modulate")
+tracks/2/path = NodePath("Menu/Text/Text:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -221,7 +225,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Spatial/Text/Text:outline_modulate")
+tracks/3/path = NodePath("Menu/Text/Text:outline_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -233,7 +237,7 @@ tracks/3/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Spatial/Text/Godot:modulate")
+tracks/4/path = NodePath("Menu/Text/Godot:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -257,7 +261,7 @@ tracks/5/keys = {
 "values": [ false, true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Spatial/Camera:rotation_degrees")
+tracks/6/path = NodePath("Menu/Camera:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -281,7 +285,7 @@ tracks/7/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath("Spatial/Camera")
+tracks/8/path = NodePath("Menu/Camera")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -435,6 +439,27 @@ shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.592157, 0.756863, 0.113725, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.0627451, 0.635294, 0.862745, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.858824, 0.156863, 0.109804, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
 [sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 4
@@ -480,33 +505,33 @@ anchor_bottom = 0.833
 margin_top = -0.200005
 margin_bottom = -0.67804
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Canvas/Container/3D"]
+[node name="Container" type="ViewportContainer" parent="Canvas/Container/3D"]
 material = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
 stretch = true
 
-[node name="Spatial" type="Viewport" parent="Canvas/Container/3D/ViewportContainer"]
+[node name="Viewport" type="Viewport" parent="Canvas/Container/3D/Container"]
 size = Vector2( 1280, 479 )
 size_override_stretch = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial" instance=ExtResource( 2 )]
+[node name="Menu" parent="Canvas/Container/3D/Container/Viewport" instance=ExtResource( 2 )]
 
-[node name="Subway" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial" index="0"]
+[node name="Subway" parent="Canvas/Container/3D/Container/Viewport/Menu" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.2, -3 )
 speed = 15.0
 
-[node name="Camera" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial" index="4"]
+[node name="Camera" parent="Canvas/Container/3D/Container/Viewport/Menu" index="4"]
 transform = Transform( -0.999888, 0.000141763, 0.0148863, 0, 0.999955, -0.00952265, -0.0148869, -0.0095216, -0.999844, 3.472, 3.041, -5.685 )
 fov = 110.0
 
-[node name="Text" type="Spatial" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
+[node name="Text" type="Spatial" parent="Canvas/Container/3D/Container/Viewport/Menu"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.249, 2.83717, 27.9861 )
 
-[node name="Text" type="Label3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Text"]
+[node name="Text" type="Label3D" parent="Canvas/Container/3D/Container/Viewport/Menu/Text"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0.690853, -1.90735e-06 )
 pixel_size = 0.0025
 shaded = true
@@ -514,17 +539,17 @@ text = "Aymeri, Manon, Thomas
 Nicolas et Noé présentent"
 font = SubResource( 23 )
 
-[node name="Godot" type="Sprite3D" parent="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/Text"]
+[node name="Godot" type="Sprite3D" parent="Canvas/Container/3D/Container/Viewport/Menu/Text"]
 pixel_size = 0.0006
 shaded = true
 texture = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/ViewportContainer/Spatial"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/Container/Viewport"]
 autoplay = "Start"
 anims/RESET = SubResource( 21 )
 anims/Start = SubResource( 22 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/ViewportContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/Container"]
 anims/Pulse = SubResource( 24 )
 anims/RESET = SubResource( 25 )
 
@@ -600,37 +625,45 @@ btn_icon = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 0.193
 margin_bottom = 0.0399933
+script = ExtResource( 22 )
+
+[node name="Spiral" type="TextureRect" parent="Canvas/Container/TopPart"]
+modulate = Color( 0, 0, 0, 0.341176 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -35.5
+margin_right = 250.0
+margin_bottom = 164.5
+texture = ExtResource( 19 )
+expand = true
+
+[node name="IlyvaLogoRed2" type="TextureRect" parent="Canvas/Container/TopPart"]
+modulate = Color( 0, 0, 0, 0.74902 )
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 1.5
+margin_top = 8.5
+margin_right = -0.0801392
+margin_bottom = 7.99799
+texture = ExtResource( 18 )
+expand = true
+stretch_mode = 6
 
 [node name="IlyvaLogoRed" type="TextureRect" parent="Canvas/Container/TopPart"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 72.0
-margin_bottom = 72.0
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 1.5
+margin_top = 0.5
+margin_right = -0.0801392
+margin_bottom = -0.00201416
 texture = ExtResource( 18 )
 expand = true
 stretch_mode = 6
-
-[node name="Shadow" type="TextureRect" parent="Canvas/Container/TopPart/IlyvaLogoRed"]
-modulate = Color( 0, 0, 0, 0.498039 )
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 8.0
-margin_bottom = 8.0
-texture = ExtResource( 18 )
-expand = true
-stretch_mode = 6
-
-[node name="Glitch" type="ColorRect" parent="Canvas/Container/TopPart"]
-material = SubResource( 27 )
-anchor_left = 0.344
-anchor_top = 0.378
-anchor_right = 0.656
-anchor_bottom = 1.658
-margin_left = -0.320007
-margin_top = -0.0420036
-margin_right = 0.319946
-margin_bottom = 0.0379791
 
 [node name="Iut" type="TextureRect" parent="Canvas/Container/TopPart"]
 anchor_left = 0.069
@@ -644,6 +677,73 @@ margin_bottom = 0.0279999
 texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
+
+[node name="Shape75" type="TextureRect" parent="Canvas/Container/TopPart"]
+modulate = Color( 0, 0, 0, 0.74902 )
+anchor_left = 0.616
+anchor_top = 0.757
+anchor_right = 0.616
+anchor_bottom = 0.761
+margin_left = -43.4799
+margin_top = -43.223
+margin_right = 136.52
+margin_bottom = 36.221
+rect_rotation = -116.5
+rect_pivot_offset = Vector2( 90, 40 )
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+
+[node name="Shape74" type="TextureRect" parent="Canvas/Container/TopPart"]
+anchor_left = 0.616
+anchor_top = 0.757
+anchor_right = 0.616
+anchor_bottom = 0.761
+margin_left = -47.48
+margin_top = -47.2229
+margin_right = 132.52
+margin_bottom = 32.2211
+rect_rotation = -116.5
+rect_pivot_offset = Vector2( 90, 40 )
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+
+[node name="Glitch" type="ColorRect" parent="Canvas/Container/TopPart"]
+material = SubResource( 27 )
+anchor_left = 0.305
+anchor_top = 0.173
+anchor_right = 0.695
+anchor_bottom = 2.187
+margin_left = -0.400024
+margin_top = -0.0470009
+margin_right = 0.399902
+margin_bottom = -59.993
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GreenDot" type="Panel" parent="Canvas/Container/TopPart"]
+margin_left = 665.0
+margin_top = 72.0
+margin_right = 703.0
+margin_bottom = 90.0
+custom_styles/panel = SubResource( 28 )
+
+[node name="BlueDot" type="Panel" parent="Canvas/Container/TopPart"]
+margin_left = 626.0
+margin_top = 209.0
+margin_right = 664.0
+margin_bottom = 227.0
+rect_min_size = Vector2( 18, 18 )
+custom_styles/panel = SubResource( 30 )
+
+[node name="RedDot" type="Panel" parent="Canvas/Container/TopPart"]
+margin_left = 516.0
+margin_top = 30.0
+margin_right = 534.0
+margin_bottom = 48.0
+custom_styles/panel = SubResource( 29 )
 
 [node name="Credits" type="Panel" parent="Canvas/Container"]
 visible = false
@@ -1029,12 +1129,12 @@ margin_right = 207.0
 margin_bottom = 212.0
 text = "PHILIPPE MATTHIEU"
 
-[node name="LowQuality" type="CheckBox" parent="Canvas/Container"]
-margin_left = 82.0
-margin_top = 127.0
-margin_right = 408.0
-margin_bottom = 196.0
-text = "low quality"
+[node name="Settings" parent="Canvas/Container" instance=ExtResource( 5 )]
+visible = false
+margin_right = 0.000488281
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
@@ -1043,7 +1143,7 @@ autoplay = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -12.0
+volume_db = -44.857
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -1052,7 +1152,6 @@ volume_db = -12.0
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="Canvas/Container/LowQuality" to="." method="_on_LowQuality_pressed"]
 
-[editable path="Canvas/Container/3D/ViewportContainer/Spatial/Spatial"]
-[editable path="Canvas/Container/3D/ViewportContainer/Spatial/Spatial/station"]
+[editable path="Canvas/Container/3D/Container/Viewport/Menu"]
+[editable path="Canvas/Container/3D/Container/Viewport/Menu/station"]

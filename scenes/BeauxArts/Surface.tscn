@@ -189,7 +189,6 @@ texture = ExtResource( 2 )
 [node name="Interaction" type="Area2D" parent="." groups=["Interaction"]]
 position = Vector2( 321, 48 )
 script = ExtResource( 4 )
-dialogue_name = "BeauxArts/Manon"
 
 [node name="Manon" type="Sprite" parent="Interaction"]
 material = SubResource( 3 )

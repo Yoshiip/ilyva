@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=1]
 [ext_resource path="res://images/reference_subway_plan.jpg" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://images/backgrounds/lille_flandres.png" type="Texture" id=7]
 [ext_resource path="res://prefabs/Stop.tscn" type="PackedScene" id=8]
+[ext_resource path="res://images/icons/cross.png" type="Texture" id=9]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.976471, 0.768627, 0.145098, 1 )
@@ -304,3 +305,38 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -623.673, 0, -220.375 )
 stop_id = "st_philibert"
 stop_name = "Saint Philibert"
 on_line_2 = true
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -319, 1, -29 )
+modulate = Color( 1, 0, 0, 1 )
+pixel_size = 0.025
+shaded = true
+texture = ExtResource( 9 )
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -254, 1, -154 )
+modulate = Color( 1, 0, 0, 1 )
+pixel_size = 0.025
+shaded = true
+texture = ExtResource( 9 )
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 1, -120 )
+modulate = Color( 1, 0, 0, 1 )
+pixel_size = 0.025
+shaded = true
+texture = ExtResource( 9 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -366, 1, -24 )
+modulate = Color( 1, 0, 0, 1 )
+pixel_size = 0.025
+shaded = true
+texture = ExtResource( 9 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.14389, 1, 25.392 )
+modulate = Color( 1, 0, 0, 1 )
+pixel_size = 0.025
+shaded = true
+texture = ExtResource( 9 )

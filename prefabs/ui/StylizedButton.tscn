@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://prefabs/ui/Checkbox.tscn" type="PackedScene" id=3]
+
+[node name="Low" type="Button"]
+anchor_right = 0.333
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = -8.0
+
+[node name="Checkbox" parent="." instance=ExtResource( 3 )]
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -34.0
+margin_top = 8.0
+margin_right = 34.0
+margin_bottom = 31.0
+text = "Faible"

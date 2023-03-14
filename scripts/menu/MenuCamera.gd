@@ -14,7 +14,6 @@ func go() -> void:
 	set_process(true)
 	base_pos = translation
 	base_rot = rotation_degrees
-	$Timer.start()
 
 func _ready():
 	noise.noise = OpenSimplexNoise.new()
@@ -37,6 +36,7 @@ var fall_length := 0.0
 var i = 0.0
 
 func _process(delta: float) -> void:
+	return
 	i += delta
 	handle_camera(delta)
 	
@@ -59,10 +59,10 @@ func handle_camera(delta : float) -> void:
 
 var on_alt_position := false
 
-func _on_Timer_timeout() -> void:
-#	var point = get_parent().get_node(str("Point", randi() % 3))
-#	base_pos = point.translation
-#	base_rot = point.rotation_degrees
+func switch_camera() -> void:
+	$Tween.interpolate_property(self, "fov", 110, 70, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT_IN)
+	$Tween.start()
+	yield(get_tree().create_timer(0.5), "timeout")
 	on_alt_position = !on_alt_position
 	if on_alt_position:
 		base_pos = alt_position.translation
@@ -70,4 +70,5 @@ func _on_Timer_timeout() -> void:
 	else:
 		base_pos = first_position.translation
 		base_rot = first_position.rotation_degrees
-	$Timer.wait_time = rand_range(15.0, 20.0)
+	$Tween.interpolate_property(self, "fov", 70, 110, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT_IN)
+	$Tween.start()

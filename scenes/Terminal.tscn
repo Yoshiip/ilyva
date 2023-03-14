@@ -117,7 +117,6 @@ description = "Affiche le contenu d'un fichier"
 script = ExtResource( 11 )
 
 [node name="Ilynano" type="WindowDialog" parent="Commands/ilynano"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0

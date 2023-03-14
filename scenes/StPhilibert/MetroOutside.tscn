@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/Interaction.gd" type="Script" id=1]
 [ext_resource path="res://scripts/NavigationArrow.gd" type="Script" id=2]
@@ -6,9 +6,110 @@
 [ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/Cursor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=6]
-[ext_resource path="res://images/backgrounds/lille_flandres.png" type="Texture" id=7]
+[ext_resource path="res://images/backgrounds/kjCLCnbMgOPrmuy.png" type="Texture" id=7]
 [ext_resource path="res://images/props/arrow.png" type="Texture" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=11]
+[ext_resource path="res://images/icons/menu/star_1.png" type="Texture" id=12]
+[ext_resource path="res://images/textures/light.png" type="Texture" id=13]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 BackColor : hint_color = vec4(0.0, 0.4, 0.58, 1.0);
+uniform vec4 CloudColor : hint_color = vec4(0.18, 0.70, 0.87, 1.0);
+uniform float speed : hint_range(0.0, 5.0) = 0.1;
+
+const float TAU = 6.28318530718;
+
+float Func(float pX)
+{
+	return 0.6*(0.5*sin(0.1*pX) + 0.5*sin(0.553*pX) + 0.7*sin(1.2*pX));
+}
+
+
+float FuncR(float pX)
+{
+	return 0.5 + 0.25*(1.0 + sin(mod(40.0*pX, TAU)));
+}
+
+
+float Layer(vec2 pQ, float pT)
+{
+	vec2 Qt = 3.5*pQ;
+	pT *= 0.5;
+	Qt.x += pT;
+
+	float Xi = floor(Qt.x);
+	float Xf = Qt.x - Xi -0.5;
+
+	vec2 C;
+	float Yi;
+	float D = 1.0 - step(Qt.y,  Func(Qt.x));
+
+	// Disk:
+	Yi = Func(Xi + 0.5);
+	C = vec2(Xf, Qt.y - Yi );
+	D =  min(D, length(C) - FuncR(Xi+ pT/80.0));
+
+	// Previous disk:
+	Yi = Func(Xi+1.0 + 0.5);
+	C = vec2(Xf-1.0, Qt.y - Yi );
+	D =  min(D, length(C) - FuncR(Xi+1.0+ pT/80.0));
+
+	// Next Disk:
+	Yi = Func(Xi-1.0 + 0.5);
+	C = vec2(Xf+1.0, Qt.y - Yi );
+	D =  min(D, length(C) - FuncR(Xi-1.0+ pT/80.0));
+
+	return min(1.0, D);
+}
+
+void fragment() {
+	//vec2 uv = 8.0 * (SCREEN_UV - UV * 2.0);
+	vec2 uv = 3.0 * (vec2(0.5, 0.5) - UV * 2.0);
+
+	// Render:
+	vec3 Color= BackColor.rgb;
+	for(float J = 0.0; J <= 1.0; J += 0.2)
+	{
+		// Cloud Layer:
+		float Lt =  TIME * speed * (0.5  + 2.0 * J) * (1.0 + 0.1 * sin(226.0 * J)) + 17.0 * J;
+		vec2 Lp = vec2(0.0, 0.3 + 1.5 * ( J - 0.5));
+		float L = Layer(uv + Lp, Lt);
+		// Blur and color:
+		float Blur = 4.0 * (0.5 * abs(2.0 - 5.0 * J)) / (11.0 - 5.0 * J);
+		float V = mix( 0.0, 1.0, 1.0 - smoothstep( 0.0, 0.01 +0.2 * Blur, L ) );
+		vec3 Lc=  mix(CloudColor.rgb, vec3(1.0), J);
+		Color =mix(Color, Lc,  V);
+	}
+	COLOR = vec4(Color,1.);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/BackColor = Color( 0.505882, 0.847059, 1, 1 )
+shader_param/CloudColor = Color( 0.65098, 0.835294, 0.894118, 1 )
+shader_param/speed = 2.0
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 0.247059 )
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.247059 )
+shadow_size = 8
+shadow_offset = Vector2( 0, 2 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 11 )
 
 [sub_resource type="Shader" id=1]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
@@ -89,18 +190,40 @@ shader_param/inset = 0.25
 shader = SubResource( 1 )
 shader_param/fov = 90.0
 shader_param/cull_back = true
-shader_param/y_rot = -20.0
+shader_param/y_rot = 0.0
 shader_param/x_rot = 0.0
-shader_param/inset = 0.25
+shader_param/inset = 0.0
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 27, 32.5 )
 
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 1 )
+shader_param/fov = 90.0
+shader_param/cull_back = true
+shader_param/y_rot = 0.0
+shader_param/x_rot = 0.0
+shader_param/inset = 0.75
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 10 )
+
 [node name="Root" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 3 )
 zone_id = "saint_philibert"
 zone_name = "Saint Philibert (Gare)"
 time = "Morning"
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 8 )
+position = Vector2( -128, -20 )
+scale = Vector2( 15.2188, 10.4063 )
+texture = ExtResource( 9 )
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 0.56, 0.56 )
@@ -123,30 +246,60 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 6 )
 
+[node name="Panel" type="Panel" parent="Canvas/Container"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -208.0
+margin_right = 208.0
+margin_bottom = 112.0
+custom_styles/panel = SubResource( 12 )
+
 [node name="ZoneName" type="Label" parent="Canvas/Container"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -92.0
-margin_right = 92.0
-margin_bottom = 14.0
+margin_left = -329.0
+margin_top = 24.0
+margin_right = 329.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 11 )
 text = "fdsf"
 align = 1
+uppercase = true
+
+[node name="Star1" type="TextureRect" parent="Canvas/Container/ZoneName"]
+modulate = Color( 1, 1, 1, 0.498039 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 12 )
+stretch_mode = 6
 
 [node name="Time" type="Label" parent="Canvas/Container"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -92.0
-margin_top = 16.0
+margin_top = 80.0
 margin_right = 92.0
-margin_bottom = 30.0
+margin_bottom = 103.0
 text = "fdsf"
 align = 1
 
-[node name="Tooltip" type="Label" parent="Canvas/Container"]
-unique_name_in_owner = true
-margin_right = 112.0
-margin_bottom = 23.0
-text = "hesheshs"
+[node name="GridContainer" type="GridContainer" parent="Canvas/Container"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TurnLight" type="CheckButton" parent="Canvas/Container"]
+margin_left = 161.0
+margin_top = 41.0
+margin_right = 241.0
+margin_bottom = 77.0
+text = "turn off light"
 
 [node name="Arrow" type="Area2D" parent="." groups=["Interaction"]]
 position = Vector2( 17, 113 )
@@ -181,6 +334,34 @@ texture = ExtResource( 9 )
 position = Vector2( 4, 0.5 )
 shape = SubResource( 6 )
 
+[node name="Icon" type="Sprite" parent="Mathieu"]
+material = SubResource( 9 )
+position = Vector2( 0, -72 )
+texture = ExtResource( 9 )
+
+[node name="Light" type="Light2D" parent="Mathieu"]
+texture = ExtResource( 13 )
+texture_scale = 2.0
+energy = 0.0
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+margin_left = -3.0
+margin_top = 64.0
+margin_right = 109.0
+margin_bottom = 80.0
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center][wave]hesheshs[/wave][/center]"
+text = "hesheshs"
+scroll_active = false
+
 [node name="Cursor" parent="." instance=ExtResource( 5 )]
 
+[node name="LightOff" type="CanvasModulate" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="toggled" from="Canvas/Container/TurnLight" to="." method="_on_TurnLight_toggled"]
 [connection signal="area_exited" from="Cursor" to="Cursor" method="_on_Cursor_area_exited"]

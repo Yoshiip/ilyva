@@ -5,7 +5,7 @@ const MUSICS := {
 }
 
 
-func start_music(id) -> void:
+func start_music(_id) -> void:
 	var stream := AudioStreamPlayer.new()
 	stream.stream = MUSICS.night
 	stream.autoplay = true

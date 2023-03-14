@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 0.729412, 0.729412, 0.729412, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 1, 1, 1, 1 )
+
+[node name="ChartBar" type="Control"]
+margin_right = 64.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 64, 200 )
+
+[node name="Bar" type="Panel" parent="."]
+margin_left = 8.0
+margin_right = 56.0
+margin_bottom = 184.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Separation" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -16.0
+margin_bottom = -15.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Date" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "13/03/23"
+align = 1

@@ -7,9 +7,11 @@ func _ready() -> void:
 	text = btn_label
 	$bg_icon.texture = btn_icon
 
+
 func _process(delta: float) -> void:
 	if mouse_inside:
 		$bg_icon.rect_rotation += delta * 90.0
+
 
 var mouse_inside := false
 

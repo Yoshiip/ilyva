@@ -1,0 +1,403 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
+[ext_resource path="res://scripts/menu/Settings.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ui/StylizedButton.gd" type="Script" id=5]
+[ext_resource path="res://resources/theme.tres" type="Theme" id=6]
+[ext_resource path="res://resources/fonts/guisol_title.tres" type="DynamicFont" id=7]
+[ext_resource path="res://images/icons/23_white.png" type="Texture" id=10]
+[ext_resource path="res://prefabs/ui/StylizedButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://prefabs/ui/StylizedSettingsTab.tscn" type="PackedScene" id=13]
+[ext_resource path="res://images/ui/gradient.png" type="Texture" id=14]
+[ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=15]
+[ext_resource path="res://images/icons/Crown_031.png" type="Texture" id=16]
+[ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://prefabs/ui/StylizedCheckbox.tscn" type="PackedScene" id=18]
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.141176, 0.137255, 0.137255, 1 )
+border_width_left = 8
+border_color = Color( 0.858824, 0.156863, 0.109804, 1 )
+corner_detail = 1
+shadow_color = Color( 0, 0, 0, 0.247059 )
+shadow_size = 8
+shadow_offset = Vector2( -8, 0 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0, 0, 0, 0.121569 )
+border_width_top = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 0.498039 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=29]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=30]
+size = 24
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 18
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 17 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 64
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 15 )
+
+[sub_resource type="StyleBoxTexture" id=31]
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 128, 128 )
+modulate_color = Color( 0, 0, 0, 1 )
+
+[node name="Settings" type="Panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+custom_styles/panel = SubResource( 28 )
+script = ExtResource( 3 )
+
+[node name="Black" type="ColorRect" parent="."]
+show_behind_parent = true
+anchor_left = -1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1408.0
+margin_top = -2048.0
+margin_right = 1408.0
+margin_bottom = 1328.0
+color = Color( 0, 0, 0, 0.247059 )
+
+[node name="Grain" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.247059 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 4
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 112.0
+margin_right = -16.0
+margin_bottom = -16.0
+custom_styles/bg = SubResource( 33 )
+scroll_horizontal_enabled = false
+scroll_vertical = 100
+
+[node name="Container" type="VBoxContainer" parent="Scroll"]
+margin_top = -92.0
+margin_right = 592.0
+margin_bottom = 1052.0
+rect_min_size = Vector2( 592, 0 )
+
+[node name="Audio" type="Panel" parent="Scroll/Container"]
+margin_right = 592.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+custom_styles/panel = SubResource( 29 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scroll/Container/Audio"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="StylizedSettingsTab" parent="Scroll/Container/Audio/VBoxContainer" instance=ExtResource( 13 )]
+margin_right = 576.0
+custom_fonts/font = SubResource( 30 )
+
+[node name="Effects" type="Label" parent="Scroll/Container/Audio/VBoxContainer"]
+margin_top = 84.0
+margin_right = 576.0
+margin_bottom = 107.0
+text = "Effets sonores"
+align = 1
+
+[node name="EffectsSlider" type="HSlider" parent="Scroll/Container/Audio/VBoxContainer"]
+margin_top = 111.0
+margin_right = 576.0
+margin_bottom = 127.0
+
+[node name="Music" type="Label" parent="Scroll/Container/Audio/VBoxContainer"]
+margin_top = 131.0
+margin_right = 576.0
+margin_bottom = 154.0
+text = "Musique"
+align = 1
+
+[node name="MusicSlider" type="HSlider" parent="Scroll/Container/Audio/VBoxContainer"]
+margin_top = 158.0
+margin_right = 576.0
+margin_bottom = 174.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Graphics" type="Panel" parent="Scroll/Container"]
+margin_top = 204.0
+margin_right = 592.0
+margin_bottom = 616.0
+rect_min_size = Vector2( 0, 412 )
+custom_styles/panel = SubResource( 29 )
+
+[node name="Container" type="VBoxContainer" parent="Scroll/Container/Graphics"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_constants/separation = 8
+
+[node name="Header" parent="Scroll/Container/Graphics/Container" instance=ExtResource( 13 )]
+margin_right = 576.0
+custom_fonts/font = SubResource( 30 )
+text = "GRAPHISMES"
+color = Color( 0.592157, 0.756863, 0.113725, 1 )
+pattern_id = 2
+
+[node name="Graphics" type="Label" parent="Scroll/Container/Graphics/Container"]
+margin_top = 88.0
+margin_right = 576.0
+margin_bottom = 111.0
+text = "Qualité des graphismes 3D"
+align = 1
+
+[node name="GraphicsContainer" type="Control" parent="Scroll/Container/Graphics/Container"]
+margin_top = 119.0
+margin_right = 576.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Low" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
+script = ExtResource( 5 )
+hide_by_default = true
+
+[node name="Medium" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
+anchor_left = 0.33
+anchor_right = 0.667
+script = ExtResource( 5 )
+checked = true
+
+[node name="Label" parent="Scroll/Container/Graphics/Container/GraphicsContainer/Medium" index="1"]
+margin_left = -51.5
+margin_right = 51.5
+text = "Moyenne"
+
+[node name="High" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
+anchor_left = 0.667
+anchor_right = 1.0
+script = ExtResource( 5 )
+hide_by_default = true
+
+[node name="Label" parent="Scroll/Container/Graphics/Container/GraphicsContainer/High" index="1"]
+text = "Élevé"
+
+[node name="Fullscreen" type="Button" parent="Scroll/Container/Graphics/Container"]
+margin_top = 207.0
+margin_right = 576.0
+margin_bottom = 255.0
+rect_min_size = Vector2( 0, 48 )
+toggle_mode = true
+text = "Plein écran"
+script = ExtResource( 5 )
+
+[node name="Checkbox" parent="Scroll/Container/Graphics/Container/Fullscreen" instance=ExtResource( 18 )]
+
+[node name="Music" type="Label" parent="Scroll/Container/Graphics/Container"]
+margin_top = 263.0
+margin_right = 576.0
+margin_bottom = 286.0
+text = "Sensibilité 3D"
+align = 1
+
+[node name="MusicSlider" type="HSlider" parent="Scroll/Container/Graphics/Container"]
+margin_top = 294.0
+margin_right = 576.0
+margin_bottom = 310.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Disable3D" type="Button" parent="Scroll/Container/Graphics/Container"]
+margin_top = 318.0
+margin_right = 576.0
+margin_bottom = 398.0
+rect_min_size = Vector2( 0, 80 )
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Scroll/Container/Graphics/Container/Disable3D"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -140.0
+margin_top = -56.0
+margin_right = 140.0
+margin_bottom = -8.0
+custom_fonts/font = SubResource( 34 )
+text = "Désactive/Passe intégralement toute les scènes 3D du jeu."
+align = 1
+valign = 2
+autowrap = true
+
+[node name="Label2" type="Label" parent="Scroll/Container/Graphics/Container/Disable3D"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -92.0
+margin_top = 8.0
+margin_right = 92.0
+margin_bottom = 31.0
+text = "Désactiver la 3D"
+
+[node name="Checkbox" parent="Scroll/Container/Graphics/Container/Disable3D" instance=ExtResource( 18 )]
+
+[node name="Data" type="Panel" parent="Scroll/Container"]
+margin_top = 620.0
+margin_right = 592.0
+margin_bottom = 820.0
+rect_min_size = Vector2( 0, 200 )
+custom_styles/panel = SubResource( 29 )
+
+[node name="Container" type="VBoxContainer" parent="Scroll/Container/Data"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="StylizedSettingsTab3" parent="Scroll/Container/Data/Container" instance=ExtResource( 13 )]
+margin_right = 576.0
+custom_fonts/font = SubResource( 30 )
+text = "SAUVEGARDE"
+color = Color( 0.0627451, 0.635294, 0.862745, 1 )
+pattern_id = 3
+
+[node name="Label9" type="Button" parent="Scroll/Container/Data/Container"]
+margin_top = 84.0
+margin_right = 576.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 0, 48 )
+toggle_mode = true
+text = "Supprimer données de sauvegarde"
+
+[node name="Label10" type="Button" parent="Scroll/Container/Data/Container"]
+margin_top = 136.0
+margin_right = 576.0
+margin_bottom = 184.0
+rect_min_size = Vector2( 0, 48 )
+toggle_mode = true
+text = "Ouvrir le dossier de sauvegarde"
+
+[node name="scroll_margin" type="Control" parent="Scroll/Container"]
+margin_top = 824.0
+margin_right = 592.0
+margin_bottom = 1144.0
+rect_min_size = Vector2( 0, 320 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -101.5
+margin_top = 40.0
+margin_right = 101.5
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 7 )
+text = "Paramètres"
+
+[node name="23White" type="TextureRect" parent="Label"]
+modulate = Color( 0.592157, 0.756863, 0.113725, 1 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Label"]
+modulate = Color( 0, 0, 0, 0.498039 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -209.5
+margin_top = -41.0
+margin_right = 209.5
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 32 )
+text = "PARAMETRES"
+
+[node name="Return" type="Button" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -64.0
+margin_bottom = 1.0
+custom_styles/normal = SubResource( 31 )
+text = "Retour"
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="TopIcon1" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.533333 )
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 36, 36 )
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 6
+
+[node name="TopIcon2" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.533333 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -88.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 36, 36 )
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 6
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/Low" to="." method="_on_Low_pressed"]
+[connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/High" to="." method="_on_High_pressed"]
+[connection signal="pressed" from="Scroll/Container/Graphics/Container/Fullscreen" to="." method="_on_Fullscreen_pressed"]
+[connection signal="pressed" from="Scroll/Container/Graphics/Container/Disable3D" to="." method="_on_Disable3D_pressed"]
+[connection signal="pressed" from="Scroll/Container/Data/Container/Label9" to="Scroll/Container/Data/Container/Label9" method="_on_Label9_pressed"]
+[connection signal="pressed" from="Scroll/Container/Data/Container/Label10" to="Scroll/Container/Data/Container/Label10" method="_on_Label9_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_Return_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Scroll/Container/Graphics/Container/GraphicsContainer/Medium"]
+[editable path="Scroll/Container/Graphics/Container/GraphicsContainer/High"]

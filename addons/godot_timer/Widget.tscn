@@ -1,0 +1,434 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/godot_timer/icons/pause.png" type="Texture" id=1]
+[ext_resource path="res://addons/godot_timer/WidgetTimer.gd" type="Script" id=2]
+[ext_resource path="res://addons/godot_timer/icons/settings.png" type="Texture" id=3]
+[ext_resource path="res://addons/godot_timer/icons/statistics.png" type="Texture" id=4]
+[ext_resource path="res://addons/godot_timer/icons/github.png" type="Texture" id=6]
+[ext_resource path="res://addons/godot_timer/icons/save.png" type="Texture" id=7]
+[ext_resource path="res://addons/godot_timer/icons/reset.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 1, 1, 1, 0.498039 )
+grow_begin = 0.0
+grow_end = 0.0
+
+[node name="WidgetTimer" type="Control"]
+margin_right = 96.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 114, 20 )
+script = ExtResource( 2 )
+
+[node name="AutosaveTimer" type="Timer" parent="."]
+wait_time = 25.0
+autostart = true
+
+[node name="Container" type="VBoxContainer" parent="."]
+margin_right = 114.0
+margin_bottom = 20.0
+
+[node name="TotalTime" type="HBoxContainer" parent="Container"]
+margin_right = 114.0
+margin_bottom = 20.0
+alignment = 2
+
+[node name="Pause" type="TextureRect" parent="Container/TotalTime"]
+margin_right = 14.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 14, 0 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="TimerButton" type="Button" parent="Container/TotalTime"]
+margin_left = 18.0
+margin_right = 114.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 96, 0 )
+text = "00h 00m 54s"
+
+[node name="MainPopup" type="WindowDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -166.5
+margin_top = -107.0
+margin_right = 166.5
+margin_bottom = 107.0
+rect_min_size = Vector2( 256, 0 )
+window_title = "GodotActivity"
+resizable = true
+
+[node name="Container" type="VBoxContainer" parent="MainPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="CurrentSessionTime" type="Label" parent="MainPopup/Container"]
+margin_right = 317.0
+margin_bottom = 14.0
+text = "Current session time:"
+
+[node name="TotalProjectTime" type="Label" parent="MainPopup/Container"]
+margin_top = 18.0
+margin_right = 317.0
+margin_bottom = 32.0
+text = "Total project time:"
+
+[node name="StatisticsButton" type="Button" parent="MainPopup/Container"]
+margin_top = 36.0
+margin_right = 317.0
+margin_bottom = 56.0
+text = "Statistics"
+icon = ExtResource( 4 )
+expand_icon = true
+
+[node name="StatisticsButton2" type="Button" parent="MainPopup/Container"]
+visible = false
+margin_top = 60.0
+margin_right = 317.0
+margin_bottom = 80.0
+text = "Reset"
+icon = ExtResource( 8 )
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="MainPopup/Container"]
+margin_top = 60.0
+margin_right = 317.0
+margin_bottom = 80.0
+disabled = true
+text = "Settings (W.I.P)"
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="OldSettings" type="VBoxContainer" parent="MainPopup"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+
+[node name="Label" type="Label" parent="MainPopup/OldSettings"]
+margin_right = 317.0
+margin_bottom = 14.0
+text = "Settings"
+align = 1
+
+[node name="Button" type="Button" parent="MainPopup/OldSettings"]
+margin_top = 18.0
+margin_right = 317.0
+margin_bottom = 38.0
+text = "Pause"
+
+[node name="Button2" type="Button" parent="MainPopup/OldSettings"]
+margin_top = 42.0
+margin_right = 317.0
+margin_bottom = 62.0
+text = "Reset"
+
+[node name="Control" type="Control" parent="MainPopup/OldSettings"]
+margin_top = 66.0
+margin_right = 317.0
+margin_bottom = 114.0
+rect_min_size = Vector2( 0, 48 )
+
+[node name="Button3" type="SpinBox" parent="MainPopup/OldSettings/Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -162.0
+margin_top = -12.0
+margin_right = -88.0
+margin_bottom = 12.0
+align = 2
+
+[node name="OptionButton" type="OptionButton" parent="MainPopup/OldSettings/Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -82.0
+margin_top = -10.0
+margin_bottom = 10.0
+text = "seconds"
+items = [ "seconds", null, false, 0, null, "minutes", null, false, 1, null, "hours", null, false, 2, null ]
+selected = 0
+
+[node name="Control" type="Control" parent="MainPopup/OldSettings/Control"]
+anchor_bottom = 1.0
+margin_right = 100.0
+
+[node name="Button" type="Button" parent="MainPopup/OldSettings/Control/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_bottom = 20.0
+text = "Add"
+
+[node name="Button2" type="Button" parent="MainPopup/OldSettings/Control/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -20.0
+text = "Subtract"
+
+[node name="CheckBox" type="CheckBox" parent="MainPopup/OldSettings"]
+margin_top = 118.0
+margin_right = 317.0
+margin_bottom = 142.0
+text = "Pause after no input for"
+
+[node name="SpinBox" type="SpinBox" parent="MainPopup/OldSettings/CheckBox"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 184.0
+margin_top = -12.0
+margin_right = 258.0
+margin_bottom = 12.0
+suffix = "min"
+
+[node name="CheckBox2" type="CheckBox" parent="MainPopup/OldSettings"]
+margin_top = 146.0
+margin_right = 317.0
+margin_bottom = 170.0
+text = "Pause after out of focus for"
+
+[node name="SpinBox" type="SpinBox" parent="MainPopup/OldSettings/CheckBox2"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 208.0
+margin_top = -12.0
+margin_right = 282.0
+margin_bottom = 12.0
+suffix = "min"
+
+[node name="CheckBox3" type="CheckBox" parent="MainPopup/OldSettings"]
+margin_top = 174.0
+margin_right = 317.0
+margin_bottom = 198.0
+text = "Autosave"
+
+[node name="SpinBox" type="SpinBox" parent="MainPopup/OldSettings/CheckBox3"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 184.0
+margin_top = -12.0
+margin_right = 258.0
+margin_bottom = 12.0
+suffix = "min"
+
+[node name="Save" type="HBoxContainer" parent="MainPopup"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -32.0
+margin_right = 187.0
+margin_bottom = -16.0
+
+[node name="Icon" type="TextureRect" parent="MainPopup/Save"]
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 0 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="Text" type="Label" parent="MainPopup/Save"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 76.0
+margin_bottom = 15.0
+text = "last save"
+
+[node name="Version" type="HBoxContainer" parent="MainPopup"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -116.0
+margin_top = -32.0
+margin_right = -16.0
+margin_bottom = -16.0
+alignment = 2
+
+[node name="Text" type="Label" parent="MainPopup/Version"]
+margin_top = 1.0
+margin_right = 110.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "version 1.0-alpha"
+align = 2
+
+[node name="GithubButton" type="TextureButton" parent="MainPopup/Version"]
+margin_left = 114.0
+margin_right = 130.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 0 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="Statistics" type="WindowDialog" parent="."]
+visible = true
+margin_right = 651.0
+margin_bottom = 376.0
+window_title = "Statistics"
+resizable = true
+
+[node name="Container" type="HBoxContainer" parent="Statistics"]
+visible = false
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 36.0
+
+[node name="Label" type="Label" parent="Statistics/Container"]
+margin_top = 3.0
+margin_right = 52.0
+margin_bottom = 17.0
+text = "Show by"
+
+[node name="Button" type="Button" parent="Statistics/Container"]
+margin_left = 56.0
+margin_right = 95.0
+margin_bottom = 20.0
+text = "Year"
+
+[node name="Button2" type="Button" parent="Statistics/Container"]
+margin_left = 99.0
+margin_right = 152.0
+margin_bottom = 20.0
+text = "Month"
+
+[node name="Button3" type="Button" parent="Statistics/Container"]
+margin_left = 156.0
+margin_right = 192.0
+margin_bottom = 20.0
+text = "Day"
+
+[node name="Scroll" type="ScrollContainer" parent="Statistics"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 64.0
+margin_right = -8.0
+margin_bottom = -59.0
+scroll_vertical_enabled = false
+
+[node name="Container" type="HBoxContainer" parent="Statistics/Scroll"]
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="Scale" type="Control" parent="Statistics"]
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 72.0
+margin_bottom = 248.0
+
+[node name="0" type="Label" parent="Statistics/Scale"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = -6.0
+margin_bottom = 8.0
+text = "24h"
+align = 2
+
+[node name="1" type="Label" parent="Statistics/Scale"]
+anchor_left = 1.0
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.25
+margin_left = -40.0
+margin_top = -7.0
+margin_bottom = 7.0
+text = "18h"
+align = 2
+
+[node name="2" type="Label" parent="Statistics/Scale"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -7.0
+margin_bottom = 7.0
+text = "12h"
+align = 2
+
+[node name="3" type="Label" parent="Statistics/Scale"]
+anchor_left = 1.0
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.75
+margin_left = -40.0
+margin_top = -7.0
+margin_bottom = 7.0
+text = "06h"
+align = 2
+
+[node name="4" type="Label" parent="Statistics/Scale"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -7.0
+margin_bottom = 7.0
+text = "00h"
+align = 2
+
+[node name="Lines" type="Control" parent="Statistics"]
+anchor_right = 1.0
+margin_left = 80.0
+margin_top = 64.0
+rect_min_size = Vector2( 0, 184 )
+
+[node name="0" type="Panel" parent="Statistics/Lines"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 1 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="1" type="Panel" parent="Statistics/Lines"]
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.25
+rect_min_size = Vector2( 0, 1 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="2" type="Panel" parent="Statistics/Lines"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+rect_min_size = Vector2( 0, 1 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="3" type="Panel" parent="Statistics/Lines"]
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.75
+rect_min_size = Vector2( 0, 1 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="TickTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Container/TotalTime/TimerButton" to="." method="_on_TimerButton_pressed"]
+[connection signal="pressed" from="MainPopup/Container/StatisticsButton" to="." method="_on_StatisticsButton_pressed"]
+[connection signal="pressed" from="MainPopup/Container/StatisticsButton2" to="." method="_on_StatisticsButton_pressed"]
+[connection signal="pressed" from="MainPopup/Container/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="MainPopup/Version/GithubButton" to="." method="_on_GithubButton_pressed"]
