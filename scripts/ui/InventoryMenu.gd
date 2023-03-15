@@ -110,4 +110,5 @@ func _on_Menu_pressed() -> void:
 
 
 func _on_ReturnToMenuButton_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene("res://scenes/Menu.tscn")

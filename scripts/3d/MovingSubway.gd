@@ -76,7 +76,11 @@ func _ready() -> void:
 
 var looped_once := true
 
-var movement_since_start := 0.0
+
+export var acceleration := 5.0
+export var decceleration := 0.98
+
+onready var station := get_parent().get_node("Station")
 
 func fdsfdsfges() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
@@ -88,27 +92,39 @@ func _process(delta: float) -> void:
 	if offset > next_stop_position - stop_distance && going_forward || offset < next_stop_position + stop_distance && !going_forward:
 		speed *= 0.98
 	elif speed < max_speed:
-		speed += delta * 50.0
-	
+		speed += delta * acceleration
 	var _dis1 = 0
 	var _dis2 = 0
 	if current_stop_id == -1:
 		_dis1 = 0
+		_dis2 = STOPS[line].values()[1]
 	elif current_stop_id == 4:
-		_dis2 = STOPS[line].values()[3]
+		_dis1 = STOPS[line].values()[3]
+		_dis2 = STOPS[line].values()[2]
 	else:
-		_dis1 = STOPS[line].values()[current_stop_id]
-		_dis2 = STOPS[line].values()[next_stop_id]
+		if going_forward:
+			_dis1 = STOPS[line].values()[current_stop_id]
+			_dis2 = STOPS[line].values()[next_stop_id]
+		else:
+			_dis1 = STOPS[line].values()[current_stop_id]
+			_dis2 = STOPS[line].values()[next_stop_id]
 	if offset >= next_stop_position && going_forward || offset <= next_stop_position && !going_forward:
-#	if _dis1 - _dis2 < 0.0:
 		speed = 0.0
+		translation.z = 2.0
 		c_stop_time -= delta
-		if !door_opened:
+		if !door_opened && c_stop_time > 0.0:
 			interact_door(true)
-		if c_stop_time <= 0.0:
+			station.interact_door(true, !going_forward)
+		if door_opened && c_stop_time <= 0.0:
 			interact_door(false)
+			station.interact_door(false, !going_forward)
+		if c_stop_time <= -2.0:
 			if is_at_terminus(next_stop_id):
 				going_forward = !going_forward
+				if !going_forward:
+					current_stop_id += 2
+				else:
+					current_stop_id -= 2
 			if going_forward:
 				current_stop_id += 1
 				next_stop_id += 1
@@ -132,27 +148,13 @@ func _process(delta: float) -> void:
 		else:
 			player.translation -= -Vector3.FORWARD * speed * delta
 	var distance_between := abs(_dis1 - _dis2)
-#	print(str(offset - _dis2))
-#	print(offset)
-#	print(str(offset - _dis2, "/", distance_between / 2.0))
-#	print(translation)
-	movement_since_start += translation.z * delta
 	if going_forward && abs(offset - _dis2) < distance_between / 2.0 && !looped_once || !going_forward && !(abs(offset - _dis2) > distance_between / 2.0) && !looped_once:
-		print(translation.z)
+		station.station_changed(next_stop_id)
 		var _diff = -translation.z
 		translation.z = _diff
-		print(translation.z)
 		if player_inside:
-			player.translation.z += _diff
+			player.translation.z += _diff * 2.0
 		looped_once = true
-#		print("sheesh")
-#	print(translation.z > (distance_between / 2.0) - 27.0 * move_scale)
-#	if offset > STOPS[line].values()[next_stop_id] + 52:
-#	if translation.z > (distance_between - 27) / 2.0:
-#		var _o = distance_between
-#		translation.z -= _o * 1 if going_forward else -1
-#		if player_inside:
-#			player.translation.z -= _o * 1 if going_forward else -1
 
 
 func is_at_terminus(stop_id : int) -> bool:
@@ -160,106 +162,8 @@ func is_at_terminus(stop_id : int) -> bool:
 
 
 
-
-#func get_next_stop() -> String:
-#	if going_forward:
-#		if current_stop_id == STOPS[line].size() - 1:
-#			return stop_id_to_string(current_stop_id)
-#		return STOPS[line].keys()[current_stop_id + 1]
-#	else:
-#		if current_stop_id == 0:
-#			return stop_id_to_string(current_stop_id)
-#	return STOPS[line].keys()[current_stop_id - 1]
-#
-#
 func stop_id_to_string(stop_id : int) -> String:
 	return STOPS[line].keys()[stop_id]
-#
-#
-#
-#func get_distance_between_stops(stop_1 : String, stop_2 : String) -> float:
-#	return abs(STOPS[line][stop_1] - STOPS[line][stop_2]) * (1.0 / move_scale)
-#	if current_stop_id == 0 && !going_forward || current_stop_id == STOPS[line].size() && going_forward:
-#		return 0.0 # terminus
-#	else:
-#		if going_forward:
-#			return STOPS[line].values()[current_stop_id + 1] - STOPS[line].values()[current_stop_id]
-#		else:
-#			return STOPS[line].values()[current_stop_id] - STOPS[line].values()[current_stop_id - 1]
-
-#func change_stop_index() -> void:
-#	if current_stop_id == 0:
-#		going_forward = true
-#	if current_stop_id == STOPS[line].size() - 1:
-#		going_forward = false
-#	current_stop_id += 1 if going_forward else -1
-#
-#	next_stop_position = STOPS[line][stop_id_to_string(current_stop_id)]
-
-
-
-#
-#func reached_stop(threshold : float) -> bool:
-#	if going_forward:
-#		return offset >= next_stop_position && speed <= threshold
-#	return offset <= next_stop_position && speed <= threshold
-#
-
-#
-#func _process(delta: float) -> void:
-#
-#
-
-#
-#
-#	if !stopped:
-#		if going_forward && offset > next_stop_position - stop_distance || !going_forward && offset < next_stop_position + stop_distance:
-#			speed *= 0.98
-#		else:
-#			speed = clamp(speed + delta * 5.0, 0, max_speed)
-#	if reached_stop(0.05):
-#		speed = 0.0
-#		c_stop_time -= delta
-#		if !opened && c_stop_time >= 0.0:
-#			interact_door(true)
-#			stopped = true
-#			$Engine.stop()
-#		if opened && c_stop_time <= 0.0:
-#			interact_door(false)
-#			stopped = false
-#			$Engine.play()
-#			c_stop_time = max_stop_time
-#			change_stop_index()
-##		if !opened && c_stop_time < max_stop_time - 2 && c_stop_time > 0:
-##			interact_door(true)
-##			stopped = true
-##		if c_stop_time <= 0.0:
-##			
-##			interact_door(false)
-##		if c_stop_time <= -2.0: # start
-##			stopped = false
-##			c_stop_time = max_stop_time
-#
-#	if going_forward:
-#		translation += -Vector3.FORWARD * speed * delta
-#		offset += speed * delta * (1.0 / move_scale)
-#	else:
-#		translation -= -Vector3.FORWARD * speed * delta
-#		offset -= speed * delta * (1.0 / move_scale)
-#	if current_stop_id != -1:
-#		var distance_between := get_distance_between_stops(stop_id_to_string(current_stop_id), get_next_stop())
-##		print(((distance_between - 27) / move_scale))
-#		if translation.z > ((distance_between - 27) / move_scale):
-#			var _o = distance_between
-#			translation.z -= _o
-#			if player_inside:
-#				player.translation.z -= _o
-#	if player_inside:
-#		$Engine.global_translation = player.translation
-#		if going_forward:
-#			player.translation += -Vector3.FORWARD * speed * delta
-#		else:
-#			player.translation -= -Vector3.FORWARD * speed * delta
 
 
 func interact_door(open : bool) -> void:
@@ -276,7 +180,6 @@ func interact_door(open : bool) -> void:
 			$Tween.interpolate_property(i.get_node("DoorR"), "translation:z", 2.5, 3.2, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.start()
 	door_opened = open
-	
 
 
 func _on_MovingSubway_body_entered(body: Node) -> void:
@@ -286,3 +189,11 @@ func _on_MovingSubway_body_entered(body: Node) -> void:
 func _on_MovingSubway_body_exited(body: Node) -> void:
 	if body.name == "Player":
 		player_inside = false
+
+
+func _on_Occluder_camera_entered(camera: Camera) -> void:
+	print("coucou la caméra ")
+
+func _on_Occluder_camera_exited(camera: Camera) -> void:
+	print("aurevoir la caméra :(")
+	pass # Replace with function body.

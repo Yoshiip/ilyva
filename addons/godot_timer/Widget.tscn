@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/godot_timer/icons/pause.png" type="Texture" id=1]
 [ext_resource path="res://addons/godot_timer/WidgetTimer.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://addons/godot_timer/icons/statistics.png" type="Texture" id=4]
 [ext_resource path="res://addons/godot_timer/icons/github.png" type="Texture" id=6]
 [ext_resource path="res://addons/godot_timer/icons/save.png" type="Texture" id=7]
-[ext_resource path="res://addons/godot_timer/icons/reset.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 1, 1, 1, 0.498039 )
@@ -88,143 +87,14 @@ text = "Statistics"
 icon = ExtResource( 4 )
 expand_icon = true
 
-[node name="StatisticsButton2" type="Button" parent="MainPopup/Container"]
+[node name="SettingsButton" type="Button" parent="MainPopup/Container"]
 visible = false
 margin_top = 60.0
 margin_right = 317.0
 margin_bottom = 80.0
-text = "Reset"
-icon = ExtResource( 8 )
-expand_icon = true
-
-[node name="SettingsButton" type="Button" parent="MainPopup/Container"]
-margin_top = 60.0
-margin_right = 317.0
-margin_bottom = 80.0
-disabled = true
-text = "Settings (W.I.P)"
+text = "Settings"
 icon = ExtResource( 3 )
 expand_icon = true
-
-[node name="OldSettings" type="VBoxContainer" parent="MainPopup"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-
-[node name="Label" type="Label" parent="MainPopup/OldSettings"]
-margin_right = 317.0
-margin_bottom = 14.0
-text = "Settings"
-align = 1
-
-[node name="Button" type="Button" parent="MainPopup/OldSettings"]
-margin_top = 18.0
-margin_right = 317.0
-margin_bottom = 38.0
-text = "Pause"
-
-[node name="Button2" type="Button" parent="MainPopup/OldSettings"]
-margin_top = 42.0
-margin_right = 317.0
-margin_bottom = 62.0
-text = "Reset"
-
-[node name="Control" type="Control" parent="MainPopup/OldSettings"]
-margin_top = 66.0
-margin_right = 317.0
-margin_bottom = 114.0
-rect_min_size = Vector2( 0, 48 )
-
-[node name="Button3" type="SpinBox" parent="MainPopup/OldSettings/Control"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -162.0
-margin_top = -12.0
-margin_right = -88.0
-margin_bottom = 12.0
-align = 2
-
-[node name="OptionButton" type="OptionButton" parent="MainPopup/OldSettings/Control"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -82.0
-margin_top = -10.0
-margin_bottom = 10.0
-text = "seconds"
-items = [ "seconds", null, false, 0, null, "minutes", null, false, 1, null, "hours", null, false, 2, null ]
-selected = 0
-
-[node name="Control" type="Control" parent="MainPopup/OldSettings/Control"]
-anchor_bottom = 1.0
-margin_right = 100.0
-
-[node name="Button" type="Button" parent="MainPopup/OldSettings/Control/Control"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -37.0
-margin_bottom = 20.0
-text = "Add"
-
-[node name="Button2" type="Button" parent="MainPopup/OldSettings/Control/Control"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = -20.0
-text = "Subtract"
-
-[node name="CheckBox" type="CheckBox" parent="MainPopup/OldSettings"]
-margin_top = 118.0
-margin_right = 317.0
-margin_bottom = 142.0
-text = "Pause after no input for"
-
-[node name="SpinBox" type="SpinBox" parent="MainPopup/OldSettings/CheckBox"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 184.0
-margin_top = -12.0
-margin_right = 258.0
-margin_bottom = 12.0
-suffix = "min"
-
-[node name="CheckBox2" type="CheckBox" parent="MainPopup/OldSettings"]
-margin_top = 146.0
-margin_right = 317.0
-margin_bottom = 170.0
-text = "Pause after out of focus for"
-
-[node name="SpinBox" type="SpinBox" parent="MainPopup/OldSettings/CheckBox2"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 208.0
-margin_top = -12.0
-margin_right = 282.0
-margin_bottom = 12.0
-suffix = "min"
-
-[node name="CheckBox3" type="CheckBox" parent="MainPopup/OldSettings"]
-margin_top = 174.0
-margin_right = 317.0
-margin_bottom = 198.0
-text = "Autosave"
-
-[node name="SpinBox" type="SpinBox" parent="MainPopup/OldSettings/CheckBox3"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 184.0
-margin_top = -12.0
-margin_right = 258.0
-margin_bottom = 12.0
-suffix = "min"
 
 [node name="Save" type="HBoxContainer" parent="MainPopup"]
 visible = false
@@ -255,7 +125,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -116.0
+margin_left = -164.0
 margin_top = -32.0
 margin_right = -16.0
 margin_bottom = -16.0
@@ -263,15 +133,16 @@ alignment = 2
 
 [node name="Text" type="Label" parent="MainPopup/Version"]
 margin_top = 1.0
-margin_right = 110.0
+margin_right = 128.0
 margin_bottom = 15.0
+rect_min_size = Vector2( 128, 0 )
 custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 text = "version 1.0-alpha"
 align = 2
 
 [node name="GithubButton" type="TextureButton" parent="MainPopup/Version"]
-margin_left = 114.0
-margin_right = 130.0
+margin_left = 132.0
+margin_right = 148.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 0 )
 texture_normal = ExtResource( 6 )
@@ -283,7 +154,6 @@ expand = true
 stretch_mode = 5
 
 [node name="Statistics" type="WindowDialog" parent="."]
-visible = true
 margin_right = 651.0
 margin_bottom = 376.0
 window_title = "Statistics"
@@ -424,11 +294,265 @@ anchor_bottom = 0.75
 rect_min_size = Vector2( 0, 1 )
 custom_styles/panel = SubResource( 1 )
 
+[node name="Settings" type="WindowDialog" parent="."]
+margin_right = 651.0
+margin_bottom = 376.0
+window_title = "Settings"
+resizable = true
+
+[node name="OldSettings" type="VBoxContainer" parent="Settings"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Settings/OldSettings"]
+margin_right = 651.0
+margin_bottom = 14.0
+text = "Settings"
+align = 1
+
+[node name="Button" type="Button" parent="Settings/OldSettings"]
+margin_top = 18.0
+margin_right = 651.0
+margin_bottom = 38.0
+text = "Pause"
+
+[node name="Button2" type="Button" parent="Settings/OldSettings"]
+margin_top = 42.0
+margin_right = 651.0
+margin_bottom = 62.0
+text = "Reset"
+
+[node name="CheckBox" type="CheckBox" parent="Settings/OldSettings"]
+margin_top = 118.0
+margin_right = 651.0
+margin_bottom = 142.0
+text = "Pause after no input for"
+
+[node name="SpinBox" type="SpinBox" parent="Settings/OldSettings/CheckBox"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 184.0
+margin_top = -12.0
+margin_right = 258.0
+margin_bottom = 12.0
+suffix = "min"
+
+[node name="CheckBox2" type="CheckBox" parent="Settings/OldSettings"]
+margin_top = 146.0
+margin_right = 651.0
+margin_bottom = 170.0
+text = "Pause after out of focus for"
+
+[node name="SpinBox" type="SpinBox" parent="Settings/OldSettings/CheckBox2"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 208.0
+margin_top = -12.0
+margin_right = 282.0
+margin_bottom = 12.0
+suffix = "min"
+
+[node name="CheckBox3" type="CheckBox" parent="Settings/OldSettings"]
+margin_top = 174.0
+margin_right = 651.0
+margin_bottom = 198.0
+text = "Autosave"
+
+[node name="SpinBox" type="SpinBox" parent="Settings/OldSettings/CheckBox3"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 184.0
+margin_top = -12.0
+margin_right = 258.0
+margin_bottom = 12.0
+suffix = "min"
+
+[node name="TabContainer" type="TabContainer" parent="Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="General" type="Tabs" parent="Settings/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Container" type="VBoxContainer" parent="Settings/TabContainer/General"]
+margin_right = 263.0
+margin_bottom = 262.0
+
+[node name="ResetTimerButton" type="Button" parent="Settings/TabContainer/General/Container"]
+margin_right = 300.0
+margin_bottom = 20.0
+text = "Reset Timer"
+
+[node name="PauseTimerButton" type="Button" parent="Settings/TabContainer/General/Container"]
+margin_top = 24.0
+margin_right = 300.0
+margin_bottom = 44.0
+text = "Pause Timer"
+
+[node name="HSeparator" type="HSeparator" parent="Settings/TabContainer/General/Container"]
+margin_top = 48.0
+margin_right = 300.0
+margin_bottom = 52.0
+
+[node name="Control" type="Control" parent="Settings/TabContainer/General/Container"]
+margin_top = 56.0
+margin_right = 300.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 300, 48 )
+
+[node name="Button3" type="SpinBox" parent="Settings/TabContainer/General/Container/Control"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 104.0
+margin_top = -12.0
+margin_right = 178.0
+margin_bottom = 12.0
+align = 2
+
+[node name="OptionButton" type="OptionButton" parent="Settings/TabContainer/General/Container/Control"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 184.0
+margin_top = -10.0
+margin_right = 266.0
+margin_bottom = 10.0
+text = "seconds"
+items = [ "seconds", null, false, 0, null, "minutes", null, false, 1, null, "hours", null, false, 2, null ]
+selected = 0
+
+[node name="Control" type="Control" parent="Settings/TabContainer/General/Container/Control"]
+anchor_bottom = 1.0
+margin_right = 100.0
+
+[node name="Button" type="Button" parent="Settings/TabContainer/General/Container/Control/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_bottom = 20.0
+text = "Add"
+
+[node name="Button2" type="Button" parent="Settings/TabContainer/General/Container/Control/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -20.0
+text = "Subtract"
+
+[node name="Save" type="Tabs" parent="Settings/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 24.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Container" type="VBoxContainer" parent="Settings/TabContainer/Save"]
+margin_right = 336.0
+margin_bottom = 123.0
+
+[node name="AutosaveCheckBox" type="CheckBox" parent="Settings/TabContainer/Save/Container"]
+margin_right = 336.0
+margin_bottom = 24.0
+text = "Autosave"
+
+[node name="AutosaveContainer" type="HBoxContainer" parent="Settings/TabContainer/Save/Container"]
+margin_top = 28.0
+margin_right = 336.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="Settings/TabContainer/Save/Container/AutosaveContainer"]
+margin_top = 5.0
+margin_right = 183.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 28, -12 )
+text = "save data automatically after"
+
+[node name="SpinBox" type="SpinBox" parent="Settings/TabContainer/Save/Container/AutosaveContainer"]
+margin_left = 187.0
+margin_right = 315.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 128, 0 )
+min_value = 1.0
+value = 5.0
+suffix = "minutes"
+
+[node name="AutosaveCheckBox2" type="CheckBox" parent="Settings/TabContainer/Save/Container"]
+margin_top = 56.0
+margin_right = 336.0
+margin_bottom = 80.0
+text = "Auto-pause timer"
+
+[node name="AutosaveContainer2" type="HBoxContainer" parent="Settings/TabContainer/Save/Container"]
+margin_top = 84.0
+margin_right = 336.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="Settings/TabContainer/Save/Container/AutosaveContainer2"]
+margin_top = 5.0
+margin_right = 170.0
+margin_bottom = 19.0
+text = "When editor unfocused for"
+
+[node name="SpinBox" type="SpinBox" parent="Settings/TabContainer/Save/Container/AutosaveContainer2"]
+margin_left = 174.0
+margin_right = 302.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 128, 0 )
+min_value = 1.0
+value = 5.0
+suffix = "minutes"
+
+[node name="AutosaveContainer3" type="HBoxContainer" parent="Settings/TabContainer/Save/Container"]
+margin_top = 112.0
+margin_right = 336.0
+margin_bottom = 136.0
+
+[node name="Label" type="Label" parent="Settings/TabContainer/Save/Container/AutosaveContainer3"]
+margin_top = 5.0
+margin_right = 115.0
+margin_bottom = 19.0
+text = "When no input for"
+
+[node name="SpinBox" type="SpinBox" parent="Settings/TabContainer/Save/Container/AutosaveContainer3"]
+margin_left = 119.0
+margin_right = 247.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 128, 0 )
+min_value = 1.0
+value = 5.0
+suffix = "minutes"
+
+[node name="Statistics" type="Tabs" parent="Settings/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 24.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="About" type="Tabs" parent="Settings/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 24.0
+margin_right = -4.0
+margin_bottom = -4.0
+
 [node name="TickTimer" type="Timer" parent="."]
 autostart = true
 
 [connection signal="pressed" from="Container/TotalTime/TimerButton" to="." method="_on_TimerButton_pressed"]
 [connection signal="pressed" from="MainPopup/Container/StatisticsButton" to="." method="_on_StatisticsButton_pressed"]
-[connection signal="pressed" from="MainPopup/Container/StatisticsButton2" to="." method="_on_StatisticsButton_pressed"]
 [connection signal="pressed" from="MainPopup/Container/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="MainPopup/Version/GithubButton" to="." method="_on_GithubButton_pressed"]

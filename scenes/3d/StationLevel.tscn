@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scripts/3d/MovingSubway.gd" type="Script" id=1]
 [ext_resource path="res://3d/models/station_v2/Material.material" type="Material" id=2]
@@ -10,109 +10,20 @@
 [ext_resource path="res://3d/models/station_v2/Light.material" type="Material" id=8]
 [ext_resource path="res://3d/models/station_v2/Metal.material" type="Material" id=9]
 [ext_resource path="res://3d/models/station_v2/Chairs.material" type="Material" id=10]
-[ext_resource path="res://images/shaders/midnight-ablaze-8x.png" type="Texture" id=11]
 [ext_resource path="res://audios/effects/subway_engine.mp3" type="AudioStream" id=12]
 [ext_resource path="res://3d/models/tunnel/tunnel.glb" type="PackedScene" id=13]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=14]
 [ext_resource path="res://3d/models/station_v2/Floor.material" type="Material" id=15]
-[ext_resource path="res://images/shaders/matrix.png" type="Texture" id=16]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scripts/3d/StationLevel.gd" type="Script" id=18]
 [ext_resource path="res://images/ui/crosshair001.png" type="Texture" id=19]
-
-[sub_resource type="Shader" id=17]
-code = "/* 
-This shader is under MIT license. Feel free to use, improve and 
-change this shader according to your needs and consider sharing 
-the modified result to godotshaders.com.
-*/
-
-shader_type canvas_item;
-
-uniform sampler2D u_dither_tex;
-uniform sampler2D u_color_tex;
-
-uniform int u_bit_depth;
-uniform float u_contrast;
-uniform float u_offset;
-uniform int u_dither_size;
-uniform float blend;
-
-void fragment() 
-{
-	// sample the screen texture at the desired output resolution (according to u_dither_size)
-	// this will effectively pixelate the resulting output
-	vec2 screen_size = vec2(textureSize(TEXTURE, 0)) / float(u_dither_size);
-	vec2 screen_sample_uv = floor(UV * screen_size) / screen_size;
-	vec3 screen_col = texture(TEXTURE, screen_sample_uv).rgb;
-	
-	// calculate pixel luminosity (https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color)
-	float lum = (screen_col.r * 0.299) + (screen_col.g * 0.587) + (screen_col.b * 0.114);
-	
-	// adjust with contrast and offset parameters
-	float contrast = u_contrast;
-	lum = (lum - 0.5 + u_offset) * contrast + 0.5;
-	lum = clamp(lum, 0.0, 1.0);
-	
-	// reduce luminosity bit depth to give a more banded visual if desired	
-	float bits = float(u_bit_depth);
-	lum = floor(lum * bits) / bits;
-	
-	// to support multicolour palettes, we want to dither between the two colours on the palette
-	// which are adjacent to the current pixel luminosity.
-	// to do this, we need to determine which 'band' lum falls into, calculate the upper and lower
-	// bound of that band, then later we will use the dither texture to pick either the upper or 
-	// lower colour.
-	
-	// get the palette texture size mapped so it is 1px high (so the x value however many colour bands there are)
-	ivec2 col_size = textureSize(u_color_tex, 0);
-	col_size /= col_size.y;
-	
-	float col_x = float(col_size.x) - 1.0; // colour boundaries is 1 less than the number of colour bands
-	float col_texel_size = 1.0 / col_x; // the size of one colour boundary
-	
-	lum = max(lum - 0.00001, 0.0); // makes sure our floor calculation below behaves when lum == 1.0
-	float lum_lower = floor(lum * col_x) * col_texel_size;
-	float lum_upper = (floor(lum * col_x) + 1.0) * col_texel_size;
-	float lum_scaled = lum * col_x - floor(lum * col_x); // calculates where lum lies between the upper and lower bound
-	
-	// map the dither texture onto the screen. there are better ways of doing this that makes the dither pattern 'stick'
-	// with objects in the 3D world, instead of being mapped onto the screen. see lucas pope's details posts on how he 
-	// achieved this in Obra Dinn: https://forums.tigsource.com/index.php?topic=40832.msg1363742#msg1363742
-	ivec2 noise_size = textureSize(u_dither_tex, 0);
-	vec2 inv_noise_size = vec2(1.0 / float(noise_size.x), 1.0 / float(noise_size.y));
-	vec2 noise_uv = UV * inv_noise_size * vec2(float(screen_size.x), float(screen_size.y));
-	float threshold = texture(u_dither_tex, noise_uv).r;
-	
-	// adjust the dither slightly so min and max aren't quite at 0.0 and 1.0
-	// otherwise we wouldn't get fullly dark and fully light dither patterns at lum 0.0 and 1.0
-	threshold = threshold * 0.99 + 0.005;
-	
-	// the lower lum_scaled is, the fewer pixels will be below the dither threshold, and thus will use the lower bound colour,
-	// and vice-versa
-	float ramp_val = lum_scaled < threshold ? 0.0f : 1.0f;
-	// sample at the lower bound colour if ramp_val is 0.0, upper bound colour if 1.0
-	float col_sample = mix(lum_lower, lum_upper, ramp_val);
-	vec3 final_col = texture(u_color_tex, vec2(col_sample, 0.5)).rgb;
-	
-	// return the final colour!
-	COLOR.rgb = mix(final_col, texture(TEXTURE, UV).rgb, blend);
-}"
-
-[sub_resource type="ShaderMaterial" id=38]
-shader = SubResource( 17 )
-shader_param/u_bit_depth = 32
-shader_param/u_contrast = 1.0
-shader_param/u_offset = 0.0
-shader_param/u_dither_size = 2
-shader_param/blend = 1.0
-shader_param/u_dither_tex = ExtResource( 16 )
-shader_param/u_color_tex = ExtResource( 11 )
+[ext_resource path="res://prefabs/3d/Station.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ProceduralSky" id=13]
 
-[sub_resource type="Environment" id=27]
+[sub_resource type="Environment" id=49]
 background_sky = SubResource( 13 )
+ambient_light_color = Color( 0.341176, 0.109804, 0.109804, 1 )
 fog_enabled = true
 fog_color = Color( 1, 1, 1, 1 )
 fog_transmit_enabled = true
@@ -272,6 +183,21 @@ surfaces/0 = {
 "vertex_count": 216
 }
 
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.819608, 0.819608, 0.819608, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.247059 )
+shadow_size = 16
+shadow_offset = Vector2( 0, 9 )
+
 [sub_resource type="ProceduralSky" id=39]
 
 [sub_resource type="Environment" id=40]
@@ -285,71 +211,51 @@ environment = SubResource( 40 )
 pause_mode = 1
 script = ExtResource( 18 )
 
-[node name="Canvas" type="CanvasLayer" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 49 )
 
-[node name="Container" type="Control" parent="Canvas"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="ViewportContainer" type="ViewportContainer" parent="Canvas/Container"]
-material = SubResource( 38 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-stretch = true
-
-[node name="Viewport" type="Viewport" parent="Canvas/Container/ViewportContainer"]
-size = Vector2( 1280, 720 )
-size_override_stretch = true
-handle_input_locally = false
-render_target_update_mode = 3
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Canvas/Container/ViewportContainer/Viewport"]
-environment = SubResource( 27 )
-
-[node name="Point0" type="Position3D" parent="Canvas/Container/ViewportContainer/Viewport"]
+[node name="Point0" type="Position3D" parent="."]
 transform = Transform( 0.961262, 0.0759759, 0.264959, 0, 0.961262, -0.275638, -0.275637, 0.26496, 0.924024, 3.323, 2.468, 36.117 )
 
-[node name="Point1" type="Position3D" parent="Canvas/Container/ViewportContainer/Viewport"]
+[node name="Point1" type="Position3D" parent="."]
 transform = Transform( -0.223211, -0.091699, 0.970447, 0, 0.995565, 0.0940725, -0.97477, 0.020998, -0.222221, 8.88051, 3.40871, 15.3975 )
 
-[node name="Point2" type="Position3D" parent="Canvas/Container/ViewportContainer/Viewport"]
+[node name="Point2" type="Position3D" parent="."]
 transform = Transform( 0.711441, -0.00181442, 0.702743, 0, 0.999997, 0.0025819, -0.702746, -0.00183687, 0.711439, 2.97011, 2.40943, 17.8146 )
 
-[node name="Player" type="KinematicBody" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.45, 2, -0.323999 )
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.55, 1, -0.323999 )
 script = ExtResource( 5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/Player"]
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0 )
 shape = SubResource( 18 )
 
-[node name="Head" type="Spatial" parent="Canvas/Container/ViewportContainer/Viewport/Player"]
+[node name="Head" type="Spatial" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
-[node name="Camera" type="Camera" parent="Canvas/Container/ViewportContainer/Viewport/Player/Head"]
+[node name="Camera" type="Camera" parent="Player/Head"]
 current = true
 script = ExtResource( 3 )
 depth_outline_scale = 4.0
 
-[node name="MovingSubway" type="Area" parent="Canvas/Container/ViewportContainer/Viewport" groups=["Subway"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25, 2, -50 )
+[node name="MovingSubway" type="Area" parent="." groups=["Subway"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.5, -28 )
 script = ExtResource( 1 )
 max_stop_time = 5.0
-max_speed = 100.0
-going_forward = false
-stop_distance = 5
+max_speed = 15.0
+current_stop_id = 0
+stop_distance = 2
 subway_mesh = ExtResource( 6 )
 
-[node name="Parts" type="Spatial" parent="Canvas/Container/ViewportContainer/Viewport/MovingSubway"]
+[node name="Parts" type="Spatial" parent="MovingSubway"]
 
-[node name="Tween" type="Tween" parent="Canvas/Container/ViewportContainer/Viewport/MovingSubway"]
+[node name="Tween" type="Tween" parent="MovingSubway"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/MovingSubway"]
+[node name="CollisionShape" type="CollisionShape" parent="MovingSubway"]
 shape = SubResource( 28 )
 
-[node name="Engine" type="AudioStreamPlayer3D" parent="Canvas/Container/ViewportContainer/Viewport/MovingSubway"]
+[node name="Engine" type="AudioStreamPlayer3D" parent="MovingSubway"]
 stream = ExtResource( 12 )
 unit_size = 64.0
 max_db = -24.0
@@ -357,137 +263,117 @@ autoplay = true
 max_distance = 64.0
 emission_angle_degrees = 90.0
 
-[node name="OmniLight" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, -15 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
+[node name="Occluder" type="VisibilityNotifier" parent="MovingSubway"]
+aabb = AABB( -1, -1, -27, 2, 2, 54 )
+max_distance = 128.0
 
-[node name="OmniLight2" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, -15 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="OmniLight3" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, -5 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="OmniLight4" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, -5 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="OmniLight5" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, 5 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="OmniLight6" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 5 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="OmniLight7" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, 15 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="OmniLight8" type="OmniLight" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 15 )
-light_energy = 0.2
-shadow_enabled = true
-omni_range = 32.0
-
-[node name="tunnel4" parent="Canvas/Container/ViewportContainer/Viewport" instance=ExtResource( 13 )]
+[node name="tunnel4" parent="." instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -7, 1.5, -32 )
+visible = false
 
-[node name="tunnel5" parent="Canvas/Container/ViewportContainer/Viewport" instance=ExtResource( 13 )]
+[node name="tunnel5" parent="." instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -7, 1.5, 32 )
+visible = false
 
-[node name="tunnel6" parent="Canvas/Container/ViewportContainer/Viewport" instance=ExtResource( 13 )]
+[node name="tunnel6" parent="." instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 5, 1.5, -32 )
+visible = false
 
-[node name="tunnel7" parent="Canvas/Container/ViewportContainer/Viewport" instance=ExtResource( 13 )]
+[node name="tunnel7" parent="." instance=ExtResource( 13 )]
 transform = Transform( -8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 5, 1.5, 32 )
+visible = false
 
-[node name="station2" type="Spatial" parent="Canvas/Container/ViewportContainer/Viewport"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+[node name="station2" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 100, 0 )
+visible = false
 
-[node name="Cube001" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="Cube001" type="MeshInstance" parent="station2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 1 )
 
-[node name="StaticBody" type="StaticBody" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001"]
+[node name="StaticBody" type="StaticBody" parent="station2/Cube001"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 shape = SubResource( 42 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape2" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 1.5, 0.7 )
 shape = SubResource( 43 )
 
-[node name="CollisionShape3" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape3" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 44 )
 
-[node name="CollisionShape4" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape4" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, 1.5, 0 )
 shape = SubResource( 45 )
 
-[node name="CollisionShape5" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape5" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 transform = Transform( -7.64736, 0, 0, 0, 1, 0, 0, 0, -34.2773, 0, -1, 0 )
 shape = SubResource( 46 )
 
-[node name="CollisionShape6" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape6" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, -20, 8, 4 )
 shape = SubResource( 47 )
 
-[node name="CollisionShape7" type="CollisionShape" parent="Canvas/Container/ViewportContainer/Viewport/station2/Cube001/StaticBody"]
+[node name="CollisionShape7" type="CollisionShape" parent="station2/Cube001/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 5, 0 )
 shape = SubResource( 48 )
 
-[node name="Chairs001" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="Chairs001" type="MeshInstance" parent="station2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 2.5, 0.7 )
 mesh = SubResource( 2 )
 
-[node name="Stairs" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="Stairs" type="MeshInstance" parent="station2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 mesh = SubResource( 3 )
 
-[node name="Chairs" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="Chairs" type="MeshInstance" parent="station2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, 2.5, 0 )
 mesh = SubResource( 4 )
 
-[node name="BlackFloor" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="BlackFloor" type="MeshInstance" parent="station2"]
 transform = Transform( -7.64736, 0, 0, 0, 1, 0, 0, 0, -34.2773, 0, 0, 0 )
 mesh = SubResource( 5 )
 
-[node name="Lights" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="Lights" type="MeshInstance" parent="station2"]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, -20, 9, 4 )
 mesh = SubResource( 6 )
 
-[node name="Pillars" type="MeshInstance" parent="Canvas/Container/ViewportContainer/Viewport/station2"]
+[node name="Pillars" type="MeshInstance" parent="station2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 6, 0 )
 mesh = SubResource( 7 )
 
-[node name="Spatial" type="Spatial" parent="Canvas/Container/ViewportContainer/Viewport"]
+[node name="Spatial" type="Spatial" parent="."]
 
-[node name="MinimapContainer" type="ViewportContainer" parent="Canvas/Container"]
-anchor_top = 1.0
+[node name="Station" parent="." instance=ExtResource( 20 )]
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="Canvas"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -242.0
+
+[node name="Minimap" type="Panel" parent="Canvas/Container"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -309.0
+margin_top = 24.0
+margin_right = 309.0
+margin_bottom = 194.0
+custom_styles/panel = SubResource( 50 )
+
+[node name="Container" type="ViewportContainer" parent="Canvas/Container/Minimap"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="Canvas/Container/MinimapContainer"]
-size = Vector2( 1280, 242 )
+[node name="Viewport" type="Viewport" parent="Canvas/Container/Minimap/Container"]
+size = Vector2( 610, 162 )
 size_override_stretch = true
 own_world = true
 world = SubResource( 41 )
@@ -495,7 +381,7 @@ transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Map" parent="Canvas/Container/MinimapContainer/Viewport" instance=ExtResource( 17 )]
+[node name="Map" parent="Canvas/Container/Minimap/Container/Viewport" instance=ExtResource( 17 )]
 
 [node name="NoiseTexture" type="TextureRect" parent="Canvas/Container"]
 modulate = Color( 1, 1, 1, 0.184314 )
@@ -517,5 +403,14 @@ margin_right = 36.0
 margin_bottom = 36.0
 texture = ExtResource( 19 )
 
-[connection signal="body_entered" from="Canvas/Container/ViewportContainer/Viewport/MovingSubway" to="Canvas/Container/ViewportContainer/Viewport/MovingSubway" method="_on_MovingSubway_body_entered"]
-[connection signal="body_exited" from="Canvas/Container/ViewportContainer/Viewport/MovingSubway" to="Canvas/Container/ViewportContainer/Viewport/MovingSubway" method="_on_MovingSubway_body_exited"]
+[node name="CurrentStation" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -4 )
+pixel_size = 0.05
+billboard = 1
+shaded = true
+text = "PORTE DES POSTES"
+
+[connection signal="body_entered" from="MovingSubway" to="MovingSubway" method="_on_MovingSubway_body_entered"]
+[connection signal="body_exited" from="MovingSubway" to="MovingSubway" method="_on_MovingSubway_body_exited"]
+[connection signal="camera_entered" from="MovingSubway/Occluder" to="MovingSubway" method="_on_Occluder_camera_entered"]
+[connection signal="camera_exited" from="MovingSubway/Occluder" to="MovingSubway" method="_on_Occluder_camera_exited"]

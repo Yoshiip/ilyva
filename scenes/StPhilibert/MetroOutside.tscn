@@ -262,7 +262,7 @@ margin_top = 24.0
 margin_right = 329.0
 margin_bottom = 66.0
 custom_fonts/font = SubResource( 11 )
-text = "fdsf"
+text = "ZONE NAME"
 align = 1
 uppercase = true
 
@@ -287,7 +287,7 @@ margin_left = -92.0
 margin_top = 80.0
 margin_right = 92.0
 margin_bottom = 103.0
-text = "fdsf"
+text = "TIME OF THE DAY"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="Canvas/Container"]
@@ -302,6 +302,7 @@ margin_bottom = 77.0
 text = "turn off light"
 
 [node name="Arrow" type="Area2D" parent="." groups=["Interaction"]]
+visible = false
 position = Vector2( 17, 113 )
 rotation = -0.0296706
 scale = Vector2( 2, 1 )
@@ -315,6 +316,7 @@ texture = ExtResource( 8 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arrow"]
 polygon = PoolVector2Array( -77.5491, 68.4289, 77.5458, 66.6303, 41.2786, -17.5586, 53.7879, -17.8165, -0.0547862, -30.0165, -53.7686, -17.1978, -41.2741, -16.4561 )
+disabled = true
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.247059 )

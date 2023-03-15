@@ -36,7 +36,6 @@ var fall_length := 0.0
 var i = 0.0
 
 func _process(delta: float) -> void:
-	return
 	i += delta
 	handle_camera(delta)
 	

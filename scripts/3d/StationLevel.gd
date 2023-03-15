@@ -1,8 +1,6 @@
 extends Spatial
 
-onready var map: Spatial = $Canvas/Container/MinimapContainer/Viewport/Map
-
-
+onready var map: Panel = $Canvas/Container/Minimap
 
 onready var PauseMenu := preload("res://prefabs/PauseMenu.tscn")
 var pause_menu
@@ -14,11 +12,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-#	for i in get_tree().get_nodes_in_group("Subway"):
-#		if i.player_inside:
-	map.visible = true
-	map.get_node("Subway").progress = $Canvas/Container/ViewportContainer/Viewport/MovingSubway.offset
-#			return
-#	map.visible = false
+	for i in get_tree().get_nodes_in_group("Subway"):
+		if i.player_inside:
+			map.visible = true
+			map.get_node("Container/Viewport/Map/Subway").progress = $MovingSubway.offset
+			return
+	map.visible = false
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen

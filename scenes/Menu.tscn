@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://images/logo_black.png" type="Texture" id=12]
 [ext_resource path="res://images/icons/shape73.png" type="Texture" id=13]
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
-[ext_resource path="res://images/iut.png" type="Texture" id=15]
 [ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
 [ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://images/Plan de travail 1@4x-8.png" type="Texture" id=18]
@@ -561,7 +560,7 @@ margin_top = -0.200005
 margin_bottom = 0.199951
 custom_styles/panel = SubResource( 20 )
 
-[node name="NoiseTexture" type="TextureRect" parent="Canvas/Container"]
+[node name="Grain" type="TextureRect" parent="Canvas/Container"]
 modulate = Color( 1, 1, 1, 0.247059 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -640,7 +639,7 @@ margin_bottom = 164.5
 texture = ExtResource( 19 )
 expand = true
 
-[node name="IlyvaLogoRed2" type="TextureRect" parent="Canvas/Container/TopPart"]
+[node name="Shadow" type="TextureRect" parent="Canvas/Container/TopPart"]
 modulate = Color( 0, 0, 0, 0.74902 )
 anchor_left = 0.3
 anchor_top = 0.5
@@ -662,19 +661,6 @@ margin_top = 0.5
 margin_right = -0.0801392
 margin_bottom = -0.00201416
 texture = ExtResource( 18 )
-expand = true
-stretch_mode = 6
-
-[node name="Iut" type="TextureRect" parent="Canvas/Container/TopPart"]
-anchor_left = 0.069
-anchor_top = 0.173
-anchor_right = 0.131
-anchor_bottom = 0.748
-margin_left = -0.320007
-margin_top = -0.0470009
-margin_right = 0.319977
-margin_bottom = 0.0279999
-texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
 
@@ -1143,7 +1129,7 @@ autoplay = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -44.857
+volume_db = -40.0
 
 [node name="Tween" type="Tween" parent="."]
 
