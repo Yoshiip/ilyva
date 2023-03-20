@@ -41,3 +41,4 @@ texture = ExtResource( 3 )
 energy = 0.25
 
 [connection signal="area_entered" from="." to="." method="_on_Cursor_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Cursor_area_exited"]

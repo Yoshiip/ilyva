@@ -60,3 +60,8 @@ func settings_updated() -> void:
 			world_environment.environment.glow_high_quality = true
 			world_environment.environment.ss_reflections_enabled = true
 			world_environment.environment.ss_reflections_max_steps = 512
+
+
+
+func _on_Chiba_pressed() -> void:
+	get_tree().change_scene("res://scenes/StPhilibert/MetroOutside.tscn")

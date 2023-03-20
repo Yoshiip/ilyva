@@ -1,0 +1,140 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/puzzles/ActionsModal.gd" type="Script" id=1]
+[ext_resource path="res://images/icons/cross.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.454902, 0.470588, 0.439216, 1 )
+border_width_left = 2
+border_width_top = 24
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.486275, 1, 0.00392157, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.498039 )
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color( 0, 0, 0, 0 )
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+expand_margin_left = 64.0
+expand_margin_right = 64.0
+expand_margin_top = 64.0
+expand_margin_bottom = 64.0
+
+[sub_resource type="StyleBoxFlat" id=3]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="ActionsModal" type="Panel"]
+margin_right = 386.0
+margin_bottom = 203.0
+rect_min_size = Vector2( 80, 80 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+modal_name = "actions.sh"
+
+[node name="Shadow" type="Panel" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 32.0
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Header" type="Control" parent="."]
+anchor_right = 1.0
+margin_bottom = 24.0
+
+[node name="Title" type="Label" parent="Header"]
+anchor_right = 1.0
+margin_left = 2.0
+margin_top = 1.0
+margin_right = -26.0
+margin_bottom = 24.0
+text = "actions.sh"
+align = 1
+valign = 1
+
+[node name="CloseButton" type="TextureButton" parent="Header"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -22.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = 22.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 2 )
+texture_focused = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="Header/CloseButton"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 3 )
+
+[node name="Content" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 24.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+
+[node name="Terminal" type="Button" parent="Content/VBoxContainer"]
+margin_right = 350.0
+margin_bottom = 20.0
+text = "Open terminal"
+
+[node name="Hints" type="Button" parent="Content/VBoxContainer"]
+margin_top = 24.0
+margin_right = 350.0
+margin_bottom = 44.0
+text = "Hints"
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DragZone" type="Control" parent="."]
+anchor_right = 1.0
+margin_right = -24.0
+margin_bottom = 24.0
+mouse_default_cursor_shape = 6
+
+[connection signal="pressed" from="Header/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/Terminal" to="." method="_on_Terminal_pressed"]
+[connection signal="pressed" from="Content/VBoxContainer/Hints" to="." method="_on_Hints_pressed"]
+[connection signal="mouse_entered" from="DragZone" to="." method="_on_DragZone_mouse_entered"]
+[connection signal="mouse_exited" from="DragZone" to="." method="_on_DragZone_mouse_exited"]

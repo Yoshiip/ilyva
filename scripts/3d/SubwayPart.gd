@@ -1,4 +1,4 @@
-extends Spatial
+extends StaticBody
 
-func close_door() -> void:
-	$DoorClose.play()
+#func close_door() -> void:
+#	$DoorClose.play()

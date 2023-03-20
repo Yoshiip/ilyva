@@ -11,4 +11,4 @@ func _ready() -> void:
 	$ColorRect.modulate = color
 
 func _process(delta: float) -> void:
-	$Pattern.rect_position = lerp($Pattern.rect_position, Vector2(rand_range(-15, 15), rand_range(-15, 15)), 0.1)
+	$Pattern.rect_position = lerp($Pattern.rect_position, Vector2.ONE * rand_range(-5, 5), 0.1)

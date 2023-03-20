@@ -9,6 +9,7 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1677947682.json",
@@ -19,8 +20,8 @@
 			"position": {
 				"0": false,
 				"1": false,
-				"2": true,
-				"3": false,
+				"2": false,
+				"3": true,
 				"4": false
 			},
 			"type": 0,
@@ -33,8 +34,21 @@
 			"text": "??????????????????????????????"
 		},
 		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "slt ca va"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "oui"
+		},
+		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1677780277.json",
@@ -51,6 +65,16 @@
 			},
 			"type": 1,
 			"z_index": 0
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"0"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
 		}
 	],
 	"metadata": {

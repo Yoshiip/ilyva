@@ -8,11 +8,29 @@ export var music_id := "night"
 
 var in_dialogue = false
 
+export var image_size := 2784
+
 onready var PauseMenu := preload("res://prefabs/PauseMenu.tscn")
 var pause_menu
 
+var tooltip : RichTextLabel
+var transition : ColorRect
+var cursor : Area2D
+
 func _ready() -> void:
+	$Camera.limit_left = -image_size / 2
+	$Camera.limit_right = image_size / 2
 	pause_menu = PauseMenu.instance()
+	
+	tooltip = preload("res://prefabs/Tooltip.tscn").instance()
+	add_child(tooltip)
+	
+	transition = preload("res://prefabs/Transition.tscn").instance()
+	get_node("Canvas/Container").add_child(transition)
+	
+	cursor = preload("res://prefabs/Cursor.tscn").instance()
+	add_child(cursor)
+	
 	$Canvas/Container.add_child(pause_menu)
 	if GameManager.scene_start_dialogue != zone_id && start_scene:
 		var new_dialog = Dialogic.start(zone_id + '/Intro')
@@ -53,3 +71,7 @@ func _on_TurnLight_toggled(button_pressed: bool) -> void:
 			if i.has_method("turn_light"):
 				i.turn_light(false)
 	$Tween.start()
+
+func load_puzzle(puzzle_id : String) -> void:
+	GameManager.puzzle_id = int(puzzle_id)
+	transition.transition_to_scene("res://scenes/puzzles/StartAnimation.tscn")

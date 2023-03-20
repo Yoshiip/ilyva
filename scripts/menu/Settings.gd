@@ -58,3 +58,10 @@ func _on_Timer_timeout() -> void:
 
 func _on_Disable3D_pressed() -> void:
 	GameManager.settings.disable_3d = !GameManager.settings.disable_3d
+
+func _ready() -> void:
+	get_viewport().connect("size_changed", self, "window_size_changed")
+
+func window_size_changed() -> void:
+	print(rect_size.x)
+	$Scroll/Container.rect_min_size.x = rect_size.x - 48

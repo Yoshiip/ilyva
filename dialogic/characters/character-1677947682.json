@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://images/portraits/jvlivm.png"
 		}
 	],
-	"scale": 100,
+	"scale": 50,
 	"theme": ""
 }

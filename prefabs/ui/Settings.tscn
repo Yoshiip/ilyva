@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
 [ext_resource path="res://scripts/menu/Settings.gd" type="Script" id=3]
+[ext_resource path="res://prefabs/ui/StylizedSlider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/ui/StylizedButton.gd" type="Script" id=5]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=6]
 [ext_resource path="res://resources/fonts/guisol_title.tres" type="DynamicFont" id=7]
@@ -18,7 +19,8 @@
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.141176, 0.137255, 0.137255, 1 )
 border_width_left = 8
-border_color = Color( 0.858824, 0.156863, 0.109804, 1 )
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
 corner_detail = 1
 shadow_color = Color( 0, 0, 0, 0.247059 )
 shadow_size = 8
@@ -107,13 +109,14 @@ scroll_vertical = 100
 [node name="Container" type="VBoxContainer" parent="Scroll"]
 margin_top = -92.0
 margin_right = 592.0
-margin_bottom = 1052.0
+margin_bottom = 1440.0
 rect_min_size = Vector2( 592, 0 )
+custom_constants/separation = 64
 
 [node name="Audio" type="Panel" parent="Scroll/Container"]
 margin_right = 592.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 0, 200 )
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
 custom_styles/panel = SubResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Scroll/Container/Audio"]
@@ -128,37 +131,23 @@ margin_bottom = -8.0
 margin_right = 576.0
 custom_fonts/font = SubResource( 30 )
 
-[node name="Effects" type="Label" parent="Scroll/Container/Audio/VBoxContainer"]
+[node name="Sensivity" parent="Scroll/Container/Audio/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 84.0
-margin_right = 576.0
-margin_bottom = 107.0
-text = "Effets sonores"
-align = 1
+margin_bottom = 117.0
+label = "Musique"
+default = 80.0
 
-[node name="EffectsSlider" type="HSlider" parent="Scroll/Container/Audio/VBoxContainer"]
-margin_top = 111.0
-margin_right = 576.0
-margin_bottom = 127.0
-
-[node name="Music" type="Label" parent="Scroll/Container/Audio/VBoxContainer"]
-margin_top = 131.0
-margin_right = 576.0
+[node name="Sensivity2" parent="Scroll/Container/Audio/VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 121.0
 margin_bottom = 154.0
-text = "Musique"
-align = 1
-
-[node name="MusicSlider" type="HSlider" parent="Scroll/Container/Audio/VBoxContainer"]
-margin_top = 158.0
-margin_right = 576.0
-margin_bottom = 174.0
-tick_count = 10
-ticks_on_borders = true
+label = "Effets sonores"
+default = 80.0
 
 [node name="Graphics" type="Panel" parent="Scroll/Container"]
-margin_top = 204.0
+margin_top = 214.0
 margin_right = 592.0
-margin_bottom = 616.0
-rect_min_size = Vector2( 0, 412 )
+margin_bottom = 884.0
+rect_min_size = Vector2( 0, 670 )
 custom_styles/panel = SubResource( 29 )
 
 [node name="Container" type="VBoxContainer" parent="Scroll/Container/Graphics"]
@@ -173,21 +162,44 @@ custom_constants/separation = 8
 [node name="Header" parent="Scroll/Container/Graphics/Container" instance=ExtResource( 13 )]
 margin_right = 576.0
 custom_fonts/font = SubResource( 30 )
-text = "GRAPHISMES"
+text = "PARAMÈTRES"
 color = Color( 0.592157, 0.756863, 0.113725, 1 )
 pattern_id = 2
 
-[node name="Graphics" type="Label" parent="Scroll/Container/Graphics/Container"]
+[node name="Graphics2" type="Label" parent="Scroll/Container/Graphics/Container"]
 margin_top = 88.0
 margin_right = 576.0
 margin_bottom = 111.0
-text = "Qualité des graphismes 3D"
+text = "Paramètres généraux"
+align = 1
+
+[node name="Fullscreen" type="Button" parent="Scroll/Container/Graphics/Container"]
+margin_top = 119.0
+margin_right = 576.0
+margin_bottom = 167.0
+rect_min_size = Vector2( 0, 48 )
+toggle_mode = true
+text = "Plein écran"
+script = ExtResource( 5 )
+
+[node name="Checkbox" parent="Scroll/Container/Graphics/Container/Fullscreen" instance=ExtResource( 18 )]
+
+[node name="HSeparator" type="HSeparator" parent="Scroll/Container/Graphics/Container"]
+margin_top = 175.0
+margin_right = 576.0
+margin_bottom = 179.0
+
+[node name="Graphics" type="Label" parent="Scroll/Container/Graphics/Container"]
+margin_top = 187.0
+margin_right = 576.0
+margin_bottom = 210.0
+text = "Paramètres 3D"
 align = 1
 
 [node name="GraphicsContainer" type="Control" parent="Scroll/Container/Graphics/Container"]
-margin_top = 119.0
+margin_top = 218.0
 margin_right = 576.0
-margin_bottom = 199.0
+margin_bottom = 298.0
 rect_min_size = Vector2( 0, 80 )
 
 [node name="Low" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
@@ -214,35 +226,26 @@ hide_by_default = true
 [node name="Label" parent="Scroll/Container/Graphics/Container/GraphicsContainer/High" index="1"]
 text = "Élevé"
 
-[node name="Fullscreen" type="Button" parent="Scroll/Container/Graphics/Container"]
-margin_top = 207.0
-margin_right = 576.0
-margin_bottom = 255.0
-rect_min_size = Vector2( 0, 48 )
-toggle_mode = true
-text = "Plein écran"
-script = ExtResource( 5 )
+[node name="Sensivity" parent="Scroll/Container/Graphics/Container" instance=ExtResource( 4 )]
+margin_top = 306.0
+margin_bottom = 339.0
+label = "Sensibilité 3D"
+settings_to_update = "sensivity"
+default = 10.0
+min_value = 1.0
 
-[node name="Checkbox" parent="Scroll/Container/Graphics/Container/Fullscreen" instance=ExtResource( 18 )]
-
-[node name="Music" type="Label" parent="Scroll/Container/Graphics/Container"]
-margin_top = 263.0
-margin_right = 576.0
-margin_bottom = 286.0
-text = "Sensibilité 3D"
-align = 1
-
-[node name="MusicSlider" type="HSlider" parent="Scroll/Container/Graphics/Container"]
-margin_top = 294.0
-margin_right = 576.0
-margin_bottom = 310.0
-tick_count = 10
-ticks_on_borders = true
+[node name="FOV" parent="Scroll/Container/Graphics/Container" instance=ExtResource( 4 )]
+margin_top = 347.0
+margin_bottom = 380.0
+label = "FOV"
+default = 90.0
+min_value = 70.0
+max_value = 120.0
 
 [node name="Disable3D" type="Button" parent="Scroll/Container/Graphics/Container"]
-margin_top = 318.0
+margin_top = 388.0
 margin_right = 576.0
-margin_bottom = 398.0
+margin_bottom = 468.0
 rect_min_size = Vector2( 0, 80 )
 script = ExtResource( 5 )
 
@@ -272,10 +275,102 @@ text = "Désactiver la 3D"
 
 [node name="Checkbox" parent="Scroll/Container/Graphics/Container/Disable3D" instance=ExtResource( 18 )]
 
+[node name="HSeparator2" type="HSeparator" parent="Scroll/Container/Graphics/Container"]
+margin_top = 476.0
+margin_right = 576.0
+margin_bottom = 480.0
+
+[node name="Graphics3" type="Label" parent="Scroll/Container/Graphics/Container"]
+margin_top = 488.0
+margin_right = 576.0
+margin_bottom = 511.0
+text = "Commandes"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="Scroll/Container/Graphics/Container"]
+margin_top = 519.0
+margin_right = 576.0
+margin_bottom = 650.0
+custom_constants/hseparation = 80
+columns = 2
+
+[node name="Label" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_right = 197.0
+margin_bottom = 23.0
+text = "Avancer"
+align = 2
+
+[node name="Label2" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_left = 277.0
+margin_right = 517.0
+margin_bottom = 23.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "Z/W/flèche du haut"
+
+[node name="Label3" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_top = 27.0
+margin_right = 197.0
+margin_bottom = 50.0
+text = "Reculer"
+align = 2
+
+[node name="Label4" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_left = 277.0
+margin_top = 27.0
+margin_right = 517.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "S/flèche du bas"
+
+[node name="Label5" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_top = 54.0
+margin_right = 197.0
+margin_bottom = 77.0
+text = "Décaler à gauche"
+align = 2
+
+[node name="Label6" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_left = 277.0
+margin_top = 54.0
+margin_right = 517.0
+margin_bottom = 77.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "Q/A/flèche de gauche"
+
+[node name="Label7" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_top = 81.0
+margin_right = 197.0
+margin_bottom = 104.0
+text = "Décaler à droite"
+align = 2
+
+[node name="Label8" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_left = 277.0
+margin_top = 81.0
+margin_right = 517.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "D/flèche de droite"
+
+[node name="Label9" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_top = 108.0
+margin_right = 197.0
+margin_bottom = 131.0
+text = "Sauter"
+align = 2
+
+[node name="Label10" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+margin_left = 277.0
+margin_top = 108.0
+margin_right = 517.0
+margin_bottom = 131.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "Espace"
+
 [node name="Data" type="Panel" parent="Scroll/Container"]
-margin_top = 620.0
+margin_top = 948.0
 margin_right = 592.0
-margin_bottom = 820.0
+margin_bottom = 1148.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = SubResource( 29 )
 
@@ -311,9 +406,9 @@ toggle_mode = true
 text = "Ouvrir le dossier de sauvegarde"
 
 [node name="scroll_margin" type="Control" parent="Scroll/Container"]
-margin_top = 824.0
+margin_top = 1212.0
 margin_right = 592.0
-margin_bottom = 1144.0
+margin_bottom = 1532.0
 rect_min_size = Vector2( 0, 320 )
 
 [node name="Label" type="Label" parent="."]
@@ -353,7 +448,6 @@ text = "PARAMETRES"
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
 margin_top = -64.0
 margin_bottom = 1.0
 custom_styles/normal = SubResource( 31 )
@@ -389,10 +483,10 @@ stretch_mode = 6
 wait_time = 0.75
 autostart = true
 
+[connection signal="pressed" from="Scroll/Container/Graphics/Container/Fullscreen" to="." method="_on_Fullscreen_pressed"]
 [connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/Low" to="." method="_on_Low_pressed"]
 [connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/Medium" to="." method="_on_Medium_pressed"]
 [connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/High" to="." method="_on_High_pressed"]
-[connection signal="pressed" from="Scroll/Container/Graphics/Container/Fullscreen" to="." method="_on_Fullscreen_pressed"]
 [connection signal="pressed" from="Scroll/Container/Graphics/Container/Disable3D" to="." method="_on_Disable3D_pressed"]
 [connection signal="pressed" from="Scroll/Container/Data/Container/Label9" to="Scroll/Container/Data/Container/Label9" method="_on_Label9_pressed"]
 [connection signal="pressed" from="Scroll/Container/Data/Container/Label10" to="Scroll/Container/Data/Container/Label10" method="_on_Label9_pressed"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://resources/theme.tres" type="Theme" id=1]
-[ext_resource path="res://prefabs/Cursor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/backgrounds/lille_flandres_2.jpg" type="Texture" id=3]
 [ext_resource path="res://scripts/Zone.gd" type="Script" id=6]
 [ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=7]
@@ -129,7 +128,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_group_": true
 }
-scene_name = "res://scenes/BeauxArts/Surface.tscn"
+scene_name = "StPhilibert/MetroOutside"
 
 [node name="Icon" type="Sprite" parent="Arrow"]
 modulate = Color( 1, 1, 1, 0.498039 )
@@ -138,5 +137,3 @@ texture = ExtResource( 10 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arrow"]
 polygon = PoolVector2Array( -77.5491, 68.4289, 77.5458, 66.6303, 41.2786, -17.5586, 53.7879, -17.8165, -0.0547862, -30.0165, -53.7686, -17.1978, -41.2741, -16.4561 )
-
-[node name="Cursor" parent="." instance=ExtResource( 2 )]

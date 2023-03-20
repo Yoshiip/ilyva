@@ -64,45 +64,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
-"base": "Node",
-"class": "Folder",
-"language": "GDScript",
-"path": "res://scripts/terminal/folder.gd"
-}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
-}, {
-"base": "Object",
-"class": "Parser",
-"language": "GDScript",
-"path": "res://scripts/terminal/Parser.gd"
-}, {
-"base": "Object",
-"class": "PathObject",
-"language": "GDScript",
-"path": "res://scripts/terminal/Path.gd"
-}, {
-"base": "Object",
-"class": "SystemElement",
-"language": "GDScript",
-"path": "res://scripts/terminal/SystemElement.gd"
-}, {
-"base": "Node",
-"class": "TerminalFile",
-"language": "GDScript",
-"path": "res://scripts/terminal/file.gd"
-}, {
-"base": "Object",
-"class": "Token",
-"language": "GDScript",
-"path": "res://scripts/terminal/Token.gd"
-}, {
-"base": "Object",
-"class": "Tokens",
-"language": "GDScript",
-"path": "res://scripts/terminal/Tokens.gd"
 } ]
 _global_script_class_icons={
 "Command": "",
@@ -116,14 +81,7 @@ _global_script_class_icons={
 "DialogicParser": "",
 "DialogicResources": "",
 "DialogicUtil": "",
-"Folder": "res://images/editor/folder.svg",
-"HistoryRow": "",
-"Parser": "",
-"PathObject": "",
-"SystemElement": "",
-"TerminalFile": "",
-"Token": "",
-"Tokens": ""
+"HistoryRow": ""
 }
 
 [application]
@@ -230,6 +188,11 @@ fullscreen={
 autocompletion={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+ ]
+}
+drag={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

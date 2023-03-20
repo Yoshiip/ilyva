@@ -11,8 +11,8 @@ func interact_door(open, left = true) -> void:
 		$Tween.interpolate_property(_door1, "translation:z", 27.2, 27.9, 1.5, Tween.TRANS_BOUNCE)
 		$Tween.interpolate_property(_door2, "translation:z", 27.2, 26.5, 1.5, Tween.TRANS_BOUNCE)
 	else:
-		$Tween.interpolate_property(_door1, "translation:z", 27.9, 27.2, 1.5, Tween.TRANS_BOUNCE)
-		$Tween.interpolate_property(_door2, "translation:z", 26.5, 27.2, 1.5, Tween.TRANS_BOUNCE)
+		$Tween.interpolate_property(_door1, "translation:z", 27.2, 27.9, 1.5, Tween.TRANS_BOUNCE)
+		$Tween.interpolate_property(_door2, "translation:z", 27.2, 26.5, 1.5, Tween.TRANS_BOUNCE)
 	$Tween.start()
 	if left:
 		left_doors_opened = open

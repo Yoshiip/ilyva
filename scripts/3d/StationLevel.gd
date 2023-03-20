@@ -2,16 +2,16 @@ extends Spatial
 
 onready var map: Panel = $Canvas/Container/Minimap
 
-onready var PauseMenu := preload("res://prefabs/PauseMenu.tscn")
 var pause_menu
 
 func _ready() -> void:
-	pause_menu = PauseMenu.instance()
+	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
 	$Canvas/Container.add_child(pause_menu)
 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	$Canvas/Container/Label.text = str(Engine.get_frames_per_second(), "fps")
 	for i in get_tree().get_nodes_in_group("Subway"):
 		if i.player_inside:
 			map.visible = true

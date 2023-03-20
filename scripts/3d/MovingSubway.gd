@@ -1,4 +1,4 @@
-extends Area
+extends Spatial
 
 # Config
 export(int, 1, 2) var line := 1
@@ -9,9 +9,6 @@ export var move_scale := 1.0
 export var current_stop_id := 2
 export var going_forward := true
 export var stop_distance := 10
-
-export(Resource) var subway_mesh
-
 
 onready var next_stop_position := 30.0
 onready var player: KinematicBody = $"../Player"
@@ -53,7 +50,7 @@ func _ready() -> void:
 		current_stop_id += 1
 	
 	for i in part_count:
-		var _mesh = subway_mesh.instance()
+		var _mesh = preload("res://prefabs/3d/SubwayPart.tscn").instance()
 		if i != 0:
 			_mesh.get_node("FrontWall").queue_free()
 		else:
@@ -85,12 +82,18 @@ onready var station := get_parent().get_node("Station")
 func fdsfdsfges() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
 	looped_once = false
+	
+var translation_offset : Vector3
 
 func _process(delta: float) -> void:
 	if speed > 0.0:
+		if !$Engine.playing:
+			$Engine.play()
 		$Engine.pitch_scale = speed / max_speed
+	else:
+		$Engine.stop()
 	if offset > next_stop_position - stop_distance && going_forward || offset < next_stop_position + stop_distance && !going_forward:
-		speed *= 0.98
+		speed *= decceleration
 	elif speed < max_speed:
 		speed += delta * acceleration
 	var _dis1 = 0
@@ -108,18 +111,21 @@ func _process(delta: float) -> void:
 		else:
 			_dis1 = STOPS[line].values()[current_stop_id]
 			_dis2 = STOPS[line].values()[next_stop_id]
-	if offset >= next_stop_position && going_forward || offset <= next_stop_position && !going_forward:
+	if offset >= next_stop_position && going_forward|| offset <= next_stop_position && !going_forward:
 		speed = 0.0
 		translation.z = 2.0
 		c_stop_time -= delta
-		if !door_opened && c_stop_time > 0.0:
+		if !door_opened && c_stop_time > 0.0 && !door_opened:
 			interact_door(true)
+			yield(get_tree().create_timer(rand_range(0.5, 1.0)), "timeout")
 			station.interact_door(true, !going_forward)
-		if door_opened && c_stop_time <= 0.0:
+		if door_opened && c_stop_time <= 0.0 && door_opened:
 			interact_door(false)
+			yield(get_tree().create_timer(rand_range(0.5, 1.0)), "timeout")
 			station.interact_door(false, !going_forward)
 		if c_stop_time <= -2.0:
 			if is_at_terminus(next_stop_id):
+				translation.x = -translation.x
 				going_forward = !going_forward
 				if !going_forward:
 					current_stop_id += 2
@@ -134,27 +140,23 @@ func _process(delta: float) -> void:
 			next_stop_position = STOPS[line].values()[next_stop_id]
 			c_stop_time = max_stop_time
 			fdsfdsfges()
-	offset += delta * speed * (1 if going_forward else -1) * move_scale
+	offset += delta * speed * (1.0 if going_forward else -1.0) * move_scale
 
 	if going_forward:
 		translation += -Vector3.FORWARD * speed * delta
 	else:
 		translation -= -Vector3.FORWARD * speed * delta
-	
-	if player_inside:
-		$Engine.global_translation = player.translation
-		if going_forward:
-			player.translation += -Vector3.FORWARD * speed * delta
-		else:
-			player.translation -= -Vector3.FORWARD * speed * delta
 	var distance_between := abs(_dis1 - _dis2)
 	if going_forward && abs(offset - _dis2) < distance_between / 2.0 && !looped_once || !going_forward && !(abs(offset - _dis2) > distance_between / 2.0) && !looped_once:
-		station.station_changed(next_stop_id)
 		var _diff = -translation.z
 		translation.z = _diff
 		if player_inside:
-			player.translation.z += _diff * 2.0
+			station.station_changed(next_stop_id)
 		looped_once = true
+	if player_inside:
+		$Engine.global_translation = player.translation
+		player.translation += translation - translation_offset
+		translation_offset = translation
 
 
 func is_at_terminus(stop_id : int) -> bool:
@@ -167,33 +169,26 @@ func stop_id_to_string(stop_id : int) -> String:
 
 
 func interact_door(open : bool) -> void:
+	$DoorClose.play()
 	if open:
 		for i in $Parts.get_children():
-			i.close_door()
 			$Tween.interpolate_property(i.get_node("DoorL"), "translation:z", 4, 4.7, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.interpolate_property(i.get_node("DoorR"), "translation:z", 3.2, 2.5, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.start()
 	else:
 		for i in $Parts.get_children():
-			i.close_door()
 			$Tween.interpolate_property(i.get_node("DoorL"), "translation:z", 4.7, 4, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.interpolate_property(i.get_node("DoorR"), "translation:z", 2.5, 3.2, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.start()
 	door_opened = open
 
 
-func _on_MovingSubway_body_entered(body: Node) -> void:
+func _on_AreaZone_body_entered(body: Node) -> void:
 	if body.name == "Player":
+		translation_offset = global_translation
 		player_inside = true
 
-func _on_MovingSubway_body_exited(body: Node) -> void:
+
+func _on_AreaZone_body_exited(body: Node) -> void:
 	if body.name == "Player":
 		player_inside = false
-
-
-func _on_Occluder_camera_entered(camera: Camera) -> void:
-	print("coucou la caméra ")
-
-func _on_Occluder_camera_exited(camera: Camera) -> void:
-	print("aurevoir la caméra :(")
-	pass # Replace with function body.

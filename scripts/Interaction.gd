@@ -17,11 +17,12 @@ func _ready() -> void:
 var i = 0.0
 
 func _process(delta: float) -> void:
-	$Icon.visible = last_timeline_spoke != timeline_id
-	i += delta * 90.0
-	if i > 90:
-		i -= 180
-	$Icon.material.set_shader_param("y_rot", i)
+	if is_instance_valid($Icon):
+		i += delta * 90.0
+		if i > 90:
+			i -= 180
+		$Icon.visible = last_timeline_spoke != timeline_id
+		$Icon.material.set_shader_param("y_rot", i)
 
 func interact() -> void:
 	var new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cross_big.png-d4bb91445c585e6846ab284c54ee5124.stex"
+path="res://.import/grabber_holded.png-937cbf786272e3079858f98f2cac4863.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/icons/cross_big.png"
-dest_files=[ "res://.import/cross_big.png-d4bb91445c585e6846ab284c54ee5124.stex" ]
+source_file="res://images/icons/slider/grabber_holded.png"
+dest_files=[ "res://.import/grabber_holded.png-937cbf786272e3079858f98f2cac4863.stex" ]
 
 [params]
 

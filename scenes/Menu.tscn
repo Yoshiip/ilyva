@@ -591,32 +591,40 @@ margin_bottom = 20.0
 custom_constants/separation = 40
 alignment = 1
 
+[node name="Chiba" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 171.0
+margin_right = 353.0
+btn_label = "Chiba"
+btn_icon = ExtResource( 7 )
+
+[node name="Metro" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 393.0
+margin_right = 575.0
+btn_label = "Metro"
+btn_icon = ExtResource( 7 )
+
 [node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+visible = false
 margin_left = 60.0
 margin_right = 242.0
 btn_label = "Terminal"
 
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 282.0
-margin_right = 464.0
-btn_label = "Surface"
-btn_icon = ExtResource( 7 )
-
-[node name="Metro" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 504.0
-margin_right = 686.0
-btn_label = "Metro"
+margin_left = 615.0
+margin_right = 797.0
+btn_label = "Paramètres"
 btn_icon = ExtResource( 7 )
 
 [node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 726.0
-margin_right = 908.0
+visible = false
+margin_left = 615.0
+margin_right = 797.0
 btn_label = "Map"
 btn_icon = ExtResource( 9 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 948.0
-margin_right = 1130.0
+margin_left = 837.0
+margin_right = 1019.0
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
 
@@ -1133,9 +1141,10 @@ volume_db = -40.0
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Chiba" to="." method="_on_Chiba_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
-[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 

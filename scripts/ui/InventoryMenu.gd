@@ -15,8 +15,11 @@ func play_animation(backward = false) -> void:
 	if in_animation:
 		return
 	in_animation = true
+	
+	var size_y := get_viewport().size.y
+	
 	play_tween($TopPart, "rect_position:y", -256, 0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	play_tween($BottomPart, "rect_position:y", 848, 592, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($BottomPart, "rect_position:y", size_y + 128, size_y - 128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	
 	play_tween($Objective, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	play_tween($Resume, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)

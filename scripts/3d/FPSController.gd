@@ -25,6 +25,9 @@ func _ready():
 	#hides the cursor
 	noise.noise = OpenSimplexNoise.new()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameManager.connect("settings_updated", self, "_settings_updated")
+	
+	_settings_updated(GameManager.settings)
 
 func _input(event):
 	#get mouse input for camera rotation
@@ -117,3 +120,7 @@ func handle_camera(delta : float) -> void:
 	shake_translation = Vector3(rand_range(-shake_offset, shake_offset),
 	rand_range(-shake_offset, shake_offset),
 	rand_range(-shake_offset, shake_offset))
+
+func _settings_updated(s : Dictionary) -> void:
+	$Head/Camera.fov = s.fov
+	mouse_sense = s.sensivity / 100.0
