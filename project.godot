@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Command",
+"base": "Object",
+"class": "BashParser",
 "language": "GDScript",
-"path": "res://scripts/commands/command.gd"
+"path": "res://addons/bash_in_godot/scripts/BashParser.gd"
+}, {
+"base": "Object",
+"class": "BashToken",
+"language": "GDScript",
+"path": "res://addons/bash_in_godot/scripts/BashToken.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -64,13 +69,39 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
+"base": "Object",
+"class": "ErrorHandler",
+"language": "GDScript",
+"path": "res://addons/bash_in_godot/scripts/ErrorHandler.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
+}, {
+"base": "Object",
+"class": "PathObject",
+"language": "GDScript",
+"path": "res://addons/bash_in_godot/scripts/Path.gd"
+}, {
+"base": "Object",
+"class": "SystemElement",
+"language": "GDScript",
+"path": "res://addons/bash_in_godot/scripts/SystemElement.gd"
+}, {
+"base": "Panel",
+"class": "Terminal",
+"language": "GDScript",
+"path": "res://addons/bash_in_godot/scripts/Terminal.gd"
+}, {
+"base": "Object",
+"class": "Tokens",
+"language": "GDScript",
+"path": "res://addons/bash_in_godot/scripts/Tokens.gd"
 } ]
 _global_script_class_icons={
-"Command": "",
+"BashParser": "",
+"BashToken": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -81,16 +112,21 @@ _global_script_class_icons={
 "DialogicParser": "",
 "DialogicResources": "",
 "DialogicUtil": "",
-"HistoryRow": ""
+"ErrorHandler": "",
+"HistoryRow": "",
+"PathObject": "",
+"SystemElement": "",
+"Terminal": "",
+"Tokens": ""
 }
 
 [application]
 
 config/name="ilyva"
-run/main_scene="res://scenes/Menu.tscn"
-boot_splash/image="res://images/splashscreen.png"
+run/main_scene="res://scenes/PreMenu.tscn"
+boot_splash/image="res://images/logos/splashscreen.png"
 boot_splash/bg_color=Color( 0.858824, 0.156863, 0.109804, 1 )
-config/icon="res://images/ilyva_red_square.png"
+config/icon="res://images/logos/ilyva_red_square.png"
 
 [autoload]
 
@@ -104,7 +140,7 @@ window/size/height=720
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/godot_timer/plugin.cfg", "res://addons/jm_pp_outlines/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/bash_in_godot/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/godot_timer/plugin.cfg", "res://addons/jm_pp_outlines/plugin.cfg" )
 
 [gui]
 

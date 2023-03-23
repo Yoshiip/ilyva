@@ -80,7 +80,9 @@ func _physics_process(delta):
 	camera.translation = shake_translation
 	camera.rotation_degrees = shake_rotation
 	
-	
+	if translation.y < -32:
+		print("reloaded cause player falled")
+		get_tree().reload_current_scene()
 
 	
 	#jumping and gravity
@@ -108,8 +110,9 @@ var shake_translation : Vector3
 
 func handle_camera(delta : float) -> void:
 	var max_shake = 0
-	if get_parent().get_node("MovingSubway").player_inside:
-		max_shake = get_parent().get_node("MovingSubway").speed / 3.0
+	
+#	if get_parent().get_node("MovingSubway").player_inside:
+#		max_shake = get_parent().get_node("MovingSubway").speed / 3.0
 
 
 	shake_rotation = Vector3(

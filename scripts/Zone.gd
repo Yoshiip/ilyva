@@ -16,11 +16,20 @@ var pause_menu
 var tooltip : RichTextLabel
 var transition : ColorRect
 var cursor : Area2D
+var canvas : CanvasLayer
+
+var background_blur : Sprite
+
+onready var scene_light := CanvasModulate.new()
+onready var tween := Tween.new()
 
 func _ready() -> void:
 	$Camera.limit_left = -image_size / 2
 	$Camera.limit_right = image_size / 2
 	pause_menu = PauseMenu.instance()
+	
+	canvas = preload("res://prefabs/2d/GameCanvas.tscn").instance()
+	add_child(canvas)
 	
 	tooltip = preload("res://prefabs/Tooltip.tscn").instance()
 	add_child(tooltip)
@@ -30,6 +39,15 @@ func _ready() -> void:
 	
 	cursor = preload("res://prefabs/Cursor.tscn").instance()
 	add_child(cursor)
+	
+	add_child(tween)
+	
+	add_child(scene_light)
+	canvas.get_node("Container/TurnLight").connect("toggled", self, "toggle_light")
+	
+	background_blur = preload("res://prefabs/2d/BackgroundBlur.tscn").instance()
+	background_blur.get_node("Image").texture = $Background.texture
+	add_child(background_blur)
 	
 	$Canvas/Container.add_child(pause_menu)
 	if GameManager.scene_start_dialogue != zone_id && start_scene:
@@ -57,20 +75,20 @@ func play_music() -> void:
 var light_off := false
 
 
-func _on_TurnLight_toggled(button_pressed: bool) -> void:
+func toggle_light(button_pressed: bool) -> void:
 	light_off = button_pressed
 	if light_off:
-		$Tween.interpolate_property($LightOff, "color", $LightOff.color, Color(0.25, 0.25, 0.25), 0.5)
+		tween.interpolate_property(scene_light, "color", scene_light.color, Color(0.25, 0.25, 0.25), 0.5)
 		for i in get_tree().get_nodes_in_group("Interaction"):
 			if i.has_method("turn_light"):
 				i.turn_light(true)
 		
 	else:
-		$Tween.interpolate_property($LightOff, "color", $LightOff.color, Color.white, 0.5)
+		tween.interpolate_property(scene_light, "color", scene_light.color, Color.white, 0.5)
 		for i in get_tree().get_nodes_in_group("Interaction"):
 			if i.has_method("turn_light"):
 				i.turn_light(false)
-	$Tween.start()
+	tween.start()
 
 func load_puzzle(puzzle_id : String) -> void:
 	GameManager.puzzle_id = int(puzzle_id)

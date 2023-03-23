@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://prefabs/3d/MovingSubway.tscn" type="PackedScene" id=1]
+[ext_resource path="res://3d/textures/subway_light.png" type="Texture" id=2]
 [ext_resource path="res://addons/jm_pp_outlines/jm_pp_outlines_camera.gd" type="Script" id=3]
 [ext_resource path="res://images/shaders/gradient.png" type="Texture" id=4]
 [ext_resource path="res://scripts/3d/FPSController.gd" type="Script" id=5]
@@ -13,8 +14,10 @@
 [sub_resource type="ProceduralSky" id=13]
 
 [sub_resource type="Environment" id=49]
+background_mode = 1
 background_sky = SubResource( 13 )
-ambient_light_color = Color( 0.294118, 0.235294, 0.235294, 1 )
+background_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+ambient_light_color = Color( 0.2, 0.2, 0.2, 1 )
 fog_color = Color( 0.505882, 0.34902, 0.34902, 1 )
 fog_transmit_enabled = true
 ss_reflections_max_steps = 512
@@ -59,8 +62,8 @@ script = ExtResource( 18 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 49 )
 
-[node name="Player" type="KinematicBody" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.55, 1, -0.323999 )
+[node name="Player" type="KinematicBody" parent="." groups=["Player"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.55, 7, -40.324 )
 script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
@@ -84,12 +87,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Minimap" type="Panel" parent="Canvas/Container"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -309.0
-margin_top = 24.0
-margin_right = 309.0
-margin_bottom = 194.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 216.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 200, 200 )
 custom_styles/panel = SubResource( 50 )
 __meta__ = {
 "_edit_group_": true
@@ -105,12 +107,15 @@ margin_bottom = -4.0
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Canvas/Container/Minimap/Container"]
-size = Vector2( 610, 162 )
+size = Vector2( 192, 192 )
 size_override_stretch = true
 own_world = true
 world = SubResource( 41 )
 transparent_bg = true
 handle_input_locally = false
+hdr = false
+disable_3d = true
+usage = 1
 render_target_update_mode = 3
 
 [node name="Map" parent="Canvas/Container/Minimap/Container/Viewport" instance=ExtResource( 17 )]
@@ -140,6 +145,37 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="MovingSubway" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.5, -50 )
-stop_distance = 18
-decceleration = 0.996
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.5, 0 )
+stop_distance = 20
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 3, 192 )
+offset = Vector2( 0, 32 )
+double_sided = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32768, 64 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, 192 )
+offset = Vector2( 0, 32 )
+double_sided = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32768, 64 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 3, -192 )
+offset = Vector2( 0, 32 )
+double_sided = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32768, 64 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3, -192 )
+offset = Vector2( 0, 32 )
+double_sided = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32768, 64 )

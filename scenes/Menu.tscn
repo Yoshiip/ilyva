@@ -1,8 +1,8 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://images/godot_logo_large_monochrome.png" type="Texture" id=3]
+[ext_resource path="res://images/logos/godot_black.png" type="Texture" id=3]
 [ext_resource path="res://resources/shader_menu.tres" type="Material" id=4]
 [ext_resource path="res://prefabs/ui/Settings.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
@@ -11,13 +11,13 @@
 [ext_resource path="res://images/icons/menu/planet_1.png" type="Texture" id=9]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=10]
 [ext_resource path="res://scripts/MenuUI.gd" type="Script" id=11]
-[ext_resource path="res://images/logo_black.png" type="Texture" id=12]
+[ext_resource path="res://images/logos/ilyva_black.png" type="Texture" id=12]
 [ext_resource path="res://images/icons/shape73.png" type="Texture" id=13]
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
 [ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
 [ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
-[ext_resource path="res://images/Plan de travail 1@4x-8.png" type="Texture" id=18]
-[ext_resource path="res://images/ui/ilyva_no_colors.png" type="Texture" id=19]
+[ext_resource path="res://images/logos/ilyva_full_white.png" type="Texture" id=18]
+[ext_resource path="res://images/ui/swirl.png" type="Texture" id=19]
 [ext_resource path="res://images/ui/angles.png" type="Texture" id=20]
 [ext_resource path="res://audios/musics/Cosurmyne.mp3" type="AudioStream" id=21]
 [ext_resource path="res://scripts/menu/TopPart.gd" type="Script" id=22]
@@ -183,6 +183,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("../../../BlackScreen:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "Start"
@@ -331,6 +343,32 @@ tracks/11/keys = {
 "clips": PoolStringArray( "Pulse" ),
 "times": PoolRealArray( 7.5 )
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("../../../BlackScreen:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/13/type = "method"
+tracks/13/path = NodePath("../../../BlackScreen")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="Animation" id=24]
 resource_name = "Pulse"
@@ -374,6 +412,10 @@ margin_bottom = 64.0
 modulate_color = Color( 0.141176, 0.137255, 0.137255, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StreamTexture" id=31]
+flags = 4
+load_path = "res://.import/logo_white.png-f210bbbb2c62101e54829e164b40530a.stex"
 
 [sub_resource type="Shader" id=26]
 code = "/*
@@ -515,6 +557,7 @@ stretch = true
 size = Vector2( 1280, 479 )
 size_override_stretch = true
 handle_input_locally = false
+msaa = 1
 render_target_update_mode = 3
 
 [node name="Menu" parent="Canvas/Container/3D/Container/Viewport" instance=ExtResource( 2 )]
@@ -668,7 +711,7 @@ anchor_bottom = 1.5
 margin_top = 0.5
 margin_right = -0.0801392
 margin_bottom = -0.00201416
-texture = ExtResource( 18 )
+texture = SubResource( 31 )
 expand = true
 stretch_mode = 6
 
@@ -718,6 +761,7 @@ __meta__ = {
 }
 
 [node name="GreenDot" type="Panel" parent="Canvas/Container/TopPart"]
+visible = false
 margin_left = 665.0
 margin_top = 72.0
 margin_right = 703.0
@@ -725,6 +769,7 @@ margin_bottom = 90.0
 custom_styles/panel = SubResource( 28 )
 
 [node name="BlueDot" type="Panel" parent="Canvas/Container/TopPart"]
+visible = false
 margin_left = 626.0
 margin_top = 209.0
 margin_right = 664.0
@@ -733,6 +778,7 @@ rect_min_size = Vector2( 18, 18 )
 custom_styles/panel = SubResource( 30 )
 
 [node name="RedDot" type="Panel" parent="Canvas/Container/TopPart"]
+visible = false
 margin_left = 516.0
 margin_top = 30.0
 margin_right = 534.0
@@ -1129,6 +1175,12 @@ margin_right = 0.000488281
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="BlackScreen" type="ColorRect" parent="Canvas/Container"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )

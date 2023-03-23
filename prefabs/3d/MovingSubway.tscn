@@ -1,16 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://audios/effects/door_close.mp3" type="AudioStream" id=1]
+[ext_resource path="res://audios/effects/subway_door_close.ogg" type="AudioStream" id=1]
 [ext_resource path="res://scripts/3d/MovingSubway.gd" type="Script" id=2]
 [ext_resource path="res://audios/effects/subway_engine.mp3" type="AudioStream" id=3]
+[ext_resource path="res://audios/effects/subway_door_beep.ogg" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=28]
 extents = Vector3( 0.75, 4, 27 )
 
+[sub_resource type="BoxShape" id=29]
+extents = Vector3( 0.25, 1.2, 128 )
+
 [node name="MovingSubway" type="Spatial" groups=["Subway"]]
 script = ExtResource( 2 )
-stop_distance = 20
-decceleration = 0.995
+max_stop_time = 5.0
+stop_distance = 30
+decceleration = 0.99
 
 [node name="Parts" type="Spatial" parent="."]
 
@@ -18,6 +23,11 @@ decceleration = 0.995
 
 [node name="DoorClose" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 1 )
+unit_size = 10.0
+max_db = -12.0
+
+[node name="DoorBeep" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
 unit_size = 10.0
 max_db = -12.0
 
@@ -34,5 +44,18 @@ emission_angle_degrees = 90.0
 [node name="CollisionShape" type="CollisionShape" parent="AreaZone"]
 shape = SubResource( 28 )
 
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 1.2, 0 )
+shape = SubResource( 29 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.2, 0 )
+shape = SubResource( 29 )
+
+[connection signal="finished" from="DoorBeep" to="." method="_on_DoorBeep_finished"]
 [connection signal="body_entered" from="AreaZone" to="." method="_on_AreaZone_body_entered"]
 [connection signal="body_exited" from="AreaZone" to="." method="_on_AreaZone_body_exited"]
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

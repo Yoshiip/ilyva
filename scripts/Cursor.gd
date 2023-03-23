@@ -26,7 +26,11 @@ func _process(_delta: float) -> void:
 func _on_Cursor_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Interaction"):
 		current_area = area
+		if area.has_method("cursor_entered"):
+			area.cursor_entered()
 
 func _on_Cursor_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Interaction"):
+		if area.has_method("cursor_exited"):
+			area.cursor_exited()
 		current_area = null

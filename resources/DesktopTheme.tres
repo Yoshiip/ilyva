@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=4 format=2]
+
+[ext_resource path="res://fonts/Hack-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0823529, 0.0862745, 0.113725, 1 )
+border_width_left = 2
+border_width_top = 24
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.74902, 0.74902, 0.74902, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 2 )
+Panel/styles/panel = SubResource( 1 )
+TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )

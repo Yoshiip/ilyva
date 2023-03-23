@@ -1,6 +1,13 @@
 {
 	"glossary": [
-
+		{
+			"extra": "",
+			"id": "1679479952-298",
+			"name": "Traducteur",
+			"text": "Cet outil vous permet de communiquer avec les habitants de Terminux.",
+			"title": "Traducteur",
+			"type": 1
+		}
 	],
 	"variables": [
 

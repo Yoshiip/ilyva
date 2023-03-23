@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://images/huge_circle.png" type="Texture" id=2]
+[ext_resource path="res://scripts/map/Stop.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="0" type="PathFollow2D"]
+position = Vector2( 453.567, 269.836 )
+offset = 56.0
+rotate = false
+script = ExtResource( 3 )
+
+[node name="HugeCircle" type="Sprite" parent="."]
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 32.0
+margin_top = -14.0
+margin_right = 93.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+text = "test"

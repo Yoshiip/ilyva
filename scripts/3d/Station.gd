@@ -8,11 +8,11 @@ func interact_door(open, left = true) -> void:
 	var _door1 = $station.get_node(str("Door", "L" if left else "R", "L"))
 	var _door2 = $station.get_node(str("Door", "L" if left else "R", "R"))
 	if open:
-		$Tween.interpolate_property(_door1, "translation:z", 27.2, 27.9, 1.5, Tween.TRANS_BOUNCE)
-		$Tween.interpolate_property(_door2, "translation:z", 27.2, 26.5, 1.5, Tween.TRANS_BOUNCE)
+		$Tween.interpolate_property(_door1, "translation:z", _door1.translation.z, 28, 1.5, Tween.TRANS_BOUNCE)
+		$Tween.interpolate_property(_door2, "translation:z", _door2.translation.z, 26.4, 1.5, Tween.TRANS_BOUNCE)
 	else:
-		$Tween.interpolate_property(_door1, "translation:z", 27.2, 27.9, 1.5, Tween.TRANS_BOUNCE)
-		$Tween.interpolate_property(_door2, "translation:z", 27.2, 26.5, 1.5, Tween.TRANS_BOUNCE)
+		$Tween.interpolate_property(_door2, "translation:z", _door1.translation.z, 27.2, 1.5, Tween.TRANS_BOUNCE)
+		$Tween.interpolate_property(_door1, "translation:z", _door2.translation.z, 27.2, 1.5, Tween.TRANS_BOUNCE)
 	$Tween.start()
 	if left:
 		left_doors_opened = open

@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var pause_menu
 
 func _ready() -> void:
@@ -7,6 +8,11 @@ func _ready() -> void:
 	$Canvas/Container.add_child(pause_menu)
 
 func _process(delta: float) -> void:
+	var time = Time.get_time_dict_from_system()
+	if time.second % 2 == 0:
+		$Canvas/Container/Footer/Time.text = "%02d:%02d" % [time.hour, time.minute]
+	else:
+		$Canvas/Container/Footer/Time.text = "%02d %02d" % [time.hour, time.minute]
 	$LightMask.position = lerp($LightMask.position, get_global_mouse_position(), delta * 2.0)
 	$Pattern.position.x += delta * 50.0
 	$Pattern.position.y += delta * 50.0

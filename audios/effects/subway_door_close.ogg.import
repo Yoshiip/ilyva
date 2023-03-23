@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/subway_door_close.ogg-0b7cd3581b1df8eeabf0f4946932777c.oggstr"
+
+[deps]
+
+source_file="res://audios/effects/subway_door_close.ogg"
+dest_files=[ "res://.import/subway_door_close.ogg-0b7cd3581b1df8eeabf0f4946932777c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

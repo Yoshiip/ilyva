@@ -4,7 +4,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Euh, bonjour ?"
+			"text": "Euh, bonjour ?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Master",
+					"file": "res://audios/voices/Mathieu/0.ogg"
+				}
+			}
 		},
 		{
 			"animation": "[Default]",
@@ -31,19 +37,37 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "??????????????????????????????"
+			"text": "??????????????????????????????",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Master",
+					"file": "res://audios/voices/Mathieu/2.ogg"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "slt ca va"
+			"text": "slt ca va",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Master",
+					"file": "res://audios/voices/Mathieu/3.ogg"
+				}
+			}
 		},
 		{
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "oui"
+			"text": "tu veut le Traducteur ?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Master",
+					"file": "res://audios/voices/Mathieu/4.ogg"
+				}
+			}
 		},
 		{
 			"animation": "[Default]",

@@ -1,342 +1,57 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://images/textures/paper.jpg" type="Texture" id=1]
-[ext_resource path="res://images/reference_subway_plan.jpg" type="Texture" id=2]
+[ext_resource path="res://prefabs/map/MapStop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/la-navigation.png" type="Texture" id=2]
 [ext_resource path="res://scripts/map/Subway.gd" type="Script" id=3]
 [ext_resource path="res://scripts/map/MapCamera.gd" type="Script" id=4]
-[ext_resource path="res://images/textures/grain.jpg" type="Texture" id=5]
-[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://images/backgrounds/lille_flandres.png" type="Texture" id=7]
-[ext_resource path="res://prefabs/Stop.tscn" type="PackedScene" id=8]
-[ext_resource path="res://images/icons/cross.png" type="Texture" id=9]
+[ext_resource path="res://images/map.svg" type="Texture" id=7]
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.976471, 0.768627, 0.145098, 1 )
-
-[sub_resource type="Curve3D" id=2]
+[sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -6.52059, -0.0198517, 29.7515, -0.522854, 0, 8.35723, 0.522854, 0, -8.35723, -1.14624, 0, 2.34308, 1.95142, 0, 10.1829, -1.95142, 0, -10.1829, -6.11155, 0, -30.6764, 13.641, 0, -1.36831, -13.641, 0, 1.36831, -37.3717, 0, -37.5535, 6.48954, 0, 9.50696, -6.48954, 0, -9.50696, -50.2841, 0, -67.9721, 15.3086, 0, 0.670197, -15.3086, 0, -0.670197, -100.742, 0, -78.0509, 11.3044, 0, 3.43105, -11.3044, 0, -3.43105, -130.326, 0, -89.5101, 12.6038, 0, 6.46092, -12.6038, 0, -6.46092, -170.601, 0, -111.052, 7.3168, 0, 12.6522, -7.3168, 0, -12.6522, -200.804, 0, -130.88, 14.36, 0, -4.66875, -14.36, 0, 4.66875, -223.481, 0, -148.783, 14.1326, 0, 0.302841, -14.1326, 0, -0.302841, -251.59, 0, -128.5, 12.8564, 0, 10.8343, -12.8564, 0, -10.8343, -268.121, 0, -144.669, 5.18716, 0, -3.11592, -5.18716, 0, 3.11592, -299.518, 0, -139.703, 2.32727, 0, -13.8303, -2.32727, 0, 13.8303, -309.195, 0, -115.365, 5.3179, 0, -9.67486, -5.3179, 0, 9.67486, -344.917, 0, -82.5156, -1.49207, 0, -11.295, 1.49207, 0, 11.295, -345.878, 0, -56.4046, 0.519958, 0, -13.1401, -0.519958, 0, 13.1401, -344.436, 0, -32.5362, 0.361206, 0, -17.4724, -0.361206, 0, 17.4724, -402.865, 0, -9.94766, 0, 0, 0, 0, 0, 0, -391.29, 0, 22.4828 ),
-"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 437, 323, 8.53659, 31.183, -8.53659, -31.183, 452, 248, 9.81096, 9.51366, -9.81096, -9.51366, 429, 207, 5.94603, 5.35143, -5.94603, -5.35143, 383, 209, 16.6489, 6.83794, -16.6489, -6.83794, 366, 153, 20.8111, 11.5948, -20.8111, -11.5948, 295, 147, 18.2895, 8.82941, -18.2895, -8.82941, 210, 111, 14.1531, 9.16365, -14.1531, -9.16365, 150, 84, 23.9675, 4.09099, -23.9675, -4.09099, 118, 38, 12.25, -1.75, -12.25, 1.75, 60, 72, 28.75, -0.5, -28.75, 0.5, 17, 38, 1, -16.25, -1, 16.25, -20, 82, 14.0466, -14.0466, -14.0466, 14.0466, -77, 136, 7.73858, -11.9055, -7.73858, 11.9055, -76, 221, 0, 0, 0, 0, -123, 230, 5.95275, -19.0488, -5.95275, 19.0488, -162, 243, 0, 0, 0, 0, -147, 304 )
 }
 
-[sub_resource type="DynamicFont" id=9]
-size = 19
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[node name="Spatial" type="Node2D"]
 
-[sub_resource type="Theme" id=8]
-default_font = SubResource( 9 )
+[node name="Map" type="Sprite" parent="."]
+texture = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 32
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[node name="Line1" type="Path2D" parent="."]
+curve = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 24
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[node name="Path" type="PathFollow2D" parent="Line1"]
+position = Vector2( -147, 304 )
+rotation = 1.14182
+offset = 1037.94
+lookahead = 10.0
+script = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=5]
-draw_center = false
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 1, 0, 0, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 1
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0, 1, 0, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="Curve3D" id=10]
-_data = {
-"points": PoolVector3Array( 1.82526, -1.52588e-05, -9.64388, -1.82526, 1.52588e-05, 9.64388, -623.382, -1.52588e-05, -222.931, -26.196, 1.52588e-05, 3.63623, 26.196, -1.52588e-05, -3.63623, -589.318, -1.52588e-05, -198.056, -14.9244, 1.52588e-05, 5.29115, 14.9244, -1.52588e-05, -5.29115, -550.342, -1.52588e-05, -205.186, -12.3848, 1.52588e-05, -3.04077, 12.3848, -1.52588e-05, 3.04077, -513.427, -1.52588e-05, -206.137, -9.1702, 1.52588e-05, -4.87027, 9.1702, -1.52588e-05, 4.87027, -483.542, -1.52588e-05, -190.124, -2.92715, 0, -8.76352, 2.92715, 0, 8.76352, -401.106, 0, -102.944, -4.90939, 0, -1.6729, 4.90939, 0, 1.6729, -344.6, 0, -34.177, -16.9558, 0, 1.04622, 16.9558, 0, -1.04622, -299.442, 0, -28.6336, -9.66418, 0, 5.4835, 9.66418, 0, -5.4835, -254.551, 0, -34.8743, 0.890503, 0, 12.9745, -0.890503, 0, -12.9745, -240.538, 0, -54.8668, -0.373688, 0, 11.0239, 0.373688, 0, -11.0239, -248.789, 0, -87.0954, 6.05023, 0, 9.87515, -6.05023, 0, -9.87515, -268.367, 0, -116.841, -5.60373, 0, 7.42232, 5.60373, 0, -7.42232, -267.363, 0, -143.35, -9.72418, 0, 10.604, 9.72418, 0, -10.604, -228.715, 0, -172.527, -13.4651, 1.52588e-05, 0.87796, 13.4651, -1.52588e-05, -0.87796, -195.081, -1.52588e-05, -178.995, -19.4614, 1.52588e-05, 0.940033, 19.4614, -1.52588e-05, -0.940033, -151.342, -1.52588e-05, -180.925, -8.45732, 1.52588e-05, 0.767502, 8.45732, -1.52588e-05, -0.767502, -119.371, -1.52588e-05, -179.631, -12.6451, 1.52588e-05, 9.89023, 12.6451, -1.52588e-05, -9.89023, -86.4552, 0, -187.019, -6.22833, 1.52588e-05, 12.6427, 6.22833, -1.52588e-05, -12.6427, -59.5919, 0, -232.117, 6.39345, 1.52588e-05, 12.8955, -6.39345, -1.52588e-05, -12.8955, -30.0971, -1.52588e-05, -279.835, -8.40807, 0, 4.48431, 8.40807, 0, -4.48431, -58.5744, 0, -346.478, 0, 0, 0, 0, 0, 0, -36.5394, -1.52588e-05, -358.216 ),
-"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
-}
-
-[sub_resource type="SpatialMaterial" id=11]
-albedo_color = Color( 0.870588, 0.0313726, 0.0627451, 1 )
-
-[node name="Spatial" type="Spatial"]
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -200, 0, -365 )
-visible = false
-pixel_size = 1.0
+[node name="Subway" type="Sprite" parent="Line1/Path"]
+rotation = 1.5708
+scale = Vector2( 0.25, 0.25 )
+z_index = 16
 texture = ExtResource( 2 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 50, 10 )
-far = 200.0
-script = ExtResource( 4 )
-
-[node name="Subway" type="Spatial" parent="."]
-script = ExtResource( 3 )
-trains_counts = 1
-
-[node name="Line1Polygon" type="CSGPolygon" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
-polygon = PoolVector2Array( -3, 0, -2, 1, 2, 1, 3, 0 )
-mode = 2
-path_node = NodePath("../Line1")
-path_interval_type = 0
-path_interval = 5.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-material = SubResource( 3 )
-
-[node name="Line1" type="Path" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
-curve = SubResource( 2 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = SubResource( 8 )
-
-[node name="NoiseTexture" type="TextureRect" parent="CanvasLayer/Control"]
-modulate = Color( 1, 1, 1, 0.247059 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_clip_content = true
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 4
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -479.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/Panel"]
-anchor_right = 1.0
-margin_bottom = 108.0
-custom_fonts/font = SubResource( 4 )
-text = "CITÉ SCIENTIFIQUE"
-align = 1
-valign = 1
-
-[node name="Paper" type="TextureRect" parent="CanvasLayer/Control/Panel/Label"]
-modulate = Color( 1, 0.498039, 0.498039, 1 )
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_clip_content = true
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 7
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/Label"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -22.0
-margin_top = -39.0
-margin_right = 22.0
-margin_bottom = -16.0
-custom_fonts/font = SubResource( 6 )
-text = "nuit"
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/Panel"]
-margin_left = 132.0
-margin_top = 128.0
-margin_right = 379.0
-margin_bottom = 258.0
-custom_styles/panel = SubResource( 5 )
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Panel/Panel"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
-stretch_mode = 7
-
-[node name="Button" type="Button" parent="CanvasLayer/Control/Panel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -20.0
-text = "S'y rendre!"
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Panel"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 280.0
-margin_right = -8.0
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer"]
-margin_right = 447.0
-margin_bottom = 18.0
-text = "Énigmes"
-align = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
-margin_top = 22.0
-margin_right = 447.0
-margin_bottom = 42.0
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/Panel/VBoxContainer/VBoxContainer"]
-margin_right = 447.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/VBoxContainer/Panel"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -7.0
-margin_right = 40.0
-margin_bottom = 7.0
-text = "001"
-
-[node name="Label2" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/VBoxContainer/Panel"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 56.0
-margin_top = -7.0
-margin_right = 111.0
-margin_bottom = 11.0
-text = "?????"
-
-[node name="Label3" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/VBoxContainer/Panel"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -80.0
-margin_top = -10.0
-margin_bottom = 10.0
-custom_styles/normal = SubResource( 7 )
-text = "terminé"
-align = 1
-valign = 1
-
-[node name="Line2" type="Path" parent="."]
-curve = SubResource( 10 )
-
-[node name="Line2Polygon" type="CSGPolygon" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-polygon = PoolVector2Array( -3, 0, -2, 1, 2, 1, 3, 0 )
-mode = 2
-path_node = NodePath("../Line2")
-path_interval_type = 0
-path_interval = 5.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-material = SubResource( 11 )
-
-[node name="Camera2" type="Camera" parent="."]
-transform = Transform( 4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, -250, 250, -125 )
-far = 300.0
-
-[node name="Stops" type="Spatial" parent="."]
-
-[node name="cite_scientifique" parent="Stops" instance=ExtResource( 8 )]
-stop_id = "cite_scientifique"
+[node name="0" parent="Line1" instance=ExtResource( 1 )]
+position = Vector2( 453.567, 269.836 )
 stop_name = "Cité Scientifique"
-on_line_1 = true
-line_1_offset = 30.0
 
-[node name="pont_de_bois" parent="Stops" instance=ExtResource( 8 )]
-transform = Transform( 1, 5.82077e-11, 0, 0, 1, 0, -5.96046e-08, 0, 1, -51.872, 0, -69.753 )
-stop_id = "pont_de_bois"
+[node name="1" parent="Line1" instance=ExtResource( 1 )]
+position = Vector2( 372.902, 159.602 )
+offset = 224.0
 stop_name = "Pont de Bois"
-on_line_1 = true
-line_1_offset = 135.0
 
-[node name="beaux_arts" parent="Stops" instance=ExtResource( 8 )]
-transform = Transform( 1, -5.82077e-11, 2.98023e-08, 0, 1, -1.16415e-10, 0, 5.82077e-11, 1, -309.79, 0, -113.161 )
-stop_id = "beaux_arts"
-stop_name = "Beaux Arts"
-on_line_1 = true
-line_1_offset = 457.0
+[node name="2" parent="Line1" instance=ExtResource( 1 )]
+position = Vector2( -19.6619, 78.1637 )
+offset = 710.0
+stop_name = "République Beaux-Arts"
 
-[node name="porte_des_postes" parent="Stops" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -344.133, 0, -34.739 )
-stop_id = "porte_des_postes"
+[node name="3" parent="Line1" instance=ExtResource( 1 )]
+position = Vector2( -74.5071, 215.926 )
+offset = 875.0
 stop_name = "Porte des Postes"
-on_line_1 = true
-line_1_offset = 554.0
-on_line_2 = true
-line_2_offset = 370.0
 
-[node name="st_philibert" parent="Stops" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -623.673, 0, -220.375 )
-stop_id = "st_philibert"
-stop_name = "Saint Philibert"
-on_line_2 = true
-
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -319, 1, -29 )
-modulate = Color( 1, 0, 0, 1 )
-pixel_size = 0.025
-shaded = true
-texture = ExtResource( 9 )
-
-[node name="Sprite3D5" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -254, 1, -154 )
-modulate = Color( 1, 0, 0, 1 )
-pixel_size = 0.025
-shaded = true
-texture = ExtResource( 9 )
-
-[node name="Sprite3D6" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -270, 1, -120 )
-modulate = Color( 1, 0, 0, 1 )
-pixel_size = 0.025
-shaded = true
-texture = ExtResource( 9 )
-
-[node name="Sprite3D3" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -366, 1, -24 )
-modulate = Color( 1, 0, 0, 1 )
-pixel_size = 0.025
-shaded = true
-texture = ExtResource( 9 )
-
-[node name="Sprite3D4" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.14389, 1, 25.392 )
-modulate = Color( 1, 0, 0, 1 )
-pixel_size = 0.025
-shaded = true
-texture = ExtResource( 9 )
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 2, 2 )
+script = ExtResource( 4 )

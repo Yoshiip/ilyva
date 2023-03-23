@@ -31,6 +31,7 @@ shader_param/diamondPixelSize = 64.0
 material = SubResource( 14 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.117647, 0.0862745, 0.0862745, 1 )
 script = ExtResource( 1 )
 

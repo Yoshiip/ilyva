@@ -1,6 +1,10 @@
-extends Camera
+extends Camera2D
 
-onready var subway: Spatial = $"../Subway"
+
+
+
+onready var subway: Sprite = $"../Line1/Path/Subway"
 
 func _process(delta: float) -> void:
-	translation = subway.get_child(0).translation + Vector3(0, 100, 20)
+	
+	position = subway.global_position

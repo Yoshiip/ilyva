@@ -1,16 +1,33 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://prefabs/puzzles/ActionsModal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/puzzles/AppsModal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
 [ext_resource path="res://images/textures/light.png" type="Texture" id=3]
-[ext_resource path="res://images/ui/pattern_3.png" type="Texture" id=4]
-[ext_resource path="res://resources/theme.tres" type="Theme" id=5]
+[ext_resource path="res://images/ui/pattern_1.png" type="Texture" id=4]
+[ext_resource path="res://resources/DesktopTheme.tres" type="Theme" id=5]
 [ext_resource path="res://scripts/puzzles/ModalsManager.gd" type="Script" id=6]
 [ext_resource path="res://scripts/PuzzleScene.gd" type="Script" id=7]
-[ext_resource path="res://prefabs/puzzles/InstructionsModal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/Hack-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=9]
 
 [sub_resource type="CanvasItemMaterial" id=4]
 light_mode = 2
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.109375, 0.080546, 0.0786133, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.196078, 0.0901961, 0.0901961, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Puzzle" type="Node2D"]
 script = ExtResource( 7 )
@@ -20,10 +37,10 @@ margin_left = -4096.0
 margin_top = -4096.0
 margin_right = 4096.0
 margin_bottom = 4096.0
-color = Color( 0.180392, 0.223529, 0.141176, 1 )
+color = Color( 0.262745, 0.196078, 0.196078, 1 )
 
 [node name="Pattern" type="Sprite" parent="."]
-modulate = Color( 0.317647, 0.454902, 0.192157, 1 )
+modulate = Color( 0.431373, 0.211765, 0.211765, 1 )
 material = SubResource( 4 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -35,6 +52,7 @@ region_rect = Rect2( 0, 0, 8192, 8192 )
 [node name="Container" type="Control" parent="Canvas"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 5 )
 
 [node name="Grain" type="TextureRect" parent="Canvas/Container"]
@@ -45,24 +63,54 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/Container"]
-margin_right = 40.0
-margin_bottom = 40.0
-
 [node name="ModalsManager" type="Control" parent="Canvas/Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 6 )
 
-[node name="ActionsModal" parent="Canvas/Container/ModalsManager" instance=ExtResource( 1 )]
+[node name="Modal4" parent="Canvas/Container/ModalsManager" instance=ExtResource( 1 )]
+margin_left = 222.0
+margin_top = 204.0
+margin_right = 608.0
+margin_bottom = 407.0
+rect_min_size = Vector2( 80, 80 )
+theme = null
+can_close = true
 
-[node name="Modal" parent="Canvas/Container/ModalsManager" instance=ExtResource( 8 )]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -305.0
-margin_top = 8.0
-margin_right = 305.0
-margin_bottom = 211.0
+[node name="Footer" type="Panel" parent="Canvas/Container"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+rect_min_size = Vector2( 0, 40 )
+custom_styles/panel = SubResource( 7 )
+
+[node name="Time" type="Label" parent="Canvas/Container/Footer"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -11.0
+margin_right = -8.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "17:02"
+align = 1
+valign = 1
+
+[node name="LogoWhite" type="TextureRect" parent="Canvas/Container/Footer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -12.0
+margin_right = 63.0
+margin_bottom = 12.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 5
 
 [node name="LightMask" type="Light2D" parent="."]
 position = Vector2( 629, 215 )
@@ -72,3 +120,6 @@ energy = 0.5
 __meta__ = {
 "_edit_lock_": true
 }
+
+[connection signal="mouse_entered" from="Canvas/Container/ModalsManager/Modal4" to="Canvas/Container/ModalsManager/Modal4" method="_on_Modal_mouse_entered"]
+[connection signal="mouse_exited" from="Canvas/Container/ModalsManager/Modal4" to="Canvas/Container/ModalsManager/Modal4" method="_on_Modal_mouse_exited"]

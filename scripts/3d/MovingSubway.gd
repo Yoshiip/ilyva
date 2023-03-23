@@ -16,18 +16,25 @@ onready var c_stop_time := max_stop_time
 onready var offset : float = 0.0
 #onready var offset : float = get_offset() - (50.0 if going_forward else -50.0)
 
+
+
+var block_door_closing = false
+
 var stopped := false
+
 var door_opened := false
+var door_moving := false
+
 var player_inside := false
-var speed := 0.0
+onready var speed := max_speed
 
 
 const STOPS := {
 	1: {
-		"cite_scientifique": 30,
-		"pont_de_bois": 135,
-		"beaux_arts": 457,
-		"porte_des_postes": 554,
+		"cite_scientifique": 56,
+		"pont_de_bois": 224,
+		"beaux_arts": 710,
+		"porte_des_postes": 875,
 	},
 	2: {
 		"st_philibert": 0,
@@ -85,6 +92,8 @@ func fdsfdsfges() -> void:
 	
 var translation_offset : Vector3
 
+var start_playing_beep := false
+
 func _process(delta: float) -> void:
 	if speed > 0.0:
 		if !$Engine.playing:
@@ -115,15 +124,21 @@ func _process(delta: float) -> void:
 		speed = 0.0
 		translation.z = 2.0
 		c_stop_time -= delta
-		if !door_opened && c_stop_time > 0.0 && !door_opened:
-			interact_door(true)
-			yield(get_tree().create_timer(rand_range(0.5, 1.0)), "timeout")
+		if !door_opened && c_stop_time > 0.0:
+			start_playing_beep = false
+			interact_door(true, !going_forward)
+			yield(get_tree().create_timer(0.5), "timeout")
 			station.interact_door(true, !going_forward)
-		if door_opened && c_stop_time <= 0.0 && door_opened:
-			interact_door(false)
-			yield(get_tree().create_timer(rand_range(0.5, 1.0)), "timeout")
-			station.interact_door(false, !going_forward)
-		if c_stop_time <= -2.0:
+		
+		if door_opened && c_stop_time <= 0.0 && !start_playing_beep:
+			start_playing_beep = true
+			$DoorBeep.play()
+		if door_moving && block_door_closing:
+			start_playing_beep = false
+			$Tween.stop_all()
+			interact_door(true, !going_forward)
+			station.interact_door(true, !going_forward)
+		if c_stop_time <= -2.0 && !door_opened && !door_moving:
 			if is_at_terminus(next_stop_id):
 				translation.x = -translation.x
 				going_forward = !going_forward
@@ -168,19 +183,27 @@ func stop_id_to_string(stop_id : int) -> String:
 	return STOPS[line].keys()[stop_id]
 
 
-func interact_door(open : bool) -> void:
+func interact_door(open : bool, left : bool) -> void:
+	door_moving = true
 	$DoorClose.play()
 	if open:
 		for i in $Parts.get_children():
-			$Tween.interpolate_property(i.get_node("DoorL"), "translation:z", 4, 4.7, 1.5, Tween.TRANS_BOUNCE)
-			$Tween.interpolate_property(i.get_node("DoorR"), "translation:z", 3.2, 2.5, 1.5, Tween.TRANS_BOUNCE)
+			var _door1 = i.get_node(str("Door", "R" if left else "L", "L"))
+			var _door2 = i.get_node(str("Door", "R" if left else "L", "R"))
+			$Tween.interpolate_property(_door1, "translation:z", _door1.translation.z, 4.7, 1.5, Tween.TRANS_BOUNCE)
+			$Tween.interpolate_property(_door2, "translation:z", _door2.translation.z, 2.5, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.start()
 	else:
 		for i in $Parts.get_children():
-			$Tween.interpolate_property(i.get_node("DoorL"), "translation:z", 4.7, 4, 1.5, Tween.TRANS_BOUNCE)
-			$Tween.interpolate_property(i.get_node("DoorR"), "translation:z", 2.5, 3.2, 1.5, Tween.TRANS_BOUNCE)
+			var _door1 = i.get_node(str("Door", "R" if left else "L", "L"))
+			var _door2 = i.get_node(str("Door", "R" if left else "L", "R"))
+			$Tween.interpolate_property(_door1, "translation:z", _door1.translation.z, 4, 1.5, Tween.TRANS_BOUNCE)
+			$Tween.interpolate_property(_door2, "translation:z", _door2.translation.z, 3.2, 1.5, Tween.TRANS_BOUNCE)
 			$Tween.start()
 	door_opened = open
+	yield(get_tree().create_timer(1.5), "timeout")
+	door_moving = false
+
 
 
 func _on_AreaZone_body_entered(body: Node) -> void:
@@ -192,3 +215,24 @@ func _on_AreaZone_body_entered(body: Node) -> void:
 func _on_AreaZone_body_exited(body: Node) -> void:
 	if body.name == "Player":
 		player_inside = false
+
+
+func _on_Area_body_entered(body: Node) -> void:
+	if body.is_in_group("Player"):
+		print("joueur dedans")
+		block_door_closing = true
+
+
+func _on_Area_body_exited(body: Node) -> void:
+	if body.is_in_group("Player"):
+		print("joueur pas dedans")
+		block_door_closing = false
+
+
+func _on_DoorBeep_finished() -> void:
+	if !block_door_closing:
+		interact_door(false, !going_forward)
+		yield(get_tree().create_timer(0.5), "timeout")
+		station.interact_door(false, !going_forward)
+	else:
+		$DoorBeep.play()

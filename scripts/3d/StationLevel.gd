@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	for i in get_tree().get_nodes_in_group("Subway"):
 		if i.player_inside:
 			map.visible = true
-			map.get_node("Container/Viewport/Map/Subway").progress = $MovingSubway.offset
+			map.get_node("Container/Viewport/Map/Line1/Path").offset = $MovingSubway.offset
 			return
 	map.visible = false
 	if Input.is_action_just_pressed("fullscreen"):

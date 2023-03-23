@@ -4,6 +4,24 @@ signal settings_updated
 
 export var scene_start_dialogue := ""
 
+const APPS := {
+	"terminal": {
+		"icon": 0,
+	},
+	"hints": {
+		"icon": 1,
+	},
+	"hex": {
+		"icon": 2,
+	},
+	"digicode": {
+		"icon": 3,
+	},
+	"apps": {
+		"icon": 4,
+	},
+}
+
 var puzzles := {
 	0: {
 		"portrait": preload("res://images/portraits/jvlivm.png")
