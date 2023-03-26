@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://prefabs/puzzles/modals/BaseModal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/bash_in_godot/scripts/ConsoleNode.gd" type="Script" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.117647, 0.117647, 0.117647, 1 )
+
+[node name="Modal" instance=ExtResource( 1 )]
+margin_right = 480.0
+margin_bottom = 360.0
+
+[node name="Console" type="Panel" parent="Content" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 9 )

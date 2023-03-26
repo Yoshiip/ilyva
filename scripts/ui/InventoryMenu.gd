@@ -75,7 +75,16 @@ func _on_Settings_pressed() -> void:
 	$Settings.show()
 
 
+onready var SultanBadge := preload("res://prefabs/ui/SultanBadge.tscn")
+
 func _on_SultansCollection_pressed() -> void:
+	for i in ["achille", "anemone", "boulba", "cocan", "cricri", "crocan", "hector", "nano", "sabine", "simoun", "sultan", "zezette"]:
+		var badge := SultanBadge.instance()
+		if !GameManager.sultans.has(i):
+			badge.modulate = Color(0, 0, 0, 0.5)
+		badge.get_node("Icon").texture = load("res://images/sultans/" + i + ".png")
+		$Sultans/List/Grid.add_child(badge)
+			
 	$Sultans.visible = true
 
 

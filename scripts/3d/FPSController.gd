@@ -25,9 +25,9 @@ func _ready():
 	#hides the cursor
 	noise.noise = OpenSimplexNoise.new()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	GameManager.connect("settings_updated", self, "_settings_updated")
+	GameManager.connect("settings_updated", self, "settings_updated")
 	
-	_settings_updated(GameManager.settings)
+	settings_updated()
 
 func _input(event):
 	#get mouse input for camera rotation
@@ -108,11 +108,13 @@ func _physics_process(delta):
 var shake_rotation : Vector3
 var shake_translation : Vector3
 
+var current_subway : Spatial
+
 func handle_camera(delta : float) -> void:
 	var max_shake = 0
 	
-#	if get_parent().get_node("MovingSubway").player_inside:
-#		max_shake = get_parent().get_node("MovingSubway").speed / 3.0
+	if is_instance_valid(current_subway):
+		max_shake = current_subway.speed / 3.0
 
 
 	shake_rotation = Vector3(
@@ -124,6 +126,6 @@ func handle_camera(delta : float) -> void:
 	rand_range(-shake_offset, shake_offset),
 	rand_range(-shake_offset, shake_offset))
 
-func _settings_updated(s : Dictionary) -> void:
-	$Head/Camera.fov = s.fov
-	mouse_sense = s.sensivity / 100.0
+func settings_updated() -> void:
+	$Head/Camera.fov = GameManager.settings.fov
+	mouse_sense = GameManager.settings.sensivity / 100.0

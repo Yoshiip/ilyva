@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://3d/models/subway_v2/Glass.material" type="Material" id=1]
 [ext_resource path="res://3d/models/subway_v2/Red.material" type="Material" id=2]
@@ -471,27 +471,11 @@ data = PoolVector3Array( 1.4, 1.1, -0.4, 1.1, 2.4, -0.3, 1.3, 1.2, -0.3, 1.4, 1.
 [sub_resource type="BoxShape" id=25]
 extents = Vector3( 1.5, 1, 7.2 )
 
+[sub_resource type="CylinderShape" id=31]
+height = 2.4
+radius = 0.038
+
 [node name="subway" type="StaticBody"]
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1.8 )
-shadow_enabled = true
-shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
-
-[node name="OmniLight2" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.8 )
-shadow_enabled = true
-shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
-
-[node name="OmniLight3" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5.4 )
-shadow_enabled = true
-shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
-
-[node name="OmniLight4" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5.4 )
-shadow_enabled = true
-shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
 
 [node name="1" type="CollisionPolygon" parent="."]
 transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.8 )
@@ -647,3 +631,37 @@ shape = SubResource( 25 )
 [node name="Roof" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0 )
 shape = SubResource( 25 )
+
+[node name="Pole1" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0 )
+shape = SubResource( 31 )
+
+[node name="Pole2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 3.6 )
+shape = SubResource( 31 )
+
+[node name="Pole3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -3.6 )
+shape = SubResource( 31 )
+
+[node name="Lights" type="Spatial" parent="." groups=["LightsGroup"]]
+
+[node name="OmniLight" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1.8 )
+shadow_enabled = true
+shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[node name="OmniLight2" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.8 )
+shadow_enabled = true
+shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[node name="OmniLight3" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5.4 )
+shadow_enabled = true
+shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[node name="OmniLight4" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5.4 )
+shadow_enabled = true
+shadow_color = Color( 0.741176, 0.741176, 0.741176, 1 )

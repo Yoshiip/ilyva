@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/Interaction.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Zone.gd" type="Script" id=3]
 [ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=4]
 [ext_resource path="res://images/backgrounds/action.jpeg" type="Texture" id=5]
+[ext_resource path="res://images/sultans/sultan.png" type="Texture" id=6]
+[ext_resource path="res://scripts/SultanCollectable.gd" type="Script" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://images/textures/light.png" type="Texture" id=13]
 
@@ -232,6 +234,9 @@ shader_param/y_rot = 0.0
 shader_param/x_rot = 0.0
 shader_param/inset = 0.75
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 48, 48 )
+
 [node name="MetroOutside" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
@@ -298,5 +303,21 @@ texture = ExtResource( 9 )
 texture = ExtResource( 13 )
 texture_scale = 2.0
 energy = 0.0
+
+[node name="SultanCollectable" type="Area2D" parent="." groups=["Interaction"]]
+position = Vector2( 178, 322 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+sultan_id = "sultan"
+
+[node name="Sultan" type="Sprite" parent="SultanCollectable"]
+modulate = Color( 1, 1, 1, 0.247059 )
+scale = Vector2( 0.333, 0.333 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SultanCollectable"]
+shape = SubResource( 12 )
 
 [editable path="Arrow"]

@@ -1,6 +1,5 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://prefabs/puzzles/AppsModal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
 [ext_resource path="res://images/textures/light.png" type="Texture" id=3]
 [ext_resource path="res://images/ui/pattern_1.png" type="Texture" id=4]
@@ -9,6 +8,7 @@
 [ext_resource path="res://scripts/PuzzleScene.gd" type="Script" id=7]
 [ext_resource path="res://fonts/Hack-Bold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=9]
+[ext_resource path="res://resources/puzzles/1.tres" type="Resource" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=4]
 light_mode = 2
@@ -31,16 +31,18 @@ corner_radius_bottom_left = 5
 
 [node name="Puzzle" type="Node2D"]
 script = ExtResource( 7 )
+puzzle = ExtResource( 10 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Wallpaper" type="Node2D" parent="."]
+modulate = Color( 0.227451, 0.0470588, 0.639216, 1 )
+
+[node name="Color" type="ColorRect" parent="Wallpaper"]
 margin_left = -4096.0
 margin_top = -4096.0
 margin_right = 4096.0
 margin_bottom = 4096.0
-color = Color( 0.262745, 0.196078, 0.196078, 1 )
 
-[node name="Pattern" type="Sprite" parent="."]
-modulate = Color( 0.431373, 0.211765, 0.211765, 1 )
+[node name="Pattern" type="Sprite" parent="Wallpaper"]
 material = SubResource( 4 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -68,15 +70,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 6 )
-
-[node name="Modal4" parent="Canvas/Container/ModalsManager" instance=ExtResource( 1 )]
-margin_left = 222.0
-margin_top = 204.0
-margin_right = 608.0
-margin_bottom = 407.0
-rect_min_size = Vector2( 80, 80 )
-theme = null
-can_close = true
 
 [node name="Footer" type="Panel" parent="Canvas/Container"]
 anchor_top = 1.0
@@ -120,6 +113,3 @@ energy = 0.5
 __meta__ = {
 "_edit_lock_": true
 }
-
-[connection signal="mouse_entered" from="Canvas/Container/ModalsManager/Modal4" to="Canvas/Container/ModalsManager/Modal4" method="_on_Modal_mouse_entered"]
-[connection signal="mouse_exited" from="Canvas/Container/ModalsManager/Modal4" to="Canvas/Container/ModalsManager/Modal4" method="_on_Modal_mouse_exited"]

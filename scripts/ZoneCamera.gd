@@ -16,6 +16,5 @@ func _process(delta: float) -> void:
 		position.x += delta * 500.0
 
 func _size_changed() -> void:
-#	print(get_viewport().size.y / 1080.0)
 	zoom.x = 1080.0 / get_viewport().size.y
 	zoom.y = 1080.0 / get_viewport().size.y

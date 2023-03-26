@@ -1,0 +1,145 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://prefabs/puzzles/modals/Hints.tscn::17" type="PackedScene" id=1]
+[ext_resource path="res://fonts/VCR_OSD.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://images/icons/apps_icons.png" type="Texture" id=3]
+[ext_resource path="res://images/icons/modals/drag_hint.png" type="Texture" id=4]
+[ext_resource path="res://images/ui/swirl.png" type="Texture" id=5]
+[ext_resource path="res://images/icons/modal_icons.png" type="Texture" id=6]
+[ext_resource path="res://scripts/ui/Modal.gd" type="Script" id=7]
+[ext_resource path="res://scripts/puzzles/DigicodeModal.gd" type="Script" id=8]
+[ext_resource path="res://resources/DesktopTheme.tres" type="Theme" id=9]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.498039 )
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color( 0, 0, 0, 0 )
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+expand_margin_left = 64.0
+expand_margin_right = 64.0
+expand_margin_top = 64.0
+expand_margin_bottom = 64.0
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 40, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 40, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 40, 20, 20 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 20, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 40, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 20, 0, 20, 20 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="PackedScene" id=17]
+_bundled = {
+"conn_count": 5,
+"conns": PoolIntArray( 1073741841, 1073741840, 170, 169, 2, 0, 1073741843, 1073741842, 172, 171, 2, 0, 1073741845, 1073741844, 174, 173, 2, 0, 1073741847, 1073741846, 176, 175, 2, 0, 1073741849, 1073741848, 178, 177, 2, 0 ),
+"editable_instances": [  ],
+"names": PoolStringArray( "Modal", "Panel", "margin_right", "margin_bottom", "theme", "script", "Shadow", "Panel", "show_behind_parent", "anchor_right", "anchor_bottom", "margin_top", "margin_bottom", "custom_styles/panel", "Header", "Control", "anchor_right", "margin_bottom", "DragHint", "TextureRect", "modulate", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "margin_left", "margin_top", "margin_right", "margin_bottom", "texture", "stretch_mode", "Title", "Label", "anchor_right", "margin_left", "margin_top", "margin_right", "margin_bottom", "text", "valign", "Icon", "TextureRect", "anchor_top", "anchor_bottom", "margin_left", "margin_top", "margin_right", "margin_bottom", "texture", "Buttons", "HBoxContainer", "anchor_left", "anchor_right", "margin_left", "margin_top", "margin_right", "margin_bottom", "rect_min_size", "alignment", "Pin", "TextureButton", "margin_right", "margin_bottom", "rect_min_size", "hint_tooltip", "focus_mode", "mouse_default_cursor_shape", "toggle_mode", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "texture_focused", "expand", "stretch_mode", "Panel", "Panel", "show_behind_parent", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "margin_left", "margin_top", "margin_right", "margin_bottom", "mouse_filter", "custom_styles/panel", "Maximize", "TextureButton", "margin_left", "margin_right", "margin_bottom", "rect_min_size", "focus_mode", "mouse_default_cursor_shape", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "texture_focused", "expand", "stretch_mode", "Panel", "Panel", "show_behind_parent", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "margin_left", "margin_top", "margin_right", "margin_bottom", "hint_tooltip", "mouse_filter", "custom_styles/panel", "Close", "TextureButton", "margin_left", "margin_right", "margin_bottom", "rect_min_size", "focus_mode", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "texture_focused", "expand", "stretch_mode", "Panel", "Panel", "show_behind_parent", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "margin_left", "margin_top", "margin_right", "margin_bottom", "hint_tooltip", "mouse_filter", "mouse_default_cursor_shape", "custom_styles/panel", "Content", "Control", "anchor_right", "anchor_bottom", "margin_left", "margin_top", "margin_right", "margin_bottom", "IlyvaNoColors", "TextureRect", "modulate", "anchor_right", "anchor_bottom", "texture", "expand", "stretch_mode", "DragZone", "Control", "anchor_right", "margin_right", "margin_bottom", "Tween", "Tween", "_on_PinButton_pressed", "pressed", "_on_Maximize_pressed", "pressed", "_on_CloseButton_pressed", "pressed", "_on_DragZone_mouse_entered", "mouse_entered", "_on_DragZone_mouse_exited", "mouse_exited" ),
+"node_count": 17,
+"node_paths": [ NodePath("."), NodePath("."), NodePath("./Header"), NodePath("./Header"), NodePath("./Header"), NodePath("./Header"), NodePath("./Header/Buttons"), NodePath("./Header/Buttons/Pin"), NodePath("./Header/Buttons"), NodePath("./Header/Buttons/Maximize"), NodePath("./Header/Buttons"), NodePath("./Header/Buttons/Close"), NodePath("."), NodePath("./Content"), NodePath("."), NodePath("."), NodePath("."), NodePath("Header/Buttons/Pin"), NodePath("."), NodePath("Header/Buttons/Maximize"), NodePath("."), NodePath("Header/Buttons/Close"), NodePath("."), NodePath("DragZone"), NodePath("."), NodePath("DragZone") ],
+"nodes": PoolIntArray( -1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 1073741824, 0, 7, 6, -1, 6, 8, 4, 9, 5, 10, 6, 11, 7, 12, 8, 13, 9, 0, 1073741825, 0, 15, 14, -1, 2, 16, 10, 17, 11, 0, 1073741826, 0, 19, 18, -1, 11, 20, 12, 21, 13, 22, 14, 23, 15, 24, 16, 25, 17, 26, 18, 27, 19, 28, 20, 29, 21, 30, 22, 0, 1073741827, 0, 32, 31, -1, 7, 33, 23, 34, 24, 35, 25, 36, 26, 37, 27, 38, 28, 39, 29, 0, 1073741828, 0, 41, 40, -1, 7, 42, 30, 43, 31, 44, 32, 45, 33, 46, 34, 47, 35, 48, 36, 0, 1073741829, 0, 50, 49, -1, 8, 51, 37, 52, 38, 53, 39, 54, 40, 55, 41, 56, 42, 57, 43, 58, 44, 0, 1073741830, 0, 60, 59, -1, 14, 61, 45, 62, 46, 63, 47, 64, 48, 65, 49, 66, 50, 67, 51, 68, 52, 69, 53, 70, 54, 71, 55, 72, 56, 73, 57, 74, 58, 0, 1073741831, 0, 76, 75, -1, 11, 77, 59, 78, 60, 79, 61, 80, 62, 81, 63, 82, 64, 83, 65, 84, 66, 85, 67, 86, 68, 87, 69, 0, 1073741832, 0, 89, 88, -1, 13, 90, 70, 91, 71, 92, 72, 93, 73, 94, 74, 95, 75, 96, 76, 97, 77, 98, 78, 99, 79, 100, 80, 101, 81, 102, 82, 0, 1073741833, 0, 104, 103, -1, 12, 105, 83, 106, 84, 107, 85, 108, 86, 109, 87, 110, 88, 111, 89, 112, 90, 113, 91, 114, 92, 115, 93, 116, 94, 0, 1073741834, 0, 118, 117, -1, 12, 119, 95, 120, 96, 121, 97, 122, 98, 123, 99, 124, 100, 125, 101, 126, 102, 127, 103, 128, 104, 129, 105, 130, 106, 0, 1073741835, 0, 132, 131, -1, 13, 133, 107, 134, 108, 135, 109, 136, 110, 137, 111, 138, 112, 139, 113, 140, 114, 141, 115, 142, 116, 143, 117, 144, 118, 145, 119, 0, 1073741836, 0, 147, 146, -1, 6, 148, 120, 149, 121, 150, 122, 151, 123, 152, 124, 153, 125, 0, 1073741837, 0, 155, 154, -1, 6, 156, 126, 157, 127, 158, 128, 159, 129, 160, 130, 161, 131, 0, 1073741838, 0, 163, 162, -1, 3, 164, 132, 165, 133, 166, 134, 0, 1073741839, 0, 168, 167, -1, 0, 0 ),
+"variants": [ 386.0, 203.0, ExtResource( 9 ), ExtResource( 7 ), true, 1.0, 1.0, 32.0, 32.0, SubResource( 2 ), 1.0, 24.0, Color( 0, 0, 0, 0.247059 ), 0.5, 0.5, 0.5, 0.5, -13.0, -6.0, 13.0, 6.0, ExtResource( 4 ), 2, 1.0, 48.0, 1.0, -26.0, 24.0, "actions.sh", 1, 0.5, 0.5, 12.0, -8.0, 28.0, 8.0, SubResource( 5 ), 1.0, 1.0, -84.0, 2.0, -16.0, 22.0, Vector2( 0, 20 ), 2, 20.0, 20.0, Vector2( 20, 0 ), "Épinger la fenêtre", 0, 2, true, SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 13 ), SubResource( 15 ), true, 5, true, 0.5, 0.5, 0.5, 0.5, -8.0, -8.0, 8.0, 8.0, 1, SubResource( 4 ), 24.0, 44.0, 20.0, Vector2( 20, 0 ), 0, 2, SubResource( 6 ), SubResource( 11 ), SubResource( 12 ), SubResource( 6 ), SubResource( 12 ), true, 5, true, 0.5, 0.5, 0.5, 0.5, -8.0, -8.0, 8.0, 8.0, "Maximiser la fenêtre", 1, SubResource( 4 ), 48.0, 68.0, 20.0, Vector2( 20, 0 ), 0, SubResource( 16 ), SubResource( 7 ), SubResource( 10 ), SubResource( 16 ), SubResource( 10 ), true, 5, true, 0.5, 0.5, 0.5, 0.5, -8.0, -8.0, 8.0, 8.0, "Fermer la fenêtre", 1, 2, SubResource( 3 ), 1.0, 1.0, 2.0, 24.0, -2.0, -2.0, Color( 0, 0, 0, 0.247059 ), 1.0, 1.0, ExtResource( 5 ), true, 7, 1.0, -86.0, 24.0 ],
+"version": 2
+}
+
+[sub_resource type="DynamicFont" id=18]
+size = 30
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+content_margin_right = 8.0
+bg_color = Color( 0.0862745, 0.168627, 0.0352941, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0627451, 0.109804, 0.0352941, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.247059 )
+shadow_size = 5
+shadow_offset = Vector2( 0, 5 )
+
+[node name="Modal" instance=ExtResource( 1 )]
+margin_right = 280.0
+margin_bottom = 440.0
+script = ExtResource( 8 )
+
+[node name="Grid" type="GridContainer" parent="Content" index="1"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -124.0
+margin_top = -340.0
+margin_right = 124.0
+margin_bottom = -8.0
+columns = 3
+
+[node name="Screen" type="Label" parent="Content" index="2"]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 47.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = SubResource( 18 )
+custom_styles/normal = SubResource( 19 )
+align = 2
+valign = 1

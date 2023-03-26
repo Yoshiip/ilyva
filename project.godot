@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/bash_in_godot/scripts/Path.gd"
 }, {
+"base": "Resource",
+"class": "Puzzle",
+"language": "GDScript",
+"path": "res://scripts/resources/Puzzle.gd"
+}, {
 "base": "Object",
 "class": "SystemElement",
 "language": "GDScript",
@@ -115,6 +120,7 @@ _global_script_class_icons={
 "ErrorHandler": "",
 "HistoryRow": "",
 "PathObject": "",
+"Puzzle": "",
 "SystemElement": "",
 "Terminal": "",
 "Tokens": ""
@@ -137,6 +143,7 @@ MusicManager="*res://scripts/MusicManager.gd"
 
 window/size/width=1280
 window/size/height=720
+window/vsync/use_vsync=false
 
 [editor_plugins]
 
@@ -226,9 +233,10 @@ autocompletion={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]
 }
-drag={
+mouse_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -2,6 +2,8 @@ extends "res://scripts/ui/Modal.gd"
 
 
 
+
+
 onready var StartAppButton := preload("res://prefabs/puzzles/StartAppButton.tscn")
 
 func _ready() -> void:
@@ -11,7 +13,14 @@ func _ready() -> void:
 		button.get_node("Icon").texture.region.position.y = GameManager.APPS[i].icon * 16.0
 		button.get_node("Label").text = i + ".sh"
 		button.connect("pressed", self, "_start_app", [ i ])
-		$Content/GridContainer.add_child(button)
+		$Content/Scroll/Grid.add_child(button)
+	if connect("resized", self, "_resized") != OK:
+		printerr("Error")
+	_resized()
 
 func _start_app(app_name : String) -> void:
 	get_parent().open_modal(app_name)
+
+func _resized() -> void:
+	$Content/Scroll/Grid.columns = floor(max(rect_size.x, 178) / 178)
+	$Content/Scroll/Grid.rect_size = $Content/Scroll.rect_size

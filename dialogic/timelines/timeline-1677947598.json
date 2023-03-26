@@ -8,7 +8,7 @@
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
-					"file": "res://audios/voices/Mathieu/0.ogg"
+					"file": ""
 				}
 			}
 		},
@@ -41,7 +41,7 @@
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
-					"file": "res://audios/voices/Mathieu/2.ogg"
+					"file": ""
 				}
 			}
 		},
@@ -53,7 +53,7 @@
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
-					"file": "res://audios/voices/Mathieu/3.ogg"
+					"file": ""
 				}
 			}
 		},
@@ -65,7 +65,7 @@
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
-					"file": "res://audios/voices/Mathieu/4.ogg"
+					"file": ""
 				}
 			}
 		},

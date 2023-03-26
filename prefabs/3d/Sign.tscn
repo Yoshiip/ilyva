@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://images/huge_circle.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFont" id=44]
+size = 64
+outline_size = 4
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=45]
+size = 20
+outline_size = 1
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=46]
+size = 24
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=43]
+albedo_color = Color( 0.992157, 0.768627, 0.133333, 1 )
+
+[sub_resource type="SpatialMaterial" id=47]
+albedo_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+metallic = 1.0
+
+[node name="Sign" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 6.9, -34 )
+
+[node name="Text" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.3, -0.110001 )
+
+[node name="Circle" type="Sprite3D" parent="Text"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.175, 0 )
+pixel_size = 0.0003
+shaded = true
+texture = ExtResource( 2 )
+
+[node name="TerminusName" type="Label3D" parent="Text"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, 0 )
+pixel_size = 0.0035
+shaded = true
+text = "Saint-Philibert"
+font = SubResource( 44 )
+
+[node name="Direction" type="Label3D" parent="Text"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.15, 0 )
+shaded = true
+modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
+outline_modulate = Color( 0.121569, 0.121569, 0.121569, 1 )
+text = "Direction"
+font = SubResource( 45 )
+
+[node name="LineNumber" type="Label3D" parent="Text"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.155, 0.00500107 )
+shaded = true
+modulate = Color( 0.247059, 0.247059, 0.247059, 1 )
+text = "2"
+font = SubResource( 46 )
+
+[node name="Mesh" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3, 0 )
+height = 0.8
+depth = 0.2
+material = SubResource( 43 )
+
+[node name="CSGBox" type="CSGBox" parent="Mesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.4, 0 )
+width = 0.1
+depth = 0.1
+material = SubResource( 47 )
+
+[node name="CSGBox2" type="CSGBox" parent="Mesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.4, 0 )
+width = 0.1
+depth = 0.1
+material = SubResource( 47 )

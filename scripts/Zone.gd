@@ -13,10 +13,10 @@ export var image_size := 2784
 onready var PauseMenu := preload("res://prefabs/PauseMenu.tscn")
 var pause_menu
 
-var tooltip : RichTextLabel
-var transition : ColorRect
-var cursor : Area2D
-var canvas : CanvasLayer
+onready var tooltip := preload("res://prefabs/Tooltip.tscn").instance()
+onready var transition := preload("res://prefabs/Transition.tscn").instance()
+onready var cursor := preload("res://prefabs/Cursor.tscn").instance()
+onready var canvas := preload("res://prefabs/2d/GameCanvas.tscn").instance()
 
 var background_blur : Sprite
 
@@ -24,25 +24,19 @@ onready var scene_light := CanvasModulate.new()
 onready var tween := Tween.new()
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$Camera.limit_left = -image_size / 2
 	$Camera.limit_right = image_size / 2
 	pause_menu = PauseMenu.instance()
 	
-	canvas = preload("res://prefabs/2d/GameCanvas.tscn").instance()
+	
 	add_child(canvas)
-	
-	tooltip = preload("res://prefabs/Tooltip.tscn").instance()
 	add_child(tooltip)
-	
-	transition = preload("res://prefabs/Transition.tscn").instance()
-	get_node("Canvas/Container").add_child(transition)
-	
-	cursor = preload("res://prefabs/Cursor.tscn").instance()
 	add_child(cursor)
-	
 	add_child(tween)
-	
 	add_child(scene_light)
+	
+	canvas.add_child(transition)
 	canvas.get_node("Container/TurnLight").connect("toggled", self, "toggle_light")
 	
 	background_blur = preload("res://prefabs/2d/BackgroundBlur.tscn").instance()

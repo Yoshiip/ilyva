@@ -6,10 +6,13 @@ export var can_pin := true
 export var can_maximize := true
 export var can_drag := true
 
+export var min_size := Vector2(128, 128)
+
 var maximize := false
 
 onready var tween := $Tween
 
+var puzzle : Puzzle
 
 func play_tween(n : Node, p : String, val1, val2, d : float, t = Tween.TRANS_BOUNCE, e = Tween.EASE_IN_OUT, backward = false) -> void:
 	if backward:
@@ -37,37 +40,50 @@ func _ready() -> void:
 
 var drag_zone_hovered := false
 
-var dragged := false
-var base_drag_position := Vector2()
+var dragging := false
+var resizing := false
+
+var base_action_position := Vector2()
+var base_action_size := Vector2()
+
+const TASKBAR_SIZE := 40
 
 var i = 0.0
 func _process(delta: float) -> void:
 	i += delta * 2.0
 	
-	var _m = get_global_mouse_position()
+	var _m := get_global_mouse_position()
 	$Header/Icon.texture.region.position.x = 16 if _m.x > rect_position.x && _m.y > rect_position.y && _m.x < rect_position.x + rect_size.x && _m.y < rect_position.y + rect_size.y else 0
-	if drag_zone_hovered && !maximize && can_drag:
-		if Input.is_action_just_pressed("drag"):
+	
+	if resizing:
+		var _new_size = (_m - base_action_position)
+		rect_size.x = clamp(_new_size.x, min_size.x, get_viewport().size.x)
+		rect_size.y = clamp(_new_size.y, min_size.y, get_viewport().size.y - TASKBAR_SIZE)
+		if Input.is_action_just_released("mouse_left"):
+			resizing = false
+	elif drag_zone_hovered && !maximize && can_drag:
+		if Input.is_action_just_pressed("mouse_left"):
 			get_parent().move_modal(self)
-			dragged = true
+			dragging = true
 			rect_pivot_offset = _m - rect_position
-			base_drag_position = _m - rect_position
+			base_action_position = _m - rect_position
 			play_tween(self, "rect_scale", rect_scale, Vector2.ONE * 1.25, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 			play_tween($Shadow, "modulate:a", $Shadow.modulate.a, 1.0, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 
 			i = 0.0
-	if dragged && Input.is_action_just_released("drag"):
+	if dragging && Input.is_action_just_released("mouse_left") && !resizing:
 		tween.remove_all()
 		play_tween(self, "rect_scale", rect_scale, Vector2.ONE, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 		play_tween($Shadow, "modulate:a", $Shadow.modulate.a, 0.0, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 
 		rect_rotation = 0.0
-		dragged = false
-	if dragged:
+		dragging = false
+	if dragging && !resizing:
 		rect_rotation = sin(i) * 10.0
 		
-		if _m.x > 0 && _m.y > 0 && _m.x < get_viewport().size.x && _m.y < get_viewport().size.y:
-			rect_position = lerp(rect_position, _m - base_drag_position, delta * 5.0)
+
+		rect_position.x = clamp(lerp(rect_position.x, _m.x - base_action_position.x, delta * 5.0), 0, get_viewport().size.x - rect_size.x)
+		rect_position.y = clamp(lerp(rect_position.y, _m.y - base_action_position.y, delta * 5.0), 0, get_viewport().size.y - TASKBAR_SIZE - rect_size.y)
 
 
 func _on_DragZone_mouse_entered() -> void:
@@ -123,3 +139,9 @@ func _on_Maximize_pressed() -> void:
 		margin_bottom = -40
 
 
+
+
+func _on_Resize_pressed() -> void:
+	base_action_position = rect_position
+	base_action_size = rect_size
+	resizing = true

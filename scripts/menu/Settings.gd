@@ -63,5 +63,4 @@ func _ready() -> void:
 	get_viewport().connect("size_changed", self, "window_size_changed")
 
 func window_size_changed() -> void:
-	print(rect_size.x)
 	$Scroll/Container.rect_min_size.x = rect_size.x - 48

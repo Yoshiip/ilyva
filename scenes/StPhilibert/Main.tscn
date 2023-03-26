@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/Interaction.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=4]
 [ext_resource path="res://images/backgrounds/Ligne_2_du_métro_de_Lille_Métropole_-_Interstation_Saint-Philibert_↔_Bourg_(07).jpg" type="Texture" id=5]
 [ext_resource path="res://prefabs/2d/Character.tscn" type="PackedScene" id=6]
+[ext_resource path="res://images/textures/rain.png" type="Texture" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://images/textures/light.png" type="Texture" id=13]
 
@@ -233,6 +234,20 @@ shader_param/y_rot = 0.0
 shader_param/x_rot = 0.0
 shader_param/inset = 0.75
 
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 960, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 0.05
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 0, 0.647059, 1, 0.498039 )
+
 [node name="MetroOutside" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
@@ -297,5 +312,12 @@ texture = ExtResource( 9 )
 texture = ExtResource( 13 )
 texture_scale = 2.0
 energy = 0.0
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -536 )
+amount = 300
+randomness = 1.0
+process_material = SubResource( 12 )
+texture = ExtResource( 7 )
 
 [editable path="Arrow2"]

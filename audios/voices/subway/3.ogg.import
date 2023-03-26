@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/3.ogg-05493deeacc59f8acfde832f5857e208.oggstr"
+
+[deps]
+
+source_file="res://audios/voices/subway/3.ogg"
+dest_files=[ "res://.import/3.ogg-05493deeacc59f8acfde832f5857e208.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,17 +1,15 @@
 extends Control
 
-const MODALS := {
-	"terminal": preload("res://prefabs/puzzles/TerminalModal.tscn"),
-	"hints": preload("res://prefabs/puzzles/HintModal.tscn"),
-	"digicode": preload("res://prefabs/puzzles/DigicodeModal.tscn"),
-}
 
+func _ready() -> void:
+	open_modal("apps")
 
 func open_modal(modal_name : String) -> void:
-	if !MODALS.has(modal_name):
+	if !GameManager.APPS.get(modal_name).get("reference"):
 		print("wip")
 		return
-	var modal = MODALS[modal_name].instance()
+	var modal = GameManager.APPS.get(modal_name).get("reference").instance()
+	modal.puzzle = get_tree().current_scene.puzzle
 	modal.app_id = modal_name
 	modal.rect_position = Vector2(rand_range(0, get_viewport().size.x - modal.rect_size.x), rand_range(0, get_viewport().size.y - modal.rect_size.y))
 	add_child(modal)
