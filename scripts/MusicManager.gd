@@ -1,8 +1,6 @@
 extends Node
 
-const MUSICS := {
-	"night": preload("res://audios/musics/night.mp3"),
-}
+const MUSICS := {}
 
 
 func start_music(_id) -> void:

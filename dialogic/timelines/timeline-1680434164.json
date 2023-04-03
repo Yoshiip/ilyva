@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je n'ai pas l'impression que ça va m'être utile d'aller là-bas pour l'instant..."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1680434164.json",
+		"name": "arrow_blocked"
+	}
+}

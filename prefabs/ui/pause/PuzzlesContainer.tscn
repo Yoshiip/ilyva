@@ -1,0 +1,240 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://prefabs/ui/StylizedCheckbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ui/pause/PauseContainer.gd" type="Script" id=2]
+[ext_resource path="res://images/icons/check.png" type="Texture" id=4]
+[ext_resource path="res://fonts/Hack-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.498039 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color( 0, 0, 0, 0.498039 )
+shadow_size = 2
+shadow_offset = Vector2( 0, 8 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
+
+[node name="Puzzles" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = -832.0
+margin_bottom = -64.0
+scroll_horizontal_enabled = false
+
+[node name="Container" type="VBoxContainer" parent="Scroll"]
+margin_right = 380.0
+margin_bottom = 1024.0
+rect_min_size = Vector2( 380, 1024 )
+custom_constants/separation = 16
+
+[node name="Button" type="Button" parent="Scroll/Container"]
+margin_right = 380.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 48 )
+align = 0
+
+[node name="Label2" type="Label" parent="Scroll/Container/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -11.0
+margin_right = 38.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 5 )
+text = "001"
+valign = 1
+
+[node name="Checkbox" parent="Scroll/Container/Button" instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -46.0
+margin_right = -16.0
+checked = true
+
+[node name="Label" type="Label" parent="Scroll/Container/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 48.0
+margin_top = -11.5
+margin_right = 272.0
+margin_bottom = 11.5
+text = "L'heure du ratio"
+
+[node name="Button2" type="Button" parent="Scroll/Container"]
+margin_top = 64.0
+margin_right = 380.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 48 )
+align = 0
+
+[node name="Label2" type="Label" parent="Scroll/Container/Button2"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -11.0
+margin_right = 38.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 5 )
+text = "001"
+valign = 1
+
+[node name="Checkbox" parent="Scroll/Container/Button2" instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -46.0
+margin_right = -16.0
+checked = true
+
+[node name="Label" type="Label" parent="Scroll/Container/Button2"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 48.0
+margin_top = -11.5
+margin_right = 272.0
+margin_bottom = 11.5
+text = "L'heure du ratio"
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 64.0
+margin_top = 16.0
+margin_right = -64.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 6 )
+text = "Liste des énigmes"
+align = 1
+
+[node name="Content" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 448.0
+margin_top = 64.0
+margin_right = -192.0
+margin_bottom = -64.0
+rect_min_size = Vector2( 640, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Content"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 8
+
+[node name="LilleFlandres" type="TextureRect" parent="Content/VBoxContainer2"]
+margin_right = 640.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+expand = true
+stretch_mode = 6
+
+[node name="Label2" type="Label" parent="Content/VBoxContainer2"]
+margin_top = 208.0
+margin_right = 640.0
+margin_bottom = 242.0
+custom_fonts/font = SubResource( 6 )
+text = "L'heure du ratio"
+align = 1
+
+[node name="Label3" type="Label" parent="Content/VBoxContainer2"]
+margin_top = 250.0
+margin_right = 640.0
+margin_bottom = 264.0
+text = "Terminé"
+align = 1
+
+[node name="Check" type="TextureRect" parent="Content/VBoxContainer2/Label3"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Separator" type="Control" parent="Content/VBoxContainer2"]
+margin_top = 272.0
+margin_right = 640.0
+margin_bottom = 336.0
+rect_min_size = Vector2( 0, 64 )
+
+[node name="Label6" type="Label" parent="Content/VBoxContainer2"]
+margin_top = 344.0
+margin_right = 640.0
+margin_bottom = 358.0
+text = "Donnée par Manon"
+align = 1
+
+[node name="Label4" type="Label" parent="Content/VBoxContainer2"]
+margin_top = 366.0
+margin_right = 640.0
+margin_bottom = 380.0
+text = "Il existe différents types de ratio, le flop, la masterclass et le Listenbourg!!!!"
+autowrap = true
+
+[node name="Label" type="Button" parent="Content/VBoxContainer2"]
+margin_top = 388.0
+margin_right = 640.0
+margin_bottom = 408.0
+text = "Faire l'énigme"
+
+[node name="Label5" type="Label" parent="Content/VBoxContainer2"]
+margin_top = 416.0
+margin_right = 640.0
+margin_bottom = 430.0
+
+[node name="Close" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -120.0
+margin_right = 64.0
+margin_bottom = -88.0
+rect_min_size = Vector2( 128, 0 )
+text = "Retour"

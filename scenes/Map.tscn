@@ -14,20 +14,21 @@ _data = {
 
 [node name="Map" type="Sprite" parent="."]
 scale = Vector2( 0.8, 0.8 )
+z_index = -64
 texture = ExtResource( 5 )
 
 [node name="Line" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
 [node name="Path" type="PathFollow2D" parent="Line"]
-position = Vector2( -178.335, 92.4764 )
-rotation = -2.20666
-offset = 1037.94
+position = Vector2( -485.592, -37.7405 )
+rotation = -2.57844
+scale = Vector2( 1, 1 )
+offset = 1402.6
 lookahead = 10.0
 
 [node name="Icon" type="Sprite" parent="Line/Path"]
 rotation = 1.5708
-z_index = 16
 texture = ExtResource( 2 )
 
 [node name="0" parent="Line" instance=ExtResource( 1 )]

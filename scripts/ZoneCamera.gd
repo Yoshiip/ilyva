@@ -4,6 +4,7 @@ var max_drag := 0
 
 func _ready() -> void:
 	get_viewport().connect("size_changed", self, "_size_changed")
+	_size_changed()
 
 func _process(delta: float) -> void:
 	max_drag = (get_parent().image_size - get_viewport().size.x) / 2.0

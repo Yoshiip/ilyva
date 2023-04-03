@@ -2,7 +2,16 @@ extends Node
 
 signal settings_updated
 
-export var scene_start_dialogue := ""
+var scene_start_dialogue := ""
+var current_puzzle : Resource
+var map_stop_progress := 2
+var context_before_puzzle = null
+var story_progress := 0
+
+
+var one_time_interacts := []
+
+
 
 const APPS := {
 	"terminal": {
@@ -68,13 +77,6 @@ const STATIONS := [
 	},
 ]
 
-
-var puzzles := {
-	0: {
-		"portrait": preload("res://images/portraits/jvlivm.png")
-	}
-}
-var puzzle_id := -1
 
 
 var settings := {

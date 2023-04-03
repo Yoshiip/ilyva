@@ -1280,7 +1280,3 @@ func chmod(options: Array, _standard_input: String) -> Dictionary:
 		"output": "",
 		"error": null
 	}
-
-
-func _on_Prompt_text_changed(new_text: String) -> void:
-	pass # Replace with function body.

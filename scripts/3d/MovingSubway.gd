@@ -13,9 +13,6 @@ onready var c_stop_time := max_stop_time
 onready var offset : float = 0.0
 #onready var offset : float = get_offset() - (50.0 if going_forward else -50.0)
 
-
-
-var part_count := 4
 var block_door_closing = false
 var current_stop_id := 0
 
@@ -40,21 +37,20 @@ var next_stop_id := 0
 
 
 func _ready() -> void:
-	set_process(false)
-	yield(get_tree().current_scene, "ready")
-	set_process(true)
+	update_line_used(true)
 	next_stop_id = current_stop_id
 	if going_forward:
 		current_stop_id -= 1
 	else:
 		current_stop_id += 1
-	for i in part_count:
-		var _mesh = preload("res://prefabs/3d/SubwayPart.tscn").instance()
+	var _SubwayPart := preload("res://prefabs/3d/SubwayPart.tscn")
+	for i in 4:
+		var _mesh = _SubwayPart.instance()
 		if i != 0:
 			_mesh.get_node("FrontWall").queue_free()
 		else:
 			_mesh.get_node("FrontSeparation").queue_free()
-		if i != part_count - 1:
+		if i != 3:
 			_mesh.get_node("BackWall").queue_free()
 		else:
 			_mesh.get_node("BackSeparation").queue_free()
@@ -112,22 +108,22 @@ func _process(delta: float) -> void:
 #		else:
 #			_dis1 = GameManager.STATIONS[current_stop_id]
 #			_dis2 = GameManager.STATIONS[next_stop_id]
-	
+	print(str(GameManager.map_stop_progress, " > ", next_stop_id))
 	if offset >= next_stop_position && going_forward|| offset <= next_stop_position && !going_forward:
 		speed = 0.0
 		translation.z = 2.0
 		c_stop_time -= delta
 		if !door_opened && c_stop_time > 0.0:
 			if player_inside:
-				$"%ZoneName".play_animation(GameManager.STATIONS[next_stop_id].name)
+				get_tree().current_scene.play_zone_animation(GameManager.STATIONS[next_stop_id].name)
 				$Effects/Voice.stream = AUDIOS[next_stop_id]
 				$Effects/Voice.play()
 			start_playing_beep = false
 			interact_door(true, !going_forward)
 			yield(get_tree().create_timer(0.5), "timeout")
 			station.interact_door(true, !going_forward)
-		
-		if door_opened && c_stop_time <= 0.0 && !start_playing_beep:
+
+		if door_opened && c_stop_time <= 0.0 && !start_playing_beep && !(GameManager.map_stop_progress == next_stop_id):
 			start_playing_beep = true
 			$Effects/DoorBeep.play()
 		if door_moving && block_door_closing:
@@ -138,7 +134,9 @@ func _process(delta: float) -> void:
 		if c_stop_time <= -2.0 && !door_opened && !door_moving:
 			if is_at_terminus(next_stop_id):
 				translation.x = -translation.x
+				update_line_used(false)
 				going_forward = !going_forward
+				update_line_used(true)
 				if !going_forward:
 					current_stop_id += 2
 				else:
@@ -166,6 +164,9 @@ func _process(delta: float) -> void:
 		translation.z = _diff
 		if player_inside:
 			station.station_changed(next_stop_id)
+		else:
+			update_line_used(false)
+			queue_free()
 		looped_once = true
 	if player_inside:
 		$Effects.global_translation = player.translation
@@ -176,6 +177,11 @@ func _process(delta: float) -> void:
 func is_at_terminus(stop_id : int) -> bool:
 	return stop_id == 0 && !going_forward || stop_id == GameManager.STATIONS.size() - 1 && going_forward
 
+func update_line_used(value : bool) -> void:
+	if going_forward:
+		get_tree().current_scene.set("right_line_used", value)
+	else:
+		get_tree().current_scene.set("left_line_used", value)
 
 
 

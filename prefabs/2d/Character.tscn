@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Interaction.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://images/icons/dialogue_icon.png" type="Texture" id=2]
 [ext_resource path="res://images/textures/light.png" type="Texture" id=3]
+[ext_resource path="res://images/portraits/mathieu.png" type="Texture" id=4]
 
 [sub_resource type="Shader" id=11]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
@@ -77,7 +78,7 @@ extents = Vector2( 27, 32.5 )
 [sub_resource type="ShaderMaterial" id=9]
 shader = SubResource( 11 )
 shader_param/fov = 90.0
-shader_param/cull_back = true
+shader_param/cull_back = false
 shader_param/y_rot = 0.0
 shader_param/x_rot = 0.0
 shader_param/inset = 0.75
@@ -88,17 +89,19 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Manon" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 3 )
-texture = ExtResource( 2 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 4, 0.5 )
 shape = SubResource( 6 )
 
 [node name="Icon" type="Sprite" parent="."]
 material = SubResource( 9 )
-position = Vector2( 0, -72 )
+position = Vector2( 0, -104 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="Light" type="Light2D" parent="."]

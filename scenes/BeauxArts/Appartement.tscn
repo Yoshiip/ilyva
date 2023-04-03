@@ -1,0 +1,323 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scripts/Interaction.gd" type="Script" id=1]
+[ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Zone.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=4]
+[ext_resource path="res://images/backgrounds/beaux_arts/appartement.jpg" type="Texture" id=5]
+[ext_resource path="res://images/sultans/sultan.png" type="Texture" id=6]
+[ext_resource path="res://scripts/SultanCollectable.gd" type="Script" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://images/textures/light.png" type="Texture" id=13]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 BackColor : hint_color = vec4(0.0, 0.4, 0.58, 1.0);
+uniform vec4 CloudColor : hint_color = vec4(0.18, 0.70, 0.87, 1.0);
+uniform float speed : hint_range(0.0, 5.0) = 0.1;
+
+const float TAU = 6.28318530718;
+
+float Func(float pX)
+{
+	return 0.6*(0.5*sin(0.1*pX) + 0.5*sin(0.553*pX) + 0.7*sin(1.2*pX));
+}
+
+
+float FuncR(float pX)
+{
+	return 0.5 + 0.25*(1.0 + sin(mod(40.0*pX, TAU)));
+}
+
+
+float Layer(vec2 pQ, float pT)
+{
+	vec2 Qt = 3.5*pQ;
+	pT *= 0.5;
+	Qt.x += pT;
+
+	float Xi = floor(Qt.x);
+	float Xf = Qt.x - Xi -0.5;
+
+	vec2 C;
+	float Yi;
+	float D = 1.0 - step(Qt.y,  Func(Qt.x));
+
+	// Disk:
+	Yi = Func(Xi + 0.5);
+	C = vec2(Xf, Qt.y - Yi );
+	D =  min(D, length(C) - FuncR(Xi+ pT/80.0));
+
+	// Previous disk:
+	Yi = Func(Xi+1.0 + 0.5);
+	C = vec2(Xf-1.0, Qt.y - Yi );
+	D =  min(D, length(C) - FuncR(Xi+1.0+ pT/80.0));
+
+	// Next Disk:
+	Yi = Func(Xi-1.0 + 0.5);
+	C = vec2(Xf+1.0, Qt.y - Yi );
+	D =  min(D, length(C) - FuncR(Xi-1.0+ pT/80.0));
+
+	return min(1.0, D);
+}
+
+void fragment() {
+	//vec2 uv = 8.0 * (SCREEN_UV - UV * 2.0);
+	vec2 uv = 3.0 * (vec2(0.5, 0.5) - UV * 2.0);
+
+	// Render:
+	vec3 Color= BackColor.rgb;
+	for(float J = 0.0; J <= 1.0; J += 0.2)
+	{
+		// Cloud Layer:
+		float Lt =  TIME * speed * (0.5  + 2.0 * J) * (1.0 + 0.1 * sin(226.0 * J)) + 17.0 * J;
+		vec2 Lp = vec2(0.0, 0.3 + 1.5 * ( J - 0.5));
+		float L = Layer(uv + Lp, Lt);
+		// Blur and color:
+		float Blur = 4.0 * (0.5 * abs(2.0 - 5.0 * J)) / (11.0 - 5.0 * J);
+		float V = mix( 0.0, 1.0, 1.0 - smoothstep( 0.0, 0.01 +0.2 * Blur, L ) );
+		vec3 Lc=  mix(CloudColor.rgb, vec3(1.0), J);
+		Color =mix(Color, Lc,  V);
+	}
+	COLOR = vec4(Color,1.);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/BackColor = Color( 0.505882, 0.847059, 1, 1 )
+shader_param/CloudColor = Color( 0.65098, 0.835294, 0.894118, 1 )
+shader_param/speed = 2.0
+
+[sub_resource type="Shader" id=1]
+code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
+// License: MIT
+
+shader_type canvas_item;
+
+// Camera FOV
+uniform float fov : hint_range(1, 179) = 90;
+uniform bool cull_back = true;
+uniform float y_rot : hint_range(-180, 180) = 0.0;
+uniform float x_rot : hint_range(-180, 180) = 0.0;
+// At 0, the image retains its size when unrotated.
+// At 1, the image is resized so that it can do a full
+// rotation without clipping inside its rect.
+uniform float inset : hint_range(0, 1) = 0.0;
+// Consider changing this to a uniform and changing it from code
+
+varying flat vec2 o;
+varying vec3 p;
+
+const float PI = 3.14159;
+
+// Creates rotation matrix
+void vertex(){
+	float sin_b = sin(y_rot / 180.0 * PI);
+	float cos_b = cos(y_rot / 180.0 * PI);
+	float sin_c = sin(x_rot / 180.0 * PI);
+	float cos_c = cos(x_rot / 180.0 * PI);
+	
+	mat3 inv_rot_mat;
+	inv_rot_mat[0][0] = cos_b;
+	inv_rot_mat[0][1] = 0.0;
+	inv_rot_mat[0][2] = -sin_b;
+	
+	inv_rot_mat[1][0] = sin_b * sin_c;
+	inv_rot_mat[1][1] = cos_c;
+	inv_rot_mat[1][2] = cos_b * sin_c;
+	
+	inv_rot_mat[2][0] = sin_b * cos_c;
+	inv_rot_mat[2][1] = -sin_c;
+	inv_rot_mat[2][2] = cos_b * cos_c;
+	
+	
+	float t = tan(fov / 360.0 * PI);
+	p = inv_rot_mat * vec3((UV - 0.5), 0.5 / t);
+	float v = (0.5 / t) + 0.5;
+	p.xy *= v * inv_rot_mat[2].z;
+	o = v * inv_rot_mat[2].xy;
+
+	VERTEX += (UV - 0.5) / TEXTURE_PIXEL_SIZE * t * (1.0 - inset);
+}
+
+void fragment(){
+	if (cull_back && p.z <= 0.0) discard;
+	vec2 uv = (p.xy / p.z).xy - o;
+    COLOR = texture(TEXTURE, uv + 0.5);
+	COLOR.a *= step(max(abs(uv.x), abs(uv.y)), 0.5);
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 1 )
+shader_param/fov = 90.0
+shader_param/cull_back = true
+shader_param/y_rot = 0.0
+shader_param/x_rot = -50.0
+shader_param/inset = 0.0
+
+[sub_resource type="Shader" id=11]
+code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
+// License: MIT
+
+shader_type canvas_item;
+
+// Camera FOV
+uniform float fov : hint_range(1, 179) = 90;
+uniform bool cull_back = true;
+uniform float y_rot : hint_range(-180, 180) = 0.0;
+uniform float x_rot : hint_range(-180, 180) = 0.0;
+// At 0, the image retains its size when unrotated.
+// At 1, the image is resized so that it can do a full
+// rotation without clipping inside its rect.
+uniform float inset : hint_range(0, 1) = 0.0;
+// Consider changing this to a uniform and changing it from code
+
+varying flat vec2 o;
+varying vec3 p;
+
+const float PI = 3.14159;
+
+// Creates rotation matrix
+void vertex(){
+	float sin_b = sin(y_rot / 180.0 * PI);
+	float cos_b = cos(y_rot / 180.0 * PI);
+	float sin_c = sin(x_rot / 180.0 * PI);
+	float cos_c = cos(x_rot / 180.0 * PI);
+	
+	mat3 inv_rot_mat;
+	inv_rot_mat[0][0] = cos_b;
+	inv_rot_mat[0][1] = 0.0;
+	inv_rot_mat[0][2] = -sin_b;
+	
+	inv_rot_mat[1][0] = sin_b * sin_c;
+	inv_rot_mat[1][1] = cos_c;
+	inv_rot_mat[1][2] = cos_b * sin_c;
+	
+	inv_rot_mat[2][0] = sin_b * cos_c;
+	inv_rot_mat[2][1] = -sin_c;
+	inv_rot_mat[2][2] = cos_b * cos_c;
+	
+	
+	float t = tan(fov / 360.0 * PI);
+	p = inv_rot_mat * vec3((UV - 0.5), 0.5 / t);
+	float v = (0.5 / t) + 0.5;
+	p.xy *= v * inv_rot_mat[2].z;
+	o = v * inv_rot_mat[2].xy;
+
+	VERTEX += (UV - 0.5) / TEXTURE_PIXEL_SIZE * t * (1.0 - inset);
+}
+
+void fragment(){
+	if (cull_back && p.z <= 0.0) discard;
+	vec2 uv = (p.xy / p.z).xy - o;
+    COLOR = texture(TEXTURE, uv + 0.5);
+	COLOR.a *= step(max(abs(uv.x), abs(uv.y)), 0.5);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 11 )
+shader_param/fov = 90.0
+shader_param/cull_back = true
+shader_param/y_rot = 0.0
+shader_param/x_rot = 0.0
+shader_param/inset = 0.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 27, 32.5 )
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 11 )
+shader_param/fov = 90.0
+shader_param/cull_back = true
+shader_param/y_rot = 0.0
+shader_param/x_rot = 0.0
+shader_param/inset = 0.75
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 48, 48 )
+
+[node name="MetroOutside" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 3 )
+zone_id = "beaux_arts"
+zone_name = "Appartement"
+time = "Evening"
+image_size = 3000
+
+[node name="Sky" type="Sprite" parent="."]
+visible = false
+material = SubResource( 8 )
+position = Vector2( -128, -20 )
+scale = Vector2( 15, 10.406 )
+texture = ExtResource( 9 )
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 0.298, 0.298 )
+z_index = -64
+texture = ExtResource( 5 )
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+limit_smoothed = true
+smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource( 4 )
+
+[node name="Arrow" parent="." instance=ExtResource( 2 )]
+position = Vector2( -915, 427 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+scene_name = "StPhilibert/MetroOutside"
+
+[node name="Icon" parent="Arrow" index="0"]
+material = SubResource( 10 )
+
+[node name="Collision" parent="Arrow" index="1"]
+position = Vector2( 0, -17.5 )
+
+[node name="Louane" type="Area2D" parent="." groups=["Interaction"]]
+position = Vector2( -464, 187 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Manon" type="Sprite" parent="Louane"]
+material = SubResource( 3 )
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Louane"]
+position = Vector2( 4, 0.5 )
+shape = SubResource( 6 )
+
+[node name="Icon" type="Sprite" parent="Louane"]
+material = SubResource( 9 )
+position = Vector2( 0, -72 )
+texture = ExtResource( 9 )
+
+[node name="Light" type="Light2D" parent="Louane"]
+texture = ExtResource( 13 )
+texture_scale = 2.0
+energy = 0.0
+
+[node name="SultanCollectable" type="Area2D" parent="." groups=["Interaction"]]
+position = Vector2( 178, 322 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+sultan_id = "sultan"
+
+[node name="Sultan" type="Sprite" parent="SultanCollectable"]
+modulate = Color( 1, 1, 1, 0.247059 )
+scale = Vector2( 0.333, 0.333 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SultanCollectable"]
+shape = SubResource( 12 )
+
+[editable path="Arrow"]

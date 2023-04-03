@@ -4,4 +4,4 @@ func _ready() -> void:
 	if puzzle != null:
 		$Content/Name.text = puzzle.name
 		$Content/Instructions.text = puzzle.description
-		$Content/Number.text = str("N°", puzzle.get_puzzle_id())
+		$Content/Number.text = str("Énigme n°", puzzle.get_puzzle_id())

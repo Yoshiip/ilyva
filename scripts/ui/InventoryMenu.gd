@@ -57,7 +57,12 @@ func _process(_delta: float) -> void:
 
 	if visible:
 		if Input.is_action_just_pressed("escape") && !in_animation && can_pause:
-			play_animation(true)
+			var _modals := get_tree().get_nodes_in_group("PauseModal")
+			if _modals.empty():
+				play_animation(true)
+			else:
+				for i in _modals:
+					i.close()
 	else:
 		if Input.is_action_just_pressed("escape") && !in_animation && can_pause:
 			play_animation(false)
@@ -72,24 +77,29 @@ func play_tween(n : Node, p : String, val1, val2, d : float, t : int, e : int, b
 
 
 func _on_Settings_pressed() -> void:
-	$Settings.show()
+	add_modal("settings")
 
 
-onready var SultanBadge := preload("res://prefabs/ui/SultanBadge.tscn")
+
+
+
+const MODALS := {
+	"sultans": preload("res://prefabs/ui/pause/SultansContainer.tscn"),
+	"puzzles": preload("res://prefabs/ui/pause/PuzzlesContainer.tscn"),
+	"settings": preload("res://prefabs/ui/Settings.tscn"),
+}
+
+func add_modal(id : String) -> void:
+	var _modal = MODALS[id].instance()
+	add_child(_modal)
+
 
 func _on_SultansCollection_pressed() -> void:
-	for i in ["achille", "anemone", "boulba", "cocan", "cricri", "crocan", "hector", "nano", "sabine", "simoun", "sultan", "zezette"]:
-		var badge := SultanBadge.instance()
-		if !GameManager.sultans.has(i):
-			badge.modulate = Color(0, 0, 0, 0.5)
-		badge.get_node("Icon").texture = load("res://images/sultans/" + i + ".png")
-		$Sultans/List/Grid.add_child(badge)
-			
-	$Sultans.visible = true
+	add_modal("sultans")
 
 
 func _on_PuzzlesList_pressed() -> void:
-	$Puzzles.visible = true
+	add_modal("puzzles")
 
 
 func _on_Resume_pressed() -> void:
@@ -107,15 +117,6 @@ func _on_Return_pressed() -> void:
 
 func _on_QuitGame_pressed() -> void:
 	$QuitGame.visible = true
-
-
-func _on_SultansMenuGoBack_pressed() -> void:
-	$Sultans.visible = false
-
-
-func _on_PuzzlesMenuGoBack_pressed() -> void:
-	$Puzzles.visible = false
-
 
 func _on_Menu_pressed() -> void:
 	$ReturnToMenu.visible = true

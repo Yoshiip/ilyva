@@ -8,8 +8,8 @@ func _ready() -> void:
 
 
 func interact_door(open, left = true) -> void:
-	var _door1 = $station.get_node(str("Door", "L" if left else "R", "L"))
-	var _door2 = $station.get_node(str("Door", "L" if left else "R", "R"))
+	var _door1 = get_node(str("Door", "L" if left else "R", "L"))
+	var _door2 = get_node(str("Door", "L" if left else "R", "R"))
 	if open:
 		$Tween.interpolate_property(_door1, "translation:z", _door1.translation.z, 28 if !left else 26.4, 1.5, Tween.TRANS_BOUNCE)
 		$Tween.interpolate_property(_door2, "translation:z", _door2.translation.z, 26.4 if !left else 28, 1.5, Tween.TRANS_BOUNCE)
@@ -39,19 +39,20 @@ func station_changed(new_station : int) -> void:
 	
 	var _index = new_station
 	
-	if _index == 0:
-		create_barrier(-6.5)
+	if _index == 0 || GameManager.map_stop_progress == _index:
+		create_barrier(-6.5, 1 if GameManager.map_stop_progress == _index else 0)
 	else:
 		create_sign(-6.5, GameManager.STATIONS[0].name)
 
-	if _index == GameManager.STATIONS.size() - 1:
-		create_barrier(6.5)
+	if _index == GameManager.STATIONS.size() - 1 || GameManager.map_stop_progress == _index:
+		create_barrier(6.5, 1 if GameManager.map_stop_progress == _index else 0)
 	else:
 		create_sign(6.5, GameManager.STATIONS[GameManager.STATIONS.size() - 1].name)
 
-func create_barrier(x : float) -> void:
+func create_barrier(x : float, reason = 0) -> void:
 	var _barrier := Barrier.instance()
 	_barrier.translation.x = x
+	_barrier.get_node("Text").text = ["accès\ninterdit", "traffic\ninterrompu"][reason]
 	$Temp.add_child(_barrier)
 
 func create_sign(x : float, text : String) -> void:

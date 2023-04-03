@@ -71,16 +71,16 @@ shader_param/x_rot = 50.0
 shader_param/inset = 0.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 75, 50 )
+extents = Vector2( 150, 50 )
 
 [node name="Arrow" type="Area2D" groups=["Interaction"]]
-scale = Vector2( 2, 1 )
 script = ExtResource( 1 )
 scene_name = "BeauxArts/Surface_2"
 
 [node name="Icon" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.498039 )
 material = SubResource( 2 )
+scale = Vector2( 2, 1 )
 texture = ExtResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]

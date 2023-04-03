@@ -1,8 +1,11 @@
 extends Node2D
 
+signal story_progress_changed
+
+
 export var zone_id := "unnamed"
 export var zone_name := "Unnamed"
-export(String, "Morning", "Noon", "Evening") var time
+export(String, "Matin", "Après-Midi", "Soirée") var time
 export var start_scene := false
 export var music_id := "night"
 
@@ -24,6 +27,13 @@ onready var scene_light := CanvasModulate.new()
 onready var tween := Tween.new()
 
 func _ready() -> void:
+	name = "Root"
+	print(GameManager.story_progress)
+	if GameManager.context_before_puzzle != null:
+		get_node(GameManager.context_before_puzzle.path).timeline_id = GameManager.context_before_puzzle.id + 1
+		get_node(GameManager.context_before_puzzle.path).interact()
+		GameManager.context_before_puzzle = null
+	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$Camera.limit_left = -image_size / 2
 	$Camera.limit_right = image_size / 2
@@ -53,7 +63,6 @@ func _ready() -> void:
 	$Canvas/Container/Time.text = time
 
 func _process(_delta: float) -> void:
-	
 	for i in get_children():
 		if i.get("dialog_node"):
 			in_dialogue = true
@@ -84,6 +93,20 @@ func toggle_light(button_pressed: bool) -> void:
 				i.turn_light(false)
 	tween.start()
 
+
+var current_dialogue_character : Node2D
+var current_dialogue_id := 0
+
 func load_puzzle(puzzle_id : String) -> void:
-	GameManager.puzzle_id = int(puzzle_id)
+	GameManager.current_puzzle = load(str("res://resources/puzzles/" + puzzle_id + ".tres"))
+	GameManager.context_before_puzzle = {
+		"scene": get_tree().current_scene.filename,
+		"path": current_dialogue_character.get_path(),
+		"id": current_dialogue_id,
+	}
 	transition.transition_to_scene("res://scenes/puzzles/StartAnimation.tscn")
+
+func add_story_progress() -> void:
+	GameManager.story_progress += 1
+	emit_signal("story_progress_changed")
+	print(GameManager.story_progress)

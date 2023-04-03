@@ -1,10 +1,9 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/logos/godot_black.png" type="Texture" id=3]
 [ext_resource path="res://resources/shader_menu.tres" type="Material" id=4]
-[ext_resource path="res://prefabs/ui/Settings.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
@@ -635,39 +634,32 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="Chiba" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 171.0
-margin_right = 353.0
-btn_label = "Chiba"
+margin_left = 60.0
+margin_right = 242.0
+btn_label = "Nouvelle partie"
 btn_icon = ExtResource( 7 )
 
 [node name="Metro" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 393.0
-margin_right = 575.0
-btn_label = "Metro"
+margin_left = 282.0
+margin_right = 464.0
+btn_label = "Continuer la partie"
 btn_icon = ExtResource( 7 )
 
-[node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-visible = false
-margin_left = 60.0
-margin_right = 242.0
-btn_label = "Terminal"
-
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 615.0
-margin_right = 797.0
+margin_left = 504.0
+margin_right = 686.0
 btn_label = "Paramètres"
 btn_icon = ExtResource( 7 )
 
 [node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-visible = false
-margin_left = 615.0
-margin_right = 797.0
-btn_label = "Map"
+margin_left = 726.0
+margin_right = 908.0
+btn_label = "Crédits"
 btn_icon = ExtResource( 9 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 837.0
-margin_right = 1019.0
+margin_left = 948.0
+margin_right = 1130.0
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
 
@@ -1169,17 +1161,11 @@ margin_right = 207.0
 margin_bottom = 212.0
 text = "PHILIPPE MATTHIEU"
 
-[node name="Settings" parent="Canvas/Container" instance=ExtResource( 5 )]
-visible = false
-margin_right = 0.000488281
-__meta__ = {
-"_edit_group_": true
-}
-
 [node name="BlackScreen" type="ColorRect" parent="Canvas/Container"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -1195,7 +1181,6 @@ volume_db = -40.0
 
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Chiba" to="." method="_on_Chiba_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
-[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]

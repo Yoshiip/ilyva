@@ -18,6 +18,7 @@ rotate = false
 script = ExtResource( 3 )
 
 [node name="HugeCircle" type="Sprite" parent="."]
+z_index = -16
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]

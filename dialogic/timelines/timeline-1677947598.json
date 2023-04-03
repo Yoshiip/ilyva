@@ -4,7 +4,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Euh, bonjour ?",
+			"text": "Bonjour",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
@@ -37,19 +37,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "??????????????????????????????",
-			"voice_data": {
-				"0": {
-					"audio_bus": "Master",
-					"file": ""
-				}
-			}
-		},
-		{
-			"character": "character-1677363460.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "slt ca va",
+			"text": "Tu parles français ??",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
@@ -59,41 +47,178 @@
 		},
 		{
 			"character": "character-1677947682.json",
-			"event_id": "dialogic_001",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
 			"portrait": "",
-			"text": "tu veut le Traducteur ?",
-			"voice_data": {
-				"0": {
-					"audio_bus": "Master",
-					"file": ""
-				}
-			}
+			"question": "Mais tu n’es pas conscient des risques ? Tu n’es pas au courant qu’il est illégal de parler français ?!"
 		},
 		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"animation_wait": true,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1677780277.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "Default",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": false,
-				"3": false,
-				"4": false
-			},
-			"type": 1,
-			"z_index": 0
+			"choice": "Mais il se passe quoi ici ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu es à Terminus. Tu dois juste savoir que parler une langue autre que le Bash est interdit."
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu n’as pas de traducteur, j’imagine ?"
+		},
+		{
+			"choice": "Mais les autres parlent une langue bizarre, je ne comprends rien!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C’est normal, est ce que tu as un traducteur ? On parle tous Bash !"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "C’est une petite machine qui permet de comprendre ce que disent les autres. C’est très pratique."
+		},
+		{
+			"choice": " Je peux en avoir où ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " C’est très dur à trouver, généralement ça s’achète en supermarché mais ça fait des années qu’ils n’en vendent plus."
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais si ça t’intéresse…"
+		},
+		{
+			"choice": "Tu ne pourrais pas m’en donner un ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "T’en donner un ? C’est ton jour de chance petit!"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Figure-toi que j’en ai un double, le seul petit problème c’est qu’il ne s’allume pas!"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Il faudrait lui remettre des piles. Mais je n’en ai pas sur moi, tu devrais aller en acheter au supermarché."
+		},
+		{
+			"choice": "Tu pourrait me le vendre à combien ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"choice": "Et ça coute combien ce genre de truc ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je sais pas, mais par contre moi…"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je te le vends à 1000 nanos!"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Ou alors tu dois répondre à une énigme!"
+		},
+		{
+			"choice": "Mais je n’ai pas un rond sur moi!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Très bien, alors tu vas devoir faire l’énigme!"
+		},
+		{
+			"choice": "Très bien, alors propose moi ton énigme!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C’est parti!"
+		},
+		{
+			"event_id": "dialogic_013"
 		},
 		{
 			"call_node": {
 				"arguments": [
-					"0"
+					"1"
 				],
 				"method_name": "load_puzzle",
 				"target_node_path": "/root/Root"

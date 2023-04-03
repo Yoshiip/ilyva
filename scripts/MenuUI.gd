@@ -9,6 +9,8 @@ onready var camera: Camera = $"Canvas/Container/3D/Container/Viewport/Menu/Camer
 onready var world_environment: WorldEnvironment = $"Canvas/Container/3D/Container/Viewport/Menu/WorldEnvironment"
 
 
+onready var Settings := preload("res://prefabs/ui/Settings.tscn")
+
 onready var noise := NoiseTexture.new()
 
 func _ready() -> void:
@@ -30,10 +32,9 @@ func _on_Quit_pressed() -> void:
 func _on_Credits_pressed() -> void:
 	get_tree().change_scene("res://scenes/Map.tscn")
 
-
 func _on_Settings_pressed() -> void:
 	camera.switch_camera()
-	$Canvas/Container/Settings.show()
+	$Canvas/Container.add_child(Settings.instance())
 
 func _on_Play_pressed() -> void:
 	get_tree().change_scene("res://scenes/Terminal.tscn")

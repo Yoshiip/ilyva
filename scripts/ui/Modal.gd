@@ -27,6 +27,7 @@ var icon_offset := 0
 
 func _ready() -> void:
 	close_animation(true)
+	$Header/Buttons/Pin.pressed = pinned
 	$Header/Icon.texture = $Header/Icon.texture.duplicate()
 	if app_id != "":
 		$Header/Icon.texture.region.position.y = GameManager.APPS[app_id].icon * 16.0

@@ -7,14 +7,13 @@ onready var pattern: TextureRect = $Canvas/Container/Pattern
 
 
 func _ready() -> void:
-	if GameManager.puzzle_id != -1:
-		portrait.texture = GameManager.puzzles[GameManager.puzzle_id].portrait
+	$Canvas/Container/Portrait.texture = GameManager.current_puzzle.portrait
 	$Tween.interpolate_property($Canvas/Container/CircleTransition.material, "shader_param/Canvas/Container/Circle_size", 0.0, 1.05, 1.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(circle, "modulate", Color.transparent, circle.modulate, 2.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(portrait, "rect_scale", Vector2.ONE * 1.25, Vector2.ONE, 2.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(circle, "rect_scale", Vector2.ZERO, Vector2.ONE, 2.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	$Tween.start()
-	yield(get_tree().create_timer(3.5), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	$Tween.interpolate_property($Canvas/Container/CircleTransition.material, "shader_param/Canvas/Container/Circle_size", 1.05, 0.0, 1.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield(get_tree().create_timer(1.5), "timeout")

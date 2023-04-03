@@ -79,8 +79,8 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="TurnLight" type="CheckButton" parent="Container"]
-margin_left = 161.0
-margin_top = 41.0
-margin_right = 241.0
-margin_bottom = 77.0
-text = "turn off light"
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 330.0
+margin_bottom = 52.0
+text = "Éteindre les lumières"

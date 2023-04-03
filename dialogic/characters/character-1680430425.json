@@ -1,0 +1,21 @@
+{
+	"color": "#ffff0000",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1680430425.json",
+	"mirror_portraits": false,
+	"name": "Policiers",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://images/portraits/st_philibert/policiers.png"
+		}
+	],
+	"scale": 50,
+	"theme": ""
+}

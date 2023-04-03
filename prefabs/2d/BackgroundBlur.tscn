@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://images/backgrounds/Ligne_2_du_métro_de_Lille_Métropole_-_Interstation_Saint-Philibert_↔_Bourg_(07).jpg" type="Texture" id=1]
+[ext_resource path="res://images/backgrounds/saint_philibert/surface.jpg" type="Texture" id=1]
 
 [sub_resource type="Shader" id=12]
 code = "shader_type canvas_item;
