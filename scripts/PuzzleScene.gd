@@ -5,15 +5,16 @@ var pause_menu
 
 var total_time := 0.0
 
-onready var puzzle := GameManager.current_puzzle
+onready var puzzle : Puzzle
 onready var tween := Tween.new()
 onready var puzzle_end_screen := preload("res://prefabs/puzzles/PuzzleEndScreen.tscn").instance()
-
 func _ready() -> void:
 	add_child(tween)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
 	$Canvas/Container.add_child(pause_menu)
 
+	puzzle = GameManager.current_puzzle
+	$Canvas/Container/ModalsManager.ready()
 
 
 onready var pattern: Sprite = $Wallpaper/Pattern

@@ -108,7 +108,7 @@ func move_inside_of(new_absolute_path):
 
 func equals(another: SystemElement):
 	if another == null: return false
-	if self.type == another.type and self.absolute_path.equals(another.absolute_path):
+	if self.typesystem == another.type and self.absolute_path.equals(another.absolute_path):
 		return true
 	return false
 

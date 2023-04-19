@@ -23,15 +23,17 @@ func _ready() -> void:
 		$Icon.texture = preload("res://images/icons/exclamation_icon.png")
 	if name in GameManager.one_time_interacts:
 		queue_free()
-	get_parent().connect("story_progress_changed", self, "_story_progress_changed")
-	_story_progress_changed()
+
+	if character_name == "":
+		character_name = name
+	progress_changed()
 	
 	$Sprite.scale = Vector2.ONE * sprite_scale
 	$Sprite.texture = portrait
-	$Collision.shape.extents = (Vector2(portrait.get_size().x, portrait.get_size().y) / 2.0) * sprite_scale
+	$Collision.shape = $Collision.shape.duplicate()
+	$Collision.shape.extents = portrait.get_size() * sprite_scale * 0.5
+	$Icon.position.y = -(portrait.get_size().y * sprite_scale) + 64
 	add_child(tween)
-	if character_name == "":
-		character_name = name
 
 var i = 0.0
 
@@ -46,7 +48,11 @@ func _process(delta: float) -> void:
 func interact() -> void:
 	get_tree().current_scene.current_dialogue_character = self
 	get_tree().current_scene.current_dialogue_id = timeline_id
-	var new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
+	var new_dialog : CanvasLayer
+#	if GameManager.items.has("traminus"):
+#		new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/no_traminus"))
+#	else:
+	new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
 	get_tree().current_scene.add_child(new_dialog)
 	last_timeline_spoke = timeline_id
 	if one_time_interact:
@@ -60,8 +66,13 @@ func turn_light(on : bool) -> void:
 		tween.interpolate_property($Light, "energy", 1.0, 0.0, 0.5, Tween.TRANS_EXPO)
 	tween.start()
 
-func _story_progress_changed() -> void:
-	$Collision.disabled = !(GameManager.story_progress >= min_story_progress)
-	visible = GameManager.story_progress >= min_story_progress
-	if GameManager.story_progress >= max_story_progress && max_story_progress != -1:
+
+func progress_changed() -> void:
+	var _sp = GameManager.progress[get_tree().current_scene.zone_id][character_name]
+	
+	timeline_id = _sp
+	
+	$Collision.disabled = !(_sp >= min_story_progress)
+	visible = _sp >= min_story_progress
+	if _sp >= max_story_progress && max_story_progress != -1:
 		queue_free()

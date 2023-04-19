@@ -23,7 +23,6 @@ curve = SubResource( 1 )
 [node name="Path" type="PathFollow2D" parent="Line"]
 position = Vector2( -485.592, -37.7405 )
 rotation = -2.57844
-scale = Vector2( 1, 1 )
 offset = 1402.6
 lookahead = 10.0
 

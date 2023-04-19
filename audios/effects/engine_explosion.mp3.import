@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/engine_explosion.mp3-e04618f2a6bb2bbeca395e57db675fdd.mp3str"
+
+[deps]
+
+source_file="res://audios/effects/engine_explosion.mp3"
+dest_files=[ "res://.import/engine_explosion.mp3-e04618f2a6bb2bbeca395e57db675fdd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

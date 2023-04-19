@@ -14,10 +14,15 @@ onready var Settings := preload("res://prefabs/ui/Settings.tscn")
 onready var noise := NoiseTexture.new()
 
 func _ready() -> void:
+#	$"Canvas/Container/3D/VideoPlayer".play()
+	
+	if !GameManager.settings.enable_3d:
+		$"Canvas/Container/3D".queue_free()
+	print(GameManager.settings.enable_3d)
 	noise.noise = OpenSimplexNoise.new()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") && animation_player.is_playing():
+	if is_instance_valid(animation_player) && Input.is_action_just_pressed("ui_accept") && animation_player.is_playing():
 		
 		animation_player.seek(7.4, true)
 		$Music.seek(6.4)
@@ -33,7 +38,8 @@ func _on_Credits_pressed() -> void:
 	get_tree().change_scene("res://scenes/Map.tscn")
 
 func _on_Settings_pressed() -> void:
-	camera.switch_camera()
+	if is_instance_valid(camera):
+		camera.switch_camera()
 	$Canvas/Container.add_child(Settings.instance())
 
 func _on_Play_pressed() -> void:
@@ -45,7 +51,7 @@ func _on_Metro_pressed() -> void:
 
 
 func settings_updated() -> void:
-	$"Canvas/Container/3D".visible = !GameManager.settings.disable_3d
+	$"Canvas/Container/3D".visible = !GameManager.settings.enable_3d
 	match GameManager.settings["3d_quality"]:
 		0:
 			world_environment.environment.ssao_quality = Environment.SSAO_QUALITY_LOW
@@ -66,3 +72,7 @@ func settings_updated() -> void:
 
 func _on_Chiba_pressed() -> void:
 	get_tree().change_scene("res://scenes/StPhilibert/MetroOutside.tscn")
+
+
+func _on_VideoPlayer_finished() -> void:
+	$"%VideoPlayer".play()

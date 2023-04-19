@@ -108,7 +108,7 @@ func _process(delta: float) -> void:
 #		else:
 #			_dis1 = GameManager.STATIONS[current_stop_id]
 #			_dis2 = GameManager.STATIONS[next_stop_id]
-	print(str(GameManager.map_stop_progress, " > ", next_stop_id))
+#	print(str(GameManager.map_stop_progress, " > ", next_stop_id))
 	if offset >= next_stop_position && going_forward|| offset <= next_stop_position && !going_forward:
 		speed = 0.0
 		translation.z = 2.0
@@ -123,7 +123,8 @@ func _process(delta: float) -> void:
 			yield(get_tree().create_timer(0.5), "timeout")
 			station.interact_door(true, !going_forward)
 
-		if door_opened && c_stop_time <= 0.0 && !start_playing_beep && !(GameManager.map_stop_progress == next_stop_id):
+#		if door_opened && c_stop_time <= 0.0 && !start_playing_beep && !(GameManager.map_stop_progress == next_stop_id):
+		if door_opened && c_stop_time <= 0.0 && !start_playing_beep:
 			start_playing_beep = true
 			$Effects/DoorBeep.play()
 		if door_moving && block_door_closing:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/logos/godot_black.png" type="Texture" id=3]
 [ext_resource path="res://resources/shader_menu.tres" type="Material" id=4]
+[ext_resource path="res://images/videos/video_start.ogv" type="VideoStream" id=5]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
@@ -13,6 +14,7 @@
 [ext_resource path="res://images/logos/ilyva_black.png" type="Texture" id=12]
 [ext_resource path="res://images/icons/shape73.png" type="Texture" id=13]
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
+[ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=15]
 [ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
 [ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://images/logos/ilyva_full_white.png" type="Texture" id=18]
@@ -182,18 +184,6 @@ tracks/11/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("../../../BlackScreen:modulate")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=22]
 resource_name = "Start"
@@ -342,32 +332,6 @@ tracks/11/keys = {
 "clips": PoolStringArray( "Pulse" ),
 "times": PoolRealArray( 7.5 )
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("../../../BlackScreen:modulate")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/13/type = "method"
-tracks/13/path = NodePath("../../../BlackScreen")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
 
 [sub_resource type="Animation" id=24]
 resource_name = "Pulse"
@@ -411,10 +375,6 @@ margin_bottom = 64.0
 modulate_color = Color( 0.141176, 0.137255, 0.137255, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=16]
-
-[sub_resource type="StreamTexture" id=31]
-flags = 4
-load_path = "res://.import/logo_white.png-f210bbbb2c62101e54829e164b40530a.stex"
 
 [sub_resource type="Shader" id=26]
 code = "/*
@@ -537,6 +497,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.141176, 0.137255, 0.137255, 1 )
 
+[node name="VideoPlayer" type="VideoPlayer" parent="Canvas/Container"]
+unique_name_in_owner = true
+anchor_top = 0.167
+anchor_right = 1.0
+anchor_bottom = 0.834
+stream = ExtResource( 5 )
+autoplay = true
+
 [node name="3D" type="Panel" parent="Canvas/Container"]
 show_behind_parent = true
 anchor_top = 0.167
@@ -546,6 +514,7 @@ margin_top = -0.200005
 margin_bottom = -0.67804
 
 [node name="Container" type="ViewportContainer" parent="Canvas/Container/3D"]
+visible = false
 material = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -557,7 +526,7 @@ size = Vector2( 1280, 479 )
 size_override_stretch = true
 handle_input_locally = false
 msaa = 1
-render_target_update_mode = 3
+render_target_update_mode = 0
 
 [node name="Menu" parent="Canvas/Container/3D/Container/Viewport" instance=ExtResource( 2 )]
 
@@ -586,7 +555,7 @@ shaded = true
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/Container/Viewport"]
-autoplay = "Start"
+autoplay = "RESET"
 anims/RESET = SubResource( 21 )
 anims/Start = SubResource( 22 )
 
@@ -634,32 +603,26 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="Chiba" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 60.0
-margin_right = 242.0
+margin_left = 171.0
+margin_right = 353.0
 btn_label = "Nouvelle partie"
 btn_icon = ExtResource( 7 )
 
-[node name="Metro" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 282.0
-margin_right = 464.0
-btn_label = "Continuer la partie"
-btn_icon = ExtResource( 7 )
-
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 504.0
-margin_right = 686.0
+margin_left = 393.0
+margin_right = 575.0
 btn_label = "Paramètres"
 btn_icon = ExtResource( 7 )
 
 [node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 726.0
-margin_right = 908.0
+margin_left = 615.0
+margin_right = 797.0
 btn_label = "Crédits"
 btn_icon = ExtResource( 9 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 948.0
-margin_right = 1130.0
+margin_left = 837.0
+margin_right = 1019.0
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
 
@@ -703,7 +666,7 @@ anchor_bottom = 1.5
 margin_top = 0.5
 margin_right = -0.0801392
 margin_bottom = -0.00201416
-texture = SubResource( 31 )
+texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
 
@@ -1161,13 +1124,6 @@ margin_right = 207.0
 margin_bottom = 212.0
 text = "PHILIPPE MATTHIEU"
 
-[node name="BlackScreen" type="ColorRect" parent="Canvas/Container"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = -20.0
@@ -1179,8 +1135,8 @@ volume_db = -40.0
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="finished" from="Canvas/Container/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Chiba" to="." method="_on_Chiba_pressed"]
-[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Metro" to="." method="_on_Metro_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]

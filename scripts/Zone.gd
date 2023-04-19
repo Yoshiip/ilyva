@@ -28,10 +28,10 @@ onready var tween := Tween.new()
 
 func _ready() -> void:
 	name = "Root"
-	print(GameManager.story_progress)
 	if GameManager.context_before_puzzle != null:
-		get_node(GameManager.context_before_puzzle.path).timeline_id = GameManager.context_before_puzzle.id + 1
-		get_node(GameManager.context_before_puzzle.path).interact()
+		var _n = get_node(GameManager.context_before_puzzle.path)
+		_n.timeline_id = GameManager.progress[zone_id][_n.name]
+		_n.interact()
 		GameManager.context_before_puzzle = null
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -63,12 +63,12 @@ func _ready() -> void:
 	$Canvas/Container/Time.text = time
 
 func _process(_delta: float) -> void:
+	in_dialogue = false
 	for i in get_children():
 		if i.get("dialog_node"):
 			in_dialogue = true
+			pause_menu.can_pause = !in_dialogue
 			return
-	in_dialogue = false
-	
 	pause_menu.can_pause = !in_dialogue
 
 func play_music() -> void:
@@ -107,6 +107,20 @@ func load_puzzle(puzzle_id : String) -> void:
 	transition.transition_to_scene("res://scenes/puzzles/StartAnimation.tscn")
 
 func add_story_progress() -> void:
-	GameManager.story_progress += 1
-	emit_signal("story_progress_changed")
-	print(GameManager.story_progress)
+	print("a refaire")
+#	GameManager.story_progress += 1
+#	emit_signal("story_progress_changed")
+#	print(GameManager.story_progress)
+
+func increment_progress(character_id = "", c_zone_id = "") -> void:
+	if character_id != "" && c_zone_id != "":
+		GameManager.progress[c_zone_id][character_id] += 1
+		if get_node_or_null(character_id):
+			character_id.progress_changed()
+	elif character_id != "":
+		GameManager.progress[zone_id][character_id] += 1
+		if get_node_or_null(character_id):
+			get_node(character_id).progress_changed()
+	else:
+		GameManager.progress[zone_id][current_dialogue_character.character_name] += 1
+		current_dialogue_character.progress_changed()

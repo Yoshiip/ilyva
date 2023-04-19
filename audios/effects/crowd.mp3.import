@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/crowd.mp3-ea6e94992e457425bb6eb46b908f1aec.mp3str"
+
+[deps]
+
+source_file="res://audios/effects/crowd.mp3"
+dest_files=[ "res://.import/crowd.mp3-ea6e94992e457425bb6eb46b908f1aec.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -10,6 +10,7 @@ func hovered(item : TextureRect) -> void:
 	rect_global_position.x = item.rect_global_position.x - rect_size.x / 2.0 + item.rect_size.x / 2.0
 	$Tween.interpolate_property(self, "rect_position:y", 64, 80, 0.25)
 	$Tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 0.25)
+	$Icon.texture = item.texture
 	$Tween.start()
 	current_item = item
 	

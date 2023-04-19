@@ -19,7 +19,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
 					}
 				},
 				"cite_scientifique": {
@@ -32,6 +32,18 @@
 					"metadata": {
 						"color": null,
 						"folded": false
+					}
+				},
+				"intro": {
+					"files": [
+						"character-1681731225.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
 					}
 				},
 				"pont_de_bois": {
@@ -55,7 +67,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
 					}
 				},
 				"st_philibert": {
@@ -63,9 +75,10 @@
 						"character-1677780277.json",
 						"character-1677947675.json",
 						"character-1677947682.json",
-						"character-1677947686.json",
 						"character-1679479734.json",
-						"character-1680430425.json"
+						"character-1680430425.json",
+						"character-1681744062.json",
+						"character-1681746204.json"
 					],
 					"folders": {
 
@@ -83,7 +96,8 @@
 		},
 		"Definitions": {
 			"files": [
-				"1679479952-298"
+				"1679479952-298",
+				"1681746120-787"
 			],
 			"folders": {
 
@@ -120,7 +134,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
 					}
 				},
 				"beaux_arts": {
@@ -134,12 +148,24 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
 					}
 				},
 				"cite_scientifique": {
 					"files": [
 
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"intro": {
+					"files": [
+						"timeline-1681730602.json"
 					],
 					"folders": {
 
@@ -191,19 +217,7 @@
 								"folded": false
 							}
 						},
-						"Noname": {
-							"files": [
-								"timeline-1677363348.json"
-							],
-							"folders": {
-
-							},
-							"metadata": {
-								"color": null,
-								"folded": true
-							}
-						},
-						"Others": {
+						"Nano": {
 							"files": [
 								"timeline-1680432584.json"
 							],
@@ -214,7 +228,35 @@
 								"color": null,
 								"folded": false
 							}
+						},
+						"Thomas": {
+							"files": [
+								"timeline-1681744029.json",
+								"timeline-1681744968.json",
+								"timeline-1681744232.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
 						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"subway": {
+					"files": [
+						"timeline-1680980719.json",
+						"timeline-1680982344.json",
+						"timeline-1680982633.json"
+					],
+					"folders": {
+
 					},
 					"metadata": {
 						"color": null,

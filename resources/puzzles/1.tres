@@ -1,12 +1,14 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
-[ext_resource path="res://images/portraits/mathieu.png" type="Texture" id=2]
+[ext_resource path="res://images/portraits/st_philibert/mathieu.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
 name = "Recupérer le traducteur"
-description = "Pour qu’on vous donne le traducteur, vous devez le réparer! Jetez un coup d’oeil aux différents dossiers/fichiers de ce traducteur en utilisant des commandes de bases de bash. Essayez de réparer les différentes erreurs de frappes, et de bien placer les fichiers au mauvais endroit."
-given_by = ""
+description = "Pour qu’on vous donne le traducteur, vous devez le réparer!
+Jetez un coup d’oeil aux différents dossiers/fichiers de ce traducteur en utilisant des commandes de bases de bash.
+Essayez de réparer les différentes erreurs de frappes, et de bien placer les fichiers au mauvais endroit."
+given_by = "Mathieu"
 hints = [ "Cette énigme requiert l’utilisation de la commande cd, cat, mv et ls. Dans un terminal, entrez ces commandes préfixez d’un “man” pour afficher les informations sur elles.", "Pour mieux visualiser les différents fichiers, la commande tree peut-être très utile.", "Certains fichiers comme lang5.bin sont au mauvais endroit, utilisez mv pour les déplacer, d’autres ont le mauvais nom, comme lang_2.bin qui a un tiret du bas dans son nom utilisez aussi mv pour les renommer." ]

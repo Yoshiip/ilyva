@@ -2,8 +2,6 @@ extends "res://scripts/ui/Modal.gd"
 
 
 
-
-
 onready var StartAppButton := preload("res://prefabs/puzzles/StartAppButton.tscn")
 
 func _ready() -> void:
@@ -24,3 +22,7 @@ func _start_app(app_name : String) -> void:
 func _resized() -> void:
 	$Content/Scroll/Grid.columns = floor(max(rect_size.x, 178) / 178)
 	$Content/Scroll/Grid.rect_size = $Content/Scroll.rect_size
+
+
+func _on_Restart_pressed() -> void:
+	get_tree().reload_current_scene()

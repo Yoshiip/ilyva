@@ -16,19 +16,20 @@ var history_index := 0 # the position in the history. By default, it will have t
 func _ready():
 	add_child(interface)
 	add_child(prompt)
+	
 	prompt.connect("text_entered", self, "_on_command_entered")
 	theme = preload("res://addons/bash_in_godot/resources/terminal.tres")
 	if user_name != null:
 		terminal.user_name = user_name
 	if group_name != null:
 		terminal.group_name = group_name
-	terminal.set_root([
-		SystemElement.new(0, "file.txt", "/", "Ceci est le contenu du fichier.", [], user_name, group_name),
-		SystemElement.new(1, "folder", "/", "", [
-			SystemElement.new(0, "answer_to_life.txt", "/folder", "42", [], user_name, group_name),
-			SystemElement.new(0, ".secret", "/folder", "this is a secret", [], user_name, group_name)
-		], user_name, group_name)
-	])
+	
+	if is_instance_valid($"../..".puzzle):
+		$Setup.set_script(load(str("res://scripts/puzzles/setup/", $"../..".puzzle.get_puzzle_id(),".gd")))
+		$Setup.ready()
+		terminal.set_root($Setup.root)
+	else:
+		print("Can't load root")
 	interface.append_bbcode(INIT_TEXT)
 
 func _process(_delta):

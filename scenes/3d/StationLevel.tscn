@@ -9,7 +9,7 @@
 [ext_resource path="res://images/icons/23_white.png" type="Texture" id=9]
 [ext_resource path="res://images/icons/circle.png" type="Texture" id=10]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=14]
-[ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/3d/Map.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scripts/3d/StationLevel.gd" type="Script" id=18]
 [ext_resource path="res://images/ui/crosshair001.png" type="Texture" id=19]
 [ext_resource path="res://prefabs/3d/Station.tscn" type="PackedScene" id=20]
@@ -95,6 +95,7 @@ depth_outline_scale = 4.0
 [node name="Station" parent="." instance=ExtResource( 20 )]
 
 [node name="Canvas" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Container" type="Control" parent="Canvas"]
 anchor_right = 1.0
@@ -118,7 +119,7 @@ handle_input_locally = false
 hdr = false
 disable_3d = true
 usage = 1
-render_target_update_mode = 3
+render_target_update_mode = 0
 
 [node name="Map" parent="Canvas/Container/Minimap/Viewport" instance=ExtResource( 17 )]
 

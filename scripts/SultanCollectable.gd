@@ -8,5 +8,5 @@ func _ready() -> void:
 		queue_free()
 
 func interact() -> void:
-	GameManager.sultans.append(sultan_id)
+	GameManager.add_sultan(sultan_id)
 	queue_free()

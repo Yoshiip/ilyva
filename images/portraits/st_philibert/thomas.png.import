@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ManonDogukan.png-58eaa8df5f9097b6c00fa8f13b607501.stex"
+path="res://.import/thomas.png-4fec85f6cd36700cd007233ca1edcdb5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/portraits/ManonDogukan.png"
-dest_files=[ "res://.import/ManonDogukan.png-58eaa8df5f9097b6c00fa8f13b607501.stex" ]
+source_file="res://images/portraits/st_philibert/thomas.png"
+dest_files=[ "res://.import/thomas.png-4fec85f6cd36700cd007233ca1edcdb5.stex" ]
 
 [params]
 

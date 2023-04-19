@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/theme.tres" type="Theme" id=1]
-[ext_resource path="res://images/icons/thumbs.png" type="Texture" id=2]
 [ext_resource path="res://scripts/PreMenu.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Animation"
-length = 4.0
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Start:modulate")
 tracks/0/interp = 1
@@ -14,10 +13,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -64,26 +63,41 @@ margin_bottom = 104.5
 custom_constants/separation = 32
 alignment = 1
 
-[node name="Thumbs" type="TextureRect" parent="CanvasLayer/Control/Start"]
-margin_right = 504.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 0, 128 )
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
 [node name="Label" type="Label" parent="CanvasLayer/Control/Start"]
-margin_top = 160.0
+margin_top = 57.0
 margin_right = 504.0
-margin_bottom = 209.0
-text = "pour une expérience optimale, munissez vous d'un casque ou d'écouteurs."
+margin_bottom = 80.0
+text = "Activer la 3D ?"
 align = 1
 valign = 1
 autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Start"]
+margin_top = 112.0
+margin_right = 504.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 0, 40 )
+alignment = 1
+
+[node name="Oui" type="Button" parent="CanvasLayer/Control/Start/HBoxContainer"]
+margin_left = 122.0
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 128, 0 )
+text = "Oui"
+
+[node name="Non" type="Button" parent="CanvasLayer/Control/Start/HBoxContainer"]
+margin_left = 254.0
+margin_right = 382.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 128, 0 )
+text = "Non"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
 autoplay = "Animation"
 anims/Animation = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
+[connection signal="pressed" from="CanvasLayer/Control/Start/HBoxContainer/Oui" to="." method="_on_Oui_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Start/HBoxContainer/Non" to="." method="_on_Non_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

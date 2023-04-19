@@ -55,9 +55,17 @@ func _on_Timer_timeout() -> void:
 	$TopIcon2.rect_rotation = rand_range(-45, 45)
 
 
-func _on_Disable3D_pressed() -> void:
-	GameManager.settings.disable_3d = !GameManager.settings.disable_3d
 
 
 func window_size_changed() -> void:
 	$Scroll/Container.rect_min_size.x = rect_size.x - 48
+
+
+func _on_Enable3D_pressed() -> void:
+	GameManager.settings.enable_3d = !GameManager.settings.enable_3d
+	
+	for i in $"Scroll/Container/3D/Container".get_children():
+		if !(i.name in ["Header", "Enable3D"]):
+			i.visible = GameManager.settings.enable_3d
+	yield(get_tree(), "idle_frame")
+	$"Scroll/Container/3D".rect_min_size.y = $"Scroll/Container/3D/Container".rect_size.y

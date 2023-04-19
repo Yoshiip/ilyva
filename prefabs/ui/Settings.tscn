@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://images/ui/gradient.png" type="Texture" id=14]
 [ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=15]
 [ext_resource path="res://images/icons/Crown_031.png" type="Texture" id=16]
-[ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://prefabs/ui/StylizedCheckbox.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxFlat" id=28]
@@ -47,13 +46,6 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=34]
-size = 18
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 17 )
 
 [sub_resource type="DynamicFont" id=32]
 size = 64
@@ -109,7 +101,7 @@ scroll_vertical = 100
 [node name="Container" type="VBoxContainer" parent="Scroll"]
 margin_top = -92.0
 margin_right = 592.0
-margin_bottom = 1440.0
+margin_bottom = 1514.0
 rect_min_size = Vector2( 592, 0 )
 custom_constants/separation = 64
 
@@ -146,8 +138,8 @@ default = 80.0
 [node name="Graphics" type="Panel" parent="Scroll/Container"]
 margin_top = 214.0
 margin_right = 592.0
-margin_bottom = 884.0
-rect_min_size = Vector2( 0, 670 )
+margin_bottom = 374.0
+rect_min_size = Vector2( 0, 160 )
 custom_styles/panel = SubResource( 29 )
 
 [node name="Container" type="VBoxContainer" parent="Scroll/Container/Graphics"]
@@ -166,17 +158,10 @@ text = "PARAMÈTRES"
 color = Color( 0.592157, 0.756863, 0.113725, 1 )
 pattern_id = 2
 
-[node name="Graphics2" type="Label" parent="Scroll/Container/Graphics/Container"]
+[node name="Fullscreen" type="Button" parent="Scroll/Container/Graphics/Container"]
 margin_top = 88.0
 margin_right = 576.0
-margin_bottom = 111.0
-text = "Paramètres généraux"
-align = 1
-
-[node name="Fullscreen" type="Button" parent="Scroll/Container/Graphics/Container"]
-margin_top = 119.0
-margin_right = 576.0
-margin_bottom = 167.0
+margin_bottom = 136.0
 rect_min_size = Vector2( 0, 48 )
 toggle_mode = true
 text = "Plein écran"
@@ -184,137 +169,135 @@ script = ExtResource( 5 )
 
 [node name="Checkbox" parent="Scroll/Container/Graphics/Container/Fullscreen" instance=ExtResource( 18 )]
 
-[node name="HSeparator" type="HSeparator" parent="Scroll/Container/Graphics/Container"]
-margin_top = 175.0
-margin_right = 576.0
-margin_bottom = 179.0
+[node name="3D" type="Panel" parent="Scroll/Container"]
+margin_top = 438.0
+margin_right = 592.0
+margin_bottom = 958.0
+rect_min_size = Vector2( 0, 520 )
+custom_styles/panel = SubResource( 29 )
 
-[node name="Graphics" type="Label" parent="Scroll/Container/Graphics/Container"]
-margin_top = 187.0
-margin_right = 576.0
-margin_bottom = 210.0
-text = "Paramètres 3D"
-align = 1
+[node name="Container" type="VBoxContainer" parent="Scroll/Container/3D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_constants/separation = 8
 
-[node name="GraphicsContainer" type="Control" parent="Scroll/Container/Graphics/Container"]
-margin_top = 218.0
+[node name="Header" parent="Scroll/Container/3D/Container" instance=ExtResource( 13 )]
+visible = false
 margin_right = 576.0
-margin_bottom = 298.0
+custom_fonts/font = SubResource( 30 )
+text = "3D"
+color = Color( 0.592157, 0.756863, 0.113725, 1 )
+pattern_id = 2
+
+[node name="Enable3D" type="Button" parent="Scroll/Container/3D/Container"]
+margin_right = 576.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 48 )
+script = ExtResource( 5 )
+
+[node name="Label2" type="Label" parent="Scroll/Container/3D/Container/Enable3D"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -92.0
+margin_top = -11.5
+margin_right = 92.0
+margin_bottom = 11.5
+text = "Activer la 3D"
+
+[node name="Checkbox" parent="Scroll/Container/3D/Container/Enable3D" instance=ExtResource( 18 )]
+
+[node name="GraphicsContainer" type="Control" parent="Scroll/Container/3D/Container"]
+margin_top = 56.0
+margin_right = 576.0
+margin_bottom = 136.0
 rect_min_size = Vector2( 0, 80 )
 
-[node name="Low" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
+[node name="Low" parent="Scroll/Container/3D/Container/GraphicsContainer" instance=ExtResource( 12 )]
 script = ExtResource( 5 )
 hide_by_default = true
 
-[node name="Medium" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
+[node name="Medium" parent="Scroll/Container/3D/Container/GraphicsContainer" instance=ExtResource( 12 )]
 anchor_left = 0.33
 anchor_right = 0.667
 script = ExtResource( 5 )
 checked = true
 
-[node name="Label" parent="Scroll/Container/Graphics/Container/GraphicsContainer/Medium" index="1"]
+[node name="Label" parent="Scroll/Container/3D/Container/GraphicsContainer/Medium" index="1"]
 margin_left = -51.5
 margin_right = 51.5
 text = "Moyenne"
 
-[node name="High" parent="Scroll/Container/Graphics/Container/GraphicsContainer" instance=ExtResource( 12 )]
+[node name="High" parent="Scroll/Container/3D/Container/GraphicsContainer" instance=ExtResource( 12 )]
 anchor_left = 0.667
 anchor_right = 1.0
 script = ExtResource( 5 )
 hide_by_default = true
 
-[node name="Label" parent="Scroll/Container/Graphics/Container/GraphicsContainer/High" index="1"]
+[node name="Label" parent="Scroll/Container/3D/Container/GraphicsContainer/High" index="1"]
 text = "Élevé"
 
-[node name="Sensivity" parent="Scroll/Container/Graphics/Container" instance=ExtResource( 4 )]
-margin_top = 306.0
-margin_bottom = 339.0
+[node name="Sensivity" parent="Scroll/Container/3D/Container" instance=ExtResource( 4 )]
+margin_top = 144.0
+margin_bottom = 177.0
 label = "Sensibilité 3D"
 settings_to_update = "sensivity"
 default = 10.0
 min_value = 1.0
 
-[node name="FOV" parent="Scroll/Container/Graphics/Container" instance=ExtResource( 4 )]
-margin_top = 347.0
-margin_bottom = 380.0
+[node name="FOV" parent="Scroll/Container/3D/Container" instance=ExtResource( 4 )]
+margin_top = 185.0
+margin_bottom = 218.0
 label = "FOV"
 default = 90.0
 min_value = 70.0
 max_value = 120.0
 
-[node name="Disable3D" type="Button" parent="Scroll/Container/Graphics/Container"]
-margin_top = 388.0
+[node name="HSeparator2" type="HSeparator" parent="Scroll/Container/3D/Container"]
+margin_top = 226.0
 margin_right = 576.0
-margin_bottom = 468.0
-rect_min_size = Vector2( 0, 80 )
-script = ExtResource( 5 )
+margin_bottom = 230.0
 
-[node name="Label" type="Label" parent="Scroll/Container/Graphics/Container/Disable3D"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -140.0
-margin_top = -56.0
-margin_right = 140.0
-margin_bottom = -8.0
-custom_fonts/font = SubResource( 34 )
-text = "Désactive/Passe intégralement toute les scènes 3D du jeu."
-align = 1
-valign = 2
-autowrap = true
-
-[node name="Label2" type="Label" parent="Scroll/Container/Graphics/Container/Disable3D"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -92.0
-margin_top = 8.0
-margin_right = 92.0
-margin_bottom = 31.0
-text = "Désactiver la 3D"
-
-[node name="Checkbox" parent="Scroll/Container/Graphics/Container/Disable3D" instance=ExtResource( 18 )]
-
-[node name="HSeparator2" type="HSeparator" parent="Scroll/Container/Graphics/Container"]
-margin_top = 476.0
+[node name="Graphics3" type="Label" parent="Scroll/Container/3D/Container"]
+margin_top = 238.0
 margin_right = 576.0
-margin_bottom = 480.0
-
-[node name="Graphics3" type="Label" parent="Scroll/Container/Graphics/Container"]
-margin_top = 488.0
-margin_right = 576.0
-margin_bottom = 511.0
+margin_bottom = 261.0
 text = "Commandes"
 align = 1
 
-[node name="GridContainer" type="GridContainer" parent="Scroll/Container/Graphics/Container"]
-margin_top = 519.0
+[node name="GridContainer" type="GridContainer" parent="Scroll/Container/3D/Container"]
+margin_top = 269.0
 margin_right = 576.0
-margin_bottom = 650.0
+margin_bottom = 400.0
 custom_constants/hseparation = 80
 columns = 2
 
-[node name="Label" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_right = 197.0
 margin_bottom = 23.0
 text = "Avancer"
 align = 2
 
-[node name="Label2" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label2" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_left = 277.0
 margin_right = 517.0
 margin_bottom = 23.0
 custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 text = "Z/W/flèche du haut"
 
-[node name="Label3" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label3" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_top = 27.0
 margin_right = 197.0
 margin_bottom = 50.0
 text = "Reculer"
 align = 2
 
-[node name="Label4" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label4" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_left = 277.0
 margin_top = 27.0
 margin_right = 517.0
@@ -322,14 +305,14 @@ margin_bottom = 50.0
 custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 text = "S/flèche du bas"
 
-[node name="Label5" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label5" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_top = 54.0
 margin_right = 197.0
 margin_bottom = 77.0
 text = "Décaler à gauche"
 align = 2
 
-[node name="Label6" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label6" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_left = 277.0
 margin_top = 54.0
 margin_right = 517.0
@@ -337,14 +320,14 @@ margin_bottom = 77.0
 custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 text = "Q/A/flèche de gauche"
 
-[node name="Label7" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label7" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_top = 81.0
 margin_right = 197.0
 margin_bottom = 104.0
 text = "Décaler à droite"
 align = 2
 
-[node name="Label8" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label8" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_left = 277.0
 margin_top = 81.0
 margin_right = 517.0
@@ -352,14 +335,14 @@ margin_bottom = 104.0
 custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 text = "D/flèche de droite"
 
-[node name="Label9" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label9" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_top = 108.0
 margin_right = 197.0
 margin_bottom = 131.0
 text = "Sauter"
 align = 2
 
-[node name="Label10" type="Label" parent="Scroll/Container/Graphics/Container/GridContainer"]
+[node name="Label10" type="Label" parent="Scroll/Container/3D/Container/GridContainer"]
 margin_left = 277.0
 margin_top = 108.0
 margin_right = 517.0
@@ -368,9 +351,9 @@ custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 text = "Espace"
 
 [node name="Data" type="Panel" parent="Scroll/Container"]
-margin_top = 948.0
+margin_top = 1022.0
 margin_right = 592.0
-margin_bottom = 1148.0
+margin_bottom = 1222.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = SubResource( 29 )
 
@@ -406,9 +389,9 @@ toggle_mode = true
 text = "Ouvrir le dossier de sauvegarde"
 
 [node name="scroll_margin" type="Control" parent="Scroll/Container"]
-margin_top = 1212.0
+margin_top = 1286.0
 margin_right = 592.0
-margin_bottom = 1532.0
+margin_bottom = 1606.0
 rect_min_size = Vector2( 0, 320 )
 
 [node name="Label" type="Label" parent="."]
@@ -484,14 +467,14 @@ wait_time = 0.75
 autostart = true
 
 [connection signal="pressed" from="Scroll/Container/Graphics/Container/Fullscreen" to="." method="_on_Fullscreen_pressed"]
-[connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/Low" to="." method="_on_Low_pressed"]
-[connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/Medium" to="." method="_on_Medium_pressed"]
-[connection signal="pressed" from="Scroll/Container/Graphics/Container/GraphicsContainer/High" to="." method="_on_High_pressed"]
-[connection signal="pressed" from="Scroll/Container/Graphics/Container/Disable3D" to="." method="_on_Disable3D_pressed"]
+[connection signal="pressed" from="Scroll/Container/3D/Container/Enable3D" to="." method="_on_Enable3D_pressed"]
+[connection signal="pressed" from="Scroll/Container/3D/Container/GraphicsContainer/Low" to="." method="_on_Low_pressed"]
+[connection signal="pressed" from="Scroll/Container/3D/Container/GraphicsContainer/Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="Scroll/Container/3D/Container/GraphicsContainer/High" to="." method="_on_High_pressed"]
 [connection signal="pressed" from="Scroll/Container/Data/Container/Label9" to="Scroll/Container/Data/Container/Label9" method="_on_Label9_pressed"]
 [connection signal="pressed" from="Scroll/Container/Data/Container/Label10" to="Scroll/Container/Data/Container/Label10" method="_on_Label9_pressed"]
 [connection signal="pressed" from="Return" to="." method="_on_Return_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
-[editable path="Scroll/Container/Graphics/Container/GraphicsContainer/Medium"]
-[editable path="Scroll/Container/Graphics/Container/GraphicsContainer/High"]
+[editable path="Scroll/Container/3D/Container/GraphicsContainer/Medium"]
+[editable path="Scroll/Container/3D/Container/GraphicsContainer/High"]

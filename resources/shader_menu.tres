@@ -1,7 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=2]
-
-[ext_resource path="res://images/shaders/matrix.png" type="Texture" id=1]
-[ext_resource path="res://images/shaders/palette_eeve.png" type="Texture" id=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
 [sub_resource type="Shader" id=17]
 code = "/* 
@@ -84,10 +81,8 @@ void fragment()
 
 [resource]
 shader = SubResource( 17 )
-shader_param/u_bit_depth = 32
-shader_param/u_contrast = 1.0
-shader_param/u_offset = -0.4
-shader_param/u_dither_size = 2
+shader_param/u_bit_depth = null
+shader_param/u_contrast = null
+shader_param/u_offset = null
+shader_param/u_dither_size = null
 shader_param/blend = 1.0
-shader_param/u_dither_tex = ExtResource( 1 )
-shader_param/u_color_tex = ExtResource( 2 )

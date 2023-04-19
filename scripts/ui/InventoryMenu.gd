@@ -42,6 +42,7 @@ func play_animation(backward = false) -> void:
 		get_tree().paused = true
 		mouse_mode_before = Input.mouse_mode
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		$Inventory.refresh()
 	yield(get_tree().create_timer(1.0), "timeout")
 	if backward:
 		visible = false

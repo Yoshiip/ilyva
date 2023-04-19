@@ -3,7 +3,7 @@
 [ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Zone.gd" type="Script" id=3]
 [ext_resource path="res://scripts/ZoneCamera.gd" type="Script" id=4]
-[ext_resource path="res://images/backgrounds/saint_philibert/action.jpeg" type="Texture" id=5]
+[ext_resource path="res://images/backgrounds/saint_philibert/action.jpg" type="Texture" id=5]
 [ext_resource path="res://images/sultans/sultan.png" type="Texture" id=6]
 [ext_resource path="res://scripts/SultanCollectable.gd" type="Script" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=9]
@@ -163,7 +163,7 @@ script = ExtResource( 3 )
 zone_id = "saint_philibert"
 zone_name = "Action"
 time = "Morning"
-image_size = 750
+image_size = 1440
 
 [node name="Sky" type="Sprite" parent="."]
 visible = false
@@ -173,7 +173,6 @@ scale = Vector2( 15, 10.406 )
 texture = ExtResource( 9 )
 
 [node name="Background" type="Sprite" parent="."]
-scale = Vector2( 1.93, 1.93 )
 z_index = -64
 texture = ExtResource( 5 )
 

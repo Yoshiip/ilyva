@@ -3,8 +3,11 @@ extends TextureRect
 
 export var checked := false setget set_checked
 
+export var property := ""
+
 func _ready() -> void:
 	set_process(false)
+
 
 func _process(_delta: float) -> void:
 	if checked:

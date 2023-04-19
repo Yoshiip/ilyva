@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mathieu.png-cad9a9d40f52ce4d3de460b74083f9f8.stex"
+path="res://.import/restart.png-d867e1399726e1865683dd85350d9e87.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/portraits/mathieu.png"
-dest_files=[ "res://.import/mathieu.png-cad9a9d40f52ce4d3de460b74083f9f8.stex" ]
+source_file="res://images/icons/restart.png"
+dest_files=[ "res://.import/restart.png-d867e1399726e1865683dd85350d9e87.stex" ]
 
 [params]
 

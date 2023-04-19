@@ -8,14 +8,28 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if OS.get_name() == "HTML5":
+		start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass
 
+#	yield(get_tree().create_timer(1.0), "timeout")
 
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	yield(get_tree().create_timer(1.0), "timeout")
+
+func start() -> void:
+#	if GameManager.settings.enable_3d:
 	get_tree().change_scene("res://scenes/Menu.tscn")
+#	else:
+#		get_tree().change_scene("res://scenes/MenuSimplified.tscn")
+
+func _on_Non_pressed() -> void:
+	GameManager.settings.enable_3d = false
+	start()
+
+
+func _on_Oui_pressed() -> void:
+	GameManager.settings.enable_3d = true
+	start()

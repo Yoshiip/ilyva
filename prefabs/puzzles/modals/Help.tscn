@@ -1,0 +1,111 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://prefabs/puzzles/modals/BaseModal.tscn" type="PackedScene" id=1]
+
+[node name="Modal" instance=ExtResource( 1 )]
+rect_min_size = Vector2( 640, 320 )
+app_id = "help"
+min_size = Vector2( 640, 320 )
+
+[node name="TabContainer" type="TabContainer" parent="Content" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Manuel" type="Tabs" parent="Content/TabContainer" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/TabContainer/Manuel" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label2" type="RichTextLabel" parent="Content/TabContainer/Manuel/VBoxContainer" index="0"]
+margin_right = 628.0
+margin_bottom = 60.0
+bbcode_enabled = true
+bbcode_text = "Bienvenue sur le système ILYVA!
+- Utilisez votre souris pour naviguer entre les différents onglets de la fenêtre."
+text = "Bienvenue sur le système ILYVA!
+- Utilisez votre souris pour naviguer entre les différents onglets de la fenêtre."
+fit_content_height = true
+scroll_active = false
+
+[node name="Fenêtres" type="Tabs" parent="Content/TabContainer" index="1"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/TabContainer/Fenêtres" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label2" type="RichTextLabel" parent="Content/TabContainer/Fenêtres/VBoxContainer" index="0"]
+margin_right = 628.0
+margin_bottom = 260.0
+bbcode_enabled = true
+bbcode_text = "- L'application \"Apps\" est la où vous pouvez ouvrir de nouvelles fenêtres.
+- Il est possible de déplacer une fenêtre ouverte, en restant appuyer sur le haut de la fenêtre (la zone blanche).
+
+- La zone de contexte en haut à droite vous permet de fermer une fenêtre, la maximiser où encore l'épingler. Épingler une fenêtre permet de la mettre tout le temps devant les autres, c'est très pratique quand vous voulez avoir un terminal en pleine écran et en même temps consulter d'autres applications.
+
+- Vous pouvez également redimensionner une fenêtre, pour cela cliquer sur le triangle en bas à droite de chaque fenêtre."
+text = "- L'application \"Apps\" est la où vous pouvez ouvrir de nouvelles fenêtres.
+- Il est possible de déplacer une fenêtre ouverte, en restant appuyer sur le haut de la fenêtre (la zone blanche).
+
+- La zone de contexte en haut à droite vous permet de fermer une fenêtre, la maximiser où encore l'épingler. Épingler une fenêtre permet de la mettre tout le temps devant les autres, c'est très pratique quand vous voulez avoir un terminal en pleine écran et en même temps consulter d'autres applications.
+
+- Vous pouvez également redimensionner une fenêtre, pour cela cliquer sur le triangle en bas à droite de chaque fenêtre."
+fit_content_height = true
+scroll_active = false
+
+[node name="Terminal" type="Tabs" parent="Content/TabContainer" index="2"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/TabContainer/Terminal" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label2" type="RichTextLabel" parent="Content/TabContainer/Terminal/VBoxContainer" index="0"]
+margin_right = 628.0
+margin_bottom = 60.0
+bbcode_enabled = true
+bbcode_text = "a faire"
+text = "a faire"
+fit_content_height = true
+scroll_active = false
+
+[node name="Autres informations" type="Tabs" parent="Content/TabContainer" index="3"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/TabContainer/Autres informations" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label2" type="RichTextLabel" parent="Content/TabContainer/Autres informations/VBoxContainer" index="0"]
+margin_right = 628.0
+margin_bottom = 100.0
+bbcode_enabled = true
+bbcode_text = "a faire"
+text = "a faire"
+fit_content_height = true
+scroll_active = false

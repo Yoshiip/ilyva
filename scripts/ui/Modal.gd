@@ -1,18 +1,30 @@
 extends Panel
 
+var pinned := false
+var old_margin : Rect2
 export var app_id := ""
 export var can_close := true
 export var can_pin := true
 export var can_maximize := true
 export var can_drag := true
-
 export var min_size := Vector2(128, 128)
-
 var maximize := false
-
 onready var tween := $Tween
-
 var puzzle : Puzzle
+var icon_offset := 0
+
+var drag_zone_hovered := false
+
+var dragging := false
+var resizing := false
+
+var base_action_position := Vector2()
+var base_action_size := Vector2()
+
+const TASKBAR_SIZE := 40
+
+var i = 0.0
+
 
 func play_tween(n : Node, p : String, val1, val2, d : float, t = Tween.TRANS_BOUNCE, e = Tween.EASE_IN_OUT, backward = false) -> void:
 	if backward:
@@ -23,7 +35,6 @@ func play_tween(n : Node, p : String, val1, val2, d : float, t = Tween.TRANS_BOU
 
 
 
-var icon_offset := 0
 
 func _ready() -> void:
 	close_animation(true)
@@ -38,18 +49,6 @@ func _ready() -> void:
 	$Header/Buttons/Maximize.visible = can_maximize
 	$Header/Buttons/Pin.visible = can_pin
 
-
-var drag_zone_hovered := false
-
-var dragging := false
-var resizing := false
-
-var base_action_position := Vector2()
-var base_action_size := Vector2()
-
-const TASKBAR_SIZE := 40
-
-var i = 0.0
 func _process(delta: float) -> void:
 	i += delta * 2.0
 	
@@ -108,10 +107,8 @@ func close_animation(backward = false) -> void:
 	play_tween(self, "rect_rotation", 0, -30 if randi() % 2 == 0 else 30, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT, backward)
 
 
-var old_margin : Rect2
 
 
-var pinned := false
 
 
 func _on_PinButton_pressed() -> void:

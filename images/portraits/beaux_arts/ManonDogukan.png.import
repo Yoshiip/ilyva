@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/louane.png-12641cb106e56f3da4166361577052f2.stex"
+path="res://.import/ManonDogukan.png-81bd83f49a12e419746aea3f21c3c606.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/portraits/louane.png"
-dest_files=[ "res://.import/louane.png-12641cb106e56f3da4166361577052f2.stex" ]
+source_file="res://images/portraits/beaux_arts/ManonDogukan.png"
+dest_files=[ "res://.import/ManonDogukan.png-81bd83f49a12e419746aea3f21c3c606.stex" ]
 
 [params]
 

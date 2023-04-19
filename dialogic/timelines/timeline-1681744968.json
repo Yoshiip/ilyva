@@ -1,17 +1,11 @@
 {
 	"events": [
 		{
-			"character": "character-1677363460.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Bonjour"
-		},
-		{
 			"animation": "[Default]",
 			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1677947686.json",
+			"character": "character-1681744062.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
@@ -19,25 +13,32 @@
 			"position": {
 				"0": false,
 				"1": false,
-				"2": false,
-				"3": true,
+				"2": true,
+				"3": false,
 				"4": false
 			},
 			"type": 0,
 			"z_index": 0
 		},
 		{
-			"character": "character-1677947686.json",
+			"character": "character-1681744062.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "0bb60aaaef37e447003f2692f011d990c7e667f17e2feebca193421d1a046bb29f74fa6496d91a03f137e949f781bfdfc1ed64c69ec6b7c2bfb2e7d3e4eedb96"
+			"text": "Alors, les recherches avancent bien ?"
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu peut consulter ton avancement dans le menu pause!"
 		},
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1677947686.json",
+			"character": "character-1681744062.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
@@ -51,17 +52,11 @@
 			},
 			"type": 1,
 			"z_index": 0
-		},
-		{
-			"character": "character-1677363460.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "..."
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1677363348.json",
-		"name": "0"
+		"file": "timeline-1681744968.json",
+		"name": "2"
 	}
 }

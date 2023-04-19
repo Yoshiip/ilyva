@@ -3,9 +3,9 @@
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
-	"id": "character-1677947686.json",
+	"id": "character-1681746204.json",
 	"mirror_portraits": false,
-	"name": "Noname",
+	"name": "Traducteur",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": 0,
@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://images/items/traminus.png"
 		}
 	],
 	"scale": 100,

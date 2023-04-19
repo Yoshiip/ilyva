@@ -723,6 +723,7 @@ font = SubResource( 31 )
 
 [node name="8" type="Label3D" parent="Labels"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.320999, 9.5, -34.5 )
+visible = false
 pixel_size = 0.005
 shaded = true
 text = "Station name"
@@ -1048,6 +1049,7 @@ shape = SubResource( 55 )
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -39 )
+visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="Spatial"]
 transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 14.5, 0, 0.0999947 )

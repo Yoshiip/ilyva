@@ -39,15 +39,15 @@ func station_changed(new_station : int) -> void:
 	
 	var _index = new_station
 	
-	if _index == 0 || GameManager.map_stop_progress == _index:
-		create_barrier(-6.5, 1 if GameManager.map_stop_progress == _index else 0)
-	else:
-		create_sign(-6.5, GameManager.STATIONS[0].name)
-
-	if _index == GameManager.STATIONS.size() - 1 || GameManager.map_stop_progress == _index:
-		create_barrier(6.5, 1 if GameManager.map_stop_progress == _index else 0)
-	else:
-		create_sign(6.5, GameManager.STATIONS[GameManager.STATIONS.size() - 1].name)
+#	if _index == 0 || GameManager.map_stop_progress == _index:
+#		create_barrier(-6.5, 1 if GameManager.map_stop_progress == _index else 0)
+#	else:
+#		create_sign(-6.5, GameManager.STATIONS[0].name)
+#
+#	if _index == GameManager.STATIONS.size() - 1 || GameManager.map_stop_progress == _index:
+#		create_barrier(6.5, 1 if GameManager.map_stop_progress == _index else 0)
+#	else:
+#		create_sign(6.5, GameManager.STATIONS[GameManager.STATIONS.size() - 1].name)
 
 func create_barrier(x : float, reason = 0) -> void:
 	var _barrier := Barrier.instance()

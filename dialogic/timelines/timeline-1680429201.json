@@ -39,6 +39,34 @@
 			"text": "Par contre, il n’a bientôt plus de batterie..."
 		},
 		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous gagnez le traducteur!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"traminus"
+				],
+				"method_name": "add_to_inventory",
+				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous allumez le traducteur..."
+		},
+		{
+			"character": "character-1681746204.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Batterie faible. Merci de recharger le traducteur rapidement."
+		},
+		{
 			"audio_bus": "Master",
 			"background-music": "play",
 			"event_id": "dialogic_031",

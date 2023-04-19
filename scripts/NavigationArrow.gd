@@ -3,7 +3,7 @@ extends Area2D
 
 export var scene_name := ""
 
-export(int, 0, 99) var min_story_progress := 0
+export var condition : String
 export var show_confirm := false
 
 var popup : Panel
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func interact() -> void:
-	if min_story_progress > GameManager.story_progress:
+	if !GameManager.progress[get_tree().current_scene.zone_id].get(condition):
 		get_tree().current_scene.add_child(Dialogic.start(str("Shared/arrow_blocked")))
 	else:
 		if show_confirm:

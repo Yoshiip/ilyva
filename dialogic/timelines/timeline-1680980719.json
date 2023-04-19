@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1677363335.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Suite à un problème de portes, ça marche plu bref casse toi bouffon"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1680980719.json",
+		"name": "4"
+	}
+}

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/action.jpeg-f6d9452a56099351b30d570004901c64.stex"
+path="res://.import/station.jpg-c45da377158e4d861417f9b6357b99fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/backgrounds/saint_philibert/action.jpeg"
-dest_files=[ "res://.import/action.jpeg-f6d9452a56099351b30d570004901c64.stex" ]
+source_file="res://images/backgrounds/intro/station.jpg"
+dest_files=[ "res://.import/station.jpg-c45da377158e4d861417f9b6357b99fe.stex" ]
 
 [params]
 
