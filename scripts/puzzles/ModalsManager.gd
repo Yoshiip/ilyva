@@ -4,7 +4,7 @@ extends Control
 func ready() -> void:
 	open_modal("apps", Vector2(256, get_viewport().size.y - 180))
 	open_modal("instructions", Vector2(get_viewport().size.x / 2.0, 128), true)
-	open_modal("help", Vector2(get_viewport().size.x - 490, get_viewport().size.y - 300), true)
+	open_modal("help", Vector2(get_viewport().size.x - 490, get_viewport().size.y - 300), false)
 	
 
 func open_modal(modal_name : String, position = null, pinned = false) -> void:

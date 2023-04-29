@@ -18,10 +18,13 @@ func _process(_delta: float) -> void:
 		tooltip.rect_position = current_area.position - tooltip.rect_size / 2.0 + Vector2(0, 48)
 		if tooltip.bbcode_text != "[center][wave]Interact[/wave][/center]":
 			tooltip.bbcode_text = "[center][wave]Interact[/wave][/center]"
-		if Input.is_action_just_pressed("ui_accept"):
-			current_area.interact()
+
 	else:
 		tooltip.visible = false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(current_area) && !get_parent().in_dialogue && Input.is_action_just_pressed("ui_accept"):
+		current_area.interact()
 
 func _on_Cursor_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Interaction"):

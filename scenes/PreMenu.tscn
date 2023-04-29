@@ -100,4 +100,3 @@ anims/RESET = SubResource( 2 )
 
 [connection signal="pressed" from="CanvasLayer/Control/Start/HBoxContainer/Oui" to="." method="_on_Oui_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Start/HBoxContainer/Non" to="." method="_on_Non_pressed"]
-[connection signal="animation_finished" from="CanvasLayer/Control/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

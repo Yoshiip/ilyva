@@ -91,9 +91,9 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextContainer"]
-margin_top = 11.0
+margin_top = 23.0
 margin_right = 890.0
-margin_bottom = 125.0
+margin_bottom = 113.0
 focus_mode = 2
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 0 )

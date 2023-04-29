@@ -1,0 +1,95 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C'est parfait!"
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Merci de faire confiance a BASHIA."
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "À une prochaine fois!"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 3
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Maintenant que j'ai un traducteur qui fonctionne, je pourrait prendre la ligne 2."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Il me reste juste assez d'argent pour prendre un ticket de métro."
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"can_use_subway"
+				],
+				"method_name": "story_condition",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682010347.json",
+		"name": "1"
+	}
+}

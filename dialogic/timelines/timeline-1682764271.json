@@ -1,0 +1,135 @@
+{
+	"events": [
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tiens!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C’est le CDI ! Il existe encore, dans ce monde ? C’est ding-"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Qu’est-ce que tu fais là ?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bonjour, je… (Mais attends, peut-être que sa version dans ce monde est méchante ?!)"
+		},
+		{
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu viens pour combattre Bastum ?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Non, je-"
+		},
+		{
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C’est bon, je sais pourquoi tu es là. Mathieu m’a raconté qu’il avait rencontré quelqu’un avec le potentiel pour battre Bastum. Enfin…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mathieu ? Il n’a pas été exécuté ?"
+		},
+		{
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Non, il est juste enfermé ici. Je suis sensée être la gardienne de la prison, mais, bon, j’adhère pas forcément aux idées de Bastum. Je suis juste là pour éviter que quelqu’un d’autre mal intentionné ne s’occupe des prisonniers."
+		},
+		{
+			"choice": "Je vais libérer Mathieu!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui, à propos… Je l’aurais bien fait, mais… Bastum ne serait pas très content. Et puis, je n’ai pas le code de la cellule…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ne vous inquiétez pas, je gère !"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"12"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"choice": "Ok... Je dois y aller, à plus!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682764271.json",
+		"name": "0"
+	}
+}

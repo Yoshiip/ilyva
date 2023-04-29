@@ -1,0 +1,67 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Merci infiniment ! Je savais que je faisais bien de t’aider. Je te rendrai la faveur !"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Merci. Rentrez bien !"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682764373.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je vais rester là, personnellement. Bon courage à toi pour battre Bastum !"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682764526.json",
+		"name": "1"
+	}
+}

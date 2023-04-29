@@ -16,6 +16,7 @@ margin_top = 64.0
 margin_right = 109.0
 margin_bottom = 80.0
 rect_clip_content = false
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center][wave]hesheshs[/wave][/center]"

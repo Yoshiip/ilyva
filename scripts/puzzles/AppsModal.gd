@@ -25,4 +25,5 @@ func _resized() -> void:
 
 
 func _on_Restart_pressed() -> void:
-	get_tree().reload_current_scene()
+	if get_tree().reload_current_scene() != OK:
+		print("error while changing scene")

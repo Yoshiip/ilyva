@@ -4,18 +4,18 @@
 	"display_name": "",
 	"display_name_bool": false,
 	"id": "character-1676579269.json",
-	"mirror_portraits": false,
+	"mirror_portraits": true,
 	"name": "Clément",
 	"nickname": "",
 	"nickname_bool": false,
-	"offset_x": 100,
+	"offset_x": 0,
 	"offset_y": 0,
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://addons/dialogic/Example Assets/portraits/df-2.png"
+			"path": "res://images/portraits/beaux_arts/clement.png"
 		}
 	],
-	"scale": 30,
+	"scale": 50,
 	"theme": "default-theme.cfg"
 }

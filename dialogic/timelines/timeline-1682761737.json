@@ -1,0 +1,145 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "je vois que tu as réussi, parfait ! tu dois surement être capable de reussir donc ..."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "hein reussir quoi ?"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "rien, t'occupes tu comprendras sûrement plus tard pourquoi je te fais faire ca"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "euh ok, j'imagine que c'est du foreshadowing pour quand je serai en face de JVLIEM BASTVM"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "*marmonne* perspicace..."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "BREF maintenant passons aux boucles for, j'imagine que tu sais ce que c'est"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "et heureusement je dirais"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Super ! Alors en bash ca ressemble à du python en terme de comment ça marche, il faut simplement retenir que pour FAIRE ce qu'il y a dans la boucle il faut utiliser DO et DONE quand on a fini."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "do ça veut dire faire en angl-"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "oui bon bah c'est bon je suis pas si stupide..."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bien ! Donc on va garder le for, d'où le nom boucle for, et la variable qu'on nomme i en général."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "La variable i prendra comme valeur les chaînes de caractères continues, sa valeur changera après chaque espace, par exemple chaine='toto tata' i prendra en valeur toto puis tata."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "pour rappel en python on écrit une boucle \"for i in\" et on gardera cette syntaxe ici aussi."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "donc j'aimerais que la console renvoie “Salut” 5 fois. Bien sûr, Salut sera dans une variable nommée rat."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Pour répeter une chose plusieurs fois on utilise seq n, ou n est le nombre de fois qu'on veut répeter ce qu'il y a dans la boucle for, et comme c'est une commande on entoure avec $(...). Par exemple “seq 10” retourne “1 2 3 4 5 6 7 8 9 10”. À toi de jouer !"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					""
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"8"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682761737.json",
+		"name": "1"
+	}
+}

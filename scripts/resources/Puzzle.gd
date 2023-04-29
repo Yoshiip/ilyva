@@ -4,6 +4,8 @@ class_name Puzzle
 
 export(StreamTexture) var portrait
 export var name = "Unnamed Puzzle"
+export var start_phrase : String = "... vous lance une énigme!"
+
 export(String, MULTILINE) var description = ""
 export var given_by = ""
 export var hints = [

@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://images/portraits/ENIGME1.png"
+			"path": "res://images/portraits/beaux_arts/manon_dogukan.png"
 		}
 	],
-	"scale": 50,
+	"scale": 45,
 	"theme": ""
 }

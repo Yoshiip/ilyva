@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://images/portraits/mathieu_noir.png"
+			"path": "res://images/portraits/intro/mathieu_noir.png"
 		}
 	],
 	"scale": 50,

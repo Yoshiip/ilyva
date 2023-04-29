@@ -1,0 +1,227 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Salut !"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Salut ça va ? Attends mais… tu es un RAT?"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Et alors toi t’es un humain pourtant je dis rien, bref j’ai l’impression que tu dois te préparer pour un combat qui décidera du sort de ce monde je me trompe?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Euh ouais c’est ce qu’on m’a dit mais je comprend toujours pas ce que tu fais sur mon chemin et pourquoi tu me parles…"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "T’occupes, dis, ça te dirait de m’aider ?"
+		},
+		{
+			"choice": "Chaud!",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"choice": "Désolé j'ai pas le temps",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Si, tu vas venir m’aider, en réalité je te posais la question pour être gentil."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ah ok, bon bah pardon j’arrive"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Parfait merci ! Bon viens voir par là, mais sois discret, faut que personne ne le voit."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ok bizarre mais vas-y"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Tiens regarde il est la."
+		},
+		{
+			"choice": "Oh un PC ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Super un PC ! Attends pourquoi il y avait un PC ici, n’importe qui pourrait le voler !"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais non il est hyper bien caché !!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bah non vraiment pas quoi, mais bref, qu’est ce que je peux faire pour t’aider ?"
+		},
+		{
+			"choice": "C’est quoi ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Une machine à remonter le temps hyper sophistiquée !"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Woah trop bien, comment ça marche ??"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Non je rigole c’est un PC, je sais même pas comment tu peux ne pas l’avoir remarqué, tu me fais pitié…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui bon bah c’est bon hein… Bon qu’est ce que je dois faire ?"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alors en fait j’ai plusieurs trucs à te demander parce que j’arrive pas à écrire avec mes petites pattes"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "pour commencer, je vais t'expliquer comment marche une variable."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bon j'imagine que tu sais ce que c'est, c'est déjà ça."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Pour initialiser une variable il faut simplement écrire le nom de cette dernière sans oublier de l'initialiser."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Sauf qu'en bash pour l'utiliser on va devoir utiliser un caractère avant et ce caractère est le dollar **$**"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vas-y, je te laisse essayer avec un simple cat, je veux que la commande affiche \"Hello Rats\" à l'aide d'une variable qui s'appelle rat."
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"7"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682697266.json",
+		"name": "0"
+	}
+}

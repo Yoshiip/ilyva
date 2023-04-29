@@ -5,47 +5,95 @@ const INIT_TEXT = "Terminal M100 1.0.\nLe terminal fait maison [b]simplifié[/b]
 
 export(String) var user_name
 export(String) var group_name
+export(NodePath) var reference_node
+export(String) var ip_address = ""
+export(int) var pid = -1
+export(int) var max_paragraph_size = -1
+export(float) var default_font_size = 14
 
 onready var interface: RichTextLabel = preload("res://addons/bash_in_godot/scenes/Interface.tscn").instance(); # the terminal
 onready var prompt: LineEdit = preload("res://addons/bash_in_godot/scenes/Prompt.tscn").instance(); # the input
+onready var editor: WindowDialog = preload("res://addons/bash_in_godot/scenes/NanoEditor.tscn").instance(); # "nano"
 
-var terminal := Terminal.new()
+var terminal: Terminal
+var dns_config := DNS.new([])
 var history := [] # array of strings containing all previous entered commands
 var history_index := 0 # the position in the history. By default, it will have the size of the history array as value
 
+func set_system(system_reference: System) -> void:
+	terminal.system = system_reference
+	terminal.PWD = PathObject.new("/") # just in case the user was already somewhere else when this function was called.
+
 func _ready():
+	if pid < 0:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		pid = rng.randi_range(100, 10000)
+	yield(get_node("../../"), "ready")
+	var node := get_node_or_null(reference_node)
+	var system := System.new([])
+	var allowed_commands := []
+	var forbidden_commands := []
+	if node != null:
+		if "system" in node:
+			system = node.system
+		if "dns" in node:
+			dns_config = node.dns
+		# if an ip address is defined here using the export, the one from the node is ignored
+		if "ip_address" in node and not ip_address.empty():
+			ip_address = node.ip_address
+		# if a max paragraph size is defined using the export variable, it will override the one defined in the node.
+		# If none are given, nor valid, then the default one from the Terminal scene is used.
+		if "max_paragraph_size" in node and max_paragraph_size == -1:
+			max_paragraph_size = node.max_paragraph_size
+		if "allowed_commands" in node:
+			allowed_commands = node.allowed_commands
+		if "forbidden_commands" in node:
+			forbidden_commands = node.forbidden_commands
+	terminal = Terminal.new(pid, system, editor)
+	terminal.set_dns(dns_config)
+	if max_paragraph_size > 0:
+		terminal.set_custom_text_width(max_paragraph_size)
+	if not ip_address.empty():
+		terminal.set_ip_address(ip_address)
+	if not allowed_commands.empty():
+		terminal.set_allowed_commands(allowed_commands)
+	if not forbidden_commands.empty():
+		terminal.forbid_commands(forbidden_commands)
 	add_child(interface)
 	add_child(prompt)
-	
-	prompt.connect("text_entered", self, "_on_command_entered")
+	add_child(editor)
 	theme = preload("res://addons/bash_in_godot/resources/terminal.tres")
+	prompt.connect("text_entered", self, "_on_command_entered")
 	if user_name != null:
 		terminal.user_name = user_name
 	if group_name != null:
 		terminal.group_name = group_name
-	
-	if is_instance_valid($"../..".puzzle):
-		$Setup.set_script(load(str("res://scripts/puzzles/setup/", $"../..".puzzle.get_puzzle_id(),".gd")))
-		$Setup.ready()
-		terminal.set_root($Setup.root)
-	else:
-		print("Can't load root")
 	interface.append_bbcode(INIT_TEXT)
+	set_font_size(default_font_size)
+	
+	if is_instance_valid(node):
+		node.terminal_created(self)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up") and history_index > 0:
 		history_index -= 1
 		prompt.text = history[clamp(history_index, 0, history.size() - 1)]
 		prompt.grab_focus()
+		prompt.set_cursor_position(prompt.text.length())
 	if Input.is_action_just_pressed("ui_down"):
 		if history_index < history.size() - 1:
 			history_index += 1
 			prompt.text = history[history_index]
 			prompt.grab_focus()
+			prompt.set_cursor_position(prompt.text.length())
 		elif prompt.text != "":
 			history_index += 1
 			prompt.clear()
 	if Input.is_action_just_pressed("autocompletion"):
+		# we don't want autocompletion when the user is editing a file using nano
+		if terminal.edited_file != null:
+			return
 		prompt.grab_focus()
 		if not prompt.text.empty():
 			var possibilites := [] # array of string containing the possible names to autocomplete with
@@ -95,13 +143,26 @@ func _on_command_entered(new_text: String):
 	prompt.clear()
 	history.append(new_text)
 	history_index = history.size()
-	_print_command(new_text)
+	if not terminal.m99.started:
+		_print_command(new_text)
 	var result := terminal.execute(new_text, interface)
-	if not result.empty():
-		_print_error(result)
+	# It is possible that there are not outputs.
+	# It happens when the command is just a variable declaration for example.
+	# Note that the `clear` command will produce an output anyway, but with an empty text.
+	for output in result.outputs:
+		if output.error != null:
+			_print_error(output.error)
+		else:
+			if output.interface_cleared:
+				interface.text = ""
+			interface.append_bbcode(output.text)
 
 func _print_command(command: String):
 	interface.append_bbcode("$ " +  command + "\n")
 
 func _print_error(description: String):
 	interface.append_bbcode("[color=red]" + description + "[/color]\n")
+
+func set_font_size(size: int) -> void:
+	interface.get("custom_fonts/normal_font").size = size
+	interface.get("custom_fonts/bold_font").size = size

@@ -23,6 +23,32 @@
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Je devrais les prendre, ça pourrai m'être utile!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"wallet"
+				],
+				"method_name": "add_to_inventory",
+				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous recupérez le porte-monnaie de Mathieu!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"action_unlocked"
+				],
+				"method_name": "story_condition",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
 		}
 	],
 	"metadata": {

@@ -25,6 +25,107 @@
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Bonjour!"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Comment puis-je vous aider ?"
+		},
+		{
+			"choice": "Vous avez des piles ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"choice": "J'ai un traducteur mais il n'a plu de pile.. Vous avez une solution ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui! BASHIA vend des piles."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Les piles coûtent 10 nanos, vous voulez les acheter ?"
+		},
+		{
+			"choice": "Oui",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ok, laissez moi quelques secondes..."
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 2
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Allez-y, vous pouvez payer!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"2"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"choice": "Non",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1679479734.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Pas de soucis, je reste à votre disposition!"
+		},
+		{
+			"event_id": "dialogic_013"
 		}
 	],
 	"metadata": {

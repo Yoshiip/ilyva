@@ -1,0 +1,85 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Parfait même si tu as l'air un peu stupide avec ces tata titi toto."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bon, on arrive bientôt a la fin !"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Maintenant que tu sais faire des variables contenant des commandes tu dois sans doute te dire que c'est possible de faire des “pipes”."
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "pas besoin d'en dire plus normalement tu sais comment ça marche !"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "dans le fichier toto, rajoute 5 lignes \"Bonjour\" \"Je\" \"Suis\" \"Tres\" \"Heureux\" et je voudrais que tu affiches que ces 5 lignes, donc je ne veux pas voir tata à l'aide d'une variable nommée content"
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "de plus je veux que tu utilises tail, tu peux utiliser le paramètre +n ou n est un chiffre ce qui permet de démarer a la nème ligne. Et je veux que tu utilises une “pipe” sinon cet entrainement sert a rien..."
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"10"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682762136.json",
+		"name": "3"
+	}
+}

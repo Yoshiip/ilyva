@@ -1,7 +1,8 @@
 extends Panel
 
 func _ready() -> void:
-	get_viewport().connect("size_changed", self, "window_size_changed")
+	if get_viewport().connect("size_changed", self, "window_size_changed") != OK:
+		print("error while connecting")
 	$Tween.interpolate_property(self, "rect_position:x", get_viewport().size.x, get_viewport().size.x / 2.0, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(self, "modulate:a", 0, 1, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.start()
@@ -34,8 +35,6 @@ func _on_High_pressed() -> void:
 	change_settings_button("High")
 
 func close() -> void:
-	if get_tree().current_scene.name == "Menu":
-		get_tree().current_scene.camera.switch_camera()
 	$Tween.interpolate_property(self, "rect_position:x", get_viewport().size.x / 2.0, get_viewport().size.x, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(self, "modulate:a", 1, 0, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.start()

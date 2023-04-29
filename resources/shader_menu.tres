@@ -85,4 +85,4 @@ shader_param/u_bit_depth = null
 shader_param/u_contrast = null
 shader_param/u_offset = null
 shader_param/u_dither_size = null
-shader_param/blend = 1.0
+shader_param/blend = 0.0

@@ -1,0 +1,248 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bravo!"
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tiens, tu l’as bien mérité."
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Par contre, il n’a bientôt plus de batterie..."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous gagnez le traducteur!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"traminus"
+				],
+				"method_name": "add_to_inventory",
+				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous allumez le traducteur..."
+		},
+		{
+			"character": "character-1681746204.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Batterie faible. Merci de recharger le traducteur rapidement."
+		},
+		{
+			"audio_bus": "Master",
+			"background-music": "play",
+			"event_id": "dialogic_031",
+			"event_name": "BackgroundMusic",
+			"fade_length": 1,
+			"file": "res://audios/musics/scary.mp3",
+			"volume": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Toi! Tu es à ton troisième avertissement. Tu vas devoir nous suivre, on va t’embarquer."
+		},
+		{
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais, ce n’est pas de ma faute!"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je m’en fiche, suis-nous!"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677947682.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"animation": "swing.gd",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_position": true,
+			"change_z_index": false,
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "(Don't change)",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 2,
+			"z_index": 0
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Et toi, là, tu n’a pas envie de finir comme lui, j’imagine ?"
+		},
+		{
+			"choice": "Non…",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"choice": "Désolé…",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ça sert à rien d’être désolé!"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alors arrête de parler français!"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je te mets un avertissement, sache que si on te reprend à parler français, tu finiras comme lui!"
+		},
+		{
+			"audio_bus": "Master",
+			"background-music": "play",
+			"event_id": "dialogic_031",
+			"event_name": "BackgroundMusic",
+			"fade_length": 1,
+			"file": "",
+			"volume": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Nano"
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1680429202.json",
+		"name": "1"
+	}
+}

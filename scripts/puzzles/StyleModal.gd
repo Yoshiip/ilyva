@@ -14,5 +14,6 @@ func _ready() -> void:
 	for i in _colors:
 		var _btn := ColorButton.instance()
 		_btn.modulate = i
-		_btn.connect("pressed", get_tree().current_scene, "change_background_color", [ i ])
+		if _btn.connect("pressed", get_tree().current_scene, "change_background_color", [ i ]) != OK:
+			print("error while connecting")
 		$Content/Container/Colors.add_child(_btn)

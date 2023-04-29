@@ -38,6 +38,7 @@ func play_tween(n : Node, p : String, val1, val2, d : float, t = Tween.TRANS_BOU
 
 func _ready() -> void:
 	close_animation(true)
+	name = app_id
 	$Header/Buttons/Pin.pressed = pinned
 	$Header/Icon.texture = $Header/Icon.texture.duplicate()
 	if app_id != "":

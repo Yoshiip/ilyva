@@ -10,5 +10,5 @@ func _ready() -> void:
 	$Pattern.texture = load(str("res://images/ui/pattern_", pattern_id, ".png"))
 	$ColorRect.modulate = color
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$Pattern.rect_position = lerp($Pattern.rect_position, Vector2.ONE * rand_range(-5, 5), 0.1)

@@ -17,9 +17,34 @@ var progress := {
 		"Mathieu": 0,
 		"Nano": 0,
 		"action_unlocked": false,
+		"can_use_subway": false,
+		"Louane": 0,
 	},
+	"beaux_arts": {
+		"digicode_unlocked": false,
+		"has_card": false,
+		"Digicode": 0,
+		"Clément": 2,
+		"Manon": 0,
+		"Chiba": 0,
+	},
+	"pont_de_bois": {
+		"Rat": 0,
+	},
+	"iut": {
+		"CDI": 0,
+		"Bureau": 0,
+	}
 }
 
+var unlocked_levels := [
+	3, 0
+]
+
+func unlock_level(level_id : String) -> void:
+	unlocked_levels.append(int(level_id))
+
+var current_subway_stop := 3
 
 
 
@@ -27,6 +52,21 @@ const ITEMS := {
 	"traminus": {
 		"name": "Traminus",
 		"description": "Vous permet de parler avec les autres.",
+		"icon": preload("res://images/items/traminus.png"),
+	},
+	"subway_card": {
+		"name": "Carte bash bash",
+		"description": "C'est Clément qui vous l'a donné. Vous permet de voyager en illimité sur le réseau Ilyva!",
+		"icon": preload("res://images/items/bashbash.png"),
+	},
+	"key": {
+		"name": "Clé",
+		"description": "C'est le rat qui vous l'a donné.",
+		"icon": preload("res://images/items/traminus.png"),
+	},
+	"wallet": {
+		"name": "Porte monnaie de Mathieu",
+		"description": "Espèce de voleur!",
 		"icon": preload("res://images/items/traminus.png"),
 	},
 }
@@ -88,35 +128,30 @@ const STATIONS := [
 		"offset": 56,
 		"scene": "res://scenes/StPhilibert/Main.tscn",
 		"line": 1,
-		"map_progress": 99,
 	},
 	{
 		"name": "Pont de Bois",
 		"offset": 224,
 		"scene": "res://scenes/StPhilibert/Main.tscn",
 		"line": 1,
-		"map_progress": 99,
 	},
 	{
 		"name": "Beaux Arts",
 		"offset": 710,
 		"scene": "res://scenes/StPhilibert/Main.tscn",
 		"line": 1,
-		"map_progress": 2,
 	},
-	{
-		"name": "Porte des Postes",
-		"offset": 875,
-		"scene": "res://scenes/StPhilibert/Main.tscn",
-		"line": 2,
-		"map_progress": 1,
-	},
+#	{
+#		"name": "Porte des Postes",
+#		"offset": 875,
+#		"scene": "res://scenes/StPhilibert/Main.tscn",
+#		"line": 2,
+#	},
 	{
 		"name": "Saint-Philibert",
 		"offset": 1440,
 		"scene": "res://scenes/StPhilibert/Main.tscn",
 		"line": 2,
-		"map_progress": 0,
 	},
 ]
 
@@ -134,10 +169,11 @@ var sultans := []
 var items := []
 
 
-func add_to_inventory(item_id : String) -> void:
+func add_to_inventory(item_id : String, callback = "") -> void:
 	if !items.has(item_id):
 		items.append(item_id)
-		play_new_item_animation(item_id, false)
+#		play_new_item_animation(item_id, false, callback)
+		
 
 func add_sultan(sultan_id : String) -> void:
 	if !sultans.has(sultan_id):
@@ -147,10 +183,12 @@ func add_sultan(sultan_id : String) -> void:
 
 onready var NewItem := preload("res://prefabs/ui/NewItem.tscn")
 
-func play_new_item_animation(item_id : String, is_sultan = false) -> void:
+func play_new_item_animation(item_id : String, is_sultan = false, callback = "") -> void:
 	var new_item := NewItem.instance()
 	new_item.item_id = item_id
 	new_item.is_sultan = is_sultan
+	if callback != "":
+		new_item.callback = callback
 	get_tree().current_scene.get_node("Canvas/Container").add_child(new_item)
 	
 

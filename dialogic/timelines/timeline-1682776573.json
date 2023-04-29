@@ -1,0 +1,91 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682776627.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682776627.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Parfait..."
+		},
+		{
+			"character": "character-1682776627.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Après tant d'années,"
+		},
+		{
+			"character": "character-1682776627.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je l'ai enfin trouvé!"
+		},
+		{
+			"character": "character-1682776627.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Terminux m'appartiendra totalement désormais..."
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 3
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_position": false,
+			"change_z_index": false,
+			"character": "character-1682776627.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "(Don't change)",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"BeauxArts/Appartement"
+				],
+				"method_name": "change_scene",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682776573.json",
+		"name": "0"
+	}
+}

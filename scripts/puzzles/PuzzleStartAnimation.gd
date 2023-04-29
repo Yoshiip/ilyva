@@ -8,7 +8,7 @@ onready var pattern: TextureRect = $Canvas/Container/Pattern
 
 func _ready() -> void:
 	$Canvas/Container/Portrait.texture = GameManager.current_puzzle.portrait
-	$Canvas/Container/Label.text = str(GameManager.current_puzzle.given_by, " vous lance une énigme!")
+	$Canvas/Container/Label.text = GameManager.current_puzzle.start_phrase
 	$Canvas/Container/Number.text = str("00", GameManager.current_puzzle.get_puzzle_id())
 	$Tween.interpolate_property($Canvas/Container/CircleTransition.material, "shader_param/Canvas/Container/Circle_size", 0.0, 1.05, 1.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property(circle, "modulate", Color.transparent, circle.modulate, 2.0, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
@@ -24,6 +24,10 @@ func _ready() -> void:
 
 
 #onready var base_position = $Canvas/Container/Pattern.rect_position
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("escape"):
+		get_tree().change_scene("res://scenes/puzzles/Puzzle.tscn")
 
 func _process(delta: float) -> void:
 #	pattern.rect_rotation = lerp(pattern.rect_rotation, rand_range(-10, 10), delta * 2.5)

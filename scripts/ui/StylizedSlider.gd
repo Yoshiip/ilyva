@@ -23,10 +23,13 @@ func _ready() -> void:
 	$Min.text = str("    ", min_value)
 	$Max.text = str(max_value, "    ")
 	
-	get_parent().connect("resized", self, "_resize")
+	if get_parent().connect("resized", self, "_resize") != OK:
+		print("error while connecting")
 	
-	$Slider.connect("value_changed", self, "_value_changed")
-	$Value.connect("value_changed", self, "_value_changed")
+	if $Slider.connect("value_changed", self, "_value_changed") != OK:
+		print("error while connecting")
+	if $Value.connect("value_changed", self, "_value_changed") != OK:
+		print("error while connecting")
 
 func _resize() -> void:
 	$Slider.rect_min_size.x = get_parent().rect_size.x - ($Label.rect_size.x + $Value.rect_size.x + 32 + $Min.rect_size.x + $Max.rect_size.x)

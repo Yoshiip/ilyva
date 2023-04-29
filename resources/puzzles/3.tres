@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Obtenir l'adresse de Clément"
+start_phrase = "Vous devez résoudre une énigme pour savoir où est Clément!"
+description = "Vous devez trouver l'adresse de votre ami Clément!"
+given_by = ""
+hints = [ "1", "2", "3" ]

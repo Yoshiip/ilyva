@@ -1,10 +1,9 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://scenes/3d/Menu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://images/logos/godot_black.png" type="Texture" id=3]
-[ext_resource path="res://resources/shader_menu.tres" type="Material" id=4]
-[ext_resource path="res://images/videos/video_start.ogv" type="VideoStream" id=5]
+[ext_resource path="res://images/videos/0001-0119-1.ogv" type="VideoStream" id=2]
+[ext_resource path="res://images/logos/github.png" type="Texture" id=3]
+[ext_resource path="res://images/logos/globe.png" type="Texture" id=4]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
@@ -32,338 +31,6 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 1 )
-
-[sub_resource type="DynamicFont" id=23]
-size = 64
-outline_size = 4
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="Animation" id=21]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Menu/Camera:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 3.472, 3.041, -5.685 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Menu/Camera:fov")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 110.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Menu/Text/Text:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Menu/Text/Text:outline_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Menu/Text/Godot:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../../../../Music:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Menu/Camera:rotation_degrees")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.545616, 179.147, 0 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../../../Buttons:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/8/type = "method"
-tracks/8/path = NodePath("Menu/Camera")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("../../../TopPart:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("..:material:shader_param/enabled")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("..:material:shader_param/blend")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=22]
-resource_name = "Start"
-length = 7.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Menu/Camera:translation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 3, 5, 7, 7.5 ),
-"transitions": PoolRealArray( 0.5, 1, 2, 1, 0.5, 1 ),
-"update": 0,
-"values": [ Vector3( 3.10014, 3.65441, 27.2358 ), Vector3( 3.06763, 3.65797, 26.7874 ), Vector3( 3.06763, 3.65797, 26.7874 ), Vector3( 3.068, 2.958, 26.787 ), Vector3( 3.068, 2.958, 26.787 ), Vector3( 3.694, 2.604, -8.128 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Menu/Camera:fov")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 7, 7.5 ),
-"transitions": PoolRealArray( 1, 0.5, 1 ),
-"update": 0,
-"values": [ 70.0, 70.0, 110.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Menu/Text/Text:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 2, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Menu/Text/Text:outline_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 2, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Menu/Text/Godot:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 2.5, 3.5 ),
-"transitions": PoolRealArray( 1, 0.5, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../../../../Music:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.83 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Menu/Camera:rotation_degrees")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 7, 7.5 ),
-"transitions": PoolRealArray( 1, 0.5, 1 ),
-"update": 0,
-"values": [ Vector3( -2.704, 184.147, 0 ), Vector3( -2.704, 184.147, 0 ), Vector3( 15, 174.147, 0 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../../../Buttons:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 7, 7.5 ),
-"transitions": PoolRealArray( 1, 0.5, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/8/type = "method"
-tracks/8/path = NodePath("Menu/Camera")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 7.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "go"
-} ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("../../../TopPart:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 7, 7.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("..:material:shader_param/blend")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0, 2.1, 2.3, 2.6, 7, 7.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 1.0, 1.0, 0.0, 1.0, 1.0, 0.0 ]
-}
-tracks/11/type = "animation"
-tracks/11/path = NodePath("../AnimationPlayer")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"clips": PoolStringArray( "Pulse" ),
-"times": PoolRealArray( 7.5 )
-}
-
-[sub_resource type="Animation" id=24]
-resource_name = "Pulse"
-length = 10.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/blend")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1.2, 3.7, 4, 4.3, 4.8, 8.5, 9, 9.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=25]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/blend")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
 
 [sub_resource type="StyleBoxTexture" id=20]
 texture = ExtResource( 20 )
@@ -497,71 +164,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.141176, 0.137255, 0.137255, 1 )
 
-[node name="VideoPlayer" type="VideoPlayer" parent="Canvas/Container"]
-unique_name_in_owner = true
-anchor_top = 0.167
-anchor_right = 1.0
-anchor_bottom = 0.834
-stream = ExtResource( 5 )
-autoplay = true
-
-[node name="3D" type="Panel" parent="Canvas/Container"]
-show_behind_parent = true
+[node name="Control" type="Control" parent="Canvas/Container"]
 anchor_top = 0.167
 anchor_right = 1.0
 anchor_bottom = 0.833
-margin_top = -0.200005
-margin_bottom = -0.67804
-
-[node name="Container" type="ViewportContainer" parent="Canvas/Container/3D"]
-visible = false
-material = ExtResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
 rect_clip_content = true
-stretch = true
 
-[node name="Viewport" type="Viewport" parent="Canvas/Container/3D/Container"]
-size = Vector2( 1280, 479 )
-size_override_stretch = true
-handle_input_locally = false
-msaa = 1
-render_target_update_mode = 0
-
-[node name="Menu" parent="Canvas/Container/3D/Container/Viewport" instance=ExtResource( 2 )]
-
-[node name="Subway" parent="Canvas/Container/3D/Container/Viewport/Menu" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.2, -3 )
-speed = 15.0
-
-[node name="Camera" parent="Canvas/Container/3D/Container/Viewport/Menu" index="4"]
-transform = Transform( -0.999888, 0.000141763, 0.0148863, 0, 0.999955, -0.00952265, -0.0148869, -0.0095216, -0.999844, 3.472, 3.041, -5.685 )
-fov = 110.0
-
-[node name="Text" type="Spatial" parent="Canvas/Container/3D/Container/Viewport/Menu"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.249, 2.83717, 27.9861 )
-
-[node name="Text" type="Label3D" parent="Canvas/Container/3D/Container/Viewport/Menu/Text"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0.690853, -1.90735e-06 )
-pixel_size = 0.0025
-shaded = true
-text = "Aymeri, Manon, Thomas
-Nicolas et Noé présentent"
-font = SubResource( 23 )
-
-[node name="Godot" type="Sprite3D" parent="Canvas/Container/3D/Container/Viewport/Menu/Text"]
-pixel_size = 0.0006
-shaded = true
-texture = ExtResource( 3 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/Container/Viewport"]
-autoplay = "RESET"
-anims/RESET = SubResource( 21 )
-anims/Start = SubResource( 22 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container/3D/Container"]
-anims/Pulse = SubResource( 24 )
-anims/RESET = SubResource( 25 )
+[node name="VideoPlayer" type="VideoPlayer" parent="Canvas/Container/Control"]
+unique_name_in_owner = true
+anchor_top = -0.167
+anchor_right = 1.0
+anchor_bottom = 1.167
+margin_top = -94.0
+margin_bottom = -94.0
+stream = ExtResource( 2 )
+autoplay = true
 
 [node name="SharpCorners" type="Panel" parent="Canvas/Container"]
 anchor_top = 0.167
@@ -602,10 +219,10 @@ margin_bottom = 20.0
 custom_constants/separation = 40
 alignment = 1
 
-[node name="Chiba" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+[node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 171.0
 margin_right = 353.0
-btn_label = "Nouvelle partie"
+btn_label = "Jouer"
 btn_icon = ExtResource( 7 )
 
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
@@ -1124,6 +741,75 @@ margin_right = 207.0
 margin_bottom = 212.0
 text = "PHILIPPE MATTHIEU"
 
+[node name="VBoxContainer" type="HBoxContainer" parent="Canvas/Container"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -247.0
+margin_top = -72.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_constants/separation = 16
+alignment = 2
+
+[node name="Github" type="TextureButton" parent="Canvas/Container/VBoxContainer"]
+margin_left = 135.0
+margin_right = 167.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+focus_mode = 0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="Website" type="TextureButton" parent="Canvas/Container/VBoxContainer"]
+margin_left = 183.0
+margin_right = 215.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Version" type="Label" parent="Canvas/Container"]
+self_modulate = Color( 1, 1, 1, 0.498039 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -48.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 31.0
+text = "1.0"
+align = 2
+
+[node name="DebugPuzzle" type="Button" parent="Canvas/Container"]
+margin_left = 45.0
+margin_top = 166.0
+margin_right = 373.0
+margin_bottom = 276.0
+text = "debug puzzle"
+align = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="SpinBox" type="SpinBox" parent="Canvas/Container/DebugPuzzle"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -16.5
+margin_bottom = 16.5
+min_value = 1.0
+max_value = 13.0
+value = 1.0
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = -20.0
@@ -1135,11 +821,11 @@ volume_db = -40.0
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="finished" from="Canvas/Container/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
-[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Chiba" to="." method="_on_Chiba_pressed"]
+[connection signal="finished" from="Canvas/Container/Control/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-
-[editable path="Canvas/Container/3D/Container/Viewport/Menu"]
-[editable path="Canvas/Container/3D/Container/Viewport/Menu/station"]
+[connection signal="pressed" from="Canvas/Container/VBoxContainer/Github" to="." method="_on_Github_pressed"]
+[connection signal="pressed" from="Canvas/Container/VBoxContainer/Website" to="." method="_on_Website_pressed"]
+[connection signal="pressed" from="Canvas/Container/DebugPuzzle" to="." method="_on_DebugPuzzle_pressed"]

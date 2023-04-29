@@ -3,6 +3,8 @@ extends ColorRect
 var item_id := "traminus"
 var is_sultan := false
 
+var callback := ""
+
 func _ready() -> void:
 	if is_sultan:
 		$Container/Icon.texture = load("res://images/sultans/" + item_id + ".png")
@@ -27,4 +29,6 @@ func _ready() -> void:
 func _on_Close_pressed() -> void:
 	$AnimationPlayer.play("Close")
 	yield(get_tree().create_timer(1.0), "timeout")
+	if callback != "":
+		get_tree().current_scene.get_node(callback).interact()
 	queue_free()

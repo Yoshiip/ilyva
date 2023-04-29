@@ -20,10 +20,8 @@ func _ready() -> void:
 
 
 func start() -> void:
-#	if GameManager.settings.enable_3d:
-	get_tree().change_scene("res://scenes/Menu.tscn")
-#	else:
-#		get_tree().change_scene("res://scenes/MenuSimplified.tscn")
+	if get_tree().change_scene("res://scenes/Menu.tscn") != OK:
+		print("error while changing scene")
 
 func _on_Non_pressed() -> void:
 	GameManager.settings.enable_3d = false

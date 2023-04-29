@@ -153,6 +153,16 @@
 			"wait_seconds": 2
 		},
 		{
+			"call_node": {
+				"arguments": [
+					"rallumage"
+				],
+				"method_name": "dialogue_event",
+				"target_node_path": "/root/Intro"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
@@ -163,6 +173,17 @@
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Je comprends vraiment rien.. Mais bon si je peut arriver à l'heure en cours, ça serait bien!"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 2
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je devrais aller à la surface!"
 		},
 		{
 			"call_node": {

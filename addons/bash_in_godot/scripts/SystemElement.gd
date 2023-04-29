@@ -1,14 +1,15 @@
 extends Object
 class_name SystemElement
 
-const X = 1
-const W = 2
-const R = 4
-
 # this is a class meant to describe an element in a system tree.
 # the root will always be a folder of name "/".
 # Everything should inherit from such folder.
-# The root is also the only element authorized to have no parent
+# The root is also the only element authorized to have no parent.
+
+# the numeric values of each kind of permission
+const X = 1 # execution/crossing
+const W = 2 # writing
+const R = 4 # reading
 
 var type: int # either 0 for file or 1 for folder
 var filename: String # the name of the file
@@ -16,7 +17,7 @@ var base_dir: String # the parent absolute path. For root it would be an empty s
 var content: String # only if it's a file, otherwise empty string ("")
 var children := [] # an array of SystemElement. Typed arrays will only be possible in Godot v4
 var absolute_path = null # computed and immutable value
-var permissions: String
+var permissions: String # the octal format (777)
 var creation_date := Time.get_datetime_dict_from_system()
 var creator_name := "unknown"
 var group_name := "unknown"
@@ -40,7 +41,16 @@ static func are_permissions_valid(p: String) -> bool:
 	var result := regex.search(p)
 	return result != null
 
-func _init(t: int, name: String, p, c = "", ch = [], creator: String = "", group: String = ""):
+# A SystemElement represents a file or a folder (it's kind of the same thing).
+# Here the list of parameters:
+# - t: the type of the element. 0 for a file, 1 for a folder.
+# - name: the name of the element.
+# - p: the absolute path of the parent of the element (the path to where it is contained).
+# - c: the content of the file (USE THIS ONLY IF t=0)
+# - ch: the children of the folder (USE THIS ONLY IF t=1)
+# - creator: the name of the user that created this file.
+# - group: the name of the group that created this file.
+func _init(t: int, name: String, p, c = "", ch = [], creator: String = "", group: String = "", given_permissions: String = ""):
 	type = t
 	filename = name
 	base_dir = p
@@ -49,19 +59,29 @@ func _init(t: int, name: String, p, c = "", ch = [], creator: String = "", group
 	absolute_path = PathObject.new(base_dir + "/" + filename) if not base_dir.empty() else PathObject.new("/")
 	creator_name = creator
 	group_name = group
-	if is_folder():
-		permissions = "755" # default permissions of a folder
+	if given_permissions.empty():
+		set_default_permissions()
 	else:
-		permissions = "644" # default permissions of a file
+		if are_permissions_valid(given_permissions):
+			permissions = given_permissions
+		else:
+			set_default_permissions()
+			push_warning("The " + ("file" if t == 0 else "folder") + " '" + name + "' received invalid permissions: '" + given_permissions + "'. Default permissions were given instead.")
 	if content.length() > 0 and type == 1:
-		push_error("It is not possible for a folder to have content. The object was destroyed.\nInvalid file's name: " + filename)
+		push_error("It is not possible for a folder to have content. The object was destroyed. Invalid file's name: " + filename)
 		self.free()
 	if children.size() > 0 and type == 0:
-		push_error("A file cannot contain other files. The object was destroyed.\nInvalid file's name: " + filename)
+		push_error("A file cannot contain other files. The object was destroyed. Invalid file's name: " + filename)
 		self.free()
 
 func append(element: SystemElement):
 	children.append(element)
+
+func set_default_permissions() -> void:
+	if is_folder():
+		permissions = "755" # default permissions of a folder
+	else:
+		permissions = "644" # default permissions of a file
 
 func count_depth() -> int:
 	if base_dir == "/":
@@ -69,16 +89,16 @@ func count_depth() -> int:
 	else:
 		return base_dir.count("/") + 1
 
-func is_file():
+func is_file() -> bool:
 	return type == 0
 
-func is_folder():
+func is_folder() -> bool:
 	return type == 1
 
-func is_hidden():
+func is_hidden() -> bool:
 	return filename.begins_with(".")
 
-func rename(new_name: String):
+func rename(new_name: String) -> void:
 	filename = new_name
 
 # When we copy/move of a file to new location,
@@ -106,11 +126,28 @@ func move_inside_of(new_absolute_path):
 		child.move_inside_of(self.base_dir + "/" + child.absolute_path.parent)
 	return self
 
-func equals(another: SystemElement):
+# Checks if two elements are equal.
+# If their type is different, it returns false.
+# If their absolute path is different, it returns false.
+# If the elements are files, then it returns true if their content is the same.
+# If the elements are folders, the functions becomes recursive and is applied on each child.
+func equals(another: SystemElement) -> bool:
+	if self == another: return true
 	if another == null: return false
-	if self.typesystem == another.type and self.absolute_path.equals(another.absolute_path):
-		return true
-	return false
+	if self.type != another.type: return false
+	if !self.absolute_path.equals(another.absolute_path): return false
+	if self.is_file():
+		return self.content == another.content
+	else:
+		var found_equal := false
+		for child1 in self.children:
+			for child2 in another.children:
+				if child1.equals(child2):
+					found_equal = true
+					break
+			if not found_equal:
+				return false
+	return true
 
 # Sets the permissions using the octal format.
 # Example is: chmod 777 file.txt

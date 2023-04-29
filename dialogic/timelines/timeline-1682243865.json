@@ -1,0 +1,247 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": true
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais... Je croyais que t’étais mort ?!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Clément! Qu’est-ce qu’il se passe ici ? C’est plus comme avant, je comprends rien ! Eh mais attends, il y a aussi Doğukan et Manon ! Salut !"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais..."
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "De quoi tu parles ?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bah, j’étais en train de partir pour aller à l’IUT, puis le métro a glitché, et puis.. Je me suis retrouvé là, tout le monde parlait une langue bizarre et un beau gosse m’a filé un traducteur, puis il s’est fait embarquer… C’est quoi ce délire ?"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ah, mais attends ? T’es pas celui de notre monde ? Peut-être que le multivers est réel après tout… Bah, on va t’expliquer, assieds-toi!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vas-y"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "En gros, Julien Bas- Juliem Bastum, pardon, est pro en “bash”. Il nous contrôle tous, certains se sont rebellés mais ça n’a mené à rien, il est trop fort…"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Et, il cherche à le devenir encore plus avec un certain “sudo”. Qui sait ce que c’est…"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " Mais le problème est que s’il arrive à obtenir le sudo, on est fichus. Il pourra carrément nous modifier, nous supprimer… Où va le monde…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ouah, c’est beaucoup à encaisser… Donc le Julien Baste de mon monde est le Juliem Bastum de Terminus ? Et il contrôle le monde ? C’est…"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui… Mais attends, Julien Baste de ton monde ? Tu parlais d’aller à l’IUT… Attends…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui, c’est mon prof de système et de C."
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "De système ?! Mais alors, tu connais bash ?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui, bien sûr ! Je connais bash et bash me connait, on est un peu meilleurs amis lui et moi."
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "S’il te plaît, tu es notre chance ! Sauve-nous de cette dictature, je t’en supplie !"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tente ta chance, Juliem Bastum se trouve à Cité Scientifique… Personne n’ose y aller, d’ailleurs le toi de ce monde… Il..."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Il ?"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Il a échoué… Mais, on était bien potes, lui et moi. Il m’avait promis de construire le dinosaure qu’il m’avait offert à mon anniversaire, mais… il est parti."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Eh bien, le moi de l’autre monde est là ! Qu’on le construise, ce dinosaure !"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C'est parti!"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "(Clément sort toute les pièces, vous prennez le mode d’emploi)"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 3
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alors..."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "(vous numérotez les pièces)"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 1
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je crois que j'ai compris!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Attendez je vous montre!"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Attend, je crois pas que ce soit utile…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais si! attend…"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"5"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682243865.json",
+		"name": "0"
+	}
+}

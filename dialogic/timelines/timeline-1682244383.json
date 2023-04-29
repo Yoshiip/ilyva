@@ -1,0 +1,104 @@
+{
+	"events": [
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Et voila le travail!"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "(Doğukan casse la construction, puis Clément va chercher un tube de colle)"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Peut-être que ça ira mieux avec ça, tu crois pas ?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hé hé..."
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais!"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "T’a cassé une pièce, t’aurais pu faire attention…"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 3
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hé, vous avez pas faim vous? Moi j’ai la dalle…"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "On pourrait aller au Chiba ! Ça fait longtemps !"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Carrément, je crève de faim."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bon bah, let’s go!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Chiba"
+				],
+				"method_name": "change_scene",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682244383.json",
+		"name": "1"
+	}
+}

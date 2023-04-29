@@ -1,0 +1,103 @@
+{
+	"events": [
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alors, tu es arrivé…"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "J’ai entendu que quelqu’un allait arriver pour me déranger…"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Pourquoi vous faites ça ? Vous vous rendez compte que le monde est malheureux ?"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Haha, je m’en fiche ! Je veux [shake]TOUT[/shake] le pouvoir du monde !"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais..."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous avez déjà tout le pouvoir du monde ! Vous n’êtes pas satisfait ?"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je veux [shake]PLUS[/shake] !"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je veux… Je veux le [shake]sudo[/shake] !"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C’est du n’importe quoi !"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Haha, bien sûr. Je vais l’avoir, mon sudo, je suis très proche de l’avoir ! Ça fait des années que je recherche le sudo dans cité scientifique, j’ai tout fouillé…"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " Au final, il était dans l’IUT ! Quelle ironie !"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu arrives pile au bon moment pour le spectacle."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C’est donc ça, le sudo… Une couronne ! "
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bastum essaie de déverrouiller la boîte, vous l’en empêchez en l’ouvrant aussi."
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"13"
+				],
+				"method_name": "load_puzzle",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682767888.json",
+		"name": "1"
+	}
+}

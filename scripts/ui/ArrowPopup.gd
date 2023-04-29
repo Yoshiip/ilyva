@@ -23,7 +23,8 @@ func _on_Yes_pressed() -> void:
 	tween.start()
 	yield(get_tree().create_timer(0.5), "timeout")
 	print(scene_path)
-	get_tree().current_scene.transition.transition_to_scene(str("res://scenes/", scene_path, ".tscn"))
+#	get_tree().current_scene.transition.transition_to_scene(str("res://scenes/", scene_path, ".tscn"))
+	get_tree().current_scene.transition.transition_to_scene(scene_path)
 
 func _on_No_pressed() -> void:
 	tween.interpolate_property(self, "modulate:a", 1.0, 0.0, 0.5)

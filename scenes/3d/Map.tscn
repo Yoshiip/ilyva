@@ -21,9 +21,9 @@ texture = ExtResource( 5 )
 curve = SubResource( 1 )
 
 [node name="Path" type="PathFollow2D" parent="Line"]
-position = Vector2( -485.592, -37.7405 )
-rotation = -2.57844
-offset = 1402.6
+position = Vector2( -505, -70.9998 )
+rotation = -2.03444
+offset = 1443.12
 lookahead = 10.0
 
 [node name="Icon" type="Sprite" parent="Line/Path"]

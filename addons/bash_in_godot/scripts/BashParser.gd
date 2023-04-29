@@ -1,296 +1,310 @@
 extends Object
 class_name BashParser
 
-var command: String
-var tokens_list := []
-var error := ""
+var pid: int
+var ctx: BashContext
+var error: String = ""
 
-func _init(c: String):
-	command = c.strip_edges()
-	tokens_list = _read(command)
+# `p` is the pid to use in case '$$' is used in the input
+func _init(context: BashContext, p: int):
+	ctx = context
+	pid = p
 
-# Transforms the input as a list of tokens
-# so that it is easier to read for an algorithm.
-# It eliminates the problem of the unlimited white space delimiter for example.
-# For example:
-# input="echo "yoyo" | tr y t"
-# would give [PLAIN, STRING, PIPE, PLAIN, PLAIN, PLAIN]
-# the very first item of the list is the name of a command, and the first "PLAIN" after a PIPE is also a command
-func _read(input: String) -> Array:
-	if input.empty():
-		return [BashToken.new(Tokens.EOF, null)]
-	var pos := 0
-	var result := []
-	var length := input.length()
-	while pos < length:
-		if input[pos] == " ":
-			pos += 1
-			continue
-		elif input[pos] == "0" or input[pos] == "1" or input[pos] == "2":
-			var descriptor := input[pos]
-			var word_pos := pos
-			pos += 1
-			while pos < length and input[pos] == " ":
-				pos += 1
-			if pos >= length:
-				result.append(BashToken.new(Tokens.PLAIN, descriptor))
-				break
-			var redirection := _read_redirection(input, pos, length)
-			if redirection.error != null:
-				error = redirection.error
-				return []
-			else:
-				# It was actually an identifier starting with this number
-				if redirection.token == null:
-					var identifier := _read_identifier(input, word_pos, length)
-					result.append(identifier.token)
-					pos = identifier.pos
-					continue
-				else:
-					result.append(BashToken.new(Tokens.DESCRIPTOR, int(descriptor)))
-					result.append(redirection.token)
-				pos = redirection.pos
-		elif input[pos] == ">" or input[pos] == "<":
-			if input[pos] == ">":
-				result.append(BashToken.new(Tokens.DESCRIPTOR, 1)) # default redirection for ">" or ">>"
-			else:
-				result.append(BashToken.new(Tokens.DESCRIPTOR, 0)) # default redirection for "<" or "<<"
-			var redirection := _read_redirection(input, pos, length)
-			if redirection.error != null:
-				error = redirection.error
-				return []
-			else:
-				result.append(redirection.token)
-				pos = redirection.pos
-		elif input[pos] == "&":
-			result.append(BashToken.new(Tokens.AND, null))
-			pos += 1
-			while pos < length and input[pos] == " ":
-				pos += 1
-			if pos >= length:
-				error = "Erreur de syntaxe : descripteur attendu après une telle redirection"
-				return []
-			var d_value: String = input[pos]
-			if d_value == "0" or d_value == "1" or d_value == "2":
-				result.append(BashToken.new(Tokens.DESCRIPTOR, int(d_value)))
-				pos += 1
-			else:
-				error = "Erreur de syntaxe : les descripteurs valides sont 0, 1 ou 2."
-				return []
-			continue
-		elif _is_char_quote(input[pos]):
-			var parsed_string = _read_string(input.right(pos))
-			if not parsed_string.string_closed:
-				error = "Erreur de syntaxe : une chaine de caractères n'a pas été fermée."
-				return []
-			else:
-				pos += parsed_string.value.length() + 2
-			result.append(BashToken.new(Tokens.STRING, parsed_string.value))
-		elif input[pos] == "|":
-			result.append(BashToken.new(Tokens.PIPE, null))
-		elif input[pos] == "-":
-			pos += 1
-			if pos >= length or input[pos] == " ":
-				result.append(BashToken.new(Tokens.PLAIN, "-"))
-			else:
-				if input[pos] == "-":
-					pos += 1
-					var flag_name = ""
-					while pos < length and input[pos] != " ":
-						flag_name += input[pos]
-						pos += 1
-					if flag_name.empty():
-						result.append(BashToken.new(Tokens.PLAIN, "--"))
-					else:
-						result.append(BashToken.new(Tokens.LONG_FLAG, flag_name))
-				else:
-					result.append(BashToken.new(Tokens.FLAG, input[pos]))
-					pos += 1
-					while pos < length and input[pos] != " ":
-						result.append(BashToken.new(Tokens.FLAG, input[pos]))
-						pos += 1
-		else: # an identifier (Tokens.PLAIN)
-			var identifier := _read_identifier(input, pos, length)
-			result.append(identifier.token)
-			pos = identifier.pos
-		pos += 1
-	result.append(BashToken.new(Tokens.EOF, null))
-	return result
+func set_context(context: BashContext) -> void:
+	ctx = context
 
-# Reads a word, a path (something that isn't anything else)
-func _read_identifier(input: String, pos: int, length: int) -> Dictionary:
-	var identifier := ""
-	while pos < length and input[pos] != " ":
-		identifier += input[pos]
-		pos += 1
-	return {
-		"token": BashToken.new(Tokens.PLAIN, identifier),
-		"pos": pos
-	}
+func set_pid(p: int) -> void:
+	pid = p
 
-# Reads a string ("yo", 'yo')
-func _read_string(content: String):
-	var cursor := 0
-	var string_opener := ""
-	var result := ""
-	var closed := false
-	while cursor < content.length():
-		if _is_char_quote(content[cursor]):
-			if content[cursor] == string_opener:
-				if content[cursor - 1] != "\\":
-					closed = true
-					break
-			else:
-				if string_opener.empty():
-					string_opener = content[cursor]
-		if content[cursor] != "\\":
-			result += content[cursor]	
-		cursor += 1
-	return {
-		"value": result.strip_edges().substr(1, result.length() - 1),
-		"string_closed": closed
-	}
-
-# When we are executing this function, it's because we've just seen a number (0, 1 or 2).
-# `pos` is therefore the next character.
-# The goal is now to check if this number is part of a redirection.
-# If it is, it needs to output the token (<, > or >>).
-# It returns a dictionary {"token": BashToken or nul, "pos": int, "error": String or null}
-# "token" can be null of it's not a redirection ('echo 2' for example should not interpreted as a redirection)
-func _read_redirection(input: String, pos: int, length: int) -> Dictionary:
-	if input[pos] == ">":
-		pos += 1
-		if pos >= length:
-			return {
-				"error": "fin de redirection inattendue"
-			}
-		if input[pos] == ">":
-			return {
-				"token": BashToken.new(Tokens.APPEND_WRITING_REDIRECTION, null),
-				"error": null,
-				"pos": pos
-			}
-		else:
-			return {
-				"token": BashToken.new(Tokens.WRITING_REDIRECTION, null),
-				"error": null,
-				"pos": pos - 1
-			}
-	elif input[pos] == "<":
-		pos += 1
-		if pos >= length:
-			return {
-				"error": "fin de redirection inattendue"
-			}
-		if input[pos] == "<":
-			return {
-				"error": "Erreur de support : la redirection '<<' n'est pas prise en charge car incompréhensible, sorry!"
-			}
-		else:
-			return {
-				"token": BashToken.new(Tokens.READING_REDIRECTION, null),
-				"error": null,
-				"pos": pos - 1
-			}
-	else:
-		return {
-			"token": null,
-			"error": null,
-			"pos": pos
-		}
+func clear_error() -> void:
+	error = ""
 
 # The goal of this function is to identify the commands among the tokens list.
 # The very first token must be a PLAIN (the name of the command).
 # Every tokens that is after a command's name belongs to this command and will be given as its arguments.
-# A command can have multiple subcommands, each one separated by a pipe (|).
-# The very next token after a pipe must be a PLAIN (which is the name of the following command).
+# An input can have multiple commands, each one separated by a pipe (|) or a semicolon (;).
+# If they are separated by a pipe, then the standard output of the first one becomes the standard input of the second one.
+# If they are separated by a semicolon, then they're completely independant from one another.
+# The very next token after a pipe or a semicolon must be a PLAIN (which is the name of the following command).
 # For example, the command: "echo -n 'yoyo' | tr y t'
 # would give:
 # [
-#   {
-#     "name": "echo",
-#     "options": ["-n", "yoyo"],
-#     "redirections": []
-#   },
-#   {
-#     "name": "tr",
-#     "options": ["y", "t"],
-#     "redirections": []
-#   }
+#   [
+#     {
+#       "type": "command",
+#       "name": "echo",
+#       "options": ["-n", "yoyo"],
+#       "redirections": []
+#     },
+#     {
+#       "type": "command"
+#       "name": "tr",
+#       "options": ["y", "t"],
+#       "redirections": []
+#     }
+#   ]
+# ]
+# However, the command "echo hello ; echo world" are two different commands that must be executed one after the other.
+# If the first one fails, it does not stop the second one from being executed.
+# It would give something like this:
+# [
+#   [
+#     {
+#       "type": "command",
+#       "name": "echo",
+#       "options": ["hello"],
+#       "redirections": []
+#     }
+#   ],
+#   [
+#     {
+#       "type": "command"
+#       "name": "echo",
+#       "options": ["world"],
+#       "redirections": []
+#     }
+#   ]
 # ]
 # If the command has redirections, it will look something like this:
-# { "port": 1, "type": Tokens.WRITING_REDIRECTION, "target": "file.txt", "copied": false }
+# "redirections": [{ "port": 1, "type": Tokens.WRITING_REDIRECTION, "target": BashToken(Tokens.PLAIN, "file.txt"), "copied": false }]
 # == 1>file.txt
 # if "copied" is `true`:
 # == 1>&2 (target is the same as the redirection of port 2)
-func parse() -> Array:
+# Also, if this is just a variable affectation (yoyo=5 for example), then:
+# [
+#   [
+#     {
+#       "type": "variable",
+#       "name": "yo",
+#       "value": BashToken
+#     }
+#   ]
+# ]
+# Finally, if this is a for loop, then :
+# [
+#   [
+#     {
+#       "type": "for",
+#       "variable_name": String,
+#       "sequences": array of tokens
+#       "body": array of tokens
+#     }
+#   ]
+# ]
+func parse(input) -> Array:
+	var tokens_list := []
+	if input is String:
+		var lexer := BashLexer.new(input)
+		if not lexer.error.empty():
+			error = lexer.error
+			return []
+		tokens_list = lexer.tokens_list
+	elif input is Array:
+		tokens_list = input
+	else:
+		error = "Donnée invalides pour le parsing du code."
+		return []
+	if tokens_list.size() == 1 and tokens_list[0].is_eoi():
+		return []
 	var i := 0
-	var commands := []
+	var e := 0
+	var commands := [[]]
 	var number_of_tokens := tokens_list.size()
+	# Probably one of the weirdest thing in Bash:
+	# variables affectations are ignored when they follow, or are followed by, a pipe.
+	# As a consequence, we'll remove from the output of the parsing algorithm all variable affectations,
+	# if a pipe is detected within the input.
+	var has_pipe := false
+	for t in tokens_list:
+		if t.is_pipe():
+			has_pipe = true
+			break
 	while i < number_of_tokens:
+		if tokens_list[i].is_newline():
+			i += 1
+			continue
 		var r = _parse_command(tokens_list.slice(i, number_of_tokens) if i > 0 else tokens_list)
 		if r is String:
 			error = r
 			return []
-		commands.append(r.command)
 		i += r.number_of_read_tokens
+		if has_pipe and r.command.type == "variable":
+			break
+		commands[e].append(r.command)
 		if i < number_of_tokens:
 			if tokens_list[i].is_pipe():
 				i += 1
-			elif tokens_list[i].is_eof():
+			elif tokens_list[i].is_eoi():
 				break
+		if r.should_cut_node:
+			i += 1
+			if i >= number_of_tokens or tokens_list[i].is_eoi():
+				break # ending the command with a semicolon should not throw an error
+			commands.append([])
+			e += 1
 	return commands
 
-func _parse_command(list:Array):
-	if list.empty() or list[0].is_eof():
-		return "Erreur de syntaxe : BASH attendait une commande mais il n'y a rien."
-	if list[0].type != Tokens.PLAIN:
-		return "Erreur de syntaxe : '" + str(list[0].value) + "' n'est pas une commande."
-	var c := { "name": list[0].value, "options": [], "redirections": [] }
-	var i := 1
-	var found_redirection := false
+func _parse_command(list: Array):
+	if list.empty() or list[0].is_eoi():
+		print("list = " + str(list))
+		return "Erreur de syntaxe : bash attendait une commande mais il n'y a rien."
+	if list[0].type != Tokens.PLAIN and list[0].type != Tokens.KEYWORD:
+		return "Erreur de syntaxe : le symbole '" + str(list[0].value) + "' n'était pas attendu"
+	var is_variable_affectation: bool = list.size() > 1 and list[1].is_equal_sign()
+	if is_variable_affectation and not list[0].value.is_valid_identifier():
+		return "Erreur de syntaxe : l'identifiant '" + list[0].value + "' n'est pas un nom de variable valide."
+	if list[0].is_keyword_and_equals("for"):
+		var for_loop = _parse_for_loop(list.slice(1, list.size()))
+		if "error" in for_loop:
+			return for_loop.error
+		var size: int = for_loop.size
+		for_loop.erase("size") # we don't need it anymore
+		return {
+			"number_of_read_tokens": size,
+			"should_cut_node": true,
+			"command": for_loop
+		}
+	var c := {
+		"type": "command",
+		"name": list[0].value,
+		"options": [],
+		"redirections": []
+	} if not is_variable_affectation else {
+		"type": 
+		"variable",
+		"name": list[0].value,
+		"value": null
+	}
 	var number_of_tokens = list.size()
+	var should_cut_node := false
+	var found_redirection := false
+	var i := 1
 	while i < number_of_tokens:
-		if list[i].is_pipe() or list[i].is_eof():
+		if list[i].is_pipe() or list[i].is_eoi():
 			break
-		elif list[i].is_descriptor():
-			var descriptor: int = list[i].value
-			i += 1
-			var redirection_type: String = list[i].type
-			if descriptor == 1 and list[i].is_reading_redirection():
-				return "Erreur de syntaxe : le descripteur " + str(descriptor) + " ne peut être en lecture."
-			i += 1
-			if i >= number_of_tokens:
-				return "Erreur de syntaxe : fin inattendue de redirection."
-			var copied: bool = false
-			var target = null # a String if there is no copy, an integer otherwise
-			if list[i].is_and():
-				copied = true
-				i += 1
-				target = list[i].value
-			elif list[i].is_plain():
-				target = list[i].value
-			else:
-				return "Erreur de syntaxe : un chemin est attendu après une redirection"
-			c.redirections.append({
-				"port": descriptor,
-				"type": redirection_type,
-				"target": target,
-				"copied": copied
-			})
-			found_redirection = true
+		elif list[i].is_line_separator():
+			should_cut_node = true
+			break
 		else:
-			if found_redirection:
-				return "Erreur de syntaxe : fin de commande attendue"
-			c.options.append(list[i])
+			if list[i].is_descriptor():
+				var descriptor: int = list[i].value
+				i += 1
+				var redirection_type: String = list[i].type
+				if descriptor == 1 and list[i].is_reading_redirection():
+					return "Erreur de syntaxe : le descripteur " + str(descriptor) + " ne peut être en lecture."
+				i += 1
+				if i >= number_of_tokens:
+					return "Erreur de syntaxe : fin inattendue de redirection."
+				var copied: bool = false
+				var target: BashToken
+				if list[i].is_and():
+					copied = true
+					i += 1
+					if i >= number_of_tokens:
+						return "Erreur de syntaxe : valeur attendue pour la redirection copiée."
+					target = list[i]
+				elif list[i].is_plain() or list[i].is_command_substitution():
+					target = list[i]
+				else:
+					return "Erreur de syntaxe : un chemin est attendu après une redirection."
+				c.redirections.append({
+					"port": descriptor,
+					"type": redirection_type,
+					"target": target,
+					"copied": copied
+				})
+				found_redirection = true
+			else:
+				if found_redirection:
+					return "Erreur de syntaxe : fin de commande attendue"
+				if list[i].is_equal_sign():
+					i += 1 # ignoring the "="
+					c.value = list[i] # getting the value, and even if the value is empty ("a=") it will have a PLAIN token afterwards
+					i += 1 # jumping over the value
+					if i < number_of_tokens and list[i].is_line_separator():
+						should_cut_node = true
+					break # we want to end it now, even if there is another affectation right after ("a=5 b=7")
+				else:
+					c.options.append(list[i])
 		i += 1
 	return {
 		"number_of_read_tokens": i,
+		"should_cut_node": should_cut_node,
 		"command": c
 	}
 
-func _is_char_quote(character: String) -> bool:
-	return character == '"' or character == "'"
-
-func _to_string():
-	return str(tokens_list)
+# As soon as the parser encounters a FOR keyword,
+# this function is called to interpret everything after that.
+# The very first token of the list should be the variable name of the syntax.
+# As a reminder, the syntax is the following:
+# KEYWORD:for TOKEN:PLAIN KEYWORD:in ...(TOKEN:SUB | TOKEN:PLAIN | TOKEN:STRING | TOKEN:VAR) (NL | TOKEN:SEMICOLON)
+#       KEYWORD: do (NL)?
+#               ...COMMANDS
+# KEYWORD:done
+# Which is transformed into:
+# {
+#   "type": "for",
+#   "variable_name": String
+#   "sequences": the tokens after the 'in' keyword
+#   "body": array of tokens (the parse method has to be called later so that the variables inside it don't get interpreted before their initialisation)
+#   "size": number of tokens of the for loop (useful to continue the parsing process after the loop)
+# }
+# If an error occured, only { "error": String } is returned.
+func _parse_for_loop(tokens: Array) -> Dictionary:
+	var var_name := ""
+	var sequences := []
+	var number_of_tokens := tokens.size()
+	if not tokens[0].is_plain():
+		return {
+			"error": "Erreur de syntaxe : le nom d'une variable est attendu après le mot-clé 'for'."
+		}
+	if not tokens[0].value.is_valid_identifier():
+		return {
+			"error": "Erreur de syntaxe : le nom de la variable de contrôle de la boucle 'for' n'est pas valide."
+		}
+	var_name = tokens[0].value
+	if not tokens[1].is_keyword_and_equals("in"):
+		return {
+			"error": "Erreur de syntaxe : le mot-clé 'in' est attendu après la variable de contrôle de la boucle 'for'."
+		}
+	var i := 2
+	while i < number_of_tokens and not tokens[i].is_line_separator():
+		if not tokens[i].is_valid_token_in_for_loop():
+			return {
+				"error": "Erreur de syntaxe : le symbole '" + str(tokens[i].value) + "' n'est pas valide pour une boucle 'for'."
+			}
+		sequences.append(tokens[i])
+		i += 1
+	if sequences.empty():
+		return {
+			"error": "Erreur de syntaxe : des valeurs sont attendues sur lesquelles itérer avec la boucle 'for'."
+		}
+	i += 1 # jump over the semicolon/newline
+	if i >= number_of_tokens:
+		return {
+			"error": "Erreur de syntaxe : le corps de la boucle 'for' est attendu."
+		}
+	if not tokens[i].is_keyword_and_equals("do"):
+		return {
+			"error": "Erreur de syntaxe : le mot-clé 'do' est attendu après la définition de la boucle."
+		}
+	i += 1 # jump over the `do` keyword
+	# Now we have to parse everything that is inside of the body
+	# I'm just giving all the tokens before the one that corresponds to the closing `done` keyword.
+	# Note that we may have loops inside loops !!
+	var done_keywords := 1 # exactly like we'd do with parenthesis, we'll stop the process as soon as the right loop gets closed.
+	var beginning_index_of_body := i
+	while i < number_of_tokens and done_keywords > 0:
+		if tokens[i].is_keyword_and_equals("for"):
+			done_keywords += 1
+		elif tokens[i].is_keyword_and_equals("done"):
+			done_keywords -= 1
+		i += 1
+	var body = tokens.slice(beginning_index_of_body, i - 2)
+	return {
+		"type": "for",
+		"variable_name": var_name,
+		"sequences": sequences,
+		"body": body,
+		"size": i + 1
+	}

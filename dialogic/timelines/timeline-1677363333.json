@@ -1,99 +1,60 @@
 {
 	"events": [
 		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1677363335.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "Default",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": true,
-				"3": false,
-				"4": false
-			},
-			"type": 0,
-			"z_index": 0
-		},
-		{
-			"character": "character-1677363335.json",
+			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Suite à un problème de portes, le métro ne repartira pas avant 22h40.\nDes bus relais sont mis à disposition."
-		},
-		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1677363335.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": false,
-				"3": false,
-				"4": false
-			},
-			"type": 1,
-			"z_index": 0
+			"text": "Mince, il faut un code …"
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Quoi ??? 22h40 ??"
+			"text": "Une petite minute … peut-être que si je jette un coup d’oeil à la liste …"
 		},
 		{
-			"character": "character-1677363460.json",
+			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Impossible, les bus relais sont remplis en plus! C'est hors de question que je reste ici."
-		},
-		{
-			"character": "character-1677363460.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Il faut que je trouve une solution."
+			"text": "(vous regardez la liste)"
 		},
 		{
 			"event_id": "dialogic_023",
 			"hide_dialogbox": true,
-			"wait_seconds": 1,
-			"waiting_skippable": true
+			"wait_seconds": 2
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "..."
-		},
-		{
-			"event_id": "dialogic_023",
-			"hide_dialogbox": true,
-			"wait_seconds": 1,
-			"waiting_skippable": true
-		},
-		{
-			"character": "character-1677363460.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Mais oui! Clément habite pas loin. Je devrais aller le voir."
+			"text": "… j'aurait un indice sur le code pour entrer!"
 		},
 		{
 			"call_node": {
 				"arguments": [
 
 				],
-				"method_name": "play_music",
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"digicode_unlocked"
+				],
+				"method_name": "story_condition",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"4"
+				],
+				"method_name": "load_puzzle",
 				"target_node_path": "/root/Root"
 			},
 			"event_id": "dialogic_042"
@@ -102,6 +63,6 @@
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1677363333.json",
-		"name": "Intro"
+		"name": "0"
 	}
 }

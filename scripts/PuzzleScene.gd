@@ -8,6 +8,10 @@ var total_time := 0.0
 onready var puzzle : Puzzle
 onready var tween := Tween.new()
 onready var puzzle_end_screen := preload("res://prefabs/puzzles/PuzzleEndScreen.tscn").instance()
+
+var puzzle_handler : Node = null
+
+
 func _ready() -> void:
 	add_child(tween)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
@@ -15,6 +19,12 @@ func _ready() -> void:
 
 	puzzle = GameManager.current_puzzle
 	$Canvas/Container/ModalsManager.ready()
+	
+	if Directory.new().file_exists("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd"):
+		puzzle_handler = Node.new()
+		puzzle_handler.name = "PuzzleHandler"
+		puzzle_handler.script = load("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd")
+		add_child(puzzle_handler)
 
 
 onready var pattern: Sprite = $Wallpaper/Pattern
@@ -45,5 +55,6 @@ func puzzle_ended(skipped = false) -> void:
 	puzzle_end_screen.time = total_time
 	puzzle_end_screen.skipped = true
 	$Canvas/Container.add_child(puzzle_end_screen)
+	puzzle_end_screen.get_node("ReturnButton").grab_focus() # pour éviter que le joueur malicieux continuent d'écrire dans le terminal
 	
-	get_tree().change_scene(GameManager.context_before_puzzle.scene)
+#	get_tree().change_scene(GameManager.context_before_puzzle.scene)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
+[ext_resource path="res://images/portraits/pont_de_bois/rat.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+portrait = ExtResource( 2 )
+name = "Réparer la tablette du Chiba"
+start_phrase = "La tablette du chiba vous lance une énigme!"
+description = ""
+given_by = ""
+hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]

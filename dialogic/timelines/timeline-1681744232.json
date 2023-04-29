@@ -20,7 +20,7 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": false,
+				"3": true,
 				"4": false
 			},
 			"type": 0,
@@ -36,7 +36,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "????"
+			"text": "Qu'est qu'il raconte ?"
 		},
 		{
 			"animation": "[Default]",

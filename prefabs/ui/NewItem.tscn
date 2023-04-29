@@ -165,6 +165,7 @@ tracks/5/keys = {
 [node name="NewItem" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 2
 theme = ExtResource( 2 )
 color = Color( 0, 0, 0, 0.745098 )
 script = ExtResource( 5 )

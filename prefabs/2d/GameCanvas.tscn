@@ -35,7 +35,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -208.0
 margin_right = 208.0
-margin_bottom = 112.0
+margin_bottom = 83.0
 custom_styles/panel = SubResource( 12 )
 
 [node name="ZoneName" type="Label" parent="Container"]
@@ -65,6 +65,7 @@ texture = ExtResource( 3 )
 stretch_mode = 6
 
 [node name="Time" type="Label" parent="Container"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -92.0
@@ -73,10 +74,6 @@ margin_right = 92.0
 margin_bottom = 103.0
 text = "TIME OF THE DAY"
 align = 1
-
-[node name="GridContainer" type="GridContainer" parent="Container"]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [node name="TurnLight" type="CheckButton" parent="Container"]
 margin_left = 16.0

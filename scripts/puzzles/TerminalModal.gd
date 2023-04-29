@@ -1,37 +1,20 @@
 extends "res://scripts/ui/Modal.gd"
 
 
+
 func _ready() -> void:
-	get_node("Content/Console/Prompt").grab_focus()
-	$Content/Console.terminal.connect("command_executed", self, "_command_executed")
-
-func _command_executed(_command, _output) -> void:
-	var _answer = SystemElement.new(1, "/", "", "", [], "root", "root")
-	_answer.children = [
-		SystemElement.new(1, "translator", "/", "", [
-			SystemElement.new(1, "modules", "/translator", "", [
-				SystemElement.new(0, "mod1.bin", "/translator/modules", "", [], "root", "root"),
-				SystemElement.new(0, "mod2.bin", "/translator/modules", "", [], "root", "root"),
-				SystemElement.new(0, "lang4.bin", "/translator/langages", "", [], "root", "root"),
-				SystemElement.new(0, "mod3.bin", "/translator/modules", "", [], "root", "root"),
-				SystemElement.new(0, "mod4.bin", "/translator/modules", "", [], "root", "root"),
-
-			], "root", "root"),
-			SystemElement.new(1, "langages", "/translator", "", [
-				SystemElement.new(0, "satel1.bin", "/translator/satellite", "", [], "root", "root"),
-				SystemElement.new(0, "lang1.bin", "/translator/langages", "", [], "root", "root"),
-				SystemElement.new(0, "lang_2.bin", "/translator/langages", "", [], "root", "root"),
-				SystemElement.new(0, "lang3.bin", "/translator/langages", "", [], "root", "root"),
-			], "root", "root"),
-			SystemElement.new(1, "satellite", "/translator", "", [
-				SystemElement.new(0, "satel2.bin", "/translator/satellite", "", [], "root", "root"),
-				SystemElement.new(0, "satel3.bin", "/translator/satellite", "", [], "root", "root"),
-				SystemElement.new(0, "satel4.bin", "/translator/satellite", "", [], "root", "root"),
-
-			], "root", "root"),
-		], "root", "root")
-	]
-	print($Content/Console.terminal.system_tree.equals(_answer))
+	
+#	var console := Panel.new()
+#	console.script = load("res://addons/bash_in_godot/scripts/ConsoleNode.gd")
+#	console.name = "Console"
+#	console.rect_min_size = Vector2(100, 100)
+#	console.user_name = "user"
+#	console.group_name = "user"
+	if get_tree().current_scene.get_node_or_null("PuzzleHandler") != null:
+		$Content/Console.reference_node = $Content/Console.get_path_to(get_tree().current_scene.get_node("PuzzleHandler"))
+#	$Content.add_child(console)
+#	get_node("Content/Console/Prompt").grab_focus()
+	
 
 #	var system := System.new([
 #		SystemElement.new(0, "file.txt", "/", "", [], user_name, group_name),

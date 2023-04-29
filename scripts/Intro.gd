@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 func _ready() -> void:
 	var new_dialog = Dialogic.start("intro/intro")
@@ -11,5 +11,9 @@ func dialogue_event(arg : String) -> void:
 		"animation":
 			$AnimationPlayer.play("AnimExplosion")
 			$AnimationPlayer.seek(0.0)
+		"rallumage":
+			$AnimationPlayer.play("SubwaySeRallume")
+			$AnimationPlayer.seek(0.0)
 		"end":
-			get_tree().change_scene("res://scenes/StPhilibert/Main.tscn")
+			if get_tree().change_scene("res://scenes/StPhilibert/Station.tscn") != OK:
+				print("error intro")

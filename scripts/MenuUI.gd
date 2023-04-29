@@ -3,30 +3,15 @@ extends Control
 
 onready var noise_texture: TextureRect = $Canvas/Container/Grain
 
-onready var animation_player: AnimationPlayer = $"Canvas/Container/3D/Container/Viewport/AnimationPlayer"
-onready var camera: Camera = $"Canvas/Container/3D/Container/Viewport/Menu/Camera"
-
-onready var world_environment: WorldEnvironment = $"Canvas/Container/3D/Container/Viewport/Menu/WorldEnvironment"
-
 
 onready var Settings := preload("res://prefabs/ui/Settings.tscn")
 
 onready var noise := NoiseTexture.new()
 
 func _ready() -> void:
-#	$"Canvas/Container/3D/VideoPlayer".play()
-	
-	if !GameManager.settings.enable_3d:
-		$"Canvas/Container/3D".queue_free()
-	print(GameManager.settings.enable_3d)
 	noise.noise = OpenSimplexNoise.new()
 
-func _process(delta: float) -> void:
-	if is_instance_valid(animation_player) && Input.is_action_just_pressed("ui_accept") && animation_player.is_playing():
-		
-		animation_player.seek(7.4, true)
-		$Music.seek(6.4)
-
+func _process(_delta: float) -> void:
 	noise_texture.rect_position = lerp(noise_texture.rect_position, Vector2(rand_range(-15, 15), rand_range(-15, 15)), 0.1)
 
 
@@ -35,44 +20,28 @@ func _on_Quit_pressed() -> void:
 
 
 func _on_Credits_pressed() -> void:
-	get_tree().change_scene("res://scenes/Map.tscn")
+	if get_tree().change_scene("res://scenes/Credits.tscn") != OK:
+		print("error while changing scene")
 
 func _on_Settings_pressed() -> void:
-	if is_instance_valid(camera):
-		camera.switch_camera()
 	$Canvas/Container.add_child(Settings.instance())
 
 func _on_Play_pressed() -> void:
-	get_tree().change_scene("res://scenes/Terminal.tscn")
-
-
-func _on_Metro_pressed() -> void:
-	get_tree().change_scene("res://scenes/3d/StationLevel.tscn")
-
-
-func settings_updated() -> void:
-	$"Canvas/Container/3D".visible = !GameManager.settings.enable_3d
-	match GameManager.settings["3d_quality"]:
-		0:
-			world_environment.environment.ssao_quality = Environment.SSAO_QUALITY_LOW
-			world_environment.environment.glow_high_quality = false
-			world_environment.environment.ss_reflections_enabled = false
-		1:
-			world_environment.environment.ssao_quality = Environment.SSAO_QUALITY_MEDIUM
-			world_environment.environment.glow_high_quality = false
-			world_environment.environment.ss_reflections_enabled = true
-			world_environment.environment.ss_reflections_max_steps = 64
-		2:
-			world_environment.environment.ssao_quality = Environment.SSAO_QUALITY_HIGH
-			world_environment.environment.glow_high_quality = true
-			world_environment.environment.ss_reflections_enabled = true
-			world_environment.environment.ss_reflections_max_steps = 512
-
-
-
-func _on_Chiba_pressed() -> void:
-	get_tree().change_scene("res://scenes/StPhilibert/MetroOutside.tscn")
-
+	if get_tree().change_scene("res://scenes/Intro.tscn") != OK:
+		print("error while changing scene")
 
 func _on_VideoPlayer_finished() -> void:
 	$"%VideoPlayer".play()
+
+
+func _on_Website_pressed() -> void:
+	OS.shell_open("https://ilyva.sciencesky.fr/")
+
+
+func _on_Github_pressed() -> void:
+	OS.shell_open("https://github.com/Yoshiip/ilyva")
+
+
+func _on_DebugPuzzle_pressed() -> void:
+	GameManager.current_puzzle = load(str("res://resources/puzzles/", $Canvas/Container/DebugPuzzle/SpinBox.value, ".tres"))
+	get_tree().change_scene("res://scenes/puzzles/Puzzle.tscn")

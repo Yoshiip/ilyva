@@ -11,6 +11,7 @@ bg_color = Color( 0.117647, 0.117647, 0.117647, 1 )
 margin_right = 480.0
 margin_bottom = 360.0
 script = ExtResource( 2 )
+app_id = "Terminal"
 
 [node name="Console" type="Panel" parent="Content" index="1"]
 anchor_right = 1.0
@@ -19,5 +20,3 @@ custom_styles/panel = SubResource( 1 )
 script = ExtResource( 9 )
 user_name = "user"
 group_name = "user"
-
-[node name="Setup" type="Node" parent="Content/Console" index="0"]

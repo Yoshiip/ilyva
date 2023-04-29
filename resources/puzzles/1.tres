@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
 name = "Recupérer le traducteur"
+start_phrase = "Mathieu vous lance une énigme!"
 description = "Pour qu’on vous donne le traducteur, vous devez le réparer!
 Jetez un coup d’oeil aux différents dossiers/fichiers de ce traducteur en utilisant des commandes de bases de bash.
 Essayez de réparer les différentes erreurs de frappes, et de bien placer les fichiers au mauvais endroit."

@@ -1,60 +1,6 @@
 {
 	"events": [
 		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1677947682.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "Default",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": false,
-				"3": true,
-				"4": false
-			},
-			"type": 0,
-			"z_index": 0
-		},
-		{
-			"character": "character-1677947682.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Bravo!"
-		},
-		{
-			"character": "character-1677947682.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Tiens, tu l’as bien mérité."
-		},
-		{
-			"character": "character-1677947682.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Par contre, il n’a bientôt plus de batterie..."
-		},
-		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Vous gagnez le traducteur!"
-		},
-		{
-			"call_node": {
-				"arguments": [
-					"traminus"
-				],
-				"method_name": "add_to_inventory",
-				"target_node_path": "/root/GameManager"
-			},
-			"event_id": "dialogic_042"
-		},
-		{
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
@@ -232,9 +178,9 @@
 		{
 			"call_node": {
 				"arguments": [
-
+					"Nano"
 				],
-				"method_name": "add_story_progress",
+				"method_name": "increment_progress",
 				"target_node_path": "/root/Root"
 			},
 			"event_id": "dialogic_042"
@@ -243,6 +189,6 @@
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1680429201.json",
-		"name": "1"
+		"name": "2"
 	}
 }

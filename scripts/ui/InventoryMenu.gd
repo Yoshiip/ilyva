@@ -12,6 +12,7 @@ var in_animation := false
 var mouse_mode_before : int
 
 func play_animation(backward = false) -> void:
+	get_parent().move_child(self, get_parent().get_child_count())
 	if in_animation:
 		return
 	in_animation = true
@@ -38,6 +39,7 @@ func play_animation(backward = false) -> void:
 	tween.start()
 	yield(tween, "tween_started") # Prevent seeing the first frame being the animation completed
 	if !backward:
+		$Container/SultansCollection.visible = GameManager.progress.saint_philibert.Thomas >= 2
 		visible = true
 		get_tree().paused = true
 		mouse_mode_before = Input.mouse_mode
@@ -53,8 +55,11 @@ func play_animation(backward = false) -> void:
 
 func _process(_delta: float) -> void:
 	$NoiseTexture.rect_position = lerp($NoiseTexture.rect_position, Vector2(rand_range(-15, 15), rand_range(-15, 15)), 0.1)
+	
 	$Container/SultansCollection/Bar.value = GameManager.sultans.size()
 	$Container/SultansCollection/Value.text = str(GameManager.sultans.size(), "/12")
+#	$Container/SultansCollection/Bar.value = GameManager.sultans.size()
+#	$Container/SultansCollection/Value.text = str(GameManager.sultans.size(), "/12")
 
 	if visible:
 		if Input.is_action_just_pressed("escape") && !in_animation && can_pause:

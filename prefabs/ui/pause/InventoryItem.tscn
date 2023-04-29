@@ -9,4 +9,5 @@ margin_bottom = 48.0
 rect_min_size = Vector2( 48, 0 )
 texture = ExtResource( 1 )
 expand = true
+stretch_mode = 6
 script = ExtResource( 2 )

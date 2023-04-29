@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bastum_entrance.mp3-8c945ec6fa0dd1fe3b463fde9b761dee.mp3str"
+
+[deps]
+
+source_file="res://audios/musics/bastum_entrance.mp3"
+dest_files=[ "res://.import/bastum_entrance.mp3-8c945ec6fa0dd1fe3b463fde9b761dee.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -5,13 +5,13 @@ signal story_progress_changed
 
 export var zone_id := "unnamed"
 export var zone_name := "Unnamed"
-export(String, "Matin", "Après-Midi", "Soirée") var time
+#export(String, "Matin", "Après-Midi", "Soirée") var time
 export var start_scene := false
 export var music_id := "night"
 
 var in_dialogue = false
 
-export var image_size := 2784
+onready var image_size : int = $Background.texture.get_width()
 
 onready var PauseMenu := preload("res://prefabs/PauseMenu.tscn")
 var pause_menu
@@ -26,17 +26,23 @@ var background_blur : Sprite
 onready var scene_light := CanvasModulate.new()
 onready var tween := Tween.new()
 
+onready var arrows := get_tree().get_nodes_in_group("Arrow")
+
 func _ready() -> void:
+	var _camera := preload("res://prefabs/2d/GameCamera.tscn").instance()
+	_camera.name = "Camera"
+	add_child(_camera)
+	
 	name = "Root"
 	if GameManager.context_before_puzzle != null:
 		var _n = get_node(GameManager.context_before_puzzle.path)
-		_n.timeline_id = GameManager.progress[zone_id][_n.name]
+		_n.timeline_id = GameManager.progress[zone_id][_n.character_name if _n.character_name != "" else _n.name]
 		_n.interact()
 		GameManager.context_before_puzzle = null
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$Camera.limit_left = -image_size / 2
-	$Camera.limit_right = image_size / 2
+	_camera.limit_left = -image_size / 2
+	_camera.limit_right = image_size / 2
 	pause_menu = PauseMenu.instance()
 	
 	
@@ -55,14 +61,17 @@ func _ready() -> void:
 	
 	$Canvas/Container.add_child(pause_menu)
 	if GameManager.scene_start_dialogue != zone_id && start_scene:
-		var new_dialog = Dialogic.start(zone_id + '/Intro')
+		var new_dialog = Dialogic.start(zone_id + '/' + zone_name)
 		GameManager.scene_start_dialogue = zone_id
 		add_child(new_dialog)
 
 	$Canvas/Container/ZoneName.text = zone_name
-	$Canvas/Container/Time.text = time
+#	$Canvas/Container/Time.text = time
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	for arrow in arrows:
+		if is_instance_valid(arrow):
+			arrow.visible = !in_dialogue
 	in_dialogue = false
 	for i in get_children():
 		if i.get("dialog_node"):
@@ -124,3 +133,9 @@ func increment_progress(character_id = "", c_zone_id = "") -> void:
 	else:
 		GameManager.progress[zone_id][current_dialogue_character.character_name] += 1
 		current_dialogue_character.progress_changed()
+
+func story_condition(condition : String, value = "true", zone = zone_id) -> void:
+	GameManager.progress[zone][condition] = bool(value)
+
+func change_scene(scene_name : String) -> void:
+	transition.transition_to_scene("res://scenes/" + scene_name + ".tscn")

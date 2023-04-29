@@ -1,0 +1,140 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Alors, bien dormi ?"
+		},
+		{
+			"choice": "Ouais",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tant mieux alors!"
+		},
+		{
+			"choice": "Bof..",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Désolé si le matelas est un peu inconfortable, je n'ai que ça."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Au fait, tu n'as pas d'abonnement de métro ?"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Non"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tiens, c'est ma Carte BashBash, tu pourra voyager en illimité sur le réseau Ilyva!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"subway_card"
+				],
+				"method_name": "add_to_inventory",
+				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"1"
+				],
+				"method_name": "unlock_level",
+				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"has_card"
+				],
+				"method_name": "change_condition",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous gagnez la Carte BashBash"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Mais tu n'en as pas besoin ?"
+		},
+		{
+			"character": "character-1676579269.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Non, je m'en sert jamais. Tu en as plus besoin que moi!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Merci beaucoup! J'en ferais bon usage"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682776950.json",
+		"name": "2"
+	}
+}

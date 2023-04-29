@@ -3,7 +3,7 @@ extends Area2D
 onready var tween := Tween.new()
 
 export var character_name := ""
-export(int, "Dialogue", "Action") var icon_type
+export(int, "Dialogue", "Action", "No icon") var icon_type
 export var one_time_interact := false
 
 
@@ -21,6 +21,8 @@ var last_timeline_spoke := -1
 func _ready() -> void:
 	if icon_type == 1:
 		$Icon.texture = preload("res://images/icons/exclamation_icon.png")
+	elif icon_type == 3:
+		$Icon.queue_free()
 	if name in GameManager.one_time_interacts:
 		queue_free()
 
@@ -29,6 +31,8 @@ func _ready() -> void:
 	progress_changed()
 	
 	$Sprite.scale = Vector2.ONE * sprite_scale
+	if name == "Arrow":
+		$Sprite.scale.x *= 2.0
 	$Sprite.texture = portrait
 	$Collision.shape = $Collision.shape.duplicate()
 	$Collision.shape.extents = portrait.get_size() * sprite_scale * 0.5
@@ -49,10 +53,10 @@ func interact() -> void:
 	get_tree().current_scene.current_dialogue_character = self
 	get_tree().current_scene.current_dialogue_id = timeline_id
 	var new_dialog : CanvasLayer
-#	if GameManager.items.has("traminus"):
-#		new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/no_traminus"))
-#	else:
-	new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
+	if one_time_interact:
+		new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/0"))
+	else:
+		new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
 	get_tree().current_scene.add_child(new_dialog)
 	last_timeline_spoke = timeline_id
 	if one_time_interact:
