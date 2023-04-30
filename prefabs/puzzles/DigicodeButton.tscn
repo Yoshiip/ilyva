@@ -1,10 +1,38 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+shadow_color = Color( 0, 0, 0, 0.247059 )
+shadow_size = 4
+shadow_offset = Vector2( 0, 4 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 128
 corner_radius_top_right = 128
 corner_radius_bottom_right = 128
@@ -13,6 +41,9 @@ corner_radius_bottom_left = 128
 [node name="Button" type="Button"]
 margin_right = 80.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 80, 80 )
+rect_min_size = Vector2( 64, 48 )
+focus_mode = 0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 1 )
 text = "1"

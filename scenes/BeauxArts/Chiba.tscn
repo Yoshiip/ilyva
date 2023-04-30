@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://images/backgrounds/beaux_arts/chiba.jpg" type="Texture" id=1]
 [ext_resource path="res://scripts/Zone.gd" type="Script" id=2]
+[ext_resource path="res://audios/effects/crowd.mp3" type="AudioStream" id=3]
 [ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://images/portraits/beaux_arts/manon_dogukan.png" type="Texture" id=5]
 [ext_resource path="res://prefabs/2d/Character.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/portraits/beaux_arts/clement.png" type="Texture" id=7]
 [ext_resource path="res://prefabs/2d/SultanCollectable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://images/portraits/st_philibert/policiers.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
@@ -162,35 +164,51 @@ texture = ExtResource( 1 )
 
 [node name="Arrow3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 110, 439 )
-rotation = 3.14159
 __meta__ = {
 "_edit_group_": true
 }
-scene_name = "3d/StationLevel"
+scene_name = "subway"
+need_condition_to_show = true
+condition = "has_card"
 show_confirm = true
 
 [node name="Icon" parent="Arrow3" index="0"]
 material = SubResource( 2 )
+rotation = 3.14159
 
 [node name="Collision" parent="Arrow3" index="1"]
-position = Vector2( -3.8147e-06, -16.5 )
+position = Vector2( -3.8147e-06, 16.5 )
 
-[node name="Clément" parent="." instance=ExtResource( 6 )]
+[node name="Chiba" parent="." instance=ExtResource( 6 )]
+visible = false
 position = Vector2( -228, 30 )
 character_name = "Chiba"
 portrait = ExtResource( 7 )
 sprite_scale = 0.4
-max_story_progress = -1
+max_story_progress = 2
 
-[node name="Clément2" parent="." instance=ExtResource( 6 )]
+[node name="Chiba2" parent="." instance=ExtResource( 6 )]
+visible = false
 position = Vector2( -369, 203 )
 __meta__ = {
 "_edit_lock_": true
 }
 character_name = "Chiba"
 portrait = ExtResource( 5 )
+sprite_scale = 0.3
+max_story_progress = 2
+
+[node name="Sprite" parent="Chiba2" index="0"]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 5 )
+
+[node name="Sultans2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -148, 11 )
+character_name = "Sultan"
+portrait = ExtResource( 9 )
 sprite_scale = 0.4
-max_story_progress = -1
+min_story_progress = 1
+max_story_progress = 2
 
 [node name="Crocan" parent="." instance=ExtResource( 8 )]
 position = Vector2( -708, -219 )
@@ -206,6 +224,13 @@ sultan_id = "cricri"
 [node name="Icon" parent="Cricri" index="0"]
 material = SubResource( 13 )
 
+[node name="Crowd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -20.0
+autoplay = true
+bus = "Ambient"
+
 [editable path="Arrow3"]
+[editable path="Chiba2"]
 [editable path="Crocan"]
 [editable path="Cricri"]

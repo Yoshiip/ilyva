@@ -21,6 +21,39 @@
 			"z_index": 0
 		},
 		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Tu veux continuer ?"
+		},
+		{
+			"choice": "Oui",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Parfait!"
+		},
+		{
+			"choice": "Non",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",

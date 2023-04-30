@@ -1,0 +1,147 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oui ?"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu as besoin de quelque chose ?"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous montrez l'objet aux policiers"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "?!"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Où tu as trouvé ça ???"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Très bien."
+		},
+		{
+			"event_id": "dialogic_015",
+			"id": "anchor-1634488067",
+			"index": 0,
+			"name": "repète"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Rends-toi à Cité Scientifique"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Devant la station, appuie 7 fois sur le C majuscule, puis appuie 6 fois sur le c minuscule."
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Sois très précis, un clic de trop, et ça sera fichu!"
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Tu as compris ?"
+		},
+		{
+			"choice": "Oui",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Sois prudent."
+		},
+		{
+			"choice": "Tu peux repéter ?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1680430425.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bien sûr."
+		},
+		{
+			"anchor_id": "anchor-1634488067",
+			"event_id": "dialogic_016"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682789822.json",
+		"name": "1"
+	}
+}

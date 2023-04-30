@@ -27,8 +27,8 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": true,
-				"4": false
+				"3": false,
+				"4": true
 			},
 			"type": 0,
 			"z_index": 0
@@ -121,6 +121,16 @@
 			"call_node": {
 				"arguments": [
 					"Manon"
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
 				],
 				"method_name": "increment_progress",
 				"target_node_path": "/root/Root"

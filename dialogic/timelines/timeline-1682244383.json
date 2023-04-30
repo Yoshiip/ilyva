@@ -15,6 +15,7 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1676579269.json",
@@ -26,8 +27,8 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": true,
-				"4": false
+				"3": false,
+				"4": true
 			},
 			"type": 0,
 			"z_index": 0
@@ -62,6 +63,27 @@
 			"wait_seconds": 3
 		},
 		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
@@ -80,15 +102,36 @@
 			"text": "Carrément, je crève de faim."
 		},
 		{
-			"character": "",
+			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Bon bah, let’s go!"
 		},
 		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
 			"call_node": {
 				"arguments": [
-					"Chiba"
+					"BeauxArts/Chiba"
 				],
 				"method_name": "change_scene",
 				"target_node_path": "/root/Root"

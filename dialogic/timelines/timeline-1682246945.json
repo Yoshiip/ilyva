@@ -14,8 +14,8 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": true,
-				"4": false
+				"3": false,
+				"4": true
 			},
 			"type": 0,
 			"z_index": 0
@@ -37,8 +37,8 @@
 			"portrait": "Default",
 			"portrait_definition": "",
 			"position": {
-				"0": false,
-				"1": true,
+				"0": true,
+				"1": false,
 				"2": false,
 				"3": false,
 				"4": false

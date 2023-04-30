@@ -45,16 +45,17 @@ func _process(delta: float) -> void:
 		pattern.position.y -= 850
 
 func change_background_color(color : Color) -> void:
-	tween.interpolate_property($Wallpaper, "modulate", $Wallpaper.modulate, color, 3.0)
-	tween.start()
+	var _temp := tween.interpolate_property($Wallpaper, "modulate", $Wallpaper.modulate, color, 3.0)
+	_temp = tween.start()
 
 func skip() -> void:
 	puzzle_ended(true)
 
 func puzzle_ended(skipped = false) -> void:
+	yield(get_tree().create_timer(1.0), "timeout")
 	puzzle_end_screen.time = total_time
-	puzzle_end_screen.skipped = true
+	puzzle_end_screen.skipped = skipped
 	$Canvas/Container.add_child(puzzle_end_screen)
 	puzzle_end_screen.get_node("ReturnButton").grab_focus() # pour éviter que le joueur malicieux continuent d'écrire dans le terminal
 	
-#	get_tree().change_scene(GameManager.context_before_puzzle.scene)
+

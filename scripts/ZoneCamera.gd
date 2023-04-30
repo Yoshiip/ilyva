@@ -3,7 +3,8 @@ extends Camera2D
 var max_drag := 0
 
 func _ready() -> void:
-	get_viewport().connect("size_changed", self, "_size_changed")
+	if get_viewport().connect("size_changed", self, "_size_changed") != OK:
+		print("Error connecting")
 	_size_changed()
 
 func _process(delta: float) -> void:

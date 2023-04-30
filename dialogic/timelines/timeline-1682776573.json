@@ -73,14 +73,8 @@
 			"z_index": 0
 		},
 		{
-			"call_node": {
-				"arguments": [
-					"BeauxArts/Appartement"
-				],
-				"method_name": "change_scene",
-				"target_node_path": "/root/Root"
-			},
-			"event_id": "dialogic_042"
+			"change_scene": "res://scenes/BeauxArts/Appartement.tscn",
+			"event_id": "dialogic_041"
 		}
 	],
 	"metadata": {

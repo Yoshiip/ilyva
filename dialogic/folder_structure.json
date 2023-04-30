@@ -22,18 +22,6 @@
 						"folded": false
 					}
 				},
-				"cite_scientifique": {
-					"files": [
-
-					],
-					"folders": {
-
-					},
-					"metadata": {
-						"color": null,
-						"folded": false
-					}
-				},
 				"intro": {
 					"files": [
 						"character-1681731225.json"
@@ -192,7 +180,7 @@
 							},
 							"metadata": {
 								"color": null,
-								"folded": false
+								"folded": true
 							}
 						},
 						"Manon": {
@@ -204,12 +192,24 @@
 							},
 							"metadata": {
 								"color": null,
-								"folded": false
+								"folded": true
 							}
 						},
 						"Night": {
 							"files": [
 								"timeline-1682776573.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						},
+						"Sultan": {
+							"files": [
+								"timeline-1682789822.json"
 							],
 							"folders": {
 
@@ -283,7 +283,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
 					}
 				},
 				"pont_de_bois": {
@@ -311,7 +311,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": true
+						"folded": false
 					}
 				},
 				"saint_philibert": {
@@ -362,7 +362,8 @@
 							"files": [
 								"timeline-1681744029.json",
 								"timeline-1681744968.json",
-								"timeline-1681744232.json"
+								"timeline-1681744232.json",
+								"timeline-1682789104.json"
 							],
 							"folders": {
 

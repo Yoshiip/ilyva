@@ -1,0 +1,103 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alors, les recherches avancent bien ?"
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Tu peux consulter ton avan-"
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "ATTENDS"
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C'est quoi cette odeur ?"
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ça ne... ça ne serait pas tes sultans ???"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 3
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bien."
+		},
+		{
+			"character": "character-1681744062.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Rends-toi au Chiba."
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Sultan",
+					"beaux_arts"
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682789104.json",
+		"name": "3"
+	}
+}

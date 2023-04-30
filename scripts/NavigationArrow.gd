@@ -17,8 +17,8 @@ func _ready() -> void:
 	if need_condition_to_show && !GameManager.progress[get_tree().current_scene.zone_id].get(condition):
 		queue_free()
 		
-	if get_parent().connect("story_progress_changed", self, "_story_progress_changed") != OK:
-		print("error while connecting")
+#	if get_parent().connect("story_progress_changed", self, "_story_progress_changed") != OK:
+#		print("error while connecting")
 	if show_confirm:
 		popup = load("res://prefabs/2d/Popup.tscn").instance()
 		add_child(popup)

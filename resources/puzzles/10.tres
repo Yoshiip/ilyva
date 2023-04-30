@@ -10,4 +10,5 @@ name = "Réparer la tablette du Chiba"
 start_phrase = "La tablette du chiba vous lance une énigme!"
 description = ""
 given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]
+hints = PoolStringArray( "Hint 1", "Hint 2", "Hint 3" )
+additional_apps = PoolStringArray(  )

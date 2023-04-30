@@ -83,8 +83,8 @@ func _process(delta: float) -> void:
 		rect_rotation = sin(i) * 10.0
 		
 
-		rect_position.x = clamp(lerp(rect_position.x, _m.x - base_action_position.x, delta * 5.0), 0, get_viewport().size.x - rect_size.x)
-		rect_position.y = clamp(lerp(rect_position.y, _m.y - base_action_position.y, delta * 5.0), 0, get_viewport().size.y - TASKBAR_SIZE - rect_size.y)
+		rect_position.x = clamp(lerp(rect_position.x, _m.x - base_action_position.x, delta * 20.0), 0, get_viewport().size.x - rect_size.x)
+		rect_position.y = clamp(lerp(rect_position.y, _m.y - base_action_position.y, delta * 20.0), 0, get_viewport().size.y - TASKBAR_SIZE - rect_size.y)
 
 
 func _on_DragZone_mouse_entered() -> void:

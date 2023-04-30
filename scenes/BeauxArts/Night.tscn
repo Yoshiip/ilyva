@@ -83,14 +83,14 @@ tracks/2/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
-[node name="Control2" type="Control"]
+[node name="Night" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 3 )
 
-[node name="Night" type="CanvasLayer" parent="."]
+[node name="Canvas" type="CanvasLayer" parent="."]
 
-[node name="Control" type="TextureRect" parent="Night"]
+[node name="Container" type="TextureRect" parent="Canvas"]
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -99,7 +99,7 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 7
 
-[node name="Label" type="Label" parent="Night/Control"]
+[node name="Label" type="Label" parent="Canvas/Container"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -111,9 +111,9 @@ margin_bottom = 11.5
 text = "Vous dormez chez Clément..."
 align = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Night/Control"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/Container"]
 autoplay = "Animation"
 anims/Animation = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[connection signal="animation_finished" from="Night/Control/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="Canvas/Container/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://images/portraits/beaux_arts/clement.png" type="Texture" id=1]
 [ext_resource path="res://prefabs/2d/Character.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://images/portraits/beaux_arts/manon_dogukan.png" type="Texture" id=4]
 [ext_resource path="res://images/backgrounds/beaux_arts/appartement_nuit.jpg" type="Texture" id=5]
 [ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefabs/2d/SultanCollectable.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=4]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
@@ -74,6 +75,73 @@ shader_param/y_rot = 0.0
 shader_param/x_rot = -50.0
 shader_param/inset = 0.0
 
+[sub_resource type="Shader" id=11]
+code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
+// License: MIT
+
+shader_type canvas_item;
+
+// Camera FOV
+uniform float fov : hint_range(1, 179) = 90;
+uniform bool cull_back = true;
+uniform float y_rot : hint_range(-180, 180) = 0.0;
+uniform float x_rot : hint_range(-180, 180) = 0.0;
+// At 0, the image retains its size when unrotated.
+// At 1, the image is resized so that it can do a full
+// rotation without clipping inside its rect.
+uniform float inset : hint_range(0, 1) = 0.0;
+// Consider changing this to a uniform and changing it from code
+
+varying flat vec2 o;
+varying vec3 p;
+
+const float PI = 3.14159;
+
+// Creates rotation matrix
+void vertex(){
+	float sin_b = sin(y_rot / 180.0 * PI);
+	float cos_b = cos(y_rot / 180.0 * PI);
+	float sin_c = sin(x_rot / 180.0 * PI);
+	float cos_c = cos(x_rot / 180.0 * PI);
+	
+	mat3 inv_rot_mat;
+	inv_rot_mat[0][0] = cos_b;
+	inv_rot_mat[0][1] = 0.0;
+	inv_rot_mat[0][2] = -sin_b;
+	
+	inv_rot_mat[1][0] = sin_b * sin_c;
+	inv_rot_mat[1][1] = cos_c;
+	inv_rot_mat[1][2] = cos_b * sin_c;
+	
+	inv_rot_mat[2][0] = sin_b * cos_c;
+	inv_rot_mat[2][1] = -sin_c;
+	inv_rot_mat[2][2] = cos_b * cos_c;
+	
+	
+	float t = tan(fov / 360.0 * PI);
+	p = inv_rot_mat * vec3((UV - 0.5), 0.5 / t);
+	float v = (0.5 / t) + 0.5;
+	p.xy *= v * inv_rot_mat[2].z;
+	o = v * inv_rot_mat[2].xy;
+
+	VERTEX += (UV - 0.5) / TEXTURE_PIXEL_SIZE * t * (1.0 - inset);
+}
+
+void fragment(){
+	if (cull_back && p.z <= 0.0) discard;
+	vec2 uv = (p.xy / p.z).xy - o;
+    COLOR = texture(TEXTURE, uv + 0.5);
+	COLOR.a *= step(max(abs(uv.x), abs(uv.y)), 0.5);
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/fov = 90.0
+shader_param/cull_back = true
+shader_param/y_rot = -10.0
+shader_param/x_rot = 0.0
+shader_param/inset = 0.0
+
 [node name="MetroOutside" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
@@ -91,9 +159,9 @@ sprite_scale = 0.5
 max_story_progress = -1
 
 [node name="Manon" parent="." instance=ExtResource( 2 )]
-position = Vector2( 654, 39 )
+position = Vector2( 554, 29 )
 portrait = ExtResource( 4 )
-sprite_scale = 0.5
+sprite_scale = 0.4
 max_story_progress = 1
 
 [node name="Entrance" parent="." instance=ExtResource( 6 )]
@@ -110,4 +178,29 @@ rotation = 3.14159
 [node name="Collision" parent="Entrance" index="1"]
 position = Vector2( -3.8147e-06, 17.5 )
 
+[node name="Chiba" parent="." instance=ExtResource( 6 )]
+position = Vector2( -904, 448 )
+__meta__ = {
+"_edit_group_": true
+}
+scene_name = "BeauxArts/Chiba"
+need_condition_to_show = true
+condition = "has_card"
+
+[node name="Icon" parent="Chiba" index="0"]
+material = SubResource( 5 )
+rotation = 3.14159
+
+[node name="Collision" parent="Chiba" index="1"]
+position = Vector2( -3.8147e-06, 17.5 )
+
+[node name="SultanCollectable" parent="." instance=ExtResource( 7 )]
+position = Vector2( 885, -472 )
+sultan_id = "boulba"
+
+[node name="Icon" parent="SultanCollectable" index="0"]
+material = SubResource( 12 )
+
 [editable path="Entrance"]
+[editable path="Chiba"]
+[editable path="SultanCollectable"]

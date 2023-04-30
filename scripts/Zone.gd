@@ -1,7 +1,5 @@
 extends Node2D
 
-signal story_progress_changed
-
 
 export var zone_id := "unnamed"
 export var zone_name := "Unnamed"
@@ -41,8 +39,8 @@ func _ready() -> void:
 		GameManager.context_before_puzzle = null
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	_camera.limit_left = -image_size / 2
-	_camera.limit_right = image_size / 2
+	_camera.limit_left = -float(image_size) / 2.0
+	_camera.limit_right = float(image_size) / 2.0
 	pause_menu = PauseMenu.instance()
 	
 	
@@ -53,7 +51,8 @@ func _ready() -> void:
 	add_child(scene_light)
 	
 	canvas.add_child(transition)
-	canvas.get_node("Container/TurnLight").connect("toggled", self, "toggle_light")
+	if canvas.get_node("Container/TurnLight").connect("toggled", self, "toggle_light") != OK:
+		print("error connecting")
 	
 	background_blur = preload("res://prefabs/2d/BackgroundBlur.tscn").instance()
 	background_blur.get_node("Image").texture = $Background.texture
@@ -90,17 +89,17 @@ var light_off := false
 func toggle_light(button_pressed: bool) -> void:
 	light_off = button_pressed
 	if light_off:
-		tween.interpolate_property(scene_light, "color", scene_light.color, Color(0.25, 0.25, 0.25), 0.5)
+		var _temp := tween.interpolate_property(scene_light, "color", scene_light.color, Color(0.25, 0.25, 0.25), 0.5)
 		for i in get_tree().get_nodes_in_group("Interaction"):
 			if i.has_method("turn_light"):
 				i.turn_light(true)
 		
 	else:
-		tween.interpolate_property(scene_light, "color", scene_light.color, Color.white, 0.5)
+		var _temp := tween.interpolate_property(scene_light, "color", scene_light.color, Color.white, 0.5)
 		for i in get_tree().get_nodes_in_group("Interaction"):
 			if i.has_method("turn_light"):
 				i.turn_light(false)
-	tween.start()
+	var _temp := tween.start()
 
 
 var current_dialogue_character : Node2D

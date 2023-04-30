@@ -10,4 +10,5 @@ name = "Résoudre le digicode"
 start_phrase = "Le digicode vous lance une énigme!"
 description = "Vous devez trouver l'adresse de votre ami Clément!"
 given_by = ""
-hints = [ "1", "2", "3" ]
+hints = PoolStringArray( "Hint 1", "Hint 2", "Hint 3" )
+additional_apps = PoolStringArray(  )

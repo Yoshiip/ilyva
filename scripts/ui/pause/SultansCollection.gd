@@ -12,8 +12,10 @@ func _ready() -> void:
 			badge.get_node("Icon").material = null
 			badge.modulate = Color(0, 0, 0, 0.5)
 		else:
-			badge.connect("mouse_entered", self, "_mouse_entered_badge", [ i ])
-			badge.connect("mouse_exited", self, "_mouse_exited_badge")
+			if badge.connect("mouse_entered", self, "_mouse_entered_badge", [ i ]):
+				print("error connecting")
+			if badge.connect("mouse_exited", self, "_mouse_exited_badge") != OK:
+				print("error connecting")
 		badge.get_node("Icon").texture = load("res://images/sultans/" + i + ".png")
 		$List/Grid.add_child(badge)
 

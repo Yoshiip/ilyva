@@ -4,9 +4,9 @@ extends BasePuzzleHandler
 var system := System.new([
 	SystemElement.new(0, "PROUT.caca", "/", "", []),
 ])
-
-func command_executed(command, output) -> void:
-	grant_victory() # cette méthode permet de faire gagner le joueur
+#
+#func command_executed(command, output) -> void:
+#	grant_victory() # cette méthode permet de faire gagner le joueur
 
 
 #var root : Array

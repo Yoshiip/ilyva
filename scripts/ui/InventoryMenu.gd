@@ -36,7 +36,7 @@ func play_animation(backward = false) -> void:
 	
 	play_tween($Background, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	play_tween($NoiseTexture, "modulate:a", 0.0, 0.25, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	tween.start()
+	var _temp = tween.start()
 	yield(tween, "tween_started") # Prevent seeing the first frame being the animation completed
 	if !backward:
 		$Container/SultansCollection.visible = GameManager.progress.saint_philibert.Thomas >= 2
@@ -77,9 +77,9 @@ var can_pause := true
 
 func play_tween(n : Node, p : String, val1, val2, d : float, t : int, e : int, backward = false) -> void:
 	if backward:
-		tween.interpolate_property(n , p, val2, val1, d, t, e)
+		var _temp := tween.interpolate_property(n , p, val2, val1, d, t, e)
 	else:
-		tween.interpolate_property(n , p, val1, val2, d, t, e)
+		var _temp := tween.interpolate_property(n , p, val1, val2, d, t, e)
 
 
 func _on_Settings_pressed() -> void:
@@ -130,4 +130,5 @@ func _on_Menu_pressed() -> void:
 
 func _on_ReturnToMenuButton_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene("res://scenes/Menu.tscn")
+	if get_tree().change_scene("res://scenes/Menu.tscn") != OK:
+		print("Error changing scene")

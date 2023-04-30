@@ -33,7 +33,7 @@
 			"text": "Salut!"
 		},
 		{
-			"character": "",
+			"character": "character-1681744062.json",
 			"event_id": "dialogic_010",
 			"options": [
 
@@ -77,7 +77,7 @@
 			"text": "Je fait la collection de ces petits personnages."
 		},
 		{
-			"character": "",
+			"character": "character-1681744062.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Mais, la semaine dernière, je les ais tous laisser s'échapper, je les ais tous perdues!"

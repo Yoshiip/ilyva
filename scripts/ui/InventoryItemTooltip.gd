@@ -24,6 +24,6 @@ func unhovered(item : TextureRect) -> void:
 		$Tween.start()
 		current_item = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if modulate.a == 0.0:
 		visible = false

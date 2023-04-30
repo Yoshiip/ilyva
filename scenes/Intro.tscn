@@ -114,3 +114,10 @@ bus = "Ambient"
 anims/AnimExplosion = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/SubwaySeRallume = SubResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+margin_right = 161.0
+margin_bottom = 45.0
+text = "Passer l'intro"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -7,7 +7,7 @@ var scene_start_dialogue := ""
 #var current_puzzle : Resource
 
 # debug
-var current_puzzle := preload("res://resources/puzzles/1.tres")
+var current_puzzle := preload("res://resources/puzzles/3.tres")
 var context_before_puzzle = null
 
 var progress := {
@@ -24,9 +24,10 @@ var progress := {
 		"digicode_unlocked": false,
 		"has_card": false,
 		"Digicode": 0,
-		"Clément": 2,
+		"Clément": 0,
 		"Manon": 0,
 		"Chiba": 0,
+		"Sultan": 0,
 	},
 	"pont_de_bois": {
 		"Rat": 0,
@@ -103,10 +104,11 @@ const APPS := {
 #		"icon": 2,
 #		"reference": preload("res://prefabs/puzzles/modals/Terminal.tscn"),
 #	},
-#	"digicode": {
-#		"icon": 3,
-#		"reference": preload("res://prefabs/puzzles/modals/Digicode.tscn"),
-#	},
+	"digicode": {
+		"icon": 3,
+		"reference": preload("res://prefabs/puzzles/modals/Digicode.tscn"),
+		"by_default": false,
+	},
 	"apps": {
 		"icon": 4,
 		"reference": preload("res://prefabs/puzzles/modals/Apps.tscn"),
@@ -169,16 +171,20 @@ var sultans := []
 var items := []
 
 
-func add_to_inventory(item_id : String, callback = "") -> void:
+func add_to_inventory(item_id : String, _callback = "") -> void:
 	if !items.has(item_id):
 		items.append(item_id)
 #		play_new_item_animation(item_id, false, callback)
-		
+
+
+
 
 func add_sultan(sultan_id : String) -> void:
 	if !sultans.has(sultan_id):
 		sultans.append(sultan_id)
 		play_new_item_animation(sultan_id, true)
+		if sultans.size() == 12:
+			GameManager.progress.saint_philibert.Thomas = 3
 
 
 onready var NewItem := preload("res://prefabs/ui/NewItem.tscn")

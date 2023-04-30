@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 		tooltip.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if is_instance_valid(current_area) && !get_parent().in_dialogue && Input.is_action_just_pressed("ui_accept"):
+	if is_instance_valid(current_area) && !get_parent().in_dialogue && event.is_action_pressed("ui_accept"):
 		current_area.interact()
 
 func _on_Cursor_area_entered(area: Area2D) -> void:

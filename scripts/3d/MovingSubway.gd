@@ -24,13 +24,13 @@ var door_moving := false
 var player_inside := false
 onready var speed := max_speed
 
-const AUDIOS := [
-	preload("res://audios/voices/subway/0.ogg"),
-	preload("res://audios/voices/subway/1.ogg"),
-	preload("res://audios/voices/subway/2.ogg"),
-	preload("res://audios/voices/subway/3.ogg"),
-	preload("res://audios/voices/subway/4.ogg"),
-]
+#const AUDIOS := [
+#	preload("res://audios/voices/subway/0.ogg"),
+#	preload("res://audios/voices/subway/1.ogg"),
+#	preload("res://audios/voices/subway/2.ogg"),
+#	preload("res://audios/voices/subway/3.ogg"),
+#	preload("res://audios/voices/subway/4.ogg"),
+#]
 
 
 var next_stop_id := 0

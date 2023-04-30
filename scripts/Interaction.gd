@@ -65,10 +65,10 @@ func interact() -> void:
 
 func turn_light(on : bool) -> void:
 	if on:
-		tween.interpolate_property($Light, "energy", 0.0, 1.0, 0.5, Tween.TRANS_EXPO)
+		var _temp := tween.interpolate_property($Light, "energy", 0.0, 1.0, 0.5, Tween.TRANS_EXPO)
 	else:
-		tween.interpolate_property($Light, "energy", 1.0, 0.0, 0.5, Tween.TRANS_EXPO)
-	tween.start()
+		var _temp := tween.interpolate_property($Light, "energy", 1.0, 0.0, 0.5, Tween.TRANS_EXPO)
+	var _temp := tween.start()
 
 
 func progress_changed() -> void:
