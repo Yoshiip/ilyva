@@ -16,7 +16,7 @@ func _ready() -> void:
 	add_child(transition)
 	$"%ZoneName".play_animation(GameManager.STATIONS[$Station.current_station].name)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
-	$Canvas/Container.add_child(pause_menu)
+	add_child(pause_menu)
 
 	map.visible = false
 	

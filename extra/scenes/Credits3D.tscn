@@ -331,6 +331,60 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 0 )
 [node name="Arch" parent="Pillars/pillar5" index="0"]
 material/0 = SubResource( 7 )
 
+[node name="pillar14" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 160, -1.39876e-05, 0 )
+
+[node name="Arch" parent="Pillars/pillar14" index="0"]
+material/0 = SubResource( 8 )
+
+[node name="pillar6" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 240, 0, 0 )
+
+[node name="Arch" parent="Pillars/pillar6" index="0"]
+material/0 = SubResource( 7 )
+
+[node name="pillar15" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 240, -1.39876e-05, 0 )
+
+[node name="Arch" parent="Pillars/pillar15" index="0"]
+material/0 = SubResource( 8 )
+
+[node name="pillar7" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 320, 0, 0 )
+
+[node name="Arch" parent="Pillars/pillar7" index="0"]
+material/0 = SubResource( 7 )
+
+[node name="pillar16" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 320, -1.39876e-05, 0 )
+
+[node name="Arch" parent="Pillars/pillar16" index="0"]
+material/0 = SubResource( 8 )
+
+[node name="pillar8" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 0 )
+
+[node name="Arch" parent="Pillars/pillar8" index="0"]
+material/0 = SubResource( 7 )
+
+[node name="pillar17" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -320, -1.39876e-05, 0 )
+
+[node name="Arch" parent="Pillars/pillar17" index="0"]
+material/0 = SubResource( 8 )
+
+[node name="pillar9" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -240, 0, 0 )
+
+[node name="Arch" parent="Pillars/pillar9" index="0"]
+material/0 = SubResource( 7 )
+
+[node name="pillar18" parent="Pillars" instance=ExtResource( 2 )]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -240, -1.39876e-05, 0 )
+
+[node name="Arch" parent="Pillars/pillar18" index="0"]
+material/0 = SubResource( 8 )
+
 [node name="pillar10" parent="Pillars" instance=ExtResource( 2 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -160, -1.39876e-05, 0 )
 
@@ -353,12 +407,6 @@ material/0 = SubResource( 8 )
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 80, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar13" index="0"]
-material/0 = SubResource( 8 )
-
-[node name="pillar14" parent="Pillars" instance=ExtResource( 2 )]
-transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 160, -1.39876e-05, 0 )
-
-[node name="Arch" parent="Pillars/pillar14" index="0"]
 material/0 = SubResource( 8 )
 
 [node name="Canvas" type="CanvasLayer" parent="."]
@@ -697,8 +745,16 @@ autostart = true
 [editable path="Pillars/pillar3"]
 [editable path="Pillars/pillar4"]
 [editable path="Pillars/pillar5"]
+[editable path="Pillars/pillar14"]
+[editable path="Pillars/pillar6"]
+[editable path="Pillars/pillar15"]
+[editable path="Pillars/pillar7"]
+[editable path="Pillars/pillar16"]
+[editable path="Pillars/pillar8"]
+[editable path="Pillars/pillar17"]
+[editable path="Pillars/pillar9"]
+[editable path="Pillars/pillar18"]
 [editable path="Pillars/pillar10"]
 [editable path="Pillars/pillar11"]
 [editable path="Pillars/pillar12"]
 [editable path="Pillars/pillar13"]
-[editable path="Pillars/pillar14"]

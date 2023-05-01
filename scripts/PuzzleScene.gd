@@ -15,7 +15,7 @@ var puzzle_handler : Node = null
 func _ready() -> void:
 	add_child(tween)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
-	$Canvas/Container.add_child(pause_menu)
+	add_child(pause_menu)
 
 	puzzle = GameManager.current_puzzle
 	$Canvas/Container/ModalsManager.ready()

@@ -148,9 +148,10 @@
 			"call_node": {
 				"arguments": [
 					"toilets",
+					"true",
 					"beaux_arts"
 				],
-				"method_name": "change_condition",
+				"method_name": "story_condition",
 				"target_node_path": "/root/Root"
 			},
 			"event_id": "dialogic_042"

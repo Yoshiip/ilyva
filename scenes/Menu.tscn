@@ -874,6 +874,7 @@ expand = true
 stretch_mode = 5
 
 [node name="DebugPuzzle" type="Button" parent="Canvas/Container"]
+visible = false
 margin_left = 16.0
 margin_top = 10.0
 margin_right = 344.0

@@ -63,7 +63,7 @@ func _ready() -> void:
 	background_blur.get_node("Image").texture = $Background.texture
 	add_child(background_blur)
 	
-	$Canvas/Container.add_child(pause_menu)
+	add_child(pause_menu)
 	if start_dialogue && GameManager.progress[zone_id][zone_name] < max_dialogue_progress:
 		create_dialogue(str(zone_id, '/', zone_name, '/', GameManager.progress[zone_id][zone_name]))
 
