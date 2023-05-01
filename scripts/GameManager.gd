@@ -12,7 +12,7 @@ var save_data : SaveData
 
 func _ready() -> void:
 	randomize()
-	extra = File.new().file_exists("res://extra/icons/extra_logo.png")
+	extra = OS.get_name() != "HTML5"
 	AudioServer.set_bus_volume_db(music_bus, linear2db(settings.music / 100.0))
 	AudioServer.set_bus_volume_db(effects_bus, linear2db(settings.effects / 100.0))
 #		save_data = SaveData.new()
@@ -37,7 +37,7 @@ func save() -> void:
 #var current_puzzle : Resource
 
 # debug
-var current_puzzle := preload("res://resources/puzzles/1.tres")
+var current_puzzle := preload("res://resources/puzzles/4.tres")
 var context_before_puzzle = null
 
 var progress := {
@@ -53,6 +53,7 @@ var progress := {
 	"beaux_arts": {
 		"digicode_unlocked": false,
 		"has_card": false,
+		"toilets": false,
 		"Digicode": 0,
 		"Clément": 0,
 		"Manon": 0,
@@ -75,7 +76,7 @@ var progress := {
 }
 
 var unlocked_levels := [
-	0, 1, 2, 3
+	0, 1, 3
 ]
 var current_subway_stop := 3
 var one_time_interacts := []
@@ -113,7 +114,7 @@ const ITEMS := {
 	},
 	"key": {
 		"name": "Clé",
-		"description": "C'est le rat qui vous l'a donné.",
+		"description": "C'est le rat qui vous l'a donnée.",
 		"icon": preload("res://images/items/key.png"),
 	},
 	"wallet": {

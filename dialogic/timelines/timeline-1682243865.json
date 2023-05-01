@@ -31,31 +31,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Clément! Qu’est-ce qu’il se passe ici ? C’est plus comme avant, je comprends rien ! Eh mais attends, il y a aussi Doğukan et Manon ! Salut !"
+			"text": "Clément! Qu’est-ce qu’il se passe ici ? C’est plus comme avant, je comprends rien !"
 		},
 		{
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Mais..."
-		},
-		{
-			"character": "character-1677363105.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "De quoi tu parles ?",
-			"voice_data": {
-				"0": {
-					"audio_bus": "Voices",
-					"file": "res://extra/voices/manon_dogukan/1.mp3"
-				}
-			}
-		},
-		{
-			"character": "character-1677363460.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Bah, j’étais en train de partir pour aller à l’IUT, puis le métro a glitché, et puis.. Je me suis retrouvé là, tout le monde parlait une langue bizarre et un beau gosse m’a filé un traducteur, puis il s’est fait embarquer… C’est quoi ce délire ?"
 		},
 		{
 			"animation": "[Default]",
@@ -82,7 +64,25 @@
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ah, mais attends ? T’es pas celui de notre monde ? Peut-être que le multivers est réel après tout… Bah, on va t’expliquer, assieds-toi!",
+			"text": "De quoi tu parles ?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/manon_dogukan/1.mp3"
+				}
+			}
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Bah, j’étais en train de partir pour aller à l’IUT, puis le métro a glitché, et puis.. Je me suis retrouvé là, tout le monde parlait une langue bizarre et un inconnu m’a filé un traducteur, puis il s’est fait embarquer… C’est quoi ce délire ?"
+		},
+		{
+			"character": "character-1677363105.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ah, mais attends ? T’es pas celui de notre monde ? Peut-être que le multivers est réel après tout… Bah, on va t’expliquer, assieds-toi !",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voice lines",
@@ -160,7 +160,7 @@
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "De système ?! Mais alors, tu connais bash ?",
+			"text": "De système ?! Mais alors, tu connais Bash ?",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voice lines",
@@ -172,7 +172,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Oui, bien sûr ! Je connais bash et bash me connait, on est un peu meilleurs amis lui et moi."
+			"text": "Oui, bien sûr ! Je connais Bash et Bash me connaît, on est un peu meilleurs amis lui et moi."
 		},
 		{
 			"character": "character-1677363105.json",
@@ -232,7 +232,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "(Clément sort toute les pièces, vous prennez le mode d’emploi)"
+			"text": "(Clément sort toutes les pièces, vous prenez le mode d’emploi)"
 		},
 		{
 			"event_id": "dialogic_023",
@@ -266,13 +266,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Attendez je vous montre!"
+			"text": "Attendez, je vous montre !"
 		},
 		{
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Attend, je crois pas que ce soit utile…",
+			"text": "Attends, je crois pas que ce soit utile…",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voice lines",
@@ -284,7 +284,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Mais si! attend…"
+			"text": "Mais si ! Regarde…"
 		},
 		{
 			"call_node": {

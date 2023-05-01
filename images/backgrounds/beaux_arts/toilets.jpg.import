@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/color_and_depth.png-380f42754855a977decbe7ffb82d411b.stex"
+path="res://.import/toilets.jpg-9777cdd25775d8fbbcc929c1121b7c30.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/jm_pp_outlines/graphics/color_and_depth.png"
-dest_files=[ "res://.import/color_and_depth.png-380f42754855a977decbe7ffb82d411b.stex" ]
+source_file="res://images/backgrounds/beaux_arts/toilets.jpg"
+dest_files=[ "res://.import/toilets.jpg-9777cdd25775d8fbbcc929c1121b7c30.stex" ]
 
 [params]
 

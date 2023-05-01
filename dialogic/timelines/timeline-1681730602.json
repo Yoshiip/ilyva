@@ -87,7 +87,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Pourquoi y a pu de lumière ?"
+			"text": "Pourquoi il n'y a plus de lumière ?"
 		},
 		{
 			"animation": "[Default]",
@@ -166,13 +166,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Et le métro vient de rédemarrer ?"
+			"text": "Et le métro vient de redémarrer ?"
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Je comprends vraiment rien.. Mais bon si je peux arriver à l'heure en cours, ça serait bien!"
+			"text": "Je comprends vraiment rien... Mais bon si je peux arriver à l'heure en cours, ça serait bien!"
 		},
 		{
 			"event_id": "dialogic_023",
@@ -183,7 +183,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Je devrais aller à la surface!"
+			"text": "Je devrais aller à la surface, voir ce qu'il s'est passé!"
 		},
 		{
 			"call_node": {

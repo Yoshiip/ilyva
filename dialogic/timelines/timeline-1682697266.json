@@ -54,7 +54,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Euh ouais c’est ce qu’on m’a dit mais je comprend toujours pas ce que tu fais sur mon chemin et pourquoi tu me parles…"
+			"text": "Euh ouais c’est ce qu’on m’a dit mais je comprends toujours pas ce que tu fais sur mon chemin et pourquoi tu me parles…"
 		},
 		{
 			"character": "character-1682697251.json",
@@ -66,14 +66,14 @@
 			"question": "T’occupes, dis, ça te dirait de m’aider ?"
 		},
 		{
-			"choice": "Chaud!",
+			"choice": "Chaud !",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"choice": "Désolé j'ai pas le temps",
+			"choice": "Désolé, j'ai pas le temps",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -83,7 +83,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Si, tu vas venir m’aider, en réalité je te posais la question pour être gentil.",
+			"text": "Si, tu vas venir m’aider, en réalité je te posais la question juste pour être gentil.",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -95,7 +95,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ah ok, bon bah pardon j’arrive"
+			"text": "Ah ok, bon bah pardon, j’arrive"
 		},
 		{
 			"event_id": "dialogic_013"
@@ -116,7 +116,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ok bizarre mais vas-y"
+			"text": "Ok, bizarre mais vas-y"
 		},
 		{
 			"character": "character-1682697251.json",
@@ -125,7 +125,7 @@
 
 			],
 			"portrait": "",
-			"question": "Tiens regarde il est la."
+			"question": "Tiens, regarde, il est là."
 		},
 		{
 			"choice": "Oh un PC ?",
@@ -138,7 +138,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Super un PC ! Attends pourquoi il y avait un PC ici, n’importe qui pourrait le voler !"
+			"text": "Super un PC ! Attends pourquoi il y a un PC ici, n’importe qui pourrait le voler !"
 		},
 		{
 			"character": "character-1682697251.json",
@@ -156,7 +156,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bah non vraiment pas quoi, mais bref, qu’est ce que je peux faire pour t’aider ?"
+			"text": "Bah non vraiment pas quoi, mais bref, qu’est-ce que je peux faire pour t’aider ?"
 		},
 		{
 			"choice": "C’est quoi ?",
@@ -298,7 +298,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Sauf qu'en bash pour l'utiliser on va devoir utiliser un caractère avant et ce caractère est le dollar **$**",
+			"text": "Sauf qu'en bash pour l'utiliser on va devoir utiliser un caractère avant et ce caractère est le dollar $",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -310,7 +310,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Vas-y, je te laisse essayer avec un simple cat, je veux que la commande affiche \"Hello Rats\" à l'aide d'une variable qui s'appelle rat.",
+			"text": "Vas-y, je te laisse essayer avec un simple echo, je veux que la commande affiche \"Hello Rats\" à l'aide d'une variable qui s'appelle rat.",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",

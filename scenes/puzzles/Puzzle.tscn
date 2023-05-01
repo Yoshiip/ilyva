@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
 [ext_resource path="res://images/textures/light.png" type="Texture" id=3]
@@ -8,12 +8,13 @@
 [ext_resource path="res://scripts/PuzzleScene.gd" type="Script" id=7]
 [ext_resource path="res://fonts/Hack-Bold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=9]
+[ext_resource path="res://images/icons/restart.png" type="Texture" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=4]
 light_mode = 2
 
 [sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0, 0, 0, 0.247059 )
+bg_color = Color( 0.160256, 0.144958, 0.195313, 1 )
 
 [sub_resource type="DynamicFont" id=5]
 outline_size = 1
@@ -27,6 +28,8 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [node name="Puzzle" type="Node2D"]
 script = ExtResource( 7 )
@@ -54,6 +57,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 5 )
+
+[node name="Logo" type="TextureRect" parent="Canvas/Container"]
+modulate = Color( 1, 1, 1, 0.247059 )
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.6
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
 
 [node name="Grain" type="TextureRect" parent="Canvas/Container"]
 modulate = Color( 1, 1, 1, 0.247059 )
@@ -103,6 +116,53 @@ texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
+[node name="Buttons" type="HBoxContainer" parent="Canvas/Container/Footer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 96.0
+margin_top = -12.5
+margin_right = 608.0
+margin_bottom = 12.5
+custom_constants/separation = 32
+
+[node name="List" type="Button" parent="Canvas/Container/Footer/Buttons"]
+margin_right = 200.0
+margin_bottom = 25.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+text = "Liste d'applications"
+icon = ExtResource( 10 )
+expand_icon = true
+
+[node name="Restart" type="Button" parent="Canvas/Container/Footer/Buttons"]
+margin_left = 232.0
+margin_right = 422.0
+margin_bottom = 25.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+text = "Redémarrer l'énigme"
+icon = ExtResource( 10 )
+expand_icon = true
+
+[node name="CloseAll" type="Button" parent="Canvas/Container/Footer/Buttons"]
+margin_left = 454.0
+margin_right = 714.0
+margin_bottom = 25.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+text = "Fermer toutes les fenêtres"
+icon = ExtResource( 10 )
+expand_icon = true
+
 [node name="LightMask" type="Light2D" parent="."]
 position = Vector2( 629, 215 )
 texture = ExtResource( 3 )
@@ -111,3 +171,7 @@ energy = 0.5
 __meta__ = {
 "_edit_lock_": true
 }
+
+[connection signal="pressed" from="Canvas/Container/Footer/Buttons/List" to="Canvas/Container/ModalsManager" method="_on_Restart2_pressed"]
+[connection signal="pressed" from="Canvas/Container/Footer/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Canvas/Container/Footer/Buttons/CloseAll" to="." method="_on_CloseAll_pressed"]

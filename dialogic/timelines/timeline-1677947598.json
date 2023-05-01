@@ -37,7 +37,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Tu parles français ??",
+			"text": "Attends, tu parles français, je ne me trompe pas ?",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Master",
@@ -65,7 +65,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Tu es à Terminus. Tu dois juste savoir que parler une langue autre que le Bash est interdit."
+			"text": "Tu es à Terminus. Tout ce que tu dois savoir, c'est que de parler une autre langue que le Bash est interdit."
 		},
 		{
 			"character": "character-1677947682.json",
@@ -74,7 +74,7 @@
 			"text": "Tu n’as pas de traducteur, j’imagine ?"
 		},
 		{
-			"choice": "Mais les autres parlent une langue bizarre, je ne comprends rien!",
+			"choice": "Mais les autres parlent une langue bizarre, je ne comprends rien !",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -84,7 +84,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "C’est normal, est-ce que tu as un traducteur ? On parle tous Bash !"
+			"text": "C’est normal, on est à Terminus, est-ce que tu as un traducteur ? On parle tous Bash ! La seule langue autorisée..."
 		},
 		{
 			"event_id": "dialogic_013"
@@ -149,7 +149,7 @@
 			"question": "Il faudrait lui remettre des piles. Mais je n’en ai pas sur moi, tu devrais aller en acheter au supermarché."
 		},
 		{
-			"choice": "Tu pourrais me le vendre à combien ?",
+			"choice": "Tu pourrais me le vendre pour combien ?",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",

@@ -24,7 +24,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "je vois que tu as réussi, parfait ! tu dois surement être capable de reussir donc ...",
+			"text": "je vois que tu as réussi, parfait ! tu dois sûrement être capable de réussir donc ...",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -36,13 +36,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "hein reussir quoi ?"
+			"text": "Hein, réussir quoi ?"
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "rien, t'occupes tu comprendras sûrement plus tard pourquoi je te fais faire ca",
+			"text": "Rien, t'occupes, tu comprendras sûrement plus tard pourquoi je te fais faire ca",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -54,13 +54,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "euh ok, j'imagine que c'est du foreshadowing pour quand je serai en face de JVLIEM BASTVM"
+			"text": "Euh ok, j'imagine que c'est du foreshadowing pour quand je serai en face de JVLIEM BASTVM"
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "*marmonne* perspicace...",
+			"text": "*marmonne* Perspicace...",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -114,7 +114,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "BREF maintenant passons aux boucles for, j'imagine que tu sais ce que c'est",
+			"text": "BREF, maintenant passons aux boucles for, j'imagine que tu sais ce que c'est",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -132,7 +132,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Super ! Alors en bash ca ressemble à du python en terme de comment ça marche, il faut simplement retenir que pour FAIRE ce qu'il y a dans la boucle il faut utiliser DO et DONE quand on a fini.",
+			"text": "Super ! Alors en Bash, une boucle for ça ressemble à du python en terme de fonctionnement et de syntaxe, il faut simplement retenir que pour FAIRE ce qu'il y a dans la boucle il faut utiliser DO et utiliser DONE quand on a fini.",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -192,7 +192,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "La variable i prendra comme valeur les chaînes de caractères continues, sa valeur changera après chaque espace, par exemple chaine='toto tata' i prendra en valeur toto puis tata.",
+			"text": "La variable i prendra comme valeur les chaînes de caractères continues, sa valeur changera après chaque espace, par exemple pour la chaine='toto tata', un for i in chaine fera prendre comme i les valeurs toto puis tata.",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -216,7 +216,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "donc j'aimerais que la console renvoie “Salut” 5 fois. Bien sûr, Salut sera dans une variable nommée rat.",
+			"text": "donc j'aimerais que la console renvoie “Salut” 5 fois. Bien sûr, si tu veux me faire plaisir,tu peux mettre Salut dans une variable nommée rat. Mais bon, tu choisis comment tu l'appelles...",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -228,7 +228,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Pour répeter une chose plusieurs fois on utilise seq n, ou n est le nombre de fois qu'on veut répeter ce qu'il y a dans la boucle for, et comme c'est une commande on entoure avec $(...). Par exemple “seq 10” retourne “1 2 3 4 5 6 7 8 9 10”. À toi de jouer !",
+			"text": "Pour répéter une chose plusieurs fois on utilise seq n, où n est le nombre de fois que l'on veut répeter ce qu'il y a dans la boucle for, et comme c'est une commande on entoure avec $(...). Par exemple “seq 10” retourne “1 2 3 4 5 6 7 8 9 10”. Et, on fera 'for i in $(seq 10);' À toi de jouer !",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",

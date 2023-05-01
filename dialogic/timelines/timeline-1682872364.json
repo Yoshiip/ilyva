@@ -24,7 +24,7 @@
 			"character": "character-1682767980.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Qu'est que tu fait la ?"
+			"text": "Qu'est que tu fais la ?"
 		},
 		{
 			"character": "character-1682767980.json",
@@ -36,19 +36,19 @@
 			"character": "character-1682767980.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "La bombe ne t'as pas tué ?"
+			"text": "La bombe ne t'a pas tué ?"
 		},
 		{
 			"character": "character-1682767980.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Arrête!"
+			"text": "Arrête !"
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "C'est trop tard pour toi!"
+			"text": "C'est trop tard pour toi !"
 		},
 		{
 			"call_node": {

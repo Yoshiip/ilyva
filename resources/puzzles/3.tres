@@ -12,4 +12,4 @@ description = "Votre meilleur ami Clément habite à République Beaux-Arts. Pou
 given_by = "Vous-même"
 hints = PoolStringArray( " Pour cette énigme, vous aurez besoin de la commande cat, et une autre, essayez de regarder dans le help.", "Le nom de Clément est clement.etu. Il vous faut obtenir l’adresse IP de la destination selon le nom de l’adresse.", "Utilisez la commande ping pour contacter une adresse. " )
 hints_action = PoolStringArray( "", "", "" )
-additional_apps = PoolStringArray( "digicode" )
+additional_apps = PoolStringArray( "" )

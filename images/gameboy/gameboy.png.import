@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/color_only.png-c50fddfc619687506a2a948bc639889a.stex"
+path="res://.import/gameboy.png-46daf3c0307c26c4b0093a38d9061354.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/jm_pp_outlines/graphics/color_only.png"
-dest_files=[ "res://.import/color_only.png-c50fddfc619687506a2a948bc639889a.stex" ]
+source_file="res://images/gameboy/gameboy.png"
+dest_files=[ "res://.import/gameboy.png-46daf3c0307c26c4b0093a38d9061354.stex" ]
 
 [params]
 

@@ -122,6 +122,7 @@ func _process(delta: float) -> void:
 			yield(get_tree().create_timer(0.5), "timeout")
 			station.interact_door(true, !going_forward)
 			print(next_stop_id)
+			print(!GameManager.unlocked_levels.has(next_stop_id))
 			if !GameManager.unlocked_levels.has(next_stop_id):
 				set_process(false)
 				yield(get_tree().create_timer(3.0), "timeout")

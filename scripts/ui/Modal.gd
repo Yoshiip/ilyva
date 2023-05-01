@@ -95,12 +95,15 @@ func _on_DragZone_mouse_exited() -> void:
 	drag_zone_hovered = false
 
 
-func _on_CloseButton_pressed() -> void:
+func close() -> void:
 	close_animation()
 
 	rect_pivot_offset = get_global_mouse_position() - rect_position
 	yield(get_tree().create_timer(0.5), "timeout")
 	queue_free()
+
+func _on_CloseButton_pressed() -> void:
+	close()
 
 func close_animation(backward = false) -> void:
 	play_tween(self, "rect_scale", rect_scale, Vector2.ZERO, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT, backward)

@@ -54,7 +54,7 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Désolé si le matelas est un peu inconfortable, je n'ai que ça."
+			"text": "Désolé si le matelas n'est pas très confortable, je n'ai que ça."
 		},
 		{
 			"event_id": "dialogic_013"
@@ -75,7 +75,7 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Tiens, c'est ma Carte BashBash, tu pourra voyager en illimité sur le réseau Ilyva!"
+			"text": "Tiens, je te donne ma Carte BashBash, tu pourras voyager en illimité sur le réseau Ilyva!"
 		},
 		{
 			"call_node": {
@@ -129,13 +129,13 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Non, je m'en sert jamais. Tu en as plus besoin que moi!"
+			"text": "Non, je m'en sers jamais. Je suis toujours en retard, avec ou sans carte, de toute façon. Tu en as plus besoin que moi!"
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Merci beaucoup! J'en ferais bon usage"
+			"text": "Merci beaucoup! J'en ferai bon usage"
 		}
 	],
 	"metadata": {

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 func _ready() -> void:
+	MusicManager.start_music("")
 	var new_dialog = Dialogic.start("intro/intro")
 	get_tree().current_scene.add_child(new_dialog)
 

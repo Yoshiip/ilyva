@@ -4,7 +4,7 @@
 			"character": "character-1677363335.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Suite à un problème de portes, la station est fermé pour la soirée. Nous vous demanderons de bien vouloir quitter la station.",
+			"text": "Suite à un problème de portes, la station est fermée pour la soirée. Nous vous demandons de bien vouloir quitter la station.",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",

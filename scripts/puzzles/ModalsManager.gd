@@ -30,3 +30,7 @@ func move_modal(modal : Panel) -> void:
 	for i in get_children():
 		if i.pinned:
 			move_child(i, get_child_count())
+
+
+func _on_Restart2_pressed() -> void:
+	open_modal("apps")

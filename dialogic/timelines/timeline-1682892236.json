@@ -24,37 +24,37 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Attends!"
+			"text": "Attends !"
 		},
 		{
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ça ne va pas se passer comme ça!"
+			"text": "Ça ne va pas se passer comme ça !"
 		},
 		{
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ne t'inquiète pas pour la bombe, je vais l'empêcher d'exploser!"
+			"text": "Ne t'inquiète pas pour la bombe, je vais l'empêcher d'exploser !"
 		},
 		{
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Toi pendant ce temps, tu dois faire le puzzle!"
+			"text": "Toi pendant ce temps, tu dois faire le puzzle !"
 		},
 		{
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Tiens bon!"
+			"text": "Tiens bon ! Pour Terminus !"
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "D'accord!"
+			"text": "D'accord !"
 		},
 		{
 			"call_node": {

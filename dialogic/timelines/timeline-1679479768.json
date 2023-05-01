@@ -43,7 +43,7 @@
 			"value": ""
 		},
 		{
-			"choice": "J'ai un traducteur mais il n'a plu de pile.. Vous avez une solution ?",
+			"choice": "J'ai un traducteur mais il n'a plus de pile... Vous avez une solution ?",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -78,7 +78,7 @@
 			"character": "character-1679479734.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Ok, laissez moi quelques secondes..."
+			"text": "Ok, donnez-moi quelques secondes..."
 		},
 		{
 			"event_id": "dialogic_023",
@@ -122,7 +122,7 @@
 			"character": "character-1679479734.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Pas de soucis, je reste à votre disposition!"
+			"text": "Pas de souci, je reste à votre disposition!"
 		},
 		{
 			"event_id": "dialogic_013"

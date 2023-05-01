@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/depth_only.png-f2193af4d8cd9df20f8c2daf54e05f67.stex"
+path="res://.import/pngfind.com-color-png-259422.png-709fae053b8021d4b87c7540b41f91e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/jm_pp_outlines/graphics/depth_only.png"
-dest_files=[ "res://.import/depth_only.png-f2193af4d8cd9df20f8c2daf54e05f67.stex" ]
+source_file="res://images/backgrounds/iut/pngfind.com-color-png-259422.png"
+dest_files=[ "res://.import/pngfind.com-color-png-259422.png-709fae053b8021d4b87c7540b41f91e1.stex" ]
 
 [params]
 

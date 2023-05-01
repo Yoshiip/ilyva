@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/artifacts.png-42fc9579e988a2252da4e8b609914a23.stex"
+path="res://.import/cdi.jpg-8e409ed10f80f9ef1fee11cf16344cf7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/jm_pp_outlines/graphics/artifacts.png"
-dest_files=[ "res://.import/artifacts.png-42fc9579e988a2252da4e8b609914a23.stex" ]
+source_file="res://images/backgrounds/iut/cdi.jpg"
+dest_files=[ "res://.import/cdi.jpg-8e409ed10f80f9ef1fee11cf16344cf7.stex" ]
 
 [params]
 

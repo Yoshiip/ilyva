@@ -25,7 +25,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Excellent ! Tu t'en sors très bien tu seras bientôt prêt !",
+			"text": "Excellent ! Tu t'en sors très bien, tu seras bientôt prêt !",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",

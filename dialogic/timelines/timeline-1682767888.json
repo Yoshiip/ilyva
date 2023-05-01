@@ -58,7 +58,7 @@
 			"character": "character-1682767980.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Haha, bien sûr. Je vais l’avoir, mon sudo, je suis très proche de l’avoir ! Ça fait des années que je recherche le sudo dans cité scientifique, j’ai tout fouillé…"
+			"text": "Haha, bien sûr. Je vais l’avoir, mon sudo, je suis très proche de l’avoir ! Ça fait des années que je recherche le sudo dans Cité Scientifique, j’ai tout fouillé…"
 		},
 		{
 			"character": "character-1682767980.json",
@@ -70,13 +70,25 @@
 			"character": "character-1682767980.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
+			"text": "Le pire, c'était que c'était dans cette salle!"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "... J'en ferais bien mon bureau, tiens!"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
 			"text": "Tu arrives pile au bon moment pour le spectacle."
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "C’est donc ça, le sudo… Une couronne ! "
+			"text": "C’est donc ça, le sudo… Un livre ! "
 		},
 		{
 			"character": "",

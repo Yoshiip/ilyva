@@ -120,7 +120,7 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "J'ai trouvé une clé par terre, je sais pas à qui ça appartient. Tu la veut ?",
+			"text": "J'ai trouvé une clé par terre, je sais pas à qui ça appartient. Tu la veux ?",
 			"voice_data": {
 				"0": {
 					"audio_bus": "Voices",
@@ -141,6 +141,17 @@
 				],
 				"method_name": "add_to_inventory",
 				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"toilets",
+					"beaux_arts"
+				],
+				"method_name": "change_condition",
+				"target_node_path": "/root/Root"
 			},
 			"event_id": "dialogic_042"
 		},

@@ -24,7 +24,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bravo!"
+			"text": "Bravo !"
 		},
 		{
 			"character": "character-1677947682.json",
@@ -36,7 +36,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Par contre, il n’a bientôt plus de batterie..."
+			"text": "Par contre, il n’aura bientôt plus de batterie..."
 		},
 		{
 			"call_node": {
@@ -164,7 +164,7 @@
 
 			],
 			"portrait": "",
-			"question": "Et toi, là, tu n’a pas envie de finir comme lui, j’imagine ?"
+			"question": "Et toi, là, tu n’as pas envie de finir comme lui, j’imagine ?"
 		},
 		{
 			"choice": "Non…",

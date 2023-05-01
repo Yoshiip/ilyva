@@ -80,3 +80,12 @@ func prevent_bomb() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("speedhack"):
 		skip()
+
+
+func _on_CloseAll_pressed() -> void:
+	for modal in $Canvas/Container/ModalsManager.get_children():
+		modal.close()
+
+func _on_Restart_pressed() -> void:
+	if get_tree().reload_current_scene() != OK:
+		print("error restarting")

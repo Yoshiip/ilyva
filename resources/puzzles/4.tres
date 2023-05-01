@@ -14,4 +14,4 @@ Vous êtes actuellement connecté aux serveurs du digicode, et vous avez accès 
 given_by = ""
 hints = PoolStringArray( "Regardez d’abord les contenus des différents fichiers. Il y a quelque chose en commun entre ces deux fichiers.", "Regardez quel est le numéro d’appartement de Clément et consultez le code qui correspond.", "Le numéro d’appartement de Clément est trouvable dans list.txt il vous suffit de trouver le code qui correspond à ce numéro dans le fichier codes.text." )
 hints_action = PoolStringArray( "", "", "" )
-additional_apps = PoolStringArray(  )
+additional_apps = PoolStringArray( "digicode" )

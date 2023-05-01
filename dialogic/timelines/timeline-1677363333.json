@@ -4,13 +4,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Mince, il faut un code …"
+			"text": "Mince, il faut un code…"
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Une petite minute … peut-être que si je jette un coup d’oeil à la liste …"
+			"text": "Une petite minute… peut-être que si je jette un coup d’oeil à la liste…"
 		},
 		{
 			"character": "",
@@ -27,7 +27,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "… j'aurait un indice sur le code pour entrer!"
+			"text": "…j'aurais un indice sur le code pour entrer!"
 		},
 		{
 			"call_node": {

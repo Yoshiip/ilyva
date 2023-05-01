@@ -25,7 +25,7 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bon, qui commence à commander ?"
+			"text": "Bon, qui veut commander en premier ?"
 		},
 		{
 			"animation": "[Default]",
@@ -94,7 +94,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Faut peut-être redémarrer. Attend, passe moi ce truc."
+			"text": "Faut peut-être la redémarrer. Attends, passe-moi ce truc."
 		},
 		{
 			"call_node": {

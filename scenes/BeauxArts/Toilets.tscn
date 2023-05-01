@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://images/portraits/beaux_arts/clement.png" type="Texture" id=1]
-[ext_resource path="res://prefabs/2d/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Zone.gd" type="Script" id=3]
-[ext_resource path="res://images/backgrounds/beaux_arts/appartement_nuit.jpg" type="Texture" id=5]
+[ext_resource path="res://images/backgrounds/beaux_arts/toilets.jpg" type="Texture" id=4]
 [ext_resource path="res://prefabs/Arrow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefabs/2d/SultanCollectable.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=4]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
@@ -73,7 +72,7 @@ shader_param/y_rot = 0.0
 shader_param/x_rot = -50.0
 shader_param/inset = 0.0
 
-[sub_resource type="Shader" id=17]
+[sub_resource type="Shader" id=11]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
 // License: MIT
 
@@ -132,12 +131,12 @@ void fragment(){
 	COLOR.a *= step(max(abs(uv.x), abs(uv.y)), 0.5);
 }"
 
-[sub_resource type="ShaderMaterial" id=18]
-shader = SubResource( 17 )
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
 shader_param/fov = 90.0
 shader_param/cull_back = true
-shader_param/y_rot = 0.0
-shader_param/x_rot = 50.0
+shader_param/y_rot = -10.0
+shader_param/x_rot = 0.0
 shader_param/inset = 0.0
 
 [node name="MetroOutside" type="Node2D"]
@@ -148,39 +147,28 @@ zone_name = "Appartement"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
-[node name="Clément" parent="." instance=ExtResource( 2 )]
-position = Vector2( -537, 35 )
-portrait = ExtResource( 1 )
-sprite_scale = 0.5
-max_story_progress = -1
-
-[node name="Entrance" parent="." instance=ExtResource( 6 )]
-position = Vector2( 768, 426 )
+[node name="Appartement" parent="." instance=ExtResource( 6 )]
+position = Vector2( -126, 452 )
 __meta__ = {
 "_edit_group_": true
 }
-scene_name = "BeauxArts/Entrance"
+scene_name = "BeauxArts/Appartement"
 
-[node name="Icon" parent="Entrance" index="0"]
+[node name="Icon" parent="Appartement" index="0"]
 material = SubResource( 5 )
 rotation = 3.14159
 
-[node name="Collision" parent="Entrance" index="1"]
+[node name="Collision" parent="Appartement" index="1"]
 position = Vector2( -3.8147e-06, 17.5 )
 
-[node name="Toilettes" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1052, 167 )
-__meta__ = {
-"_edit_group_": true
-}
-scene_name = "BeauxArts/Toilets"
-need_condition_to_show = true
-condition = "toilets"
+[node name="SultanCollectable" parent="." instance=ExtResource( 7 )]
+position = Vector2( 476, -127 )
+sultan_id = "boulba"
 
-[node name="Icon" parent="Toilettes" index="0"]
-material = SubResource( 18 )
+[node name="Icon" parent="SultanCollectable" index="0"]
+material = SubResource( 12 )
 
-[editable path="Entrance"]
-[editable path="Toilettes"]
+[editable path="Appartement"]
+[editable path="SultanCollectable"]

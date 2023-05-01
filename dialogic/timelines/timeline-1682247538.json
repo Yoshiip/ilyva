@@ -4,7 +4,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "(vous mangez tous ensemble un bon repas)"
+			"text": "(vous mangez un bon repas tous ensemble)"
 		},
 		{
 			"character": "",
@@ -43,7 +43,7 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "T'as un endroit où dormir Joueur ?"
+			"text": "Joueur, t'as un endroit où dormir ?"
 		},
 		{
 			"character": "character-1677363460.json",
@@ -55,7 +55,7 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "J'ai un matelas dans mon appart, si tu veut tu peut passer la nuit chez moi."
+			"text": "J'ai un matelas dans mon appart, si tu veux, tu peux passer la nuit chez moi."
 		},
 		{
 			"character": "character-1677363460.json",
