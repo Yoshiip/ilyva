@@ -6,7 +6,6 @@ export var checked := false setget set_checked
 export var property := ""
 
 func _ready() -> void:
-	set_checked(checked)
 	yield($Tween, "ready")
 	
 	set_process(false)
@@ -21,13 +20,13 @@ func _process(_delta: float) -> void:
 func set_checked(value : bool) -> void:
 	checked = value
 	if checked:
-		$Tween.interpolate_property($Cross, "modulate", $Cross.modulate, Color.transparent, 0.1)
-		$Tween.interpolate_property($Check, "modulate", $Check.modulate, Color.white, 0.1)
+		$Tween.interpolate_property($Cross, "modulate:a", $Cross.modulate.a, 0.0, 0.1)
+		$Tween.interpolate_property($Check, "modulate:a", $Check.modulate.a, 1.0, 0.1)
 		$Tween.interpolate_property($Check, "rect_scale", Vector2.ONE * 2.0, Vector2.ONE, 0.1)
 		
 	else:
-		$Tween.interpolate_property($Check, "modulate", $Check.modulate, Color.transparent, 0.1)
-		$Tween.interpolate_property($Cross, "modulate", $Cross.modulate, Color.white, 0.1)
+		$Tween.interpolate_property($Check, "modulate:a", $Check.modulate.a, 0.0, 0.1)
+		$Tween.interpolate_property($Cross, "modulate:a", $Cross.modulate.a, 1.0, 0.1)
 		$Tween.interpolate_property($Cross, "rect_scale", Vector2.ONE * 2.0, Vector2.ONE, 0.1)
 
 	$Tween.start()

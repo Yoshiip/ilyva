@@ -125,13 +125,14 @@ const ITEMS := {
 
 
 const APPS := {
-	"help": {
-		"icon": 7,
-		"reference": preload("res://prefabs/puzzles/modals/Help.tscn"),
-	},
 	"terminal": {
 		"icon": 0,
 		"reference": preload("res://prefabs/puzzles/modals/Terminal.tscn"),
+	},
+	"digicode": {
+		"icon": 3,
+		"reference": preload("res://prefabs/puzzles/modals/Digicode.tscn"),
+		"by_default": false,
 	},
 	"hints": {
 		"icon": 1,
@@ -141,23 +142,14 @@ const APPS := {
 		"icon": 6,
 		"reference": preload("res://prefabs/puzzles/modals/Instructions.tscn"),
 	},
-#	"hex": {
-#		"icon": 2,
-#		"reference": preload("res://prefabs/puzzles/modals/Terminal.tscn"),
-#	},
-	"digicode": {
-		"icon": 3,
-		"reference": preload("res://prefabs/puzzles/modals/Digicode.tscn"),
-		"by_default": false,
-	},
 	"apps": {
 		"icon": 4,
 		"reference": preload("res://prefabs/puzzles/modals/Apps.tscn"),
 	},
-#	"duck": {
-#		"icon": 7,
-#		"reference": preload("res://prefabs/puzzles/modals/Duck.tscn"),
-#	},
+	"help": {
+		"icon": 7,
+		"reference": preload("res://prefabs/puzzles/modals/Help.tscn"),
+	},
 	"style": {
 		"icon": 5,
 		"reference": preload("res://prefabs/puzzles/modals/Style.tscn"),

@@ -59,7 +59,8 @@ func skip() -> void:
 	puzzle_ended(true)
 
 func puzzle_ended(skipped = false) -> void:
-	yield(get_tree().create_timer(1.0), "timeout")
+	if !skipped:
+		yield(get_tree().create_timer(1.0), "timeout")
 	puzzle_end_screen.time = total_time
 	puzzle_end_screen.skipped = skipped
 	$Canvas/Container.add_child(puzzle_end_screen)

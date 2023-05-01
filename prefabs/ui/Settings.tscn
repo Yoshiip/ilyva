@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://images/textures/grain.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/ui/StylizedButton.gd" type="Script" id=5]
 [ext_resource path="res://resources/theme.tres" type="Theme" id=6]
 [ext_resource path="res://resources/fonts/guisol_title.tres" type="DynamicFont" id=7]
+[ext_resource path="res://addons/bash_in_godot/resources/fonts/Hack-Regular.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://images/icons/23_white.png" type="Texture" id=10]
 [ext_resource path="res://prefabs/ui/StylizedButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefabs/ui/StylizedSettingsTab.tscn" type="PackedScene" id=13]
@@ -46,6 +47,12 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=34]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=32]
 size = 64
@@ -101,7 +108,7 @@ scroll_vertical = 100
 [node name="Container" type="VBoxContainer" parent="Scroll"]
 margin_top = -92.0
 margin_right = 592.0
-margin_bottom = 1340.0
+margin_bottom = 1380.0
 rect_min_size = Vector2( 592, 0 )
 custom_constants/separation = 64
 
@@ -147,8 +154,8 @@ default = 80.0
 [node name="Graphics" type="Panel" parent="Scroll/Container"]
 margin_top = 274.0
 margin_right = 592.0
-margin_bottom = 434.0
-rect_min_size = Vector2( 0, 160 )
+margin_bottom = 474.0
+rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = SubResource( 29 )
 
 [node name="Container" type="VBoxContainer" parent="Scroll/Container/Graphics"]
@@ -175,13 +182,24 @@ rect_min_size = Vector2( 0, 48 )
 toggle_mode = true
 text = "Plein écran"
 script = ExtResource( 5 )
+property = "fullscreen"
 
 [node name="Checkbox" parent="Scroll/Container/Graphics/Container/Fullscreen" instance=ExtResource( 18 )]
 
+[node name="Label" type="Label" parent="Scroll/Container/Graphics/Container"]
+margin_top = 144.0
+margin_right = 576.0
+margin_bottom = 185.0
+custom_fonts/font = SubResource( 34 )
+text = "Vous pouvez aussi appuyer sur \"F\"
+pour basculer en plein écran!"
+align = 1
+autowrap = true
+
 [node name="3D" type="Panel" parent="Scroll/Container"]
-margin_top = 498.0
+margin_top = 538.0
 margin_right = 592.0
-margin_bottom = 1048.0
+margin_bottom = 1088.0
 rect_min_size = Vector2( 0, 550 )
 custom_styles/panel = SubResource( 29 )
 
@@ -207,6 +225,7 @@ margin_right = 576.0
 margin_bottom = 136.0
 rect_min_size = Vector2( 0, 48 )
 script = ExtResource( 5 )
+property = "enable_3d"
 
 [node name="Label2" type="Label" parent="Scroll/Container/3D/Container/Enable3D"]
 anchor_left = 0.5
@@ -391,9 +410,9 @@ toggle_mode = true
 text = "Supprimer données de sauvegarde"
 
 [node name="scroll_margin" type="Control" parent="Scroll/Container"]
-margin_top = 1112.0
+margin_top = 1152.0
 margin_right = 592.0
-margin_bottom = 1432.0
+margin_bottom = 1472.0
 rect_min_size = Vector2( 0, 320 )
 
 [node name="Label" type="Label" parent="."]

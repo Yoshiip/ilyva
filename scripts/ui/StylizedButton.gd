@@ -3,12 +3,17 @@ extends Button
 var checkbox
 
 
+export var property : String
 export var checked := false
 export var hide_by_default := false
 
 func _ready() -> void:
+	if property == "fullscreen":
+		checked = OS.window_fullscreen
+	elif property != "":
+		checked = GameManager.settings[property]
 	checkbox = get_node("Checkbox")
-	checkbox.checked = checked
+	checkbox.set_checked(checked)
 	checkbox.visible = !hide_by_default
 	
 	if connect("mouse_entered", self, "_mouse_entered") != OK:

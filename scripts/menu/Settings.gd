@@ -9,6 +9,7 @@ func _ready() -> void:
 	$Tween.interpolate_property(self, "modulate:a", 0, 1, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.start()
 	window_size_changed()
+	hide_3d()
 
 func change_settings_button(checked_name : String) -> void:
 	for i in $"Scroll/Container/3D/Container/GraphicsContainer".get_children():
@@ -65,6 +66,9 @@ func window_size_changed() -> void:
 func _on_Enable3D_pressed() -> void:
 	GameManager.settings.enable_3d = !GameManager.settings.enable_3d
 	
+	hide_3d()
+	
+func hide_3d() -> void:
 	for i in $"Scroll/Container/3D/Container".get_children():
 		if !(i.name in ["Header", "Enable3D"]):
 			i.visible = GameManager.settings.enable_3d

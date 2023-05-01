@@ -194,23 +194,28 @@ anchor_right = 1.0
 anchor_bottom = 0.833
 rect_clip_content = true
 
-[node name="VideoPlayer" type="VideoPlayer" parent="Canvas/Container/Control"]
-unique_name_in_owner = true
-anchor_top = -0.167
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Canvas/Container/Control"]
 anchor_right = 1.0
-anchor_bottom = 1.167
-margin_top = -94.0
-margin_bottom = -94.0
+anchor_bottom = 1.0
+ratio = 1.7778
+stretch_mode = 3
+alignment_vertical = 2
+
+[node name="VideoPlayer" type="VideoPlayer" parent="Canvas/Container/Control/AspectRatioContainer"]
+unique_name_in_owner = true
+margin_top = -240.471
+margin_right = 1280.0
+margin_bottom = 479.52
 stream = ExtResource( 2 )
 autoplay = true
 
 [node name="Panel" type="Panel" parent="Canvas/Container/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 40.0
-margin_top = 40.0
-margin_right = -40.0
-margin_bottom = -40.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
 custom_styles/panel = SubResource( 31 )
 
 [node name="Label" type="Label" parent="Canvas/Container/Control/Panel"]
@@ -904,7 +909,7 @@ bus = "Effects"
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="finished" from="Canvas/Container/Control/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
+[connection signal="finished" from="Canvas/Container/Control/AspectRatioContainer/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/NewGame" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Playground" to="." method="_on_Playground_pressed"]

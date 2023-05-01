@@ -1,6 +1,6 @@
 extends Control
 
-const VERSION := "1.0"
+const VERSION := "1.1"
 
 
 onready var noise_texture: TextureRect = $Canvas/Container/Grain
@@ -25,13 +25,16 @@ func _ready() -> void:
 	$Canvas/Container/Control/Panel/Version.text = str("ILYVA v", VERSION, "\n", OS.get_name().to_upper())
 	noise.noise = OpenSimplexNoise.new()
 	
+	get_tree().connect("screen_resized", self, "_screen_resized")
+	_screen_resized()
 	add_child(transition)
 
 var timer := 0.0
-
-func _process(delta: float) -> void:
+func _screen_resized() -> void:
 	var _size := get_viewport().size
 	$Canvas/Container/Control/Panel/WindowSize.text = str(_size.x, "x", _size.y)
+
+func _process(delta: float) -> void:
 	timer += delta
 	$Canvas/Container/Control/Panel/Timer.text = "%02d:%02d:%s" % [int(floor(timer / 60.0)) % 60, int(fmod(floor(timer), 60.0)), str((timer - int(timer))).left(4).right(2)]
 	$Canvas/Container/Control/Panel/Dot.modulate = Color.red if fmod(timer, 2.0) > 1.0 else Color.black
