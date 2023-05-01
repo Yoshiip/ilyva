@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://extra/videos/untitled_v2.ogv" type="VideoStream" id=1]
+[ext_resource path="res://extra/videos/baste.ogv" type="VideoStream" id=1]
 
 [node name="Animation" type="VideoPlayer"]
 margin_right = 3840.0

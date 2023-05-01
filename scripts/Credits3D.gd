@@ -3,6 +3,13 @@ extends Spatial
 
 var bonus_o := 0.0
 
+func _ready() -> void:
+	$Canvas/Container/Logo.modulate.a = 0.0
+	yield(get_tree().create_timer(1.0), "timeout")
+	$AnimationPlayer.play("Camera")
+	Engine.time_scale = 1.0
+	$Timer.start()
+
 func _process(delta: float) -> void:
 	$Pillars.translation.x += delta * (10.0 + bonus_o)
 	bonus_o *= 0.8

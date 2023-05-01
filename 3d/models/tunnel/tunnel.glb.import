@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/tunnel.glb-1abd5b2ff387db1714fdc48ad26474c4.scn"
+path="res://.import/tunnel.glb-256730c117c302b3da1e15bd125e6e0b.scn"
 
 [deps]
 
-source_file="res://extra/3d/models/tunnel/tunnel.glb"
-dest_files=[ "res://.import/tunnel.glb-1abd5b2ff387db1714fdc48ad26474c4.scn" ]
+source_file="res://3d/models/tunnel/tunnel.glb"
+dest_files=[ "res://.import/tunnel.glb-256730c117c302b3da1e15bd125e6e0b.scn" ]
 
 [params]
 

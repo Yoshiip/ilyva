@@ -15,9 +15,6 @@ corner_radius_bottom_left = 5
 [node name="DragPreview" type="CenterContainer"]
 margin_right = 38.0
 margin_bottom = 34.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="PanelContainer" parent="."]
 margin_left = 3.0

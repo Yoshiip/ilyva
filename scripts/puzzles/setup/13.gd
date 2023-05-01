@@ -7,7 +7,7 @@ extends BasePuzzleHandler
 # done
 # ---
 # chmod +x script
-# CLEF="./script"
+# CLEF="/script"
 
 var runtime := BashContext.new([
 	{

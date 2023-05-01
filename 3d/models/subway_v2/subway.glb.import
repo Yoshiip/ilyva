@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/seats.glb-9268db4598e294e76db2606dbb77a8b9.scn"
+path="res://.import/subway.glb-9e9459e53c7f2d3476a68c4d36547b97.scn"
 
 [deps]
 
-source_file="res://extra/3d/models/seats/seats.glb"
-dest_files=[ "res://.import/seats.glb-9268db4598e294e76db2606dbb77a8b9.scn" ]
+source_file="res://3d/models/subway_v2/subway.glb"
+dest_files=[ "res://.import/subway.glb-9e9459e53c7f2d3476a68c4d36547b97.scn" ]
 
 [params]
 

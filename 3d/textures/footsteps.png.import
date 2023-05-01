@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/footsteps.png-85fa73b41fec2122410a5f90362aefe9.s3tc.stex"
-path.etc2="res://.import/footsteps.png-85fa73b41fec2122410a5f90362aefe9.etc2.stex"
+path.s3tc="res://.import/footsteps.png-536e08e74674b89905e9371a77a54252.s3tc.stex"
+path.etc2="res://.import/footsteps.png-536e08e74674b89905e9371a77a54252.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://extra/3d/textures/footsteps.png"
-dest_files=[ "res://.import/footsteps.png-85fa73b41fec2122410a5f90362aefe9.s3tc.stex", "res://.import/footsteps.png-85fa73b41fec2122410a5f90362aefe9.etc2.stex" ]
+source_file="res://3d/textures/footsteps.png"
+dest_files=[ "res://.import/footsteps.png-536e08e74674b89905e9371a77a54252.s3tc.stex", "res://.import/footsteps.png-536e08e74674b89905e9371a77a54252.etc2.stex" ]
 
 [params]
 

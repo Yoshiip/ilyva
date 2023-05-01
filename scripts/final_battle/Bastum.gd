@@ -50,7 +50,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		add_child(Dialogic.start(str("iut/Bastum/", GameManager.progress["iut"]["Bastum"])))
 	elif anim_name == "End":
 		GameManager.progress["game_finished"] = true
-		get_tree().change_scene("res://extra/scenes/Credits3D.tscn")
+		get_tree().change_scene("res://scenes/Credits3D.tscn")
 
 
 func load_puzzle(puzzle_id : String) -> void:

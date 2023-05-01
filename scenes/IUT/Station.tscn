@@ -279,7 +279,6 @@ sibling = NodePath("../C2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="C"]
 position = Vector2( -0.5, 0.5 )
 shape = SubResource( 17 )
-disabled = true
 
 [node name="C2" type="Area2D" parent="." groups=["Interaction"]]
 position = Vector2( -826, -132 )
@@ -293,7 +292,6 @@ sibling = NodePath("../C")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="C2"]
 position = Vector2( 0.5, 0 )
 shape = SubResource( 18 )
-disabled = true
 
 [editable path="Arrow2"]
 [editable path="Arrow3"]

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/bricks.png-333abf17cdd9eb2d9dd79468f126e58d.s3tc.stex"
-path.etc2="res://.import/bricks.png-333abf17cdd9eb2d9dd79468f126e58d.etc2.stex"
+path.s3tc="res://.import/subway_light.png-cac847093ed469036f7874d3c3db30c3.s3tc.stex"
+path.etc2="res://.import/subway_light.png-cac847093ed469036f7874d3c3db30c3.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://extra/3d/textures/bricks.png"
-dest_files=[ "res://.import/bricks.png-333abf17cdd9eb2d9dd79468f126e58d.s3tc.stex", "res://.import/bricks.png-333abf17cdd9eb2d9dd79468f126e58d.etc2.stex" ]
+source_file="res://3d/textures/subway_light.png"
+dest_files=[ "res://.import/subway_light.png-cac847093ed469036f7874d3c3db30c3.s3tc.stex", "res://.import/subway_light.png-cac847093ed469036f7874d3c3db30c3.etc2.stex" ]
 
 [params]
 

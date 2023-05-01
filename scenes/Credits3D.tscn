@@ -1,23 +1,23 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://extra/3d/AllSkyFree_Sky_EpicBlueSunset_Equirect.jpg" type="Texture" id=1]
-[ext_resource path="res://extra/3d/models/pillar/pillar.glb" type="PackedScene" id=2]
-[ext_resource path="res://resources/theme.tres" type="Theme" id=3]
-[ext_resource path="res://extra/scripts/Credits3D.gd" type="Script" id=4]
-[ext_resource path="res://prefabs/3d/SubwayPart.tscn" type="PackedScene" id=5]
-[ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=6]
-[ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=7]
-[ext_resource path="res://images/logos/iut.png" type="Texture" id=8]
-[ext_resource path="res://images/icons/heart.png" type="Texture" id=9]
-[ext_resource path="res://images/logos/logo_large_color_dark.png" type="Texture" id=10]
-[ext_resource path="res://images/logos/universite.png" type="Texture" id=11]
-[ext_resource path="res://audios/credits.mp3" type="AudioStream" id=12]
-[ext_resource path="res://extra/3d/textures/bricks_credits/color.jpg" type="Texture" id=13]
-[ext_resource path="res://extra/3d/textures/bricks_credits/roughness.jpg" type="Texture" id=14]
-[ext_resource path="res://extra/3d/textures/bricks_credits/ao.jpg" type="Texture" id=15]
+[ext_resource path="res://scripts/Credits3D.gd" type="Script" id=1]
+[ext_resource path="res://resources/theme.tres" type="Theme" id=2]
+[ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://images/logos/iut.png" type="Texture" id=4]
+[ext_resource path="res://3d/AllSkyFree_Sky_EpicBlueSunset_Equirect.jpg" type="Texture" id=5]
+[ext_resource path="res://images/icons/heart.png" type="Texture" id=6]
+[ext_resource path="res://images/logos/logo_large_color_dark.png" type="Texture" id=7]
+[ext_resource path="res://3d/textures/bricks_credits/ao.jpg" type="Texture" id=8]
+[ext_resource path="res://3d/textures/bricks_credits/color.jpg" type="Texture" id=9]
+[ext_resource path="res://audios/credits.mp3" type="AudioStream" id=10]
+[ext_resource path="res://3d/textures/bricks_credits/roughness.jpg" type="Texture" id=11]
+[ext_resource path="res://images/logos/universite.png" type="Texture" id=12]
+[ext_resource path="res://prefabs/3d/SubwayPart.tscn" type="PackedScene" id=13]
+[ext_resource path="res://3d/models/pillar/pillar.glb" type="PackedScene" id=14]
+[ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=15]
 
 [sub_resource type="PanoramaSky" id=1]
-panorama = ExtResource( 1 )
+panorama = ExtResource( 5 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
@@ -34,11 +34,11 @@ glow_bloom = 0.5
 glow_high_quality = true
 
 [sub_resource type="SpatialMaterial" id=7]
-albedo_texture = ExtResource( 13 )
-roughness_texture = ExtResource( 14 )
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 11 )
 ao_enabled = true
 ao_light_affect = 0.0
-ao_texture = ExtResource( 15 )
+ao_texture = ExtResource( 8 )
 ao_on_uv2 = false
 ao_texture_channel = 0
 uv1_scale = Vector3( 0.25, 0.25, 0.25 )
@@ -47,11 +47,11 @@ uv1_triplanar = true
 [sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0.498039 )
-albedo_texture = ExtResource( 13 )
-roughness_texture = ExtResource( 14 )
+albedo_texture = ExtResource( 9 )
+roughness_texture = ExtResource( 11 )
 ao_enabled = true
 ao_light_affect = 0.0
-ao_texture = ExtResource( 15 )
+ao_texture = ExtResource( 8 )
 ao_on_uv2 = false
 ao_texture_channel = 0
 uv1_scale = Vector3( 0.25, 0.25, 0.25 )
@@ -69,7 +69,7 @@ size = 48
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = ExtResource( 6 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "Camera"
@@ -108,7 +108,7 @@ tracks/2/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 12 )
+"stream": ExtResource( 10 )
 } ],
 "times": PoolRealArray( 0 )
 }
@@ -261,12 +261,12 @@ tracks/6/keys = {
 }
 
 [node name="Spatial" type="Spatial"]
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
-[node name="1" parent="." instance=ExtResource( 5 )]
+[node name="1" parent="." instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.8, 45.6, 0 )
 
 [node name="BackWall" parent="1" index="14"]
@@ -275,7 +275,7 @@ visible = false
 [node name="FrontSeparation" parent="1" index="18"]
 visible = false
 
-[node name="2" parent="." instance=ExtResource( 5 )]
+[node name="2" parent="." instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.4, 45.6, 0 )
 
 [node name="BackWall" parent="2" index="14"]
@@ -284,7 +284,7 @@ visible = false
 [node name="FrontWall" parent="2" index="16"]
 visible = false
 
-[node name="3" parent="." instance=ExtResource( 5 )]
+[node name="3" parent="." instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 45.6, 0 )
 
 [node name="BackWall" parent="3" index="14"]
@@ -293,7 +293,7 @@ visible = false
 [node name="FrontWall" parent="3" index="16"]
 visible = false
 
-[node name="4" parent="." instance=ExtResource( 5 )]
+[node name="4" parent="." instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.4, 45.6, 0 )
 
 [node name="BackSeparation" parent="4" index="17"]
@@ -302,108 +302,108 @@ visible = false
 [node name="Pillars" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
 
-[node name="pillar" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar" parent="Pillars" instance=ExtResource( 14 )]
 
 [node name="Arch" parent="Pillars/pillar" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar2" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar2" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar2" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar3" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar3" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar3" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar4" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar4" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -160, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar4" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar5" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar5" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar5" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar14" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar14" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 160, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar14" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar6" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar6" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 240, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar6" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar15" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar15" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 240, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar15" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar7" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar7" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 320, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar7" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar16" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar16" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 320, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar16" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar8" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar8" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -320, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar8" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar17" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar17" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -320, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar17" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar9" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar9" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -240, 0, 0 )
 
 [node name="Arch" parent="Pillars/pillar9" index="0"]
 material/0 = SubResource( 7 )
 
-[node name="pillar18" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar18" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -240, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar18" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar10" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar10" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -160, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar10" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar11" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar11" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -80, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar11" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar12" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar12" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar12" index="0"]
 material/0 = SubResource( 8 )
 
-[node name="pillar13" parent="Pillars" instance=ExtResource( 2 )]
+[node name="pillar13" parent="Pillars" instance=ExtResource( 14 )]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 80, -1.39876e-05, 0 )
 
 [node name="Arch" parent="Pillars/pillar13" index="0"]
@@ -414,7 +414,7 @@ material/0 = SubResource( 8 )
 [node name="Container" type="Control" parent="Canvas"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
+theme = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="Canvas/Container"]
 anchor_right = 0.5
@@ -434,7 +434,7 @@ alignment = 1
 margin_right = 540.0
 margin_bottom = 280.0
 rect_min_size = Vector2( 0, 280 )
-texture = ExtResource( 7 )
+texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
 
@@ -635,7 +635,7 @@ margin_top = 3075.0
 margin_right = 540.0
 margin_bottom = 3175.0
 rect_min_size = Vector2( 0, 100 )
-texture = ExtResource( 10 )
+texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
@@ -650,7 +650,7 @@ margin_left = 68.0
 margin_right = 268.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
@@ -659,7 +659,7 @@ margin_left = 272.0
 margin_right = 472.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 200, 0 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 expand = true
 stretch_mode = 6
 
@@ -692,7 +692,7 @@ margin_top = 3832.0
 margin_right = 540.0
 margin_bottom = 3932.0
 rect_min_size = Vector2( 0, 100 )
-texture = ExtResource( 9 )
+texture = ExtResource( 6 )
 expand = true
 stretch_mode = 6
 
@@ -706,7 +706,7 @@ anchor_top = 0.25
 anchor_right = 0.75
 anchor_bottom = 0.75
 rect_pivot_offset = Vector2( 320, 180 )
-texture = ExtResource( 7 )
+texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
 
@@ -716,12 +716,11 @@ current = true
 far = 500.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Camera"
 anims/Camera = SubResource( 5 )
 anims/RESET = SubResource( 6 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource( 10 )
 volume_db = -5.0
 bus = "Music"
 

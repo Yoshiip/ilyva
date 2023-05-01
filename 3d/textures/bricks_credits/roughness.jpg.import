@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/floor_experimental.png-ca3df626761272026633f91f18d4c953.s3tc.stex"
-path.etc2="res://.import/floor_experimental.png-ca3df626761272026633f91f18d4c953.etc2.stex"
+path.s3tc="res://.import/roughness.jpg-ae87ef87860a2e17f111f58709e39432.s3tc.stex"
+path.etc2="res://.import/roughness.jpg-ae87ef87860a2e17f111f58709e39432.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://extra/3d/textures/floor_experimental.png"
-dest_files=[ "res://.import/floor_experimental.png-ca3df626761272026633f91f18d4c953.s3tc.stex", "res://.import/floor_experimental.png-ca3df626761272026633f91f18d4c953.etc2.stex" ]
+source_file="res://3d/textures/bricks_credits/roughness.jpg"
+dest_files=[ "res://.import/roughness.jpg-ae87ef87860a2e17f111f58709e39432.s3tc.stex", "res://.import/roughness.jpg-ae87ef87860a2e17f111f58709e39432.etc2.stex" ]
 
 [params]
 
@@ -25,7 +25,7 @@ flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
