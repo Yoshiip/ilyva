@@ -1,21 +1,31 @@
 {
 	"events": [
 		{
-			"character": "",
+			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "L'atmosphère est pesante, ici..."
 		},
 		{
-			"character": "",
+			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Je me sens un peu mal à l'aise."
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Couloir"
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1682762717.json",
-		"name": "Couloir"
+		"name": "0"
 	}
 }

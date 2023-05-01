@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chiba.mp3-9992d8e0809633584a8139e03c8ca054.mp3str"
+
+[deps]
+
+source_file="res://extra/musics/chiba.mp3"
+dest_files=[ "res://.import/chiba.mp3-9992d8e0809633584a8139e03c8ca054.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

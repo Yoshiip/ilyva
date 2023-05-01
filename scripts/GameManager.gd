@@ -1,13 +1,43 @@
 extends Node
 
+
 signal settings_updated
 
+onready var extra := false
+
 var scene_start_dialogue := ""
+
+var save_data : SaveData
+
+
+func _ready() -> void:
+	randomize()
+	extra = File.new().file_exists("res://extra/icons/extra_logo.png")
+	AudioServer.set_bus_volume_db(music_bus, linear2db(settings.music / 100.0))
+	AudioServer.set_bus_volume_db(effects_bus, linear2db(settings.effects / 100.0))
+#		save_data = SaveData.new()
+#		save()
+
+func load_save() -> void:
+	return
+#	save_data = save_data.load_data()
+#	print("loading data...")
+#	for property in ["progress", "unlocked_levels", "current_subway_stop", "one_time_interacts", "settings", "sultans", "items"]:
+#		set(property, save_data.get(property))
+
+func save() -> void:
+	return
+#	print("saving data...")
+#	if !SaveData.save_exists():
+#		save_data = SaveData.new()
+#	for property in ["progress", "unlocked_levels", "current_subway_stop", "one_time_interacts", "settings", "sultans", "items"]:
+#		save_data.set(property, get(property))
+#	save_data.save_data()
 
 #var current_puzzle : Resource
 
 # debug
-var current_puzzle := preload("res://resources/puzzles/3.tres")
+var current_puzzle := preload("res://resources/puzzles/1.tres")
 var context_before_puzzle = null
 
 var progress := {
@@ -28,24 +58,45 @@ var progress := {
 		"Manon": 0,
 		"Chiba": 0,
 		"Sultan": 0,
+		"Station": 0,
 	},
 	"pont_de_bois": {
 		"Rat": 0,
 	},
 	"iut": {
 		"CDI": 0,
+		"Couloir": 0,
+		"Station": 0,
 		"Bureau": 0,
-	}
+		"Progress": 0,
+		"Bastum": 0,
+	},
+	"game_finished": false,
 }
 
 var unlocked_levels := [
-	3, 0
+	0, 1, 2, 3
 ]
+var current_subway_stop := 3
+var one_time_interacts := []
 
 func unlock_level(level_id : String) -> void:
-	unlocked_levels.append(int(level_id))
+	if !unlocked_levels.has(level_id):
+		unlocked_levels.append(int(level_id))
 
-var current_subway_stop := 3
+var settings := {
+	"3d_quality": 1, # 0 = low, 1 = medium, 2 = high
+	"enable_3d": false,
+	"fov": 70,
+	"sensivity": 10.0,
+	"music": 50,
+	"effects": 50,
+	"voices": 50,
+} setget set_settings
+
+
+var sultans := []
+var items := []
 
 
 
@@ -63,24 +114,14 @@ const ITEMS := {
 	"key": {
 		"name": "Clé",
 		"description": "C'est le rat qui vous l'a donné.",
-		"icon": preload("res://images/items/traminus.png"),
+		"icon": preload("res://images/items/key.png"),
 	},
 	"wallet": {
 		"name": "Porte monnaie de Mathieu",
 		"description": "Espèce de voleur!",
-		"icon": preload("res://images/items/traminus.png"),
+		"icon": preload("res://images/items/wallet.png"),
 	},
 }
-
-
-var one_time_interacts := []
-
-
-func _ready() -> void:
-	if OS.get_name() == "HTML5":
-		settings.enable_3d = false
-	else:
-		settings.enable_3d = false
 
 
 const APPS := {
@@ -128,19 +169,19 @@ const STATIONS := [
 	{
 		"name": "Cité Scientifique\nPf. Bastvm",
 		"offset": 56,
-		"scene": "res://scenes/StPhilibert/Main.tscn",
+		"scene": "res://scenes/IUT/Station.tscn",
 		"line": 1,
 	},
 	{
 		"name": "Pont de Bois",
 		"offset": 224,
-		"scene": "res://scenes/StPhilibert/Main.tscn",
+		"scene": "res://scenes/PontDeBois/Station.tscn",
 		"line": 1,
 	},
 	{
-		"name": "Beaux Arts",
+		"name": "République\nBeaux-Arts",
 		"offset": 710,
-		"scene": "res://scenes/StPhilibert/Main.tscn",
+		"scene": "res://scenes/BeauxArts/Station.tscn",
 		"line": 1,
 	},
 #	{
@@ -152,29 +193,16 @@ const STATIONS := [
 	{
 		"name": "Saint-Philibert",
 		"offset": 1440,
-		"scene": "res://scenes/StPhilibert/Main.tscn",
+		"scene": "res://scenes/StPhilibert/Station.tscn",
 		"line": 2,
 	},
 ]
 
 
-
-var settings := {
-	"3d_quality": 2, # 0 = low, 1 = medium, 2 = high
-	"enable_3d": false,
-	"fov": 70,
-	"sensivity": 10.0
-} setget set_settings
-
-
-var sultans := []
-var items := []
-
-
-func add_to_inventory(item_id : String, _callback = "") -> void:
+func add_to_inventory(item_id : String, callback = "") -> void:
 	if !items.has(item_id):
 		items.append(item_id)
-#		play_new_item_animation(item_id, false, callback)
+		play_new_item_animation(item_id, false, callback)
 
 
 
@@ -195,11 +223,19 @@ func play_new_item_animation(item_id : String, is_sultan = false, callback = "")
 	new_item.is_sultan = is_sultan
 	if callback != "":
 		new_item.callback = callback
-	get_tree().current_scene.get_node("Canvas/Container").add_child(new_item)
+	get_tree().current_scene.add_child(new_item)
 	
+
+onready var music_bus := AudioServer.get_bus_index("Music")
+onready var effects_bus := AudioServer.get_bus_index("Effects")
+onready var voices_bus := AudioServer.get_bus_index("Voices")
+
 
 func set_settings(value) -> void:
 	settings = value
+	AudioServer.set_bus_volume_db(music_bus, linear2db(settings.music / 100.0))
+	AudioServer.set_bus_volume_db(effects_bus, linear2db(settings.effects / 100.0))
+	AudioServer.set_bus_volume_db(voices_bus, linear2db(settings.voices / 100.0))
 	if get_tree().current_scene.has_method("settings_updated"):
 		get_tree().current_scene.call("settings_updated")
 	emit_signal("settings_updated")
@@ -207,3 +243,5 @@ func set_settings(value) -> void:
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.is_action_pressed("fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
+	if event.is_action_pressed("speedhack"):
+		Engine.time_scale = 20.0 if Engine.time_scale == 1.0 else 1.0

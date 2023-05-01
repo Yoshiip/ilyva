@@ -35,12 +35,6 @@
 			"event_id": "dialogic_042"
 		},
 		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Vous recupérez le porte-monnaie de Mathieu!"
-		},
-		{
 			"call_node": {
 				"arguments": [
 					"action_unlocked"

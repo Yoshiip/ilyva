@@ -24,7 +24,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "je vois que tu as réussi, parfait ! tu dois surement être capable de reussir donc ..."
+			"text": "je vois que tu as réussi, parfait ! tu dois surement être capable de reussir donc ...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/15.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -36,7 +42,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "rien, t'occupes tu comprendras sûrement plus tard pourquoi je te fais faire ca"
+			"text": "rien, t'occupes tu comprendras sûrement plus tard pourquoi je te fais faire ca",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/16.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -48,7 +60,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "*marmonne* perspicace..."
+			"text": "*marmonne* perspicace...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/17.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
@@ -70,7 +88,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Parfait!"
+			"text": "Parfait!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/18.mp3"
+				}
+			}
 		},
 		{
 			"choice": "Non",
@@ -90,7 +114,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "BREF maintenant passons aux boucles for, j'imagine que tu sais ce que c'est"
+			"text": "BREF maintenant passons aux boucles for, j'imagine que tu sais ce que c'est",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/19.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -102,55 +132,109 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Super ! Alors en bash ca ressemble à du python en terme de comment ça marche, il faut simplement retenir que pour FAIRE ce qu'il y a dans la boucle il faut utiliser DO et DONE quand on a fini."
+			"text": "Super ! Alors en bash ca ressemble à du python en terme de comment ça marche, il faut simplement retenir que pour FAIRE ce qu'il y a dans la boucle il faut utiliser DO et DONE quand on a fini.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/20.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "..."
+			"text": "...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/21.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "do ça veut dire faire en angl-"
+			"text": "do ça veut dire faire en angl-",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/22.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "oui bon bah c'est bon je suis pas si stupide..."
+			"text": "oui bon bah c'est bon je suis pas si stupide...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": ""
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bien ! Donc on va garder le for, d'où le nom boucle for, et la variable qu'on nomme i en général."
+			"text": "Bien ! Donc on va garder le for, d'où le nom boucle for, et la variable qu'on nomme i en général.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/23.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "La variable i prendra comme valeur les chaînes de caractères continues, sa valeur changera après chaque espace, par exemple chaine='toto tata' i prendra en valeur toto puis tata."
+			"text": "La variable i prendra comme valeur les chaînes de caractères continues, sa valeur changera après chaque espace, par exemple chaine='toto tata' i prendra en valeur toto puis tata.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/24.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "pour rappel en python on écrit une boucle \"for i in\" et on gardera cette syntaxe ici aussi."
+			"text": "pour rappel en python on écrit une boucle \"for i in\" et on gardera cette syntaxe ici aussi.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/25.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "donc j'aimerais que la console renvoie “Salut” 5 fois. Bien sûr, Salut sera dans une variable nommée rat."
+			"text": "donc j'aimerais que la console renvoie “Salut” 5 fois. Bien sûr, Salut sera dans une variable nommée rat.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/26.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Pour répeter une chose plusieurs fois on utilise seq n, ou n est le nombre de fois qu'on veut répeter ce qu'il y a dans la boucle for, et comme c'est une commande on entoure avec $(...). Par exemple “seq 10” retourne “1 2 3 4 5 6 7 8 9 10”. À toi de jouer !"
+			"text": "Pour répeter une chose plusieurs fois on utilise seq n, ou n est le nombre de fois qu'on veut répeter ce qu'il y a dans la boucle for, et comme c'est une commande on entoure avec $(...). Par exemple “seq 10” retourne “1 2 3 4 5 6 7 8 9 10”. À toi de jouer !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/27.mp3"
+				}
+			}
 		},
 		{
 			"call_node": {

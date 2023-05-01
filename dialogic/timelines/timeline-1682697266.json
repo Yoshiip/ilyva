@@ -24,7 +24,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Salut !"
+			"text": "Salut !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/1.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -36,7 +42,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Et alors toi t’es un humain pourtant je dis rien, bref j’ai l’impression que tu dois te préparer pour un combat qui décidera du sort de ce monde je me trompe?"
+			"text": "Et alors toi t’es un humain pourtant je dis rien, bref j’ai l’impression que tu dois te préparer pour un combat qui décidera du sort de ce monde je me trompe?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/2.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -71,7 +83,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Si, tu vas venir m’aider, en réalité je te posais la question pour être gentil."
+			"text": "Si, tu vas venir m’aider, en réalité je te posais la question pour être gentil.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/3.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -86,7 +104,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Parfait merci ! Bon viens voir par là, mais sois discret, faut que personne ne le voit."
+			"text": "Parfait merci ! Bon viens voir par là, mais sois discret, faut que personne ne le voit.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/4.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -120,7 +144,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Mais non il est hyper bien caché !!"
+			"text": "Mais non il est hyper bien caché !!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/5.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -139,7 +169,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Une machine à remonter le temps hyper sophistiquée !"
+			"text": "Une machine à remonter le temps hyper sophistiquée !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/6.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -151,7 +187,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Non je rigole c’est un PC, je sais même pas comment tu peux ne pas l’avoir remarqué, tu me fais pitié…"
+			"text": "Non je rigole c’est un PC, je sais même pas comment tu peux ne pas l’avoir remarqué, tu me fais pitié…",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/7.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -166,7 +208,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Alors en fait j’ai plusieurs trucs à te demander parce que j’arrive pas à écrire avec mes petites pattes"
+			"text": "Alors en fait j’ai plusieurs trucs à te demander parce que j’arrive pas à écrire avec mes petites pattes",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/8.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
@@ -188,7 +236,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Parfait!"
+			"text": "Parfait!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/9.mp3"
+				}
+			}
 		},
 		{
 			"choice": "Non",
@@ -208,31 +262,61 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "pour commencer, je vais t'expliquer comment marche une variable."
+			"text": "pour commencer, je vais t'expliquer comment marche une variable.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/10.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bon j'imagine que tu sais ce que c'est, c'est déjà ça."
+			"text": "Bon j'imagine que tu sais ce que c'est, c'est déjà ça.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/11.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Pour initialiser une variable il faut simplement écrire le nom de cette dernière sans oublier de l'initialiser."
+			"text": "Pour initialiser une variable il faut simplement écrire le nom de cette dernière sans oublier de l'initialiser.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/12.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Sauf qu'en bash pour l'utiliser on va devoir utiliser un caractère avant et ce caractère est le dollar **$**"
+			"text": "Sauf qu'en bash pour l'utiliser on va devoir utiliser un caractère avant et ce caractère est le dollar **$**",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/13.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Vas-y, je te laisse essayer avec un simple cat, je veux que la commande affiche \"Hello Rats\" à l'aide d'une variable qui s'appelle rat."
+			"text": "Vas-y, je te laisse essayer avec un simple cat, je veux que la commande affiche \"Hello Rats\" à l'aide d'une variable qui s'appelle rat.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/14.mp3"
+				}
+			}
 		},
 		{
 			"call_node": {

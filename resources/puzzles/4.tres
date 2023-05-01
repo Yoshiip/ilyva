@@ -6,9 +6,12 @@
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
-name = "Résoudre le digicode"
+name = "Rentrer chez Clément"
 start_phrase = "Le digicode vous lance une énigme!"
-description = "Vous devez trouver l'adresse de votre ami Clément!"
+description = "Après avoir réussi à trouver l’adresse de Clément, il faut désormais réussir à rentrer chez lui!
+Vous vous trouvez devant l’interphone, et vous devez trouver le code de Clément.
+Vous êtes actuellement connecté aux serveurs du digicode, et vous avez accès à ces fichiers."
 given_by = ""
-hints = PoolStringArray( "Hint 1", "Hint 2", "Hint 3" )
+hints = PoolStringArray( "Regardez d’abord les contenus des différents fichiers. Il y a quelque chose en commun entre ces deux fichiers.", "Regardez quel est le numéro d’appartement de Clément et consultez le code qui correspond.", "Le numéro d’appartement de Clément est trouvable dans list.txt il vous suffit de trouver le code qui correspond à ce numéro dans le fichier codes.text." )
+hints_action = PoolStringArray( "", "", "" )
 additional_apps = PoolStringArray(  )

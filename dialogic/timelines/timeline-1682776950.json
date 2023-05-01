@@ -88,9 +88,15 @@
 			"event_id": "dialogic_042"
 		},
 		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " "
+		},
+		{
 			"call_node": {
 				"arguments": [
-					"1"
+					"2"
 				],
 				"method_name": "unlock_level",
 				"target_node_path": "/root/GameManager"

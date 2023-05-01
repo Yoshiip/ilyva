@@ -1,0 +1,69 @@
+{
+	"events": [
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Qu'est que tu fait la ?"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "La bombe..."
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "La bombe ne t'as pas tué ?"
+		},
+		{
+			"character": "character-1682767980.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Arrête!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C'est trop tard pour toi!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Win"
+				],
+				"method_name": "play_animation",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682872364.json",
+		"name": "2"
+	}
+}

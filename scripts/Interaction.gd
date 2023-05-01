@@ -19,6 +19,7 @@ var last_timeline_spoke := -1
 
 
 func _ready() -> void:
+	can_interact = GameManager.progress[get_tree().current_scene.zone_id][name if character_name == "" else character_name] >= min_story_progress
 	if icon_type == 1:
 		$Icon.texture = preload("res://images/icons/exclamation_icon.png")
 	elif icon_type == 3:
@@ -41,6 +42,8 @@ func _ready() -> void:
 
 var i = 0.0
 
+
+
 func _process(delta: float) -> void:
 	if is_instance_valid($Icon):
 		i += delta * 90.0
@@ -52,12 +55,10 @@ func _process(delta: float) -> void:
 func interact() -> void:
 	get_tree().current_scene.current_dialogue_character = self
 	get_tree().current_scene.current_dialogue_id = timeline_id
-	var new_dialog : CanvasLayer
 	if one_time_interact:
-		new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/0"))
+		get_tree().current_scene.create_dialogue(str(get_tree().current_scene.zone_id, "/" + character_name +"/0"))
 	else:
-		new_dialog = Dialogic.start(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
-	get_tree().current_scene.add_child(new_dialog)
+		get_tree().current_scene.create_dialogue(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
 	last_timeline_spoke = timeline_id
 	if one_time_interact:
 		GameManager.one_time_interacts.append(name)
@@ -70,6 +71,7 @@ func turn_light(on : bool) -> void:
 		var _temp := tween.interpolate_property($Light, "energy", 1.0, 0.0, 0.5, Tween.TRANS_EXPO)
 	var _temp := tween.start()
 
+onready var can_interact : bool
 
 func progress_changed() -> void:
 	var _sp = GameManager.progress[get_tree().current_scene.zone_id][character_name]

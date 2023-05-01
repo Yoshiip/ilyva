@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
-name = "Réparer la tablette du Chiba"
-start_phrase = "La tablette du chiba vous lance une énigme!"
-description = ""
-given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]
+name = "Dernier exercice"
+start_phrase = "Le rat vous lance une énigme!"
+description = "Le rat veut désormais qu’à partir de la phrase “vive les wats”, vous affichiez un mot par ligne et en remplaçant les w par des r."
+given_by = "Le rat"
+hints = [ "Pour cette énigme, vous avez besoin de faire une boucle.", "Vous auriez également besoin d’utiliser une pipe [code]|[/code] pour remplacer une lettre par une autre.", "Utilisez la commande tr pour remplacer un caractère par un autre." ]

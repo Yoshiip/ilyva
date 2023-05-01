@@ -46,16 +46,28 @@
 			"text": "Hé hé..."
 		},
 		{
-			"character": "character-1676579269.json",
+			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Mais!"
+			"text": "Mais!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voice lines",
+					"file": "res://extra/voices/manon_dogukan/13.mp3"
+				}
+			}
 		},
 		{
-			"character": "character-1676579269.json",
+			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "T’a cassé une pièce, t’aurais pu faire attention…"
+			"text": "T’a cassé une pièce, t’aurais pu faire attention…",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voice lines",
+					"file": "res://extra/voices/manon_dogukan/14.mp3"
+				}
+			}
 		},
 		{
 			"event_id": "dialogic_023",
@@ -93,7 +105,13 @@
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "On pourrait aller au Chiba ! Ça fait longtemps !"
+			"text": "On pourrait aller au Chiba ! Ça fait longtemps !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voice lines",
+					"file": "res://extra/voices/manon_dogukan/16.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -105,7 +123,13 @@
 			"character": "character-1676579269.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bon bah, let’s go!"
+			"text": "Bon bah, let’s go!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voice lines",
+					"file": "res://extra/voices/manon_dogukan/17.mp3"
+				}
+			}
 		},
 		{
 			"animation": "[Default]",

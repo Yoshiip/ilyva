@@ -84,7 +84,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "C’est normal, est ce que tu as un traducteur ? On parle tous Bash !"
+			"text": "C’est normal, est-ce que tu as un traducteur ? On parle tous Bash !"
 		},
 		{
 			"event_id": "dialogic_013"
@@ -137,7 +137,7 @@
 			"character": "character-1677947682.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Figure-toi que j’en ai un double, le seul petit problème c’est qu’il ne s’allume pas!"
+			"text": "Figure-toi que j’en ai un en double, le seul petit problème c’est qu’il ne s’allume pas!"
 		},
 		{
 			"character": "character-1677947682.json",
@@ -149,14 +149,14 @@
 			"question": "Il faudrait lui remettre des piles. Mais je n’en ai pas sur moi, tu devrais aller en acheter au supermarché."
 		},
 		{
-			"choice": "Tu pourrait me le vendre à combien ?",
+			"choice": "Tu pourrais me le vendre à combien ?",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"choice": "Et ça coute combien ce genre de truc ?",
+			"choice": "Et ça coûte combien ce genre de truc ?",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -200,7 +200,7 @@
 			"text": "Très bien, alors tu vas devoir faire l’énigme!"
 		},
 		{
-			"choice": "Très bien, alors propose moi ton énigme!",
+			"choice": "Très bien, alors propose-moi ton énigme!",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",

@@ -1,0 +1,31 @@
+{
+	"events": [
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "C'est donc ici la dernière étape de mon périple..."
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je ferais mieux de me depêcher d'aller en direction de l'IUT. C'est la où je rencontrerais Bastum."
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Station"
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682871636.json",
+		"name": "0"
+	}
+}

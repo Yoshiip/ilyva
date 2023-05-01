@@ -1,13 +1,15 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
-[ext_resource path="res://images/portraits/iut/baste.png" type="Texture" id=2]
+[ext_resource path="res://images/portraits/iut/baste_normal.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
 name = "LA DERNIÈRE BATAILLE"
 start_phrase = "LE COMBAT FINAL"
-description = ""
-given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]
+description = "Bon courage!"
+given_by = "BASTUM"
+hints = [ "Chaque lettre de la variable $CODE doit être associée à son numéro dans codex.csv. Utilisez une boucle pour passer à travers chaque caractère de la variable, lisez le fichier sans prendre en compte la première ligne, sélectionnez la ligne qui correspond au caractère, et sélectionnez le deuxième champ.", "Pour sélectionner toutes les lignes d’un fichier codex.csv sauf l’en-tête, utilisez la commande tail +2 codex.csv.", "Dans la boucle, assurez-vous que chaque caractère est affiché sans retour à la ligne dans le but de former un code qui ne comprend pas de retour à la ligne, auquel cas le code sera considéré comme erroné. Lisez man echo." ]
+hints_action = PoolStringArray( "", "", "" )
+additional_apps = PoolStringArray(  )

@@ -3,6 +3,7 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1676579269.json",
@@ -29,6 +30,7 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1677363105.json",
@@ -50,13 +52,25 @@
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Nous ! On a trop envie de sushi ! On va en commander, genre, 40..."
+			"text": "Nous ! On a trop envie de sushi ! On va en commander, genre, 40...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voice lines",
+					"file": ""
+				}
+			}
 		},
 		{
 			"character": "character-1677363105.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Attendez, il y a un problème, là, non ?"
+			"text": "Attendez, il y a un problème, là, non ?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voice lines",
+					"file": "res://audios/voices/manon_dogukan/19.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",

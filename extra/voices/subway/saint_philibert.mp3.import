@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/saint_philibert.mp3-f44c3188e004a6b250609e16f1a653bc.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/subway/saint_philibert.mp3"
+dest_files=[ "res://.import/saint_philibert.mp3-f44c3188e004a6b250609e16f1a653bc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

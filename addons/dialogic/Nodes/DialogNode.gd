@@ -447,6 +447,8 @@ func _process(delta):
 
 # checks for the "input_next" action
 func _input(event: InputEvent) -> void:
+	if !get_parent().visible:
+		return
 	if not Engine.is_editor_hint() and event.is_action_pressed(Dialogic.get_action_button()) and autoPlayMode:
 		autoPlayMode = false
 		return

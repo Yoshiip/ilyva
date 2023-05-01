@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/portes.mp3-bec93d0ee403cf5b8cef9bd6b6dd8351.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/subway/portes.mp3"
+dest_files=[ "res://.import/portes.mp3-bec93d0ee403cf5b8cef9bd6b6dd8351.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

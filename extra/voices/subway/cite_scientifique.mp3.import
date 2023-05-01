@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cite_scientifique.mp3-19177a90dd12aa8e738017d2d666fb90.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/subway/cite_scientifique.mp3"
+dest_files=[ "res://.import/cite_scientifique.mp3-19177a90dd12aa8e738017d2d666fb90.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

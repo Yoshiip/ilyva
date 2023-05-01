@@ -212,6 +212,7 @@ pause_mode = 1
 script = ExtResource( 3 )
 zone_id = "iut"
 zone_name = "Entrée"
+music_id = "iut"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64

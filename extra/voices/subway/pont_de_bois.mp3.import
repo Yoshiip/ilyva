@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pont_de_bois.mp3-01169256e1b8b15fbb70b20bfd25142c.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/subway/pont_de_bois.mp3"
+dest_files=[ "res://.import/pont_de_bois.mp3-01169256e1b8b15fbb70b20bfd25142c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

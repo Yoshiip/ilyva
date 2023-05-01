@@ -1,0 +1,249 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://addons/jm_pp_outlines/jm_pp_outlines_camera.gd" type="Script" id=3]
+[ext_resource path="res://images/shaders/gradient.png" type="Texture" id=4]
+[ext_resource path="res://scripts/3d/FPSController.gd" type="Script" id=5]
+[ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scripts/ui/ZoneName.gd" type="Script" id=8]
+[ext_resource path="res://images/icons/23_white.png" type="Texture" id=9]
+[ext_resource path="res://images/icons/circle.png" type="Texture" id=10]
+[ext_resource path="res://images/textures/grain.jpg" type="Texture" id=14]
+[ext_resource path="res://extra/scenes/Map.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scripts/3d/StationLevel.gd" type="Script" id=18]
+[ext_resource path="res://images/ui/crosshair001.png" type="Texture" id=19]
+[ext_resource path="res://prefabs/3d/Station.tscn" type="PackedScene" id=20]
+
+[sub_resource type="ProceduralSky" id=13]
+
+[sub_resource type="Environment" id=49]
+background_mode = 1
+background_sky = SubResource( 13 )
+ambient_light_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+fog_color = Color( 0.505882, 0.34902, 0.34902, 1 )
+fog_transmit_enabled = true
+ss_reflections_enabled = true
+ssao_enabled = true
+dof_blur_near_distance = 10.0
+dof_blur_near_quality = 2
+glow_enabled = true
+glow_bloom = 0.5
+glow_bicubic_upscale = true
+glow_high_quality = true
+adjustment_color_correction = ExtResource( 4 )
+
+[sub_resource type="CylinderShape" id=18]
+height = 1.8
+radius = 0.25
+
+[sub_resource type="ProceduralSky" id=39]
+
+[sub_resource type="Environment" id=40]
+background_mode = 2
+background_sky = SubResource( 39 )
+
+[sub_resource type="World" id=41]
+environment = SubResource( 40 )
+
+[sub_resource type="DynamicFont" id=51]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=53]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=54]
+size = 19
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=56]
+size = 34
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="BoxShape" id=55]
+extents = Vector3( 2, 4, 28 )
+
+[node name="StationLevel" type="Spatial"]
+pause_mode = 1
+script = ExtResource( 18 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 49 )
+
+[node name="Player" type="KinematicBody" parent="." groups=["Player"]]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.45, 7, -39.624 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0 )
+shape = SubResource( 18 )
+
+[node name="Head" type="Spatial" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="Camera" type="Camera" parent="Player/Head"]
+current = true
+script = ExtResource( 3 )
+depth_outline_scale = 4.0
+
+[node name="Station" parent="." instance=ExtResource( 20 )]
+current_station = 3
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="Canvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Minimap" type="ViewportContainer" parent="Canvas/Container"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -200.0
+rect_min_size = Vector2( 0, 200 )
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Canvas/Container/Minimap"]
+size = Vector2( 1280, 200 )
+size_override_stretch = true
+own_world = true
+world = SubResource( 41 )
+transparent_bg = true
+handle_input_locally = false
+hdr = false
+disable_3d = true
+usage = 1
+render_target_update_mode = 3
+
+[node name="Map" parent="Canvas/Container/Minimap/Viewport" instance=ExtResource( 17 )]
+
+[node name="NoiseTexture" type="TextureRect" parent="Canvas/Container"]
+modulate = Color( 1, 1, 1, 0.0823529 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 4
+
+[node name="Crosshair" type="TextureRect" parent="Canvas/Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 19 )
+
+[node name="ZoneName" type="Label" parent="Canvas/Container"]
+unique_name_in_owner = true
+anchor_right = 1.0
+margin_top = 100.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 51 )
+text = "SAINT-PHILIBERT"
+align = 1
+script = ExtResource( 8 )
+
+[node name="Circle" type="TextureRect" parent="Canvas/Container/ZoneName"]
+modulate = Color( 1, 1, 1, 0.498039 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -425.5
+margin_right = 462.0
+margin_bottom = 425.5
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 462, 425 )
+texture = ExtResource( 10 )
+expand = true
+
+[node name="TravelZoneName" type="Label" parent="Canvas/Container"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -130.0
+margin_bottom = -88.0
+custom_fonts/font = SubResource( 53 )
+text = "Saint-Philibert (Surface)"
+align = 1
+
+[node name="Direction" type="Label" parent="Canvas/Container/TravelZoneName"]
+anchor_right = 1.0
+margin_top = -15.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 54 )
+text = "Direction"
+align = 1
+
+[node name="Background" type="TextureRect" parent="Canvas/Container/TravelZoneName"]
+modulate = Color( 0.0627451, 0.635294, 0.862745, 1 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -32.0
+margin_right = 200.0
+margin_bottom = 32.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="KeyHint" type="Label" parent="Canvas/Container/TravelZoneName"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -113.0
+margin_top = 14.0
+margin_right = 113.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+custom_fonts/font = SubResource( 54 )
+text = "clic-gauche pour voyager"
+
+[node name="Label" type="Label" parent="Canvas/Container"]
+modulate = Color( 1, 1, 1, 0.498039 )
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 115.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 56 )
+text = "60 fps"
+
+[node name="LeftPlatform" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="LeftPlatform"]
+shape = SubResource( 55 )
+
+[node name="RightPlatform" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RightPlatform"]
+shape = SubResource( 55 )
+
+[connection signal="body_entered" from="LeftPlatform" to="." method="_on_LeftPlatform_body_entered"]
+[connection signal="body_exited" from="LeftPlatform" to="." method="_on_LeftPlatform_body_exited"]
+[connection signal="body_entered" from="RightPlatform" to="." method="_on_RightPlatform_body_entered"]
+[connection signal="body_exited" from="RightPlatform" to="." method="_on_RightPlatform_body_exited"]

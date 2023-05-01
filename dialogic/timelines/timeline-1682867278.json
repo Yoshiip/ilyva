@@ -1,0 +1,25 @@
+{
+	"events": [
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "J'arrive Clément!"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"Station"
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1682867278.json",
+		"name": "1"
+	}
+}

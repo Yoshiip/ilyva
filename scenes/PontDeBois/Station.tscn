@@ -214,6 +214,7 @@ pause_mode = 1
 script = ExtResource( 5 )
 zone_id = "pont_de_bois"
 zone_name = "Métro"
+music_id = "rat"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64
@@ -254,7 +255,6 @@ material = SubResource( 11 )
 stream = ExtResource( 6 )
 volume_db = -20.0
 autoplay = true
-bus = "Ambient"
 
 [node name="SultanCollectable" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1070, -285 )

@@ -39,6 +39,16 @@ func station_changed(new_station : int) -> void:
 	
 	var _index = new_station
 	
+	if _index == 0 || !GameManager.unlocked_levels.has(_index):
+		create_barrier(-6.5, 1 if !GameManager.unlocked_levels.has(_index) else 0)
+	else:
+		create_sign(-6.5, GameManager.STATIONS[0].name)
+
+	if _index == GameManager.STATIONS.size() - 1 || !GameManager.unlocked_levels.has(_index):
+		create_barrier(6.5, 1 if !GameManager.unlocked_levels.has(_index) else 0)
+	else:
+		create_sign(6.5, GameManager.STATIONS[GameManager.STATIONS.size() - 1].name)
+	
 #	if _index == 0 || GameManager.map_stop_progress == _index:
 #		create_barrier(-6.5, 1 if GameManager.map_stop_progress == _index else 0)
 #	else:
@@ -59,7 +69,7 @@ func create_sign(x : float, text : String) -> void:
 	var _sign := Sign.instance()
 	_sign.translation.x = x
 	_sign.get_node("Text/TerminusName").text =  text
-	if text == GameManager.STATIONS[4].name: # saint philibert
+	if text == GameManager.STATIONS[3].name: # saint philibert
 		_sign.get_node("Mesh").material = _sign.get_node("Mesh").material.duplicate()
 		_sign.get_node("Mesh").material.albedo_color = Color("de0815")
 		_sign.get_node("Text/LineNumber").text = "2" 

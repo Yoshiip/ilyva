@@ -24,13 +24,12 @@ var door_moving := false
 var player_inside := false
 onready var speed := max_speed
 
-#const AUDIOS := [
-#	preload("res://audios/voices/subway/0.ogg"),
-#	preload("res://audios/voices/subway/1.ogg"),
-#	preload("res://audios/voices/subway/2.ogg"),
-#	preload("res://audios/voices/subway/3.ogg"),
-#	preload("res://audios/voices/subway/4.ogg"),
-#]
+const AUDIOS := [
+	preload("res://extra/voices/subway/cite_scientifique.mp3"),
+	preload("res://extra/voices/subway/pont_de_bois.mp3"),
+	preload("res://extra/voices/subway/beaux_arts.mp3"),
+	preload("res://extra/voices/subway/saint_philibert.mp3"),
+]
 
 
 var next_stop_id := 0
@@ -98,9 +97,9 @@ func _process(delta: float) -> void:
 	if current_stop_id == -1:
 		_dis1 = 0
 		_dis2 = GameManager.STATIONS[1].offset
-	elif current_stop_id == 5:
-		_dis1 = GameManager.STATIONS[4].offset
-		_dis2 = GameManager.STATIONS[3].offset
+	elif current_stop_id == 4:
+		_dis1 = GameManager.STATIONS[3].offset
+		_dis2 = GameManager.STATIONS[2].offset
 	else:
 #		if going_forward:
 		_dis1 = GameManager.STATIONS[current_stop_id].offset
@@ -122,6 +121,11 @@ func _process(delta: float) -> void:
 			interact_door(true, !going_forward)
 			yield(get_tree().create_timer(0.5), "timeout")
 			station.interact_door(true, !going_forward)
+			print(next_stop_id)
+			if !GameManager.unlocked_levels.has(next_stop_id):
+				set_process(false)
+				yield(get_tree().create_timer(3.0), "timeout")
+				get_tree().current_scene.add_child(Dialogic.start("subway/2"))
 
 #		if door_opened && c_stop_time <= 0.0 && !start_playing_beep && !(GameManager.map_stop_progress == next_stop_id):
 		if door_opened && c_stop_time <= 0.0 && !start_playing_beep:

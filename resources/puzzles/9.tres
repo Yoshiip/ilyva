@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
-name = "Réparer la tablette du Chiba"
-start_phrase = "La tablette du chiba vous lance une énigme!"
-description = ""
-given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]
+name = "Les redirections"
+start_phrase = "Le rat vous lance une énigme!"
+description = "Le rat veut désormais que vous affichez \"tata\" a l'aide d'une redirection."
+given_by = "Le rat"
+hints = [ "Pour rediriger le résultat d’une commande vers un fichier, utilisez le symbole >. Par exemple, pour créer un fichier qui contient le résultat de la commande echo hello alors écrivez echo hello >fichier.txt. Pour ajouter le résultat d’une commande à un fichier déjà existant utilisez plutôt le symbole >>.", "Pour exécuter une commande à l’intérieur d’une autre, ou déclarer le résultat d’une commande comme étant la valeur d’une variable, alors utilisez la syntaxe $(commande). Par exemple, si je veux afficher le contenu du fichier file.txt je pourrais très bien écrire cat $(echo file.txt) qui revient à écrire cat file.txt." ]
+hints_action = PoolStringArray( "", "", "" )
+additional_apps = PoolStringArray(  )

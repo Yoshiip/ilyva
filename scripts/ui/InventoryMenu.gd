@@ -4,6 +4,8 @@ onready var tween := Tween.new()
 
 
 func _ready() -> void:
+	if OS.get_name() == "HTML5":
+		$QuitGame.queue_free()
 	add_child(tween)
 	visible = false
 
@@ -22,7 +24,6 @@ func play_animation(backward = false) -> void:
 	play_tween($TopPart, "rect_position:y", -256, 0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	play_tween($BottomPart, "rect_position:y", size_y + 128, size_y - 128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	
-	play_tween($Objective, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	play_tween($Resume, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	play_tween($Container, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 

@@ -34,13 +34,14 @@ func _ready():
 	var system := System.new([])
 	var allowed_commands := []
 	var forbidden_commands := []
+	var initial_context = null
 	if node != null:
 		if "system" in node:
 			system = node.system
 		if "dns" in node:
 			dns_config = node.dns
 		# if an ip address is defined here using the export, the one from the node is ignored
-		if "ip_address" in node and not ip_address.empty():
+		if "ip_address" in node and ip_address.empty():
 			ip_address = node.ip_address
 		# if a max paragraph size is defined using the export variable, it will override the one defined in the node.
 		# If none are given, nor valid, then the default one from the Terminal scene is used.
@@ -50,6 +51,8 @@ func _ready():
 			allowed_commands = node.allowed_commands
 		if "forbidden_commands" in node:
 			forbidden_commands = node.forbidden_commands
+		if "runtime" in node:
+			initial_context = node.runtime
 	terminal = Terminal.new(pid, system, editor)
 	terminal.set_dns(dns_config)
 	if max_paragraph_size > 0:
@@ -60,6 +63,8 @@ func _ready():
 		terminal.set_allowed_commands(allowed_commands)
 	if not forbidden_commands.empty():
 		terminal.forbid_commands(forbidden_commands)
+	if initial_context != null:
+		terminal.runtime[0] = initial_context
 	add_child(interface)
 	add_child(prompt)
 	add_child(editor)
@@ -72,8 +77,8 @@ func _ready():
 	interface.append_bbcode(INIT_TEXT)
 	set_font_size(default_font_size)
 	
-	if is_instance_valid(node):
-		node.terminal_created(self)
+	
+	get_tree().current_scene.puzzle_handler.terminal_created(self)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_up") and history_index > 0:

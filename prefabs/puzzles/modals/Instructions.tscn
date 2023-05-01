@@ -66,4 +66,3 @@ margin_bottom = -8.0
 custom_styles/normal = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "Bonjour"
-text = "Bonjour"

@@ -8,6 +8,8 @@ script = ExtResource( 1 )
 portrait = ExtResource( 2 )
 name = "Libérer Mathieu!"
 start_phrase = "Libérer Mathieu!"
-description = ""
-given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]
+description = "C’est l’heure de libérer M. Mathieu! "
+given_by = "Everaere"
+hints = [ "Il vous faut savoir quel est le numéro de cellule de Mathieu et ensuite regarder le code qui correspond dans le fichier .codes.csv.", "Pour faire cela en une seule commande, lisez ce fichier avec la commande cat, limitez à une seule ligne en fonction du numéro de cellule avec la commande grep et coupez (avec la commande cut) en fonction de la virgule, et la réponse est le champ numéro 2." ]
+hints_action = PoolStringArray( "", "", "" )
+additional_apps = PoolStringArray(  )

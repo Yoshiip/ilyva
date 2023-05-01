@@ -1,12 +1,15 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
+[ext_resource path="res://images/portraits/beaux_arts/clement_noir.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
+portrait = ExtResource( 2 )
 name = "Obtenir l'adresse de Clément"
-start_phrase = "Vous devez résoudre une énigme pour savoir où est Clément!"
-description = "Vous devez trouver l'adresse de votre ami Clément!"
-given_by = ""
-hints = PoolStringArray( "Hint 1", "Hint 2", "Hint 3" )
+start_phrase = "Trouvez Clément!"
+description = "Votre meilleur ami Clément habite à République Beaux-Arts. Pourquoi n’iriez-vous pas le voir ? Vous avez réussi à avoir une annuaire des noms de domaines de personnes habitants pas loin. Essayez de regarder dedans, puis faites une requête sur le nom de domaine votre ami pour savoir où il habite !"
+given_by = "Vous-même"
+hints = PoolStringArray( " Pour cette énigme, vous aurez besoin de la commande cat, et une autre, essayez de regarder dans le help.", "Le nom de Clément est clement.etu. Il vous faut obtenir l’adresse IP de la destination selon le nom de l’adresse.", "Utilisez la commande ping pour contacter une adresse. " )
+hints_action = PoolStringArray( "", "", "" )
 additional_apps = PoolStringArray( "digicode" )

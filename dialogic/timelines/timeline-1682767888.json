@@ -87,6 +87,16 @@
 		{
 			"call_node": {
 				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
 					"13"
 				],
 				"method_name": "load_puzzle",

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://fonts/Guisol.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://images/videos/0001-0119-1.ogv" type="VideoStream" id=2]
-[ext_resource path="res://images/logos/github.png" type="Texture" id=3]
-[ext_resource path="res://images/logos/globe.png" type="Texture" id=4]
+[ext_resource path="res://images/icons/github.png" type="Texture" id=3]
+[ext_resource path="res://images/icons/globe.png" type="Texture" id=4]
+[ext_resource path="res://extra/icons/extra_logo.png" type="Texture" id=5]
 [ext_resource path="res://prefabs/menu/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/icons/menu/star_2.png" type="Texture" id=7]
 [ext_resource path="res://images/icons/menu/star_3.png" type="Texture" id=8]
@@ -13,12 +14,13 @@
 [ext_resource path="res://images/logos/ilyva_black.png" type="Texture" id=12]
 [ext_resource path="res://images/icons/shape73.png" type="Texture" id=13]
 [ext_resource path="res://images/textures/paper.jpg" type="Texture" id=14]
-[ext_resource path="res://images/logos/ilyva_white.png" type="Texture" id=15]
+[ext_resource path="res://fonts/VCR_OSD.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://audios/effects/subway.wav" type="AudioStream" id=16]
 [ext_resource path="res://fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://images/logos/ilyva_full_white.png" type="Texture" id=18]
 [ext_resource path="res://images/ui/swirl.png" type="Texture" id=19]
 [ext_resource path="res://images/ui/angles.png" type="Texture" id=20]
+[ext_resource path="res://images/ui/camera_outline.png" type="Texture" id=21]
 [ext_resource path="res://scripts/menu/TopPart.gd" type="Script" id=22]
 
 [sub_resource type="DynamicFont" id=1]
@@ -31,6 +33,29 @@ font_data = ExtResource( 1 )
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 1 )
 
+[sub_resource type="StyleBoxTexture" id=31]
+texture = ExtResource( 21 )
+region_rect = Rect2( 0, 0, 100, 100 )
+margin_left = 45.0
+margin_right = 45.0
+margin_top = 45.0
+margin_bottom = 45.0
+modulate_color = Color( 1, 1, 1, 0.498039 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 22
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 15 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 1, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxTexture" id=20]
 texture = ExtResource( 20 )
 region_rect = Rect2( 0, 0, 128, 128 )
@@ -41,6 +66,27 @@ margin_bottom = 64.0
 modulate_color = Color( 0.141176, 0.137255, 0.137255, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
 
 [sub_resource type="Shader" id=26]
 code = "/*
@@ -105,27 +151,6 @@ shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
-[sub_resource type="StyleBoxFlat" id=28]
-bg_color = Color( 0.592157, 0.756863, 0.113725, 1 )
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-
-[sub_resource type="StyleBoxFlat" id=30]
-bg_color = Color( 0.0627451, 0.635294, 0.862745, 1 )
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-
-[sub_resource type="StyleBoxFlat" id=29]
-bg_color = Color( 0.858824, 0.156863, 0.109804, 1 )
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-
 [sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 1, 1, 1, 1 )
 border_width_left = 4
@@ -179,6 +204,64 @@ margin_bottom = -94.0
 stream = ExtResource( 2 )
 autoplay = true
 
+[node name="Panel" type="Panel" parent="Canvas/Container/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+custom_styles/panel = SubResource( 31 )
+
+[node name="Label" type="Label" parent="Canvas/Container/Control/Panel"]
+margin_left = 27.0
+margin_top = 10.0
+margin_right = 67.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 32 )
+text = "REC"
+
+[node name="Dot" type="Panel" parent="Canvas/Container/Control/Panel"]
+margin_left = 10.0
+margin_top = 16.0
+margin_right = 22.0
+margin_bottom = 28.0
+custom_styles/panel = SubResource( 33 )
+
+[node name="Timer" type="Label" parent="Canvas/Container/Control/Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -112.0
+margin_top = -31.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_fonts/font = SubResource( 32 )
+text = "00:00:00"
+
+[node name="WindowSize" type="Label" parent="Canvas/Container/Control/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -31.0
+margin_right = 112.0
+margin_bottom = -8.0
+custom_fonts/font = SubResource( 32 )
+text = "00:00:00"
+
+[node name="Version" type="Label" parent="Canvas/Container/Control/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -173.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 32 )
+text = "ILYVA_v1.0
+DESKTOP"
+align = 2
+
 [node name="SharpCorners" type="Panel" parent="Canvas/Container"]
 anchor_top = 0.167
 anchor_right = 1.0
@@ -218,27 +301,29 @@ margin_bottom = 20.0
 custom_constants/separation = 40
 alignment = 1
 
-[node name="Play" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 171.0
-margin_right = 353.0
+[node name="NewGame" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 235.0
+margin_right = 346.0
+text = "Jouer"
 btn_label = "Jouer"
-btn_icon = ExtResource( 7 )
+btn_icon = ExtResource( 9 )
 
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 393.0
-margin_right = 575.0
+margin_left = 386.0
+margin_right = 568.0
 btn_label = "Paramètres"
 btn_icon = ExtResource( 7 )
 
-[node name="Credits" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 615.0
-margin_right = 797.0
-btn_label = "Crédits"
-btn_icon = ExtResource( 9 )
+[node name="Playground" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 608.0
+margin_right = 790.0
+btn_label = "Terrain de jeu"
+btn_icon = ExtResource( 7 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 837.0
-margin_right = 1019.0
+margin_left = 830.0
+margin_right = 955.0
+text = "Quitter"
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
 
@@ -263,28 +348,61 @@ expand = true
 
 [node name="Shadow" type="TextureRect" parent="Canvas/Container/TopPart"]
 modulate = Color( 0, 0, 0, 0.74902 )
-anchor_left = 0.3
-anchor_top = 0.5
-anchor_right = 0.7
-anchor_bottom = 1.5
-margin_top = 8.5
-margin_right = -0.0801392
-margin_bottom = 7.99799
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_top = -61.0
+margin_right = 255.92
+margin_bottom = 77.498
 texture = ExtResource( 18 )
 expand = true
 stretch_mode = 6
 
 [node name="IlyvaLogoRed" type="TextureRect" parent="Canvas/Container/TopPart"]
-anchor_left = 0.3
-anchor_top = 0.5
-anchor_right = 0.7
-anchor_bottom = 1.5
-margin_top = 0.5
-margin_right = -0.0801392
-margin_bottom = -0.00201416
-texture = ExtResource( 15 )
+anchor_left = 0.5
+anchor_top = 1.002
+anchor_right = 0.5
+anchor_bottom = 1.002
+margin_left = -256.0
+margin_top = -69.278
+margin_right = 255.92
+margin_bottom = 69.22
+texture = ExtResource( 18 )
 expand = true
 stretch_mode = 6
+
+[node name="ExtraLogo" type="TextureRect" parent="Canvas/Container/TopPart/IlyvaLogoRed"]
+margin_left = 368.0
+margin_top = 117.0
+margin_right = 368.0
+margin_bottom = 117.0
+texture = ExtResource( 5 )
+
+[node name="RedDot" type="Panel" parent="Canvas/Container/TopPart/IlyvaLogoRed"]
+modulate = Color( 0.858824, 0.156863, 0.109804, 1 )
+margin_left = 97.0
+margin_top = 1.0
+margin_right = 115.0
+margin_bottom = 19.0
+custom_styles/panel = SubResource( 29 )
+
+[node name="BlueDot" type="Panel" parent="Canvas/Container/TopPart/IlyvaLogoRed"]
+modulate = Color( 0.0627451, 0.635294, 0.862745, 1 )
+margin_left = 242.0
+margin_top = 121.0
+margin_right = 280.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 18, 18 )
+custom_styles/panel = SubResource( 30 )
+
+[node name="GreenDot" type="Panel" parent="Canvas/Container/TopPart/IlyvaLogoRed"]
+modulate = Color( 0.592157, 0.756863, 0.113725, 1 )
+margin_left = 281.0
+margin_right = 319.0
+margin_bottom = 18.0
+custom_styles/panel = SubResource( 28 )
 
 [node name="Shape75" type="TextureRect" parent="Canvas/Container/TopPart"]
 modulate = Color( 0, 0, 0, 0.74902 )
@@ -330,31 +448,6 @@ margin_bottom = -59.993
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="GreenDot" type="Panel" parent="Canvas/Container/TopPart"]
-visible = false
-margin_left = 665.0
-margin_top = 72.0
-margin_right = 703.0
-margin_bottom = 90.0
-custom_styles/panel = SubResource( 28 )
-
-[node name="BlueDot" type="Panel" parent="Canvas/Container/TopPart"]
-visible = false
-margin_left = 626.0
-margin_top = 209.0
-margin_right = 664.0
-margin_bottom = 227.0
-rect_min_size = Vector2( 18, 18 )
-custom_styles/panel = SubResource( 30 )
-
-[node name="RedDot" type="Panel" parent="Canvas/Container/TopPart"]
-visible = false
-margin_left = 516.0
-margin_top = 30.0
-margin_right = 534.0
-margin_bottom = 48.0
-custom_styles/panel = SubResource( 29 )
 
 [node name="Credits" type="Panel" parent="Canvas/Container"]
 visible = false
@@ -775,22 +868,11 @@ texture_hover = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="Version" type="Label" parent="Canvas/Container"]
-self_modulate = Color( 1, 1, 1, 0.498039 )
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -237.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = 31.0
-text = "1.0"
-align = 2
-
 [node name="DebugPuzzle" type="Button" parent="Canvas/Container"]
-margin_left = 45.0
-margin_top = 166.0
-margin_right = 373.0
-margin_bottom = 276.0
+margin_left = 16.0
+margin_top = 10.0
+margin_right = 344.0
+margin_bottom = 39.0
 text = "debug puzzle"
 align = 0
 __meta__ = {
@@ -809,18 +891,25 @@ min_value = 1.0
 max_value = 13.0
 value = 1.0
 
+[node name="LineEdit" type="LineEdit" parent="Canvas/Container/DebugPuzzle"]
+margin_top = 64.0
+margin_right = 376.0
+margin_bottom = 97.0
+text = "res://scenes/"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
-volume_db = -20.0
 autoplay = true
+bus = "Effects"
 
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="finished" from="Canvas/Container/Control/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
-[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/NewGame" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
-[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Playground" to="." method="_on_Playground_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Canvas/Container/VBoxContainer/Github" to="." method="_on_Github_pressed"]
 [connection signal="pressed" from="Canvas/Container/VBoxContainer/Website" to="." method="_on_Website_pressed"]
 [connection signal="pressed" from="Canvas/Container/DebugPuzzle" to="." method="_on_DebugPuzzle_pressed"]
+[connection signal="text_entered" from="Canvas/Container/DebugPuzzle/LineEdit" to="." method="_on_LineEdit_text_entered"]

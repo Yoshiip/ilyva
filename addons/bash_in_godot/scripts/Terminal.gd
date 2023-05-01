@@ -144,17 +144,22 @@ var COMMANDS := {
 		"reference": funcref(self, "ls"),
 		"manual": {
 			"name": "ls - liste le contenu d'un dossier.",
-			"synopsis": ["[b]ls[/b] [[b]-a[/b]] [[u]dossier[/u]]"],
+			"synopsis": ["[b]ls[/b] [[b]-a[/b]] [[b]-l[/b]] [[u]dossier[/u]]"],
 			"description": "La commande va lister le contenu des dossiers, en colorant en vert les dossiers, et en blanc les fichiers. Par défaut, les fichiers et dossiers cachés (c'est-à-dire ceux préfixés par un point) ne serront pas affichés. Pour les afficher, utilisez l'option -a.",
 			"options": [
 				{
 					"name": "-a",
 					"description": "Affiche les fichiers cachés (ceux préfixés d'un point)"
+				},
+				{
+					"name": "-l",
+					"description": "Affiche les fichiers et dossiers contenus dans la cible avec des données supplémentaires."
 				}
 			],
 			"examples": [
 				"ls folder",
-				"ls -a folder"
+				"ls -a folder",
+				"ls -l ."
 			]
 		}
 	},
@@ -612,7 +617,7 @@ func interpret_substitutions(options: Array) -> Dictionary:
 # However, it's useful for the substitutions that may be in the redirections.
 # Returns a dictionary { "error": String or null, "tokens": array of PLAIN BashTokens, or just null if there is not output } 
 func interpret_one_substitution(token: BashToken) -> Dictionary:
-	var execution := execute(token.value)
+	var execution := execute(token.value, null, false)
 	# Because the execution possibly have multiple independant commands
 	# we have to make only one token out of everything.
 	var one_line_output := ""
@@ -637,7 +642,7 @@ func interpret_one_substitution(token: BashToken) -> Dictionary:
 # The command substitutions will be recursively executed using `interpret_substitutions` on the input.
 # If the commands fails, then this function will return { "error": String }.
 # Otherwise, it will return { "error": null, "output": String, "interface_cleard": bool } 
-func execute(input: String, interface: RichTextLabel = null) -> Dictionary:
+func execute(input: String, interface: RichTextLabel = null, can_change_interface := true) -> Dictionary:
 	interface = _save_interface(interface)
 	var lexer := BashLexer.new(input)
 	if not lexer.error.empty():
@@ -646,9 +651,9 @@ func execute(input: String, interface: RichTextLabel = null) -> Dictionary:
 				"error": lexer.error
 			}]
 		}
-	return _execute_tokens(lexer.tokens_list, interface)
+	return _execute_tokens(lexer.tokens_list, interface, can_change_interface)
 
-func _execute_tokens(tokens: Array, interface: RichTextLabel = null) -> Dictionary:
+func _execute_tokens(tokens: Array, interface: RichTextLabel = null, can_change_interface := true) -> Dictionary:
 	var parser := BashParser.new(runtime[0], pid)
 	var parsing := parser.parse(tokens)
 	if not parser.error.empty():
@@ -738,6 +743,7 @@ func _execute_tokens(tokens: Array, interface: RichTextLabel = null) -> Dictiona
 							"error": "Commande '" + command.name + "' : " + error_handler.clear()
 						})
 						break
+					command.redirections = command_redirections
 					for i in range(0, command_redirections.size()):
 						if command_redirections[i] != null and command_redirections[i].target == null:
 							outputs.append({
@@ -791,10 +797,26 @@ func _execute_tokens(tokens: Array, interface: RichTextLabel = null) -> Dictiona
 			elif command.type == "for":
 				outputs.append_array(_execute_for_loop(command).outputs)
 			else: # the line is a variable affectation
-				var is_new = runtime[0].set_variable(command.name, command.value) # command.value is a BashToken
-				emit_signal("variable_set", command.name, command.value.value, is_new)
+				var variable_value = command.value # command.value is a BashToken
+				if variable_value.type == Tokens.SUBSTITUTION:
+					var interpretation = interpret_one_substitution(variable_value)
+					if interpretation.error != null:
+						outputs.append(interpretation)
+					var string_value := ""
+					for token in interpretation.tokens:
+						string_value += token.value.strip_edges() + " "
+					variable_value = BashToken.new(Tokens.PLAIN, string_value)
+				elif variable_value.type == Tokens.VARIABLE:
+					var interpretation := interpret_variables([variable_value])
+					var string_value := ""
+					for token in interpretation:
+						string_value += token.value.strip_edges() + " "
+					variable_value = BashToken.new(Tokens.PLAIN, string_value)
+				var is_new = runtime[0].set_variable(command.name, variable_value)
+				emit_signal("variable_set", command.name, variable_value.value, is_new)
 		if cleared or not standard_input.empty():
-			emit_signal("interface_changed", standard_input)
+			if can_change_interface:
+				emit_signal("interface_changed", standard_input)
 			outputs.append({
 				"error": null,
 				"text": standard_input,
@@ -980,7 +1002,17 @@ func _execute_for_loop(command: Dictionary) -> Dictionary:
 		}
 	for sequence in sequences.tokens:
 		runtime[0].set_variable(command.variable_name, sequence)
-		outputs.append_array(_execute_tokens(command.body).outputs)
+		outputs.append_array(_execute_tokens(command.body, null, false).outputs)
+	var oneline_output = ""
+	var has_error := false
+	for output in outputs:
+		if output.error != null:
+			has_error = true
+			break
+		else:
+			oneline_output += output.text
+	if not has_error:
+		emit_signal("interface_changed", oneline_output)
 	return {
 		"outputs": outputs
 	}
@@ -993,7 +1025,9 @@ func execute_m99_command(command_name: String, options: Array, interface: RichTe
 	if command_name == "man":
 		var manual = man(options, "")
 		if manual.error != null:
-			return manual
+			return {
+				"outputs": [manual]
+			}
 		else:
 			return {
 				"outputs": [{
@@ -1022,7 +1056,9 @@ func execute_m99_command(command_name: String, options: Array, interface: RichTe
 		var cleared := false
 		var output := ""
 		if result.error != null:
-			return result
+			return {
+				"outputs": [result]
+			}
 		if command_name == "exit":
 			output = "M99 a été arrêté."
 			cleared = true
@@ -1061,7 +1097,7 @@ func get_pwd_file_element() -> SystemElement:
 	return result
 
 func get_parent_element_from(path: PathObject) -> SystemElement:
-	return get_file_element_at(PathObject.new(path.parent) if path.parent != null else PWD)
+	return get_file_element_at(PathObject.new(path.base_dir) if path.base_dir != null else PWD)
 
 func copy_element(e: SystemElement) -> SystemElement:
 	return SystemElement.new(e.type, e.filename, e.base_dir, e.content, copy_children_of(e), user_name, group_name, e.permissions)
@@ -1559,7 +1595,10 @@ func touch(options: Array, _standard_input: String) -> Dictionary:
 		return {
 			"error": "la cible n'est pas un fichier"
 		}
+	print("path = '" + str(path) + "'.")
+	print("the parent of this path is = '" + str(path.parent) + "'.")
 	var parent = get_parent_element_from(path)
+	print("parent = '" + str(parent) + "'.")
 	if parent == null or not parent.is_folder():
 		return {
 			"error": "le dossier du fichier à créer n'existe pas"
@@ -1986,6 +2025,7 @@ func nano(options: Array, _standard_input: String) -> Dictionary:
 			"error": "permission refusée"
 		}
 	edited_file = element
+	(nano_editor as WindowDialog).get_node("TextEdit").text = edited_file.content
 	nano_editor.popup()
 	return {
 		"output": "",

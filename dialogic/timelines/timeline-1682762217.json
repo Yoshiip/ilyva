@@ -3,6 +3,7 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1682697251.json",
@@ -40,7 +41,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Parfait!"
+			"text": "Parfait!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/40.mp3"
+				}
+			}
 		},
 		{
 			"choice": "Non",
@@ -54,22 +61,43 @@
 			"transition_duration": 1
 		},
 		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Tout ça est PARFAIT, après avoir appris tout ca j'ai envie de combiner tout ce que tu as appris ici !"
-		},
-		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "je veux que tu fasses une variable nommée final contenant \"vive les wats\", en m'affichant sur chaque ligne une chaîne de caractère différente en remplacant le w par un r."
+			"event_id": "dialogic_013"
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "à toi de jouer !"
+			"text": "Tout ça est PARFAIT, après avoir appris tout ca j'ai envie de combiner tout ce que tu as appris ici !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/41.mp3"
+				}
+			}
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "je veux que tu fasses une variable nommée final contenant \"vive les wats\", en m'affichant sur chaque ligne une chaîne de caractère différente en remplacant le w par un r.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/42.mp3"
+				}
+			}
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "à toi de jouer !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/43.mp3"
+				}
+			}
 		},
 		{
 			"call_node": {

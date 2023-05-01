@@ -6,8 +6,11 @@
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
-name = "Louane"
-start_phrase = "... vous lance une énigme!"
-description = ""
-given_by = ""
-hints = [ "Hint 1", "Hint 2", "Hint 3" ]
+name = "Payer les piles"
+start_phrase = "Louane vous lance une énigme!"
+description = "Un traducteur c’est bien, mais qui fonctionne c’est mieux!
+Vous devez réaliser la transaction des piles à l’aide de bash.
+Vous êtes actuellement aux serveurs de transactions de BASHIA, et vous avez le porte-monnaie électronique de Mr Mathieu.
+Vous devez déplacer tout votre argent dans les caisses de BASHIA, et le système vous remboursera automatiquement!"
+given_by = "Louane"
+hints = [ "Comme toutes les énigmes, essayez de comprendre en détails quels sont les fichiers et dossiers qui vous entourent à l’aide des commandes [code]ls[/code], [code]tree[/code] et [code]cat[/code].", "D’abord, il faut savoir quelle somme d’argent vous possédez. Pour cela, lisez le fichier [code]balance.dat[/code] dans le [code]compte_personnel[/code]. Consultez la commande [code]cat[/code] pour savoir comment faire.", "Déplacez votre argent avec la commande mv afin de payer la batterie." ]

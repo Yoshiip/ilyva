@@ -11,8 +11,9 @@ onready var transition := preload("res://prefabs/Transition.tscn").instance()
 
 
 func _ready() -> void:
-	$Station.station_changed($Station.current_station)
-	$Canvas/Container.add_child(transition)
+	MusicManager.start_music("subway")
+	$Station.station_changed(GameManager.current_subway_stop)
+	add_child(transition)
 	$"%ZoneName".play_animation(GameManager.STATIONS[$Station.current_station].name)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
 	$Canvas/Container.add_child(pause_menu)
@@ -88,6 +89,8 @@ onready var MovingSubway := preload("res://prefabs/3d/MovingSubway.tscn")
 func _process(_delta: float) -> void:
 	$Canvas/Container/Label.text = str(Engine.get_frames_per_second(), "fps")
 	if map.visible:
+		
+		map.get_node("Viewport/Map/Line/Path/Icon").scale.y = 1 if current_subway.going_forward else -1
 		map.get_node("Viewport/Map/Line/Path").offset = current_subway.offset
 	if left_line_waiting && !left_line_used:
 		add_subway(false)

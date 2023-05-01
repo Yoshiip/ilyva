@@ -220,8 +220,11 @@ extents = Vector2( 4.5, 8 )
 [node name="MetroOutside" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
-zone_id = "beaux_arts"
-zone_name = "Appartement"
+zone_id = "iut"
+zone_name = "Station"
+music_id = "iut"
+start_dialogue = true
+max_dialogue_progress = 1
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64
@@ -257,7 +260,6 @@ shape = SubResource( 11 )
 stream = ExtResource( 2 )
 volume_db = -20.0
 autoplay = true
-bus = "Ambient"
 
 [node name="SultanCollectable" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2077, -21 )
@@ -277,6 +279,7 @@ sibling = NodePath("../C2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="C"]
 position = Vector2( -0.5, 0.5 )
 shape = SubResource( 17 )
+disabled = true
 
 [node name="C2" type="Area2D" parent="." groups=["Interaction"]]
 position = Vector2( -826, -132 )
@@ -290,6 +293,7 @@ sibling = NodePath("../C")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="C2"]
 position = Vector2( 0.5, 0 )
 shape = SubResource( 18 )
+disabled = true
 
 [editable path="Arrow2"]
 [editable path="Arrow3"]

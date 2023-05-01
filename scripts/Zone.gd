@@ -4,10 +4,13 @@ extends Node2D
 export var zone_id := "unnamed"
 export var zone_name := "Unnamed"
 #export(String, "Matin", "Après-Midi", "Soirée") var time
-export var start_scene := false
+#export var start_scene := false
 export var music_id := "night"
 
-var in_dialogue = false
+var dialogue_canvas : CanvasLayer = null
+
+export var start_dialogue := false
+export var max_dialogue_progress := -1
 
 onready var image_size : int = $Background.texture.get_width()
 
@@ -25,6 +28,7 @@ onready var scene_light := CanvasModulate.new()
 onready var tween := Tween.new()
 
 onready var arrows := get_tree().get_nodes_in_group("Arrow")
+onready var characters := get_tree().get_nodes_in_group("Character")
 
 func _ready() -> void:
 	var _camera := preload("res://prefabs/2d/GameCamera.tscn").instance()
@@ -33,9 +37,10 @@ func _ready() -> void:
 	
 	name = "Root"
 	if GameManager.context_before_puzzle != null:
-		var _n = get_node(GameManager.context_before_puzzle.path)
-		_n.timeline_id = GameManager.progress[zone_id][_n.character_name if _n.character_name != "" else _n.name]
-		_n.interact()
+		if GameManager.context_before_puzzle.get("path"):
+			var _n = get_node(GameManager.context_before_puzzle.path)
+			_n.timeline_id = GameManager.progress[zone_id][_n.character_name if _n.character_name != "" else _n.name]
+			_n.interact()
 		GameManager.context_before_puzzle = null
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -50,7 +55,7 @@ func _ready() -> void:
 	add_child(tween)
 	add_child(scene_light)
 	
-	canvas.add_child(transition)
+	add_child(transition)
 	if canvas.get_node("Container/TurnLight").connect("toggled", self, "toggle_light") != OK:
 		print("error connecting")
 	
@@ -59,28 +64,27 @@ func _ready() -> void:
 	add_child(background_blur)
 	
 	$Canvas/Container.add_child(pause_menu)
-	if GameManager.scene_start_dialogue != zone_id && start_scene:
-		var new_dialog = Dialogic.start(zone_id + '/' + zone_name)
-		GameManager.scene_start_dialogue = zone_id
-		add_child(new_dialog)
+	if start_dialogue && GameManager.progress[zone_id][zone_name] < max_dialogue_progress:
+		create_dialogue(str(zone_id, '/', zone_name, '/', GameManager.progress[zone_id][zone_name]))
 
 	$Canvas/Container/ZoneName.text = zone_name
+	
+	MusicManager.start_music(music_id)
 #	$Canvas/Container/Time.text = time
 
+var in_dialogue := false
+
 func _physics_process(_delta: float) -> void:
+	in_dialogue = is_instance_valid(dialogue_canvas)
 	for arrow in arrows:
 		if is_instance_valid(arrow):
 			arrow.visible = !in_dialogue
-	in_dialogue = false
-	for i in get_children():
-		if i.get("dialog_node"):
-			in_dialogue = true
-			pause_menu.can_pause = !in_dialogue
-			return
+	for character in characters:
+		if is_instance_valid(character) && character.can_interact:
+			character.visible = !in_dialogue
 	pause_menu.can_pause = !in_dialogue
 
-func play_music() -> void:
-	MusicManager.start_music(music_id)
+#func play_music() -> void:
 
 
 var light_off := false
@@ -108,17 +112,14 @@ var current_dialogue_id := 0
 func load_puzzle(puzzle_id : String) -> void:
 	GameManager.current_puzzle = load(str("res://resources/puzzles/" + puzzle_id + ".tres"))
 	GameManager.context_before_puzzle = {
-		"scene": get_tree().current_scene.filename,
-		"path": current_dialogue_character.get_path(),
-		"id": current_dialogue_id,
+		"scene": get_tree().current_scene.filename
 	}
-	transition.transition_to_scene("res://scenes/puzzles/StartAnimation.tscn")
+	if is_instance_valid(current_dialogue_character): # for scene that automaticly start dialogue
+		GameManager.context_before_puzzle["path"] = current_dialogue_character.get_path()
+		GameManager.context_before_puzzle["id"] = current_dialogue_id
+		
 
-func add_story_progress() -> void:
-	print("a refaire")
-#	GameManager.story_progress += 1
-#	emit_signal("story_progress_changed")
-#	print(GameManager.story_progress)
+	transition.transition_to_scene("res://scenes/puzzles/StartAnimation.tscn")
 
 func increment_progress(character_id = "", c_zone_id = "") -> void:
 	if character_id != "" && c_zone_id != "":
@@ -138,3 +139,8 @@ func story_condition(condition : String, value = "true", zone = zone_id) -> void
 
 func change_scene(scene_name : String) -> void:
 	transition.transition_to_scene("res://scenes/" + scene_name + ".tscn")
+
+func create_dialogue(id : String) -> void:
+	dialogue_canvas = Dialogic.start(id)
+	dialogue_canvas.name = "Dialogue"
+	add_child(dialogue_canvas)

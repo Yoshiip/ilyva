@@ -14,6 +14,12 @@ export var hints : PoolStringArray = [
 	"Hint 3",
 ]
 
+export var hints_action : PoolStringArray = [
+	"",
+	"",
+	"",
+]
+
 export var additional_apps : PoolStringArray = []
 
 func get_puzzle_id():

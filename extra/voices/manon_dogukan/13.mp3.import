@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/13.mp3-a1dae793d28d41f5387039d87c87c487.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/manon_dogukan/13.mp3"
+dest_files=[ "res://.import/13.mp3-a1dae793d28d41f5387039d87c87c487.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
-name = "Nicolas"
-start_phrase = "La tablette du chiba vous lance une énigme!"
-description = ""
-given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”)." ]
+name = "Les variables"
+start_phrase = "Le rat vous lance une énigme!"
+description = "Le rat veut tout d’abord que vous affichiez “Hello Rats” à l’aide d’une variable."
+given_by = "Le rat"
+hints = [ "Une variable permet de stocker des données dans le terminal, pour pouvoir les réutiliser.", "Une variable se définit avec [nom de la variable]=[valeur].", "Pour afficher une variable, utilisez le symbole $ précédé du nom de la variable pour l’afficher." ]
+hints_action = PoolStringArray( "", "", "" )
+additional_apps = PoolStringArray(  )

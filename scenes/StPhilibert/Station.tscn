@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://images/portraits/st_philibert/mathieu.png" type="Texture" id=1]
-[ext_resource path="res://images/backgrounds/saint_philibert/surface.jpg" type="Texture" id=2]
-[ext_resource path="res://images/items/nano.png" type="Texture" id=3]
+[ext_resource path="res://images/backgrounds/saint_philibert/station.jpg" type="Texture" id=2]
+[ext_resource path="res://images/items/wallet.png" type="Texture" id=3]
 [ext_resource path="res://images/portraits/st_philibert/thomas.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Zone.gd" type="Script" id=5]
 [ext_resource path="res://audios/effects/traffic.mp3" type="AudioStream" id=6]
@@ -81,6 +81,7 @@ pause_mode = 1
 script = ExtResource( 5 )
 zone_id = "saint_philibert"
 zone_name = "Saint-Philibert"
+music_id = "saint_philibert"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64
@@ -102,7 +103,7 @@ material = SubResource( 10 )
 position = Vector2( 497, 304 )
 portrait = ExtResource( 1 )
 sprite_scale = 0.25
-max_story_progress = 2
+max_story_progress = 1
 
 [node name="Thomas" parent="." instance=ExtResource( 7 )]
 position = Vector2( -138, 376 )
@@ -133,7 +134,6 @@ material = SubResource( 10 )
 stream = ExtResource( 6 )
 volume_db = -20.0
 autoplay = true
-bus = "Ambient"
 
 [editable path="Subway"]
 [editable path="Action"]

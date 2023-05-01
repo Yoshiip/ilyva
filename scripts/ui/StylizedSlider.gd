@@ -10,15 +10,16 @@ export var max_value := 100.0
 
 func _ready() -> void:
 	
-	if settings_to_update != "":
-		$Slider.value = GameManager.settings[settings_to_update]
-		$Value.value = GameManager.settings[settings_to_update]
 	
 	$Label.text = label
 	$Slider.min_value = min_value
 	$Slider.max_value = max_value
 	$Value.min_value = min_value
 	$Value.max_value = max_value
+
+	if settings_to_update != "":
+		$Slider.value = GameManager.settings[settings_to_update]
+		$Value.value = GameManager.settings[settings_to_update]
 	
 	$Min.text = str("    ", min_value)
 	$Max.text = str(max_value, "    ")

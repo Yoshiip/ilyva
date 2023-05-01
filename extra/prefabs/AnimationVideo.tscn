@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://extra/videos/untitled_v2.ogv" type="VideoStream" id=1]
+
+[node name="Animation" type="VideoPlayer"]
+margin_right = 3840.0
+margin_bottom = 2160.0
+rect_pivot_offset = Vector2( 1920, 1080 )
+stream = ExtResource( 1 )
+autoplay = true

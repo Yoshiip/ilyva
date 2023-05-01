@@ -1,6 +1,8 @@
 extends Panel
 
 func _ready() -> void:
+	if !GameManager.extra:
+		$"Scroll/Container/3D".queue_free()
 	if get_viewport().connect("size_changed", self, "window_size_changed") != OK:
 		print("error while connecting")
 	$Tween.interpolate_property(self, "rect_position:x", get_viewport().size.x, get_viewport().size.x / 2.0, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -9,7 +11,7 @@ func _ready() -> void:
 	window_size_changed()
 
 func change_settings_button(checked_name : String) -> void:
-	for i in $Scroll/Container/Graphics/Container/GraphicsContainer.get_children():
+	for i in $"Scroll/Container/3D/Container/GraphicsContainer".get_children():
 		if i.name == checked_name:
 			i.get_node("Checkbox").visible = true
 			i.get_node("Checkbox").checked = true

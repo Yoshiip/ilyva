@@ -20,11 +20,16 @@ func _ready() -> void:
 	puzzle = GameManager.current_puzzle
 	$Canvas/Container/ModalsManager.ready()
 	
-	if Directory.new().file_exists("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd"):
-		puzzle_handler = Node.new()
-		puzzle_handler.name = "PuzzleHandler"
-		puzzle_handler.script = load("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd")
-		add_child(puzzle_handler)
+	if puzzle.get_puzzle_id() == "13": # last puzzle
+		yield(get_tree().create_timer(5.0), "timeout")
+		add_child(Dialogic.start("last_puzzle/start"))
+	
+	puzzle_handler = Node.new()
+	puzzle_handler.name = "PuzzleHandler"
+	
+	
+	puzzle_handler.script = load("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd")
+	add_child(puzzle_handler)
 
 
 onready var pattern: Sprite = $Wallpaper/Pattern
@@ -49,6 +54,8 @@ func change_background_color(color : Color) -> void:
 	_temp = tween.start()
 
 func skip() -> void:
+	if puzzle.get_puzzle_id() == "0":
+		get_tree().change_scene("res://scenes/Menu.tscn")
 	puzzle_ended(true)
 
 func puzzle_ended(skipped = false) -> void:
@@ -57,5 +64,18 @@ func puzzle_ended(skipped = false) -> void:
 	puzzle_end_screen.skipped = skipped
 	$Canvas/Container.add_child(puzzle_end_screen)
 	puzzle_end_screen.get_node("ReturnButton").grab_focus() # pour éviter que le joueur malicieux continuent d'écrire dans le terminal
-	
 
+var timer : ProgressBar
+
+func add_timer() -> void:
+	change_background_color(Color.red)
+	timer = load("res://prefabs/ui/TimerOfDeath.tscn").instance()
+	$Canvas/Container.add_child(timer)
+
+func prevent_bomb() -> void:
+	timer.prevent()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("speedhack"):
+		skip()

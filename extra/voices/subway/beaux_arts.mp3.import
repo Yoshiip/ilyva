@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/beaux_arts.mp3-157255b5e5a2a02b2d68a3db64020430.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/subway/beaux_arts.mp3"
+dest_files=[ "res://.import/beaux_arts.mp3-157255b5e5a2a02b2d68a3db64020430.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

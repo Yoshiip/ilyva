@@ -62,7 +62,7 @@
 		{
 			"event_id": "dialogic_023",
 			"hide_dialogbox": true,
-			"wait_seconds": 3
+			"wait_seconds": 1
 		},
 		{
 			"character": "character-1677363460.json",
@@ -75,6 +75,16 @@
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Il me reste juste assez d'argent pour prendre un ticket de métro."
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"2"
+				],
+				"method_name": "unlock_level",
+				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
 		},
 		{
 			"call_node": {

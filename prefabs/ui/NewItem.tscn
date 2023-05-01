@@ -162,15 +162,17 @@ tracks/5/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="NewItem" type="ColorRect"]
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="NewItem" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 2
 theme = ExtResource( 2 )
 color = Color( 0, 0, 0, 0.745098 )
-script = ExtResource( 5 )
 
-[node name="Close" type="Button" parent="."]
+[node name="Close" type="Button" parent="NewItem"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -182,7 +184,7 @@ margin_bottom = -59.0
 rect_pivot_offset = Vector2( 120, 16 )
 text = "Super!"
 
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer" parent="NewItem"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -194,7 +196,7 @@ margin_bottom = 183.5
 custom_constants/separation = 16
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="Container"]
+[node name="Icon" type="TextureRect" parent="NewItem/Container"]
 margin_top = 35.0
 margin_right = 512.0
 margin_bottom = 163.0
@@ -203,7 +205,7 @@ texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="Container"]
+[node name="Label" type="Label" parent="NewItem/Container"]
 margin_top = 179.0
 margin_right = 512.0
 margin_bottom = 202.0
@@ -211,7 +213,7 @@ custom_colors/font_color = Color( 0.682353, 0.682353, 0.682353, 1 )
 text = "Vous obtenez"
 align = 1
 
-[node name="Name" type="Label" parent="Container"]
+[node name="Name" type="Label" parent="NewItem/Container"]
 margin_top = 218.0
 margin_right = 512.0
 margin_bottom = 255.0
@@ -220,7 +222,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Carte de métro"
 align = 1
 
-[node name="Description" type="Label" parent="Container"]
+[node name="Description" type="Label" parent="NewItem/Container"]
 margin_top = 271.0
 margin_right = 512.0
 margin_bottom = 332.0
@@ -230,10 +232,10 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NewItem"]
 autoplay = "Animation"
 anims/Animation = SubResource( 3 )
 anims/Close = SubResource( 5 )
 anims/RESET = SubResource( 4 )
 
-[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="NewItem/Close" to="." method="_on_Close_pressed"]

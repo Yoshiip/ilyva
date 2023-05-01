@@ -2,6 +2,7 @@ extends Node
 
 class_name BasePuzzleHandler
 
+var terminal: Terminal
 
 # c'est tous les signaux du terminal, pour en utiliser un dans un sous-script, tu met sous le nom de la méthode (ne pas oublier les arguments sinon ça CRASH)
 const SIGNALS := [
@@ -22,13 +23,25 @@ const SIGNALS := [
 	"help_asked",
 ]
 
+# Les signaux du M99:
+const M99_SIGNALS := [
+	"program_executed",
+	"program_failed",
+	"on_cell_set",
+	"on_program_filled"
+]
 
-func terminal_created(reference : Control) -> void: # elle se lance quand un terminal est créé
+func terminal_created(reference: Control) -> void: # elle se lance quand un terminal est créé
 	var _i := 0
-	
+	terminal = reference.terminal
 	for signal_name in SIGNALS:
 		if has_method(signal_name):
 			reference.terminal.connect(signal_name, self, signal_name)
+			print("Connected " + signal_name)
+			_i += 1
+	for signal_name in M99_SIGNALS:
+		if has_method(signal_name):
+			reference.terminal.m99.connect(signal_name, self, signal_name)
 			print("Connected " + signal_name)
 			_i += 1
 	print(str("Connected ", _i, " signal(s)"))

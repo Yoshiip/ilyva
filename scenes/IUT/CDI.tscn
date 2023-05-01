@@ -74,7 +74,7 @@ shader_param/y_rot = 0.0
 shader_param/x_rot = 50.0
 shader_param/inset = 0.0
 
-[sub_resource type="Shader" id=12]
+[sub_resource type="Shader" id=17]
 code = "// Hey this is Hei! This shader \"fakes\" a 3D-camera perspective on CanvasItems.
 // License: MIT
 
@@ -134,7 +134,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=13]
-shader = SubResource( 12 )
+shader = SubResource( 17 )
 shader_param/fov = 90.0
 shader_param/cull_back = true
 shader_param/y_rot = 0.0
@@ -280,6 +280,7 @@ pause_mode = 1
 script = ExtResource( 3 )
 zone_id = "iut"
 zone_name = "Hall d'entrée"
+music_id = "iut"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64

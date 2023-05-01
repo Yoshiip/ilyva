@@ -7,7 +7,7 @@
 			"change_z_index": false,
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_002",
-			"mirror_portrait": false,
+			"mirror_portrait": true,
 			"portrait": "Default",
 			"portrait_definition": "",
 			"position": {
@@ -24,13 +24,25 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Parfait même si tu as l'air un peu stupide avec ces tata titi toto."
+			"text": "Parfait même si tu as l'air un peu stupide avec ces tata titi toto.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/33.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bon, on arrive bientôt a la fin !"
+			"text": "Bon, on arrive bientôt a la fin !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/34.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
@@ -52,7 +64,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Parfait!"
+			"text": "Parfait!",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/35.mp3"
+				}
+			}
 		},
 		{
 			"choice": "Non",
@@ -66,28 +84,55 @@
 			"transition_duration": 1
 		},
 		{
-			"character": "character-1682697251.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Maintenant que tu sais faire des variables contenant des commandes tu dois sans doute te dire que c'est possible de faire des “pipes”."
+			"event_id": "dialogic_013"
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "pas besoin d'en dire plus normalement tu sais comment ça marche !"
+			"text": "Maintenant que tu sais faire des variables contenant des commandes tu dois sans doute te dire que c'est possible de faire des “pipes”.",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/36.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "dans le fichier toto, rajoute 5 lignes \"Bonjour\" \"Je\" \"Suis\" \"Tres\" \"Heureux\" et je voudrais que tu affiches que ces 5 lignes, donc je ne veux pas voir tata à l'aide d'une variable nommée content"
+			"text": "pas besoin d'en dire plus normalement tu sais comment ça marche !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/37.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "de plus je veux que tu utilises tail, tu peux utiliser le paramètre +n ou n est un chiffre ce qui permet de démarer a la nème ligne. Et je veux que tu utilises une “pipe” sinon cet entrainement sert a rien..."
+			"text": "dans le fichier toto, rajoute 5 lignes \"Bonjour\" \"Je\" \"Suis\" \"Tres\" \"Heureux\" et je voudrais que tu affiches que ces 5 lignes, donc je ne veux pas voir tata à l'aide d'une variable nommée content",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/38.mp3"
+				}
+			}
+		},
+		{
+			"character": "character-1682697251.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "de plus je veux que tu utilises tail, tu peux utiliser le paramètre +n ou n est un chiffre ce qui permet de démarer a la nème ligne. Et je veux que tu utilises une “pipe” sinon cet entrainement sert a rien...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/39.mp3"
+				}
+			}
 		},
 		{
 			"call_node": {

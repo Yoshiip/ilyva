@@ -212,8 +212,7 @@ shader_param/inset = 0.0
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
 zone_id = "beaux_arts"
-zone_name = "République Beaux-Arts"
-music_id = ""
+zone_name = "Entrée"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64
@@ -224,7 +223,7 @@ position = Vector2( -16, 452 )
 __meta__ = {
 "_edit_group_": true
 }
-scene_name = "subway"
+scene_name = "BeauxArts/Station"
 show_confirm = true
 
 [node name="Icon" parent="Subway" index="0"]
@@ -257,7 +256,6 @@ max_story_progress = -1
 stream = ExtResource( 3 )
 volume_db = -20.0
 autoplay = true
-bus = "Ambient"
 
 [node name="SultanCollectable" parent="." instance=ExtResource( 7 )]
 position = Vector2( 647, 285 )

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Terrain de jeu"
+start_phrase = "Terrain de jeu"
+description = "Bienvenue dans le terrain de jeu!
+
+Ici vous pouvez utiliser le système ILYVA autant que vous voulez.
+
+Pour quitter, utilisez le menu pause, ou dans le programme [code]hints.sh[/code] appuyez sur \"Passer l'énigme\".
+
+Amusez-vous bien!"
+given_by = "Mathieu"
+hints = PoolStringArray(  )
+hints_action = PoolStringArray( "", "", "" )
+additional_apps = PoolStringArray(  )

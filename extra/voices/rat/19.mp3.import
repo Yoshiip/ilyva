@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/19.mp3-7005200f3576a8224e1a8acf438a89a9.mp3str"
+
+[deps]
+
+source_file="res://extra/voices/rat/19.mp3"
+dest_files=[ "res://.import/19.mp3-7005200f3576a8224e1a8acf438a89a9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

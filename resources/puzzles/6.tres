@@ -1,13 +1,15 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://scripts/resources/Puzzle.gd" type="Script" id=1]
-[ext_resource path="res://images/portraits/beaux_arts/tablette_chiba.png" type="Texture" id=2]
+[ext_resource path="res://images/portraits/tablette.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 portrait = ExtResource( 2 )
 name = "Réparer la tablette du Chiba"
 start_phrase = "La tablette du Chiba vous lance une énigme!"
-description = "Vous 4 allez donc au Chiba, restaurant japonais à volonté. Cependant, vous êtes censé commander avec une tablette, évidemment sous Linux, mais qui visiblement… Ne marche pas pour votre table uniquement… pas de chance ! Mais vous n’allez pas demander à quelqu’un de résoudre le problème, ce serait trop long. Vous prenez le problème en charge."
-given_by = ""
-hints = [ "1", "2", "3" ]
+description = "Vous auriez aimé déguster un bon repas tous ensemble, mais la tablette ne marche pas pour votre table, et seule celle-ci… pas de chance ! Mais vous n’allez pas demander à quelqu’un de résoudre le problème, ce serait trop long. Vous prenez le problème en main."
+given_by = "La tablette du Chiba"
+hints = [ "Vous avez réussi a accéder à un fichier contenant des mots de passes, allez-y jeter un oeil!", "Pour modifier les permissions accordées à un fichier, ou à un dossier, utilisez la commande chmod. Consultez les permissions accordées à vos dossiers et vos fichiers avec la commande ls -l.", "Accordez toutes les permissions possibles à un élément avec la commande chmod 777 element." ]
+hints_action = PoolStringArray( "", "", "" )
+additional_apps = PoolStringArray(  )

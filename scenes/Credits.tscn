@@ -8,9 +8,12 @@
 [ext_resource path="res://images/icons/heart.png" type="Texture" id=6]
 [ext_resource path="res://fonts/MADE Mirage Medium PERSONAL USE.otf" type="DynamicFontData" id=7]
 [ext_resource path="res://scripts/ui/Credits.gd" type="Script" id=8]
-[ext_resource path="res://images/backgrounds/long (1).jpg" type="Texture" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/long (1).jpg-ee39fb5d013fcdbe222680e8bc8e5024.stex"
+
+[sub_resource type="DynamicFont" id=3]
 size = 48
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -29,7 +32,7 @@ theme = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 2160.0
-texture = ExtResource( 9 )
+texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
@@ -170,8 +173,8 @@ text = "Avec la présence de
 M. Mathieu
 Louane
 Clément
-Dogukan
 Le rat
+Dogukan
 Mme. Everaere
 M. Baste"
 fit_content_height = true
@@ -263,7 +266,7 @@ rect_min_size = Vector2( 0, 400 )
 margin_top = 3687.0
 margin_right = 640.0
 margin_bottom = 3749.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Merci d'avoir joué!"
 align = 1
 

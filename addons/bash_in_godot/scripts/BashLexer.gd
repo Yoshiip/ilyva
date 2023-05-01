@@ -196,6 +196,12 @@ func read(input: String) -> Array:
 				can_accept_variable = false
 				continue
 			if identifier.token.value in Tokens.KEYWORDS:
+				# The `do` keyword can accept variable declarations in its body.
+				# As soon as there is another keyword, we set can_accept_variable to false.
+				if identifier.token.value == "do":
+					can_accept_variable = true
+				else:
+					can_accept_variable = false
 				result.append(BashToken.new(Tokens.KEYWORD, identifier.token.value))
 				pos = identifier.pos
 				continue
@@ -214,6 +220,8 @@ func read(input: String) -> Array:
 							else:
 								pos += string.value.length() + 2
 							result.append(BashToken.new(Tokens.STRING, string.value, { "quote": string.quote }))
+						elif input[pos] == '$':
+							continue
 						else:
 							var value = _read_identifier(input, pos, length, true)
 							result.append(value.token)
@@ -236,11 +244,11 @@ func read(input: String) -> Array:
 func _read_identifier(input: String, pos: int, length: int, count_equals_sign: bool) -> Dictionary:
 	var identifier := ""
 	if count_equals_sign: # we want to include "=" in the identifier
-		while pos < length and (not input[pos] in [" ", "$", ">", "<", ">>", "\n"]):
+		while pos < length and (not input[pos] in [" ", "$", ">", "<", ">>", "\n", ";"]):
 			identifier += input[pos]
 			pos += 1
 	else: # we don't want to include the "=" in the indentifier (hence stopping as soon as we encounter one)
-		while pos < length and (not input[pos] in [" ", "$", ">", "<", ">>", "=", "\n"]):
+		while pos < length and (not input[pos] in [" ", "$", ">", "<", ">>", "=", "\n", ";"]):
 			identifier += input[pos]
 			pos += 1
 	return {

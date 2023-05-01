@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/saint_philibert.mp3-21f4270795b558df0ef2a90ed9c64880.mp3str"
+
+[deps]
+
+source_file="res://extra/musics/saint_philibert.mp3"
+dest_files=[ "res://.import/saint_philibert.mp3-21f4270795b558df0ef2a90ed9c64880.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

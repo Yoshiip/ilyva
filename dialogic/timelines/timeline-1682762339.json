@@ -3,6 +3,7 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1682697251.json",
@@ -24,19 +25,37 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Bon je pense que tu t’en es pas mal sorti, avec ce que je t’ai appris tu devrais pouvoir y arriver"
+			"text": "Bon je pense que tu t’en es pas mal sorti, avec ce que je t’ai appris tu devrais pouvoir y arriver",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/44.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Merci beaucoup euh… tu as un nom?"
+			"text": "Merci beaucoup euh… tu as un nom?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": ""
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Oui ! je m’appelle rat !"
+			"text": "Oui ! je m’appelle rat !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/45.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -48,7 +67,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "T’as intérêt parce que j’ai pas envie que tu échoues… pas encore une fois…"
+			"text": "T’as intérêt parce que j’ai pas envie que tu échoues… pas encore une fois…",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/46.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -60,7 +85,13 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "HAHA BON BREF allez bonne chance !"
+			"text": "HAHA BON BREF allez bonne chance !",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/47.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -77,13 +108,25 @@
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Au fait..."
+			"text": "Au fait...",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/48.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1682697251.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "J'ai trouvé une clé par terre, je sais pas à qui ça appartient. Tu la veut ?"
+			"text": "J'ai trouvé une clé par terre, je sais pas à qui ça appartient. Tu la veut ?",
+			"voice_data": {
+				"0": {
+					"audio_bus": "Voices",
+					"file": "res://extra/voices/rat/49.mp3"
+				}
+			}
 		},
 		{
 			"character": "character-1677363460.json",
@@ -98,6 +141,28 @@
 				],
 				"method_name": "add_to_inventory",
 				"target_node_path": "/root/GameManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " "
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Vous gagnez une clé"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
 			},
 			"event_id": "dialogic_042"
 		}

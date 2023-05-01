@@ -6,6 +6,7 @@ onready var portrait: TextureRect = $Canvas/Container/Portrait
 
 
 func _ready() -> void:
+	MusicManager.start_music("puzzle", 1.0)
 	$Canvas/Container/Portrait.texture = GameManager.current_puzzle.portrait
 	$Canvas/Container/Label.text = GameManager.current_puzzle.start_phrase
 	$Canvas/Container/Number.text = str("00", GameManager.current_puzzle.get_puzzle_id())

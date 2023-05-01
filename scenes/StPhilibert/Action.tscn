@@ -80,6 +80,7 @@ pause_mode = 1
 script = ExtResource( 3 )
 zone_id = "saint_philibert"
 zone_name = "Action"
+music_id = "saint_philibert"
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -64
@@ -117,6 +118,6 @@ max_story_progress = -1
 stream = ExtResource( 7 )
 volume_db = -20.0
 autoplay = true
-bus = "Ambient"
+bus = "Effects"
 
 [editable path="Arrow"]
