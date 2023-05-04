@@ -79,7 +79,7 @@ func _ready() -> void:
 	$Canvas/Container/ZoneName.text = zone_name
 	
 	MusicManager.start_music(music_id)
-#	$Canvas/Container/Time.text = time
+	GameManager.save()
 
 var in_dialogue := false
 

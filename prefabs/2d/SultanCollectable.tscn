@@ -73,7 +73,7 @@ shader_param/inset = 0.0
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 48, 48 )
 
-[node name="SultanCollectable" type="Area2D" groups=["Interaction"]]
+[node name="SultanCollectable" type="Area2D" groups=["Interaction", "Sultan"]]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

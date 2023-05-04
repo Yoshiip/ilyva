@@ -15,24 +15,28 @@ func _ready() -> void:
 	extra = OS.get_name() != "HTML5"
 	AudioServer.set_bus_volume_db(music_bus, linear2db(settings.music / 100.0))
 	AudioServer.set_bus_volume_db(effects_bus, linear2db(settings.effects / 100.0))
-#		save_data = SaveData.new()
-#		save()
+
+func new_game() -> void:
+	save_data = SaveData.new()
+	apply_data()
+
+const PROPERTIES_TO_SAVE := ["progress", "unlocked_levels", "current_subway_stop", "sultans", "items", "puzzles_solves"]
+
+func apply_data() -> void:
+	for property in PROPERTIES_TO_SAVE:
+		set(property, save_data.get(property))
+	
 
 func load_save() -> void:
-	return
-#	save_data = save_data.load_data()
-#	print("loading data...")
-#	for property in ["progress", "unlocked_levels", "current_subway_stop", "one_time_interacts", "settings", "sultans", "items"]:
-#		set(property, save_data.get(property))
+	save_data = SaveData.new().load_data()
+	apply_data()
 
 func save() -> void:
-	return
-#	print("saving data...")
-#	if !SaveData.save_exists():
-#		save_data = SaveData.new()
-#	for property in ["progress", "unlocked_levels", "current_subway_stop", "one_time_interacts", "settings", "sultans", "items"]:
-#		save_data.set(property, get(property))
-#	save_data.save_data()
+	if save_data != null:
+		for property in PROPERTIES_TO_SAVE:
+			save_data.set(property, get(property))
+		save_data.scene_path = get_tree().current_scene.filename
+		save_data.save_data()
 
 #var current_puzzle : Resource
 
@@ -75,11 +79,15 @@ var progress := {
 	"game_finished": false,
 }
 
+var sultans := []
+var items := []
+
+var puzzles_solves := 0
+
 var unlocked_levels := [
 	0, 1, 3
 ]
 var current_subway_stop := 3
-var one_time_interacts := []
 
 func unlock_level(level_id : String) -> void:
 	if !unlocked_levels.has(level_id):
@@ -92,14 +100,9 @@ var settings := {
 	"sensivity": 10.0,
 	"music": 50,
 	"effects": 50,
-	"3d_resolution": 100,
+	"3d_resolution": 75,
 	"voices": 50,
 } setget set_settings
-
-
-var sultans := []
-var items := []
-
 
 
 const ITEMS := {

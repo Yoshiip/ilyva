@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	visible = !get_parent().in_dialogue
 	position = lerp(position, get_global_mouse_position(), delta * 15.0)
-	if is_instance_valid(current_area) && !get_parent().in_dialogue:
+	if is_instance_valid(current_area) && !get_parent().in_dialogue && !current_area.is_in_group("Sultan"):
 		tooltip.visible = true
 		tooltip.rect_position = current_area.position - tooltip.rect_size / 2.0 + Vector2(0, 48)
 		if tooltip.bbcode_text != "[center][wave]" + current_area.name + "[/wave][/center]":

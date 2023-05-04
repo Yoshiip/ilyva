@@ -21,6 +21,11 @@ func play_animation(backward = false) -> void:
 	in_animation = true
 	
 	
+	var _total_progress := (GameManager.sultans.size() + GameManager.puzzles_solves + GameManager.items.size()) / (12.0 + 13.0 + 4.0)
+	
+	$Container/Progression/Bar.value = _total_progress
+	$Container/Progression/Value.text = str(round(_total_progress * 100.0), "%")
+	
 	var size_y := get_viewport().size.y
 	
 	play_tween($Container/TopPart, "rect_position:y", -256, 0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)

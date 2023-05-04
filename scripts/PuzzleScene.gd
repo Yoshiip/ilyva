@@ -13,7 +13,6 @@ var puzzle_handler : Node = null
 
 
 func _ready() -> void:
-	Engine.time_scale = 1.0
 	add_child(tween)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
 	add_child(pause_menu)
@@ -76,11 +75,6 @@ func add_timer() -> void:
 
 func prevent_bomb() -> void:
 	timer.prevent()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("speedhack"):
-		skip()
 
 
 func _on_CloseAll_pressed() -> void:

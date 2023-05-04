@@ -4,7 +4,9 @@ extends Resource
 const SAVE_GAME_BASE_PATH := "user://save"
 
 
-var progress := {
+export var scene_path := ""
+
+export var progress := {
 	"global": 0,
 	"saint_philibert": {
 		"Thomas": 0,
@@ -17,48 +19,44 @@ var progress := {
 	"beaux_arts": {
 		"digicode_unlocked": false,
 		"has_card": false,
+		"toilets": false,
 		"Digicode": 0,
 		"Clément": 0,
 		"Manon": 0,
 		"Chiba": 0,
 		"Sultan": 0,
+		"Station": 0,
 	},
 	"pont_de_bois": {
 		"Rat": 0,
 	},
 	"iut": {
 		"CDI": 0,
+		"Couloir": 0,
+		"Station": 0,
 		"Bureau": 0,
-	}
+		"Progress": 0,
+		"Bastum": 0,
+	},
+	"game_finished": false,
 }
-
-var unlocked_levels := [
-	3, 0
+export var sultans := []
+export var items := []
+export var puzzles_solves := 0
+export var unlocked_levels := [
+	0, 1, 3
 ]
-var current_subway_stop := 3
-var one_time_interacts := []
-
-func unlock_level(level_id : String) -> void:
-	unlocked_levels.append(int(level_id))
-
-var settings := {
-	"3d_quality": 2, # 0 = low, 1 = medium, 2 = high
-	"enable_3d": false,
-	"fov": 70,
-	"sensivity": 10.0
-}
-
-
-var sultans := []
-var items := []
+export var current_subway_stop := 3
 
 func save_data() -> void:
+	print("Saving data at ", get_save_path())
 	if ResourceSaver.save(get_save_path(), self) != OK:
 		print("error saving")
 
 # stole from GDQuest
 
 func load_data() -> Resource:
+	print("Loading data at ", get_save_path())
 	var save_path := get_save_path()
 	if ResourceLoader.has_cached(save_path):
 		return ResourceLoader.load(save_path, "", true)

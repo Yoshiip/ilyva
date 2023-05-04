@@ -4,7 +4,6 @@ onready var tween := Tween.new()
 
 export var character_name := ""
 export(int, "Dialogue", "Action", "No icon") var icon_type
-export var one_time_interact := false
 
 
 export(StreamTexture) var portrait : StreamTexture
@@ -24,8 +23,6 @@ func _ready() -> void:
 		$Icon.texture = preload("res://images/icons/exclamation_icon.png")
 	elif icon_type == 3:
 		$Icon.queue_free()
-	if name in GameManager.one_time_interacts:
-		queue_free()
 
 	if character_name == "":
 		character_name = name
@@ -55,14 +52,8 @@ func _process(delta: float) -> void:
 func interact() -> void:
 	get_tree().current_scene.current_dialogue_character = self
 	get_tree().current_scene.current_dialogue_id = timeline_id
-	if one_time_interact:
-		get_tree().current_scene.create_dialogue(str(get_tree().current_scene.zone_id, "/" + character_name +"/0"))
-	else:
-		get_tree().current_scene.create_dialogue(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
+	get_tree().current_scene.create_dialogue(str(get_tree().current_scene.zone_id, "/" + character_name +"/", timeline_id))
 	last_timeline_spoke = timeline_id
-	if one_time_interact:
-		GameManager.one_time_interacts.append(name)
-		queue_free()
 
 func turn_light(on : bool) -> void:
 	if on:

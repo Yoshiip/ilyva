@@ -284,27 +284,44 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="NewGame" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 235.0
-margin_right = 346.0
+margin_left = 124.0
+margin_right = 235.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
 text = "Jouer"
-btn_label = "Jouer"
+btn_label = "Nouvelle partie"
 btn_icon = ExtResource( 9 )
 
+[node name="Continue" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 275.0
+margin_right = 433.0
+mouse_default_cursor_shape = 2
+text = "Continuer"
+btn_label = "Continuer"
+btn_icon = ExtResource( 7 )
+
 [node name="Settings" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 386.0
-margin_right = 568.0
+margin_left = 473.0
+margin_right = 655.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
 btn_label = "Paramètres"
 btn_icon = ExtResource( 7 )
 
 [node name="Playground" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 608.0
-margin_right = 790.0
+margin_left = 695.0
+margin_right = 901.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Terrain de jeu"
 btn_label = "Terrain de jeu"
 btn_icon = ExtResource( 7 )
 
 [node name="Quit" parent="Canvas/Container/Buttons/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 830.0
-margin_right = 955.0
+margin_left = 941.0
+margin_right = 1066.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
 text = "Quitter"
 btn_label = "Quitter"
 btn_icon = ExtResource( 8 )
@@ -475,6 +492,7 @@ bus = "Effects"
 
 [connection signal="finished" from="Canvas/Container/Control/AspectRatioContainer/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/NewGame" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Playground" to="." method="_on_Playground_pressed"]
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]

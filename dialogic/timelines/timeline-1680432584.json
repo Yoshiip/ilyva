@@ -10,7 +10,7 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "On dirait de l'argent..."
+			"text": "On dirait un porte-monnaie.."
 		},
 		{
 			"character": "character-1677363460.json",
@@ -22,7 +22,13 @@
 			"character": "character-1677363460.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Je devrais les prendre, ça pourrait m'être utile!"
+			"text": "Il a une drôle de forme, néanmoins!"
+		},
+		{
+			"character": "character-1677363460.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Je devrait le prendre, ça pourrait m'être utile!"
 		},
 		{
 			"call_node": {
@@ -43,11 +49,21 @@
 				"target_node_path": "/root/Root"
 			},
 			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "increment_progress",
+				"target_node_path": "/root/Root"
+			},
+			"event_id": "dialogic_042"
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1680432584.json",
-		"name": "0"
+		"name": "1"
 	}
 }

@@ -13,6 +13,8 @@ onready var noise := NoiseTexture.new()
 
 func _ready() -> void:
 	MusicManager.start_music("menu")
+	if !SaveData.save_exists():
+		$Canvas/Container/Buttons/HBoxContainer/Continue.queue_free()
 	if OS.get_name() == "HTML5":
 		$Canvas/Container/Buttons/HBoxContainer/Quit.queue_free()
 #	$Canvas/Container/Buttons/HBoxContainer/Continue.visible = SaveData.save_exists()
@@ -51,18 +53,23 @@ func _on_Credits_pressed() -> void:
 	if get_tree().change_scene("res://scenes/Credits.tscn") != OK:
 		print("error while changing scene")
 
+var settings : Panel
+
 func _on_Settings_pressed() -> void:
-	$Canvas/Container.add_child(Settings.instance())
+	if !is_instance_valid(settings):
+		settings = Settings.instance()
+		$Canvas/Container.add_child(settings)
 
 func _on_Play_pressed() -> void:
+	GameManager.new_game()
 	if GameManager.progress["saint_philibert"]["can_use_subway"]:
 		transition.transition_to_scene("res://scenes/SubwaySimplified.tscn")
 	else:
 		transition.transition_to_scene("res://scenes/Intro.tscn")
 
 func _on_Continue_pressed() -> void:
-	pass
-#	GameManager.load_save()
+	GameManager.load_save()
+	get_tree().change_scene(GameManager.save_data.scene_path)
 #	if get_tree().change_scene("res://scenes/SubwaySimplified.tscn") != OK:
 #		print()
 

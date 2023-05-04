@@ -103,7 +103,7 @@ material = SubResource( 10 )
 position = Vector2( 497, 304 )
 portrait = ExtResource( 1 )
 sprite_scale = 0.25
-max_story_progress = 1
+max_story_progress = 2
 
 [node name="Thomas" parent="." instance=ExtResource( 7 )]
 position = Vector2( -138, 376 )
@@ -114,10 +114,9 @@ max_story_progress = 4
 [node name="Nano" parent="." instance=ExtResource( 7 )]
 position = Vector2( 494, 381 )
 icon_type = 1
-one_time_interact = true
 portrait = ExtResource( 3 )
 min_story_progress = 1
-max_story_progress = -1
+max_story_progress = 2
 
 [node name="Action" parent="." instance=ExtResource( 8 )]
 position = Vector2( 766, 310 )

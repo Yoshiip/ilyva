@@ -16,3 +16,8 @@ func _on_Slider_value_changed(value: float) -> void:
 
 func _on_Button_pressed() -> void:
 	get_tree().change_scene(str("res://scenes/", $Container/Scene/Text.text, ".tscn"))
+
+
+func _on_Skip_pressed() -> void:
+	if get_tree().current_scene.name == "Puzzle":
+		get_tree().current_scene.skip()

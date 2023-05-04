@@ -18,5 +18,6 @@ func _process(delta: float) -> void:
 
 
 func _on_ReturnButton_pressed() -> void:
+	GameManager.puzzles_solves += 1
 	if get_tree().change_scene(GameManager.context_before_puzzle.scene) != OK:
 		print("Error changing scene")
