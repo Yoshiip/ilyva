@@ -87,7 +87,7 @@ music_id = "saint_philibert"
 z_index = -64
 texture = ExtResource( 2 )
 
-[node name="Subway" parent="." instance=ExtResource( 8 )]
+[node name="Métro" parent="." instance=ExtResource( 8 )]
 position = Vector2( 134, 310 )
 __meta__ = {
 "_edit_group_": true
@@ -96,7 +96,7 @@ scene_name = "subway"
 condition = "can_use_subway"
 show_confirm = true
 
-[node name="Icon" parent="Subway" index="0"]
+[node name="Icon" parent="Métro" index="0"]
 material = SubResource( 10 )
 
 [node name="Mathieu" parent="." instance=ExtResource( 7 )]
@@ -135,5 +135,5 @@ stream = ExtResource( 6 )
 volume_db = -20.0
 autoplay = true
 
-[editable path="Subway"]
+[editable path="Métro"]
 [editable path="Action"]

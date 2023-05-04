@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://prefabs/puzzles/modals/BaseModal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fonts/Hack-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://fonts/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 5.0
@@ -37,7 +36,7 @@ font_data = ExtResource( 2 )
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = ExtResource( 3 )
+font_data = ExtResource( 2 )
 
 [node name="Modal" instance=ExtResource( 1 )]
 margin_right = 480.0
@@ -83,10 +82,7 @@ scroll_active = false
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 37.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 29.0
 
 [node name="Text" type="RichTextLabel" parent="Content/TabContainer/Fenêtres" index="0"]
 anchor_right = 1.0
@@ -122,10 +118,7 @@ text = "- L'application apps.sh est là où vous pouvez ouvrir de nouvelles fen�
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 37.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 29.0
 
 [node name="Text" type="RichTextLabel" parent="Content/TabContainer/Terminal" index="0"]
 anchor_right = 1.0
@@ -149,10 +142,7 @@ Vous pouvez voir la liste des commandes en écrivant help dans le terminal."
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 37.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 29.0
 
 [node name="Text" type="RichTextLabel" parent="Content/TabContainer/Indices" index="0"]
 anchor_right = 1.0

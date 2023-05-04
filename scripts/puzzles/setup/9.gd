@@ -6,7 +6,7 @@ extends BasePuzzleHandler
 var system := System.new([])
 var redirection_path = null # PathObject
 
-func command_executed(command, output) -> void:
+func command_executed(command, _output) -> void:
 	var redirection_on_standard_output = command.redirections[1]
 	if redirection_on_standard_output != null and redirection_on_standard_output.type == Tokens.WRITING_REDIRECTION:
 		redirection_path = (redirection_on_standard_output.target as SystemElement).absolute_path

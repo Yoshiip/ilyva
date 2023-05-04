@@ -575,7 +575,7 @@ text = "Avec la présence de
 M. Mathieu
 Louane
 Clément
-Le rat (doublé par Lude)
+Le rat
 Dogukan
 Mme. Everaere
 M. Baste"
@@ -605,7 +605,7 @@ rect_min_size = Vector2( 0, 400 )
 [node name="Label3" type="Label" parent="Canvas/Container/Panel/Credits"]
 margin_top = 2254.0
 margin_right = 540.0
-margin_bottom = 2667.0
+margin_bottom = 2719.0
 text = "Sons - soundsnap.com
 
 Modélisation,  Affiche - Blender
@@ -620,29 +620,31 @@ Dialogues - Dialogic
 
 Grain, textures - ResourceBoy
 
-Icônes - KOZMIK"
+Icônes - KOZMIK
+
+Voix du métro - Akiral"
 align = 1
 autowrap = true
 
 [node name="Separator4" type="Control" parent="Canvas/Container/Panel/Credits"]
-margin_top = 2671.0
+margin_top = 2723.0
 margin_right = 540.0
-margin_bottom = 3071.0
+margin_bottom = 3123.0
 rect_min_size = Vector2( 0, 400 )
 
 [node name="GodotBlack" type="TextureRect" parent="Canvas/Container/Panel/Credits"]
-margin_top = 3075.0
+margin_top = 3127.0
 margin_right = 540.0
-margin_bottom = 3175.0
+margin_bottom = 3227.0
 rect_min_size = Vector2( 0, 100 )
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Container/Panel/Credits"]
-margin_top = 3179.0
+margin_top = 3231.0
 margin_right = 540.0
-margin_bottom = 3279.0
+margin_bottom = 3331.0
 alignment = 1
 
 [node name="Iut" type="TextureRect" parent="Canvas/Container/Panel/Credits/HBoxContainer"]
@@ -664,33 +666,33 @@ expand = true
 stretch_mode = 6
 
 [node name="Label4" type="Label" parent="Canvas/Container/Panel/Credits"]
-margin_top = 3283.0
+margin_top = 3335.0
 margin_right = 540.0
-margin_bottom = 3358.0
+margin_bottom = 3410.0
 text = "2023
 
 https://ilyva.sciencesky.fr	"
 align = 1
 
 [node name="Separator5" type="Control" parent="Canvas/Container/Panel/Credits"]
-margin_top = 3362.0
+margin_top = 3414.0
 margin_right = 540.0
-margin_bottom = 3762.0
+margin_bottom = 3814.0
 rect_min_size = Vector2( 0, 400 )
 
 [node name="Label5" type="Label" parent="Canvas/Container/Panel/Credits"]
-margin_top = 3766.0
+margin_top = 3818.0
 margin_right = 540.0
-margin_bottom = 3828.0
+margin_bottom = 3880.0
 custom_fonts/font = SubResource( 3 )
 text = "Merci d'avoir joué!"
 align = 1
 
 [node name="TextureRect" type="TextureRect" parent="Canvas/Container/Panel/Credits"]
 modulate = Color( 1, 0, 0, 0.498039 )
-margin_top = 3832.0
+margin_top = 3884.0
 margin_right = 540.0
-margin_bottom = 3932.0
+margin_bottom = 3984.0
 rect_min_size = Vector2( 0, 100 )
 texture = ExtResource( 6 )
 expand = true

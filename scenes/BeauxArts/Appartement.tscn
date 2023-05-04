@@ -156,18 +156,18 @@ portrait = ExtResource( 1 )
 sprite_scale = 0.5
 max_story_progress = -1
 
-[node name="Entrance" parent="." instance=ExtResource( 6 )]
+[node name="Entrée" parent="." instance=ExtResource( 6 )]
 position = Vector2( 768, 426 )
 __meta__ = {
 "_edit_group_": true
 }
 scene_name = "BeauxArts/Entrance"
 
-[node name="Icon" parent="Entrance" index="0"]
+[node name="Icon" parent="Entrée" index="0"]
 material = SubResource( 5 )
 rotation = 3.14159
 
-[node name="Collision" parent="Entrance" index="1"]
+[node name="Collision" parent="Entrée" index="1"]
 position = Vector2( -3.8147e-06, 17.5 )
 
 [node name="Toilettes" parent="." instance=ExtResource( 6 )]
@@ -182,5 +182,5 @@ condition = "toilets"
 [node name="Icon" parent="Toilettes" index="0"]
 material = SubResource( 18 )
 
-[editable path="Entrance"]
+[editable path="Entrée"]
 [editable path="Toilettes"]

@@ -103,19 +103,19 @@ margin_right = -16.0
 margin_bottom = -16.0
 custom_styles/bg = SubResource( 33 )
 scroll_horizontal_enabled = false
-scroll_vertical = 100
+scroll_vertical = 428
 
 [node name="Container" type="VBoxContainer" parent="Scroll"]
-margin_top = -92.0
+margin_top = -420.0
 margin_right = 592.0
-margin_bottom = 1380.0
+margin_bottom = 1012.0
 rect_min_size = Vector2( 592, 0 )
 custom_constants/separation = 64
 
 [node name="Audio" type="Panel" parent="Scroll/Container"]
 margin_right = 592.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 0, 210 )
+margin_bottom = 170.0
+rect_min_size = Vector2( 0, 170 )
 custom_styles/panel = SubResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Scroll/Container/Audio"]
@@ -144,17 +144,10 @@ label = "Effets sonores"
 settings_to_update = "effects"
 default = 80.0
 
-[node name="Voices" parent="Scroll/Container/Audio/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 158.0
-margin_bottom = 191.0
-label = "Voix"
-settings_to_update = "voices"
-default = 80.0
-
 [node name="Graphics" type="Panel" parent="Scroll/Container"]
-margin_top = 274.0
+margin_top = 234.0
 margin_right = 592.0
-margin_bottom = 474.0
+margin_bottom = 434.0
 rect_min_size = Vector2( 0, 200 )
 custom_styles/panel = SubResource( 29 )
 
@@ -197,9 +190,9 @@ align = 1
 autowrap = true
 
 [node name="3D" type="Panel" parent="Scroll/Container"]
-margin_top = 538.0
+margin_top = 498.0
 margin_right = 592.0
-margin_bottom = 1088.0
+margin_bottom = 1048.0
 rect_min_size = Vector2( 0, 550 )
 custom_styles/panel = SubResource( 29 )
 
@@ -286,22 +279,31 @@ default = 90.0
 min_value = 70.0
 max_value = 120.0
 
-[node name="HSeparator2" type="HSeparator" parent="Scroll/Container/3D/Container"]
+[node name="3DResolution" parent="Scroll/Container/3D/Container" instance=ExtResource( 4 )]
 margin_top = 314.0
+margin_bottom = 347.0
+label = "Résolution 3D (%)"
+settings_to_update = "3d_resolution"
+default = 75.0
+min_value = 10.0
+max_value = 200.0
+
+[node name="HSeparator2" type="HSeparator" parent="Scroll/Container/3D/Container"]
+margin_top = 355.0
 margin_right = 576.0
-margin_bottom = 318.0
+margin_bottom = 359.0
 
 [node name="Graphics3" type="Label" parent="Scroll/Container/3D/Container"]
-margin_top = 326.0
+margin_top = 367.0
 margin_right = 576.0
-margin_bottom = 349.0
+margin_bottom = 390.0
 text = "Commandes"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="Scroll/Container/3D/Container"]
-margin_top = 357.0
+margin_top = 398.0
 margin_right = 576.0
-margin_bottom = 488.0
+margin_bottom = 529.0
 custom_constants/hseparation = 80
 columns = 2
 
@@ -410,9 +412,9 @@ toggle_mode = true
 text = "Supprimer données de sauvegarde"
 
 [node name="scroll_margin" type="Control" parent="Scroll/Container"]
-margin_top = 1152.0
+margin_top = 1112.0
 margin_right = 592.0
-margin_bottom = 1472.0
+margin_bottom = 1432.0
 rect_min_size = Vector2( 0, 320 )
 
 [node name="Label" type="Label" parent="."]

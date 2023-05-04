@@ -5,8 +5,8 @@ extends BasePuzzleHandler
 
 var variable_created := false
 
-func variable_set(name, value, is_new) -> void:
-	if name == "rat" and value.to_lower() == "hello rats":
+func variable_set(name, value, _is_new) -> void:
+	if name.to_lower() == "rat" and value.to_lower() == "hello rats":
 		variable_created = true
 
 func interface_changed(content) -> void:

@@ -49,6 +49,6 @@ var correct_system := System.new([
 # solution en seule ligne :
 # cd translator ; mv modules/lang4.bin langages ; mv langages/satel1.bin satellite ; mv langages/lang_2.bin langages/lang2.bin
 
-func command_executed(command, output) -> void:
+func command_executed(_command, _output) -> void:
 	if system.root.equals(correct_system.root):
 		grant_victory()

@@ -149,18 +149,18 @@ zone_name = "Appartement"
 z_index = -64
 texture = ExtResource( 4 )
 
-[node name="Appartement" parent="." instance=ExtResource( 6 )]
+[node name="Salon de Clément" parent="." instance=ExtResource( 6 )]
 position = Vector2( -126, 452 )
 __meta__ = {
 "_edit_group_": true
 }
 scene_name = "BeauxArts/Appartement"
 
-[node name="Icon" parent="Appartement" index="0"]
+[node name="Icon" parent="Salon de Clément" index="0"]
 material = SubResource( 5 )
 rotation = 3.14159
 
-[node name="Collision" parent="Appartement" index="1"]
+[node name="Collision" parent="Salon de Clément" index="1"]
 position = Vector2( -3.8147e-06, 17.5 )
 
 [node name="SultanCollectable" parent="." instance=ExtResource( 7 )]
@@ -170,5 +170,5 @@ sultan_id = "boulba"
 [node name="Icon" parent="SultanCollectable" index="0"]
 material = SubResource( 12 )
 
-[editable path="Appartement"]
+[editable path="Salon de Clément"]
 [editable path="SultanCollectable"]

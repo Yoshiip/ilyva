@@ -12,9 +12,9 @@ onready var transition := preload("res://prefabs/Transition.tscn").instance()
 
 func _ready() -> void:
 	MusicManager.start_music("subway")
-	$Station.station_changed(GameManager.current_subway_stop)
+	station_node.station_changed(GameManager.current_subway_stop)
 	add_child(transition)
-	$"%ZoneName".play_animation(GameManager.STATIONS[$Station.current_station].name)
+	$"%ZoneName".play_animation(GameManager.STATIONS[station_node.current_station].name)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
 	add_child(pause_menu)
 
@@ -32,7 +32,12 @@ var can_travel := false setget set_can_travel
 #	no lights			no shadows				lights + shadow
 #												
 
+onready var world_environment = get_tree().get_root().find_node("WorldEnvironment", true, false)
+onready var super_scaling = get_tree().get_root().find_node("SuperScaling", true, false)
+onready var station_node = get_tree().get_root().find_node("Station", true, false)
+
 func settings_updated() -> void:
+#	$SuperScaling.scale_factor = GameManager.settings.get("3d_resolution")
 	var _value = GameManager.settings.get("3d_quality")
 	match _value:
 		0:
@@ -41,17 +46,18 @@ func settings_updated() -> void:
 			update_lights_and_shadows(true, false)
 		2:
 			update_lights_and_shadows(true, true)
-	$WorldEnvironment.environment.glow_high_quality = _value != 0
-	$WorldEnvironment.environment.fog_enabled = _value != 0
-	$WorldEnvironment.environment.ssao_enabled = _value != 0
-	$WorldEnvironment.environment.ss_reflections_enabled = _value != 0
-	$WorldEnvironment.environment.ss_reflections_max_steps = 512 if _value == 2 else 64
+	world_environment.environment.glow_high_quality = _value != 0
+	world_environment.environment.fog_enabled = _value != 0
+	world_environment.environment.ssao_enabled = _value != 0
+	world_environment.environment.ss_reflections_enabled = _value != 0
+	world_environment.environment.ss_reflections_max_steps = 512 if _value == 2 else 64
+	super_scaling.scale_factor = GameManager.settings["3d_resolution"] / 100.0
 
 func update_lights_and_shadows(show_light : bool, enable_shadow : bool) -> void:
 	if !show_light:
-		$WorldEnvironment.environment.ambient_light_color = Color(0.5, 0.5, 0.5)
+		world_environment.environment.ambient_light_color = Color(0.5, 0.5, 0.5)
 	else:
-		$WorldEnvironment.environment.ambient_light_color = Color(0.25, 0.25, 0.25)
+		world_environment.environment.ambient_light_color = Color(0.25, 0.25, 0.25)
 	for light_group in get_tree().get_nodes_in_group("LightsGroup"):
 		for light in light_group.get_children():
 			light.visible = show_light
@@ -68,15 +74,17 @@ func _player_exited_subway(subway : Spatial) -> void:
 	current_subway = null
 	map.visible = false
 
+
+
 func set_can_travel(value : bool) -> void:
 	can_travel = value
 	if can_travel:
-		$Canvas/Container/TravelZoneName.text = GameManager.STATIONS[$Station.current_station].name
+		$Canvas/Container/TravelZoneName.text = GameManager.STATIONS[station_node.current_station].name
 	$Canvas/Container/TravelZoneName.visible = can_travel
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left") && can_travel:
-		transition.transition_to_scene(GameManager.STATIONS[$Station.current_station].scene)
+		transition.transition_to_scene(GameManager.STATIONS[station_node.current_station].scene)
 		
 var left_line_used := false
 var left_line_waiting := false
@@ -102,10 +110,10 @@ func play_zone_animation(arg) -> void:
 
 func add_subway(left_side : bool) -> void:
 	var _sub = MovingSubway.instance()
-	_sub.current_stop_id = $Station.current_station
+	_sub.current_stop_id = station_node.current_station
 	_sub.going_forward = left_side
 	_sub.translation = Vector3((1 if left_side else -1) * 1.8, 0.5, 0)
-	add_child(_sub)
+	get_node("Viewport").add_child(_sub)
 
 func _on_LeftPlatform_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):

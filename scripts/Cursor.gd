@@ -10,14 +10,14 @@ func _ready() -> void:
 	yield(get_tree().current_scene, "ready")
 	tooltip = get_tree().current_scene.tooltip
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	visible = !get_parent().in_dialogue
-	position = lerp(position, get_global_mouse_position(), 0.1)
+	position = lerp(position, get_global_mouse_position(), delta * 15.0)
 	if is_instance_valid(current_area) && !get_parent().in_dialogue:
 		tooltip.visible = true
 		tooltip.rect_position = current_area.position - tooltip.rect_size / 2.0 + Vector2(0, 48)
-		if tooltip.bbcode_text != "[center][wave]Interact[/wave][/center]":
-			tooltip.bbcode_text = "[center][wave]Interact[/wave][/center]"
+		if tooltip.bbcode_text != "[center][wave]" + current_area.name + "[/wave][/center]":
+			tooltip.bbcode_text = "[center][wave]" + current_area.name + "[/wave][/center]"
 
 	else:
 		tooltip.visible = false

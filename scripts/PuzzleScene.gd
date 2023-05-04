@@ -13,6 +13,7 @@ var puzzle_handler : Node = null
 
 
 func _ready() -> void:
+	Engine.time_scale = 1.0
 	add_child(tween)
 	pause_menu = preload("res://prefabs/PauseMenu.tscn").instance()
 	add_child(pause_menu)

@@ -20,6 +20,7 @@ func _ready() -> void:
 		var _hint_tab := HintTab.instance()
 		_hint_tab.name = str("Passer l'énigme")
 		_hint_tab.get_node("Text").bbcode_text = "[center]Des difficultés à faire l'énigme ?\nAppuyez sur ce bouton pour passer l'énigme:[/center]"
+		_hint_tab.get_node("Button").text = "Passer l'énigme"
 		if _hint_tab.get_node("Button").connect("pressed", self, "skip") != OK:
 			print("error connection")
 		$Content/Tabs.add_child(_hint_tab)

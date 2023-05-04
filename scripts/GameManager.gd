@@ -86,12 +86,13 @@ func unlock_level(level_id : String) -> void:
 		unlocked_levels.append(int(level_id))
 
 var settings := {
-	"3d_quality": 1, # 0 = low, 1 = medium, 2 = high
+	"3d_quality": 2, # 0 = low, 1 = medium, 2 = high
 	"enable_3d": false,
 	"fov": 70,
 	"sensivity": 10.0,
 	"music": 50,
 	"effects": 50,
+	"3d_resolution": 100,
 	"voices": 50,
 } setget set_settings
 
@@ -155,6 +156,10 @@ const APPS := {
 		"icon": 5,
 		"reference": preload("res://prefabs/puzzles/modals/Style.tscn"),
 	},
+	"music": {
+		"icon": 8,
+		"reference": preload("res://prefabs/puzzles/modals/Music.tscn"),
+	}
 }
 
 
@@ -209,7 +214,7 @@ func add_sultan(sultan_id : String) -> void:
 
 
 onready var NewItem := preload("res://prefabs/ui/NewItem.tscn")
-
+onready var DebugMenu := preload("res://prefabs/DebugMenu.tscn")
 func play_new_item_animation(item_id : String, is_sultan = false, callback = "") -> void:
 	var new_item := NewItem.instance()
 	new_item.item_id = item_id
@@ -232,9 +237,16 @@ func set_settings(value) -> void:
 	if get_tree().current_scene.has_method("settings_updated"):
 		get_tree().current_scene.call("settings_updated")
 	emit_signal("settings_updated")
+	
+
+var debug_menu : CanvasLayer
 
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.is_action_pressed("fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
 	if event.is_action_pressed("speedhack"):
-		Engine.time_scale = 20.0 if Engine.time_scale == 1.0 else 1.0
+		if is_instance_valid(debug_menu):
+			debug_menu.queue_free()
+		else:
+			debug_menu = DebugMenu.instance()
+			get_tree().current_scene.add_child(debug_menu)

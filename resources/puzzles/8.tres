@@ -10,6 +10,6 @@ name = "Les boucles"
 start_phrase = "Le rat vous lance une énigme!"
 description = "Le rat vous demande désormais d'écrire une boucle for, qui va afficher 5 fois le mot \"Salut\", avec un retour a la ligne."
 given_by = ""
-hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”).", "Appuyez sur ce bouton pour ajouter un fichier content la structure de base d'une boucle. Le fichier sera automatiquemetn ajouté dans votre terminal!" ]
+hints = [ "Voici un exemple de définition d’une variable [code]hello[/code] avec la valeur [code]world : hello=\"world\" . Pour afficher le contenu d’une variable, utilisez le préfixe [code]$. Exemple : [code]echo $hello[/code] (qui affiche le mot “word”).", "Appuyez sur ce bouton pour ajouter un fichier content la structure de base d'une boucle. Le fichier sera automatiquement ajouté dans votre terminal!" ]
 hints_action = PoolStringArray( "", "add_help_script" )
 additional_apps = PoolStringArray(  )

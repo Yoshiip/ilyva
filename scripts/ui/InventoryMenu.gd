@@ -12,6 +12,7 @@ func _ready() -> void:
 var in_animation := false
 
 var mouse_mode_before : int
+const ANIMATION_LENGTH := 0.5
 
 func play_animation(backward = false) -> void:
 	get_parent().move_child(self, get_parent().get_child_count())
@@ -19,24 +20,25 @@ func play_animation(backward = false) -> void:
 		return
 	in_animation = true
 	
+	
 	var size_y := get_viewport().size.y
 	
-	play_tween($Container/TopPart, "rect_position:y", -256, 0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	play_tween($Container/BottomPart, "rect_position:y", size_y + 128, size_y - 128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/TopPart, "rect_position:y", -256, 0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/BottomPart, "rect_position:y", size_y + 128, size_y - 128, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	
-	play_tween($Container/Resume, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	play_tween($Container/Container, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/Resume, "modulate:a", 0.0, 1.0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/Container, "modulate:a", 0.0, 1.0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 
-	play_tween($Container/SharpCorners, "margin_top", -128, 128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	play_tween($Container/SharpCorners, "margin_bottom", 128, -128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/SharpCorners, "margin_top", -128, 128, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/SharpCorners, "margin_bottom", 128, -128, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	
-	play_tween($Container/Gradient, "margin_top", -128, 128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	play_tween($Container/Gradient, "margin_bottom", 128, -128, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/Gradient, "margin_top", -128, 128, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/Gradient, "margin_bottom", 128, -128, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	
-	play_tween($Container/Inventory, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/Inventory, "modulate:a", 0.0, 1.0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	
-	play_tween($Container/Background, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-	play_tween($Container/NoiseTexture, "modulate:a", 0.0, 0.25, 1.0, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/Background, "modulate:a", 0.0, 1.0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
+	play_tween($Container/NoiseTexture, "modulate:a", 0.0, 0.25, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 #	print("animation!")
 	var _temp = tween.start()
 	yield(tween, "tween_started") # Prevent seeing the first frame being the animation completed
@@ -47,7 +49,7 @@ func play_animation(backward = false) -> void:
 		mouse_mode_before = Input.mouse_mode
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		$Container/Inventory.refresh()
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(ANIMATION_LENGTH), "timeout")
 	if backward:
 		visible = false
 		get_tree().paused = false

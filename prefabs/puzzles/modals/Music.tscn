@@ -1,0 +1,245 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://prefabs/puzzles/modals/BaseModal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/ui/play.png" type="Texture" id=2]
+[ext_resource path="res://images/ui/skip.png" type="Texture" id=3]
+[ext_resource path="res://scripts/puzzles/MusicModal.gd" type="Script" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/waveforms
+
+This shader is under CC0 license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+render_mode blend_premul_alpha;
+
+uniform int lines = 80; // Amount of lines the waveform is build up of
+uniform float amplitude : hint_range(0.0, 1.0) = 0.9; // Height of the wave
+uniform float frequency : hint_range(0.0, 0.5) = 0.1; // Set a lower value for a smoother wave
+uniform float intensity : hint_range(0.0, 1.0) = 0.75; // Lower values creates gaps in the wave while higher make the wave more solid
+uniform float line_sharpness : hint_range(0.0, 1.0) = 0.5; // Fuzzy edges on each line
+uniform float line_size : hint_range(0.0, 1.0) = 0.8; // Thickness of the lines
+uniform float fade : hint_range(0.0, 0.5) = 0.1; // Blurres the top and bottom of the lines
+uniform float rest_size : hint_range(-2., 2.) = -0.2; // The size of the lines when the line is not animating, i.e at value 0. Tweak if Fade is used.
+uniform float edge : hint_range(0.0, 0.5) = 0.05; // How close to the edges should the animation beginn
+uniform float speed = 0.5; // Speed of wave animation
+uniform vec4 color : hint_color = vec4(.8, 0.25, 0.5, 1.0); // Color of wave
+uniform bool dot_matrix = false; 
+uniform int dot_matriz_size = 80;
+
+uniform bool speech_sim = true; // Toggle to simulate speach. Will create a more erratic movement in the wave
+uniform float speech_intensity : hint_range(0.0, 2.0) = 0.8; // How fast will the speech movement be
+uniform float progress : hint_range(0.0, 1.0) = 1.0; // Use to turn the animation on and off from outside the shader. 0 - off, 1 - on. Can animate values between which will shrink the wave.
+
+float random(vec2 uv) {
+	return fract(sin(dot(uv.xy,
+	vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+float noise(vec2 uv) {
+	vec2 uv_index = floor(uv);
+	vec2 uv_fract = fract(uv);
+
+	// Four corners in 2D of a tile
+	float a = random(uv_index);
+	float b = random(uv_index + vec2(1.0, 0.0));
+	float c = random(uv_index + vec2(0.0, 1.0));
+	float d = random(uv_index + vec2(1.0, 1.0));
+
+	vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+	return mix(a, b, blur.x) +
+				(c - a) * blur.y * (1.0 - blur.x) +
+				(d - b) * blur.x * blur.y;
+}
+
+float fbm(vec2 uv) {
+	int octaves = 4;
+	float amp = 0.5;
+	float freq = 4.;
+	float value = 0.0;
+	
+	for(int i = 0; i < octaves; i++) {
+		value += amp * noise(freq * uv - 0.5);
+		amp *= 0.6;
+		freq *= 2.;
+	}
+	return value;
+}
+
+
+void fragment()
+{
+	// Some initialising
+	float time = TIME;
+	vec4 c = vec4(vec3(0.0), 1.0);
+	float f_columns = float(lines);
+	
+	// Make some distance to the edges before the animation starts
+	float cutoff = smoothstep(0.0, edge, (round ((UV.x) * (f_columns) ) / f_columns) );
+	cutoff *= 1. - smoothstep(1.-edge, 1.0, (round ((UV.x) * (f_columns) ) / f_columns) );
+
+	// Speech simulation setup
+	float ss = 1.0;
+	if (speech_sim == true){
+		ss = fbm(vec2(1.0, time * speed * 1.3) * speech_intensity) * 1.5;
+	}
+	
+	// Create the noise that controlls the animation
+	float noise = fbm(vec2( round( (UV.x) * f_columns ) * frequency, time * speed) ) * ss * progress;
+	noise *= cutoff; // Apply edge cutoff
+	
+	// Make wave values based on the noise
+	float wave = smoothstep(1.-intensity, 1.0, noise) * amplitude;
+	wave = wave + (rest_size * 0.2);
+	
+	// Create the lines
+	float line = abs( sin(( f_columns * 3.1416 * UV.x) + 1.5) );
+	line = smoothstep(1.-line_size, (1.-line_size) + (1.-line_sharpness), line);
+	
+	// Simulate dot_matrix
+	if (dot_matrix){
+		float dm = abs( sin(( float(dot_matriz_size) * 3.1416 * UV.y) + 1.5) );
+		dm = smoothstep(1.-line_size, (1.-line_size) + (1.-line_sharpness), dm);
+		line *= dm;
+	}
+	
+	// Duplicate mask on top an bottom and apply to line
+	float mask = 1.0 - smoothstep(wave, wave + fade, abs(UV.y - 0.5) * 2.);
+	line *= mask;
+	
+	c = vec4(line) * color;
+	
+	COLOR = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/lines = 64
+shader_param/amplitude = 0.9
+shader_param/frequency = 0.1
+shader_param/intensity = 0.75
+shader_param/line_sharpness = 0.5
+shader_param/line_size = 0.8
+shader_param/fade = 0.1
+shader_param/rest_size = -0.2
+shader_param/edge = 0.15
+shader_param/speed = 0.5
+shader_param/color = Color( 0.321569, 1, 0, 1 )
+shader_param/dot_matrix = true
+shader_param/dot_matriz_size = 80
+shader_param/speech_sim = true
+shader_param/speech_intensity = 0.8
+shader_param/progress = 1.0
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.498039 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 0.247059 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 32.0
+expand_margin_right = 32.0
+
+[node name="Music" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="Content" index="1"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="Content" index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -63.5
+margin_right = 140.0
+margin_bottom = 63.5
+custom_styles/panel = SubResource( 3 )
+
+[node name="Container" type="VBoxContainer" parent="Content/Panel" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 16.0
+alignment = 1
+
+[node name="NowPlaying" type="Label" parent="Content/Panel/Container" index="0"]
+margin_top = 5.0
+margin_right = 280.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 32 )
+custom_styles/normal = SubResource( 4 )
+text = "saint philibert"
+align = 1
+valign = 1
+
+[node name="Container" type="HBoxContainer" parent="Content/Panel/Container" index="1"]
+margin_top = 41.0
+margin_right = 280.0
+margin_bottom = 105.0
+rect_min_size = Vector2( 32, 64 )
+custom_constants/separation = 32
+alignment = 1
+
+[node name="Previous" type="TextureButton" parent="Content/Panel/Container/Container" index="0"]
+margin_left = 12.0
+margin_right = 76.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 0 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+flip_h = true
+
+[node name="PlayPause" type="TextureButton" parent="Content/Panel/Container/Container" index="1"]
+margin_left = 108.0
+margin_right = 172.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 0 )
+focus_mode = 0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Next" type="TextureButton" parent="Content/Panel/Container/Container" index="2"]
+margin_left = 204.0
+margin_right = 268.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 0 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Content/Panel" index="1"]
+anchor_right = 1.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 0, 32 )
+custom_colors/font_color = Color( 0.498039, 0.498039, 0.498039, 1 )
+text = "NOW PLAYING"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="Content/Panel/Container/Container/Previous" to="." method="_on_Previous_pressed"]
+[connection signal="pressed" from="Content/Panel/Container/Container/PlayPause" to="." method="_on_PlayPause_pressed"]
+[connection signal="pressed" from="Content/Panel/Container/Container/Next" to="." method="_on_Next_pressed"]

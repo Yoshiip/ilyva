@@ -151,18 +151,18 @@ music_id = "rat"
 z_index = -64
 texture = ExtResource( 1 )
 
-[node name="Subway" parent="." instance=ExtResource( 2 )]
+[node name="Métro" parent="." instance=ExtResource( 2 )]
 position = Vector2( -431, 310 )
 __meta__ = {
 "_edit_group_": true
 }
 scene_name = "PontDeBois/Station"
 
-[node name="Icon" parent="Subway" index="0"]
+[node name="Icon" parent="Métro" index="0"]
 material = SubResource( 9 )
 rotation = 3.14159
 
-[node name="Collision" parent="Subway" index="1"]
+[node name="Collision" parent="Métro" index="1"]
 position = Vector2( -3.8147e-06, 16.5 )
 
 [node name="Traffic" type="AudioStreamPlayer" parent="."]
@@ -177,5 +177,5 @@ sultan_id = "hector"
 [node name="Icon" parent="SultanCollectable" index="0"]
 material = SubResource( 13 )
 
-[editable path="Subway"]
+[editable path="Métro"]
 [editable path="SultanCollectable"]

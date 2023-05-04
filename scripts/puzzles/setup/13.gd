@@ -22,8 +22,13 @@ var system := System.new([
 
 const ANSWER = "3067332900655"
 
-func variable_set (name: String, value: String, is_new: bool) -> void:
+func variable_set (name: String, value: String, _is_new: bool) -> void:
 	if name == "CLEF":
+		# Puisqu'on a donné une erreur à la prof, il nous faut absolument corriger ça.
+		# L'erreur est que le code a besoin d'un chemin absolu, mais la solution donne un chemin relatif.
+		# On le corrige ici manuellement, pas le choix.
+		if value == "./script.sh":
+			value = "/script.sh"
 		var path := PathObject.new(value)
 		if not path.is_valid:
 			return
@@ -37,5 +42,4 @@ func variable_set (name: String, value: String, is_new: bool) -> void:
 				else:
 					oneline_output += output.text
 			if oneline_output == ANSWER:
-#				GameManager.progress["iut"]["Bastum"] += 1
 				grant_victory()

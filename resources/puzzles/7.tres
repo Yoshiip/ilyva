@@ -8,7 +8,8 @@ script = ExtResource( 1 )
 portrait = ExtResource( 2 )
 name = "Les variables"
 start_phrase = "Le rat vous lance une énigme!"
-description = "Le rat veut tout d’abord que vous affichiez “Hello Rats” à l’aide d’une variable."
+description = "Le rat veut tout d’abord que vous affichiez “Hello Rats” à l’aide d’une variable.
+La variable doit obligatoirement s'appeler \"rat\"."
 given_by = "Le rat"
 hints = [ "Une variable permet de stocker des données dans le terminal, pour pouvoir les réutiliser.", "Une variable se définit avec [nom de la variable]=[valeur].", "Pour afficher une variable, utilisez le symbole $ précédé du nom de la variable pour l’afficher." ]
 hints_action = PoolStringArray( "", "", "" )

@@ -13,6 +13,6 @@ func interface_changed(content):
 	if content.strip_edges() == "1\n2\n3":
 		used_seq = true
 
-func program_executed (starting_point, R, A, B, output):
+func program_executed (_starting_point, _R, _A, _B, output):
 	if used_seq and output == 6:
 		grant_victory()

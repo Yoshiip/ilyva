@@ -16,7 +16,7 @@ var system := System.new([
 # la solution en une seule ligne :
 # ping clement.etu
 
-func command_executed(command, output) -> void:
+func command_executed(command, _output) -> void:
 	if command.name == "ping" and command.options.size() == 1:
 		var option = command.options[0]
 		if option.is_word() and option.value == "clement.etu":

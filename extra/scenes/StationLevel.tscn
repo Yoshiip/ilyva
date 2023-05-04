@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
+[ext_resource path="res://addons/super_scaling/SuperScaling.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/jm_pp_outlines/jm_pp_outlines_camera.gd" type="Script" id=3]
 [ext_resource path="res://images/shaders/gradient.png" type="Texture" id=4]
 [ext_resource path="res://scripts/3d/FPSController.gd" type="Script" id=5]
@@ -243,6 +244,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RightPlatform"]
 shape = SubResource( 55 )
+
+[node name="SuperScaling" parent="." instance=ExtResource( 1 )]
+smoothness = 0.0
+enable_on_play = true
+ui_nodes = [ NodePath("../Canvas") ]
+msaa = 2
 
 [connection signal="body_entered" from="LeftPlatform" to="." method="_on_LeftPlatform_body_entered"]
 [connection signal="body_exited" from="LeftPlatform" to="." method="_on_LeftPlatform_body_exited"]

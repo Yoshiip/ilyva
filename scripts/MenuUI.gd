@@ -37,9 +37,6 @@ func _screen_resized() -> void:
 func _process(delta: float) -> void:
 	timer += delta
 	
-	if Input.is_action_just_pressed("speedhack"):
-		$Canvas/Container/DebugPuzzle.visible = !$Canvas/Container/DebugPuzzle.visible
-	
 	$Canvas/Container/Control/Panel/Timer.text = "%02d:%02d:%s" % [int(floor(timer / 60.0)) % 60, int(fmod(floor(timer), 60.0)), str((timer - int(timer))).left(4).right(2)]
 	$Canvas/Container/Control/Panel/Dot.modulate = Color.red if fmod(timer, 2.0) > 1.0 else Color.black
 	

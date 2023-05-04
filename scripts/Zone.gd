@@ -1,5 +1,12 @@
 extends Node2D
 
+const LOCATIONS := {
+	"Entrance": "Entrée",
+	"Toilets": "Salle de bain",
+	"Corridor": "Couloir",
+	"Office": "Bureau",
+}
+
 
 export var zone_id := "unnamed"
 export var zone_name := "Unnamed"
@@ -21,6 +28,8 @@ onready var tooltip := preload("res://prefabs/Tooltip.tscn").instance()
 onready var transition := preload("res://prefabs/Transition.tscn").instance()
 onready var cursor := preload("res://prefabs/Cursor.tscn").instance()
 onready var canvas := preload("res://prefabs/2d/GameCanvas.tscn").instance()
+
+
 
 var background_blur : Sprite
 

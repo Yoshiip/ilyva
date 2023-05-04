@@ -71,7 +71,7 @@ var looped_once := true
 export var acceleration := 5.0
 export var decceleration := 0.98
 
-onready var station := get_parent().get_node("Station")
+onready var station := get_tree().get_root().find_node("Station", true, false)
 
 func fdsfdsfges() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")

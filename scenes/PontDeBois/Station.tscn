@@ -226,7 +226,7 @@ portrait = ExtResource( 1 )
 sprite_scale = 0.3
 max_story_progress = -1
 
-[node name="Subway" parent="." instance=ExtResource( 4 )]
+[node name="Métro" parent="." instance=ExtResource( 4 )]
 position = Vector2( -43, 441 )
 __meta__ = {
 "_edit_group_": true
@@ -234,21 +234,21 @@ __meta__ = {
 scene_name = "subway"
 show_confirm = true
 
-[node name="Icon" parent="Subway" index="0"]
+[node name="Icon" parent="Métro" index="0"]
 material = SubResource( 9 )
 rotation = 3.14159
 
-[node name="Collision" parent="Subway" index="1"]
+[node name="Collision" parent="Métro" index="1"]
 position = Vector2( -3.8147e-06, 16.5 )
 
-[node name="PDB2" parent="." instance=ExtResource( 4 )]
+[node name="Place" parent="." instance=ExtResource( 4 )]
 position = Vector2( 744, -31 )
 __meta__ = {
 "_edit_group_": true
 }
 scene_name = "PontDeBois/Station_2"
 
-[node name="Icon" parent="PDB2" index="0"]
+[node name="Icon" parent="Place" index="0"]
 material = SubResource( 11 )
 
 [node name="Traffic" type="AudioStreamPlayer" parent="."]
@@ -263,6 +263,6 @@ sultan_id = "crocan"
 [node name="Icon" parent="SultanCollectable" index="0"]
 material = SubResource( 13 )
 
-[editable path="Subway"]
-[editable path="PDB2"]
+[editable path="Métro"]
+[editable path="Place"]
 [editable path="SultanCollectable"]

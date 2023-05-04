@@ -17,7 +17,7 @@ func _ready() -> void:
 		icon.texture = load("res://images/sultans/" + item_id + ".png")
 		name_label.text = item_id.capitalize()
 		if GameManager.sultans.size() >= 12:
-			description.text = str("Youpi! Vous les avez tous trouver.\nAllez vite le dire à Thomas!")
+			description.text = str("Youpi! Vous les avez tous trouvés.\nAllez vite le dire à Thomas!")
 		else:
 			
 			description.text = str("Il vous reste ", 12 - GameManager.sultans.size(), " sultans a trouver.")

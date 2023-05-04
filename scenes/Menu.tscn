@@ -466,36 +466,6 @@ texture_hover = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="DebugPuzzle" type="Button" parent="Canvas/Container"]
-visible = false
-margin_left = 16.0
-margin_top = 10.0
-margin_right = 344.0
-margin_bottom = 39.0
-text = "debug puzzle"
-align = 0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="SpinBox" type="SpinBox" parent="Canvas/Container/DebugPuzzle"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -16.5
-margin_bottom = 16.5
-min_value = 1.0
-max_value = 13.0
-value = 1.0
-
-[node name="LineEdit" type="LineEdit" parent="Canvas/Container/DebugPuzzle"]
-margin_top = 64.0
-margin_right = 376.0
-margin_bottom = 97.0
-text = "res://scenes/"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 autoplay = true
@@ -510,5 +480,3 @@ bus = "Effects"
 [connection signal="pressed" from="Canvas/Container/Buttons/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Canvas/Container/VBoxContainer/Github" to="." method="_on_Github_pressed"]
 [connection signal="pressed" from="Canvas/Container/VBoxContainer/Website" to="." method="_on_Website_pressed"]
-[connection signal="pressed" from="Canvas/Container/DebugPuzzle" to="." method="_on_DebugPuzzle_pressed"]
-[connection signal="text_entered" from="Canvas/Container/DebugPuzzle/LineEdit" to="." method="_on_LineEdit_text_entered"]
