@@ -3,6 +3,10 @@ extends Panel
 onready var InventoryItem = preload("res://prefabs/ui/pause/InventoryItem.tscn")
 
 func refresh() -> void:
+	for item in GameManager.items:
+		if !["traminus", "subway_card", "key", "wallet"].has(item):
+			GameManager.items.erase(item)
+			print("deleted wrong item " + item)
 	for i in $List.get_children():
 		i.queue_free()
 	for i in GameManager.items:

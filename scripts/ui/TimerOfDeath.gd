@@ -4,7 +4,6 @@ var fake := false
 
 func _ready() -> void:
 	MusicManager.start_music("bomb", 1.0, -5)
-	print(GameManager.progress["iut"]["CDI"])
 	fake = GameManager.progress["iut"]["CDI"] == 1
 
 

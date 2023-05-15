@@ -21,3 +21,7 @@ func _on_Button_pressed() -> void:
 func _on_Skip_pressed() -> void:
 	if get_tree().current_scene.name == "Puzzle":
 		get_tree().current_scene.skip()
+
+
+func _on_Spinbox_value_changed(value: float) -> void:
+	GameManager.current_puzzle = load(str("res://resources/puzzles/", int(value), ".tres"))

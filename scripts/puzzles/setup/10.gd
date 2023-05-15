@@ -9,5 +9,6 @@ var system := System.new([
 ])
 
 func interface_changed(content: String) -> void:
-	if content.to_lower().strip_edges() == "bonjour\nje\nsuis\ntres\ncontent":
+	var low = content.to_lower().strip_edges()
+	if low == "bonjour\nje\nsuis\ntres\ncontent" || low == "bonjour\nje\nsuis\ntrès\ncontent":
 		grant_victory()

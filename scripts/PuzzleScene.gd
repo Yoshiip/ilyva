@@ -20,16 +20,17 @@ func _ready() -> void:
 	puzzle = GameManager.current_puzzle
 	$Canvas/Container/ModalsManager.ready()
 	
+	puzzle_handler = Node.new()
+	puzzle_handler.name = "PuzzleHandler"
+	
+	puzzle_handler.script = load("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd")
+	add_child(puzzle_handler)
+	
 	if puzzle.get_puzzle_id() == "13": # last puzzle
 		yield(get_tree().create_timer(5.0), "timeout")
 		add_child(Dialogic.start("last_puzzle/start"))
 	
-	puzzle_handler = Node.new()
-	puzzle_handler.name = "PuzzleHandler"
 	
-	
-	puzzle_handler.script = load("res://scripts/puzzles/setup/" + puzzle.get_puzzle_id() + ".gd")
-	add_child(puzzle_handler)
 
 
 onready var pattern: Sprite = $Wallpaper/Pattern

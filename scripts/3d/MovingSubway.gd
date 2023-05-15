@@ -107,7 +107,6 @@ func _process(delta: float) -> void:
 #		else:
 #			_dis1 = GameManager.STATIONS[current_stop_id]
 #			_dis2 = GameManager.STATIONS[next_stop_id]
-#	print(str(GameManager.map_stop_progress, " > ", next_stop_id))
 	if offset >= next_stop_position && going_forward|| offset <= next_stop_position && !going_forward:
 		speed = 0.0
 		translation.z = 2.0
@@ -121,8 +120,6 @@ func _process(delta: float) -> void:
 			interact_door(true, !going_forward)
 			yield(get_tree().create_timer(0.5), "timeout")
 			station.interact_door(true, !going_forward)
-			print(next_stop_id)
-			print(!GameManager.unlocked_levels.has(next_stop_id))
 			if !GameManager.unlocked_levels.has(next_stop_id):
 				set_process(false)
 				yield(get_tree().create_timer(3.0), "timeout")

@@ -12,8 +12,6 @@ export var show_confirm := false
 var popup : Panel
 
 func _ready() -> void:
-	print(need_condition_to_show && !GameManager.progress[get_tree().current_scene.zone_id].get(condition))
-	print(!GameManager.progress[get_tree().current_scene.zone_id].get(condition))
 	if need_condition_to_show && !GameManager.progress[get_tree().current_scene.zone_id].get(condition):
 		queue_free()
 		

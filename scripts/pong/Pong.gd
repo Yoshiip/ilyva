@@ -12,7 +12,6 @@ func _restart() -> void:
 	get_tree().reload_current_scene()
 
 func score(for_player) -> void:
-	print(for_player)
 	if for_player:
 		player_score += 1
 	else:

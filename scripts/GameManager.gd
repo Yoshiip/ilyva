@@ -20,11 +20,11 @@ func _ready() -> void:
 	timer = Timer.new()
 	timer.wait_time = 1.0
 	timer.autostart = true
+	timer.pause_mode = Node.PAUSE_MODE_PROCESS
 	add_child(timer)
 	timer.connect("timeout", self, "playtime_timer")
 
 func playtime_timer() -> void:
-
 	playtime += 1
 
 
@@ -32,18 +32,24 @@ func new_game() -> void:
 	save_data = SaveData.new()
 	apply_data()
 
-const PROPERTIES_TO_SAVE := ["progress", "unlocked_levels", "current_subway_stop", "sultans", "items", "puzzles_solves", "playtime"]
+const PROPERTIES_TO_SAVE := ["sultans", "progress", "unlocked_levels", "current_subway_stop", "items", "puzzles_solves", "playtime"]
 
 func apply_data() -> void:
+	print("Applying data...")
 	for property in PROPERTIES_TO_SAVE:
-		set(property, save_data.get(property))
+		var _data = save_data.get(property)
+		if typeof(_data) == TYPE_ARRAY:
+			_data = _data.duplicate()
+		set(property, _data)
 	
 
 func load_save() -> void:
+	print("Loading save...")
 	save_data = SaveData.new().load_data()
 	apply_data()
 
 func save() -> void:
+	print("Saving")
 	if save_data != null:
 		for property in PROPERTIES_TO_SAVE:
 			save_data.set(property, get(property))
@@ -93,7 +99,6 @@ var progress := {
 
 var sultans := []
 var items := []
-
 var playtime := 0
 
 var puzzles_solves := 0
@@ -215,6 +220,7 @@ const STATIONS := [
 
 
 func add_to_inventory(item_id : String, callback = "") -> void:
+	print("adding to inventory " + item_id)
 	if !items.has(item_id):
 		items.append(item_id)
 		play_new_item_animation(item_id, false, callback)
@@ -223,10 +229,11 @@ func add_to_inventory(item_id : String, callback = "") -> void:
 
 
 func add_sultan(sultan_id : String) -> void:
-	if !sultans.has(sultan_id):
-		sultans.append(sultan_id)
+	print("found " + sultan_id)
+	if !self.sultans.has(sultan_id):
+		self.sultans.append(sultan_id)
 		play_new_item_animation(sultan_id, true)
-		if sultans.size() == 12:
+		if self.sultans.size() == 12:
 			GameManager.progress.saint_philibert.Thomas = 3
 
 

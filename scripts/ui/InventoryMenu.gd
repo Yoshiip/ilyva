@@ -8,7 +8,7 @@ func _ready() -> void:
 		$Container/QuitGame.queue_free()
 	add_child(tween)
 
-#	$Container/Playtime/Value.text = "%02d:02d:%02d" % [(GameManager.playtime / 3600) % 24, (GameManager.playtime / 60) % 60, GameManager.playtime % 60]
+
 	visible = false
 
 var in_animation := false
@@ -18,6 +18,10 @@ const ANIMATION_LENGTH := 0.5
 
 
 func play_animation(backward = false) -> void:
+	for sultan in GameManager.sultans:
+		if !["achille", "anemone", "boulba", "cocan", "cricri", "crocan", "hector", "nano", "sabine", "simoun", "sultan", "zezette"].has(sultan):
+			print("Deleted wrong sultan " + sultan)
+			GameManager.sultans.remove(sultan)
 	get_parent().move_child(self, get_parent().get_child_count())
 	if in_animation:
 		return
@@ -47,7 +51,6 @@ func play_animation(backward = false) -> void:
 	
 	play_tween($Container/Background, "modulate:a", 0.0, 1.0, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
 	play_tween($Container/NoiseTexture, "modulate:a", 0.0, 0.25, ANIMATION_LENGTH, Tween.TRANS_EXPO, Tween.EASE_IN_OUT, backward)
-#	print("animation!")
 	var _temp = tween.start()
 	yield(tween, "tween_started") # Prevent seeing the first frame being the animation completed
 	if !backward:
@@ -66,7 +69,6 @@ func play_animation(backward = false) -> void:
 
 
 func _process(_delta: float) -> void:
-	print([(GameManager.playtime / 3600) % 24, (GameManager.playtime / 60) % 60, GameManager.playtime % 60])
 	$Container/NoiseTexture.rect_position = lerp($Container/NoiseTexture.rect_position, Vector2(rand_range(-15, 15), rand_range(-15, 15)), 0.1)
 	
 	$Container/Container/SultansCollection/Bar.value = GameManager.sultans.size()
@@ -75,6 +77,7 @@ func _process(_delta: float) -> void:
 #	$Container/Container/SultansCollection/Value.text = str(GameManager.sultans.size(), "/12")
 
 	if visible:
+		$Container/Playtime/Value.text = "%02d:%02d:%02d" % [(GameManager.playtime / 3600) % 24, (GameManager.playtime / 60) % 60, GameManager.playtime % 60]
 		if Input.is_action_just_pressed("escape") && !in_animation && can_pause:
 			var _modals := get_tree().get_nodes_in_group("PauseModal")
 			if _modals.empty():

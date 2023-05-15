@@ -9,26 +9,26 @@ script = ExtResource( 1 )
 [node name="Container" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -191.0
+margin_left = -471.0
 margin_top = 16.0
-margin_right = -16.0
-margin_bottom = 128.0
+margin_right = -15.0
+margin_bottom = 209.0
 theme = ExtResource( 2 )
 
 [node name="TITLE" type="Label" parent="Container"]
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 23.0
 text = "DEBUG MENU"
 
 [node name="FPS" type="Label" parent="Container"]
 margin_top = 27.0
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 50.0
 text = "60 fps"
 
 [node name="Speedhack" type="HBoxContainer" parent="Container"]
 margin_top = 54.0
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 86.0
 
 [node name="Label" type="Label" parent="Container/Speedhack"]
@@ -48,12 +48,12 @@ value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="Container"]
 margin_top = 90.0
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 94.0
 
 [node name="Scene" type="HBoxContainer" parent="Container"]
 margin_top = 98.0
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 131.0
 
 [node name="Text" type="LineEdit" parent="Container/Scene"]
@@ -70,18 +70,29 @@ margin_right = 199.0
 margin_bottom = 28.0
 text = ".tscn"
 
+[node name="Spinbox" type="SpinBox" parent="Container/Scene"]
+margin_left = 203.0
+margin_right = 383.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 180, 0 )
+min_value = 1.0
+max_value = 13.0
+value = 1.0
+prefix = "puzzle_id"
+
 [node name="Button" type="Button" parent="Container"]
 margin_top = 135.0
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 162.0
 text = "Change scene"
 
 [node name="Skip" type="Button" parent="Container"]
 margin_top = 166.0
-margin_right = 240.0
+margin_right = 456.0
 margin_bottom = 193.0
 text = "Skip current puzzle"
 
 [connection signal="value_changed" from="Container/Speedhack/Slider" to="." method="_on_Slider_value_changed"]
+[connection signal="value_changed" from="Container/Scene/Spinbox" to="." method="_on_Spinbox_value_changed"]
 [connection signal="pressed" from="Container/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Container/Skip" to="." method="_on_Skip_pressed"]

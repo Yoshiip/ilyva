@@ -12,7 +12,6 @@ func _ready() -> void:
 		queue_free()
 
 func interact() -> void:
-	print("test")
 	i += 1
 	if i >= count && get_node(sibling).i >= get_node(sibling).count:
 		get_tree().change_scene("res://scenes/Pong.tscn")

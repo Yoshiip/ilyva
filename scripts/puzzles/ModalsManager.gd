@@ -9,7 +9,6 @@ func ready() -> void:
 
 func open_modal(modal_name : String, position = null, pinned = false) -> void:
 	if !GameManager.APPS.get(modal_name).get("reference"):
-		print("wip")
 		return
 	var modal = GameManager.APPS.get(modal_name).get("reference").instance()
 	modal.puzzle = get_tree().current_scene.puzzle

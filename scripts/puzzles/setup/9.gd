@@ -14,5 +14,5 @@ func command_executed(command, _output) -> void:
 func interface_changed(content: String) -> void:
 	if redirection_path != null:
 		var redirected_file = system.get_element_with_absolute_path(redirection_path)
-		if redirected_file != null and redirected_file.content == content:
+		if redirected_file != null and redirected_file.content.strip_edges() == content.strip_edges():
 			grant_victory()

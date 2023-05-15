@@ -177,18 +177,18 @@ position = Vector2( -386, 56 )
 scale = Vector2( 0.0556912, 0.0556912 )
 texture = ExtResource( 10 )
 
-[node name="Arrow3" parent="." instance=ExtResource( 4 )]
+[node name="Métro" parent="." instance=ExtResource( 4 )]
 position = Vector2( 110, 439 )
 __meta__ = {
 "_edit_group_": true
 }
 scene_name = "BeauxArts/Station"
 
-[node name="Icon" parent="Arrow3" index="0"]
+[node name="Icon" parent="Métro" index="0"]
 material = SubResource( 2 )
 rotation = 3.14159
 
-[node name="Collision" parent="Arrow3" index="1"]
+[node name="Collision" parent="Métro" index="1"]
 position = Vector2( -3.8147e-06, 16.5 )
 
 [node name="Chiba" parent="." instance=ExtResource( 6 )]
@@ -238,6 +238,6 @@ position = Vector2( -1256, 238 )
 scale = Vector2( 0.128096, 0.128096 )
 texture = ExtResource( 10 )
 
-[editable path="Arrow3"]
+[editable path="Métro"]
 [editable path="Chiba2"]
 [editable path="Crocan"]
