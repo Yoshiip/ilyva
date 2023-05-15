@@ -1,8 +1,8 @@
-![Ilyva Logo](/images/splashscreen.png)
-Ilyva est un jeu d'aventure dans lequel vous devez vous enfuir de Lille en utilisant le métro de la métropole lilloise.
+![Cover](/images/backgrounds/poster_no_character.jpg)
+<img src="/images/logos/ilyva_white.png" alt="Logo ilyva" width="400px">
 
-[Site officiel](https://sae25.sciencesky.fr/)
+Un escape game original créé par des étudiants. Échappez-vous du monde parallèle dans lequel vous êtes bloqué(s) en vous exerçant à Bash.
 
-# Informations
-Version de Godot : 3.5
-[Télécharger](https://downloads.tuxfamily.org/godotengine/3.5/)
+[Site officiel](https://ilyva.sciencesky.fr/)
+
+Fait avec Godot 3.5.
