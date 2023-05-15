@@ -7,12 +7,15 @@ func _ready() -> void:
 	if OS.get_name() == "HTML5":
 		$Container/QuitGame.queue_free()
 	add_child(tween)
+
+#	$Container/Playtime/Value.text = "%02d:02d:%02d" % [(GameManager.playtime / 3600) % 24, (GameManager.playtime / 60) % 60, GameManager.playtime % 60]
 	visible = false
 
 var in_animation := false
 
 var mouse_mode_before : int
 const ANIMATION_LENGTH := 0.5
+
 
 func play_animation(backward = false) -> void:
 	get_parent().move_child(self, get_parent().get_child_count())
@@ -63,6 +66,7 @@ func play_animation(backward = false) -> void:
 
 
 func _process(_delta: float) -> void:
+	print([(GameManager.playtime / 3600) % 24, (GameManager.playtime / 60) % 60, GameManager.playtime % 60])
 	$Container/NoiseTexture.rect_position = lerp($Container/NoiseTexture.rect_position, Vector2(rand_range(-15, 15), rand_range(-15, 15)), 0.1)
 	
 	$Container/Container/SultansCollection/Bar.value = GameManager.sultans.size()

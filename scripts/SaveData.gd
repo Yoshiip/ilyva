@@ -5,6 +5,7 @@ const SAVE_GAME_BASE_PATH := "user://save"
 
 
 export var scene_path := ""
+export var playtime := 0
 
 export var progress := {
 	"global": 0,

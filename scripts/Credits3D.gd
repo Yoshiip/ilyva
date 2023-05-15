@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
 	$Canvas/Container/Logo.rect_pivot_offset = $Canvas/Container/Logo.rect_size / 2.0
 
 func _on_Timer_timeout() -> void:
-	bonus_o = 50.0
+	pass
+#	bonus_o = 50.0
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

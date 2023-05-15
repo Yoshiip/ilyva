@@ -8,7 +8,7 @@ var system := System.new([
 		SystemElement.new(0, "balance.dat", "/compte_personnel", str(OUR_MONEY), [], "root", "root", "500"),
 	], "root", "root"),
 	SystemElement.new(1, "magasin", "/", "", [
-		SystemElement.new(0, "batterie.dat", "/magasin", str(PRICE), [], "root", "root", "500"),
+		SystemElement.new(0, "batterie.dat", "/magasin", str(PRICE), [], "root", "root"),
 	], "root", "root"),
 ])
 

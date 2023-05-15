@@ -9,18 +9,30 @@ var scene_start_dialogue := ""
 
 var save_data : SaveData
 
+var timer : Timer
 
 func _ready() -> void:
 	randomize()
 	extra = OS.get_name() != "HTML5"
 	AudioServer.set_bus_volume_db(music_bus, linear2db(settings.music / 100.0))
 	AudioServer.set_bus_volume_db(effects_bus, linear2db(settings.effects / 100.0))
+	
+	timer = Timer.new()
+	timer.wait_time = 1.0
+	timer.autostart = true
+	add_child(timer)
+	timer.connect("timeout", self, "playtime_timer")
+
+func playtime_timer() -> void:
+
+	playtime += 1
+
 
 func new_game() -> void:
 	save_data = SaveData.new()
 	apply_data()
 
-const PROPERTIES_TO_SAVE := ["progress", "unlocked_levels", "current_subway_stop", "sultans", "items", "puzzles_solves"]
+const PROPERTIES_TO_SAVE := ["progress", "unlocked_levels", "current_subway_stop", "sultans", "items", "puzzles_solves", "playtime"]
 
 func apply_data() -> void:
 	for property in PROPERTIES_TO_SAVE:
@@ -81,6 +93,8 @@ var progress := {
 
 var sultans := []
 var items := []
+
+var playtime := 0
 
 var puzzles_solves := 0
 

@@ -12,6 +12,8 @@ func interface_changed(content: String) -> void:
 # C'est une fonction qui permet d'ajouter un script.
 # Ce script comporte une boucle for qui fait office d'exemple.
 func add_help_script() -> void:
-	system.root.append(
-		SystemElement.new(0, "aide.sh", "/", "texte='je suis un texte'\nfor i in $texte ; do\n\techo $i\ndone", [], "root", "root", "777")
-	)
+	var help_file = system.get_element_with_absolute_path(PathObject.new("/aide.sh"))
+	if help_file == null:
+		system.root.append(
+			SystemElement.new(0, "aide.sh", "/", "texte='je suis un texte'\nfor i in $texte ; do\n\techo $i\ndone", [], "root", "root", "777")
+		)
